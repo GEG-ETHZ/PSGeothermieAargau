@@ -1,0 +1,23 @@
+
+
+Examples using ``SampleModule.module.fun_power``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example will demonstrate the power function and class_power from our package &#x27;SampleModule...">
+
+.. only:: html
+
+ .. figure:: /WP1data_analysis/images/thumb/sphx_glr_plot_0_samplemodule_thumb.png
+     :alt: SampleModule example
+
+     :ref:`sphx_glr_WP1data_analysis_plot_0_samplemodule.py`
+
+.. raw:: html
+
+    </div>
+
+.. only:: not html
+
+ * :ref:`sphx_glr_WP1data_analysis_plot_0_samplemodule.py`
