@@ -13,7 +13,7 @@
 import datetime
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../'))
+sys.path.append('../')
 # import sys
 import SampleModule
 import OpenWF
@@ -88,13 +88,17 @@ sphinx_gallery_conf = {
     # path to where to save gallery generated output
     'gallery_dirs': [
         'WP1data_analysis'],
+    # Patter to search for example files
+    "filename_pattern": r"\.py",
+    # Remove the "Download all examples" button from the top level gallery
+    "download_all_examples": False,
     # specify that examples should be ordered according to filename
     'within_subsection_order': FileNameSortKey,
     # directory where function granular galleries are stored
     'backreferences_dir': 'gen_modules/backreferences',
     # Modules for which function level galleries are created.  In
     # this case sphinx_gallery and numpy in a tuple of strings.
-    'doc_module': ('SampleModule'),
+    'doc_module': ('SampleModule', 'OpenWF'),
 }
 
 # configuration for intersphinx: refer to the Python standard library.

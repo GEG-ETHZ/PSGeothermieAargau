@@ -1,12 +1,12 @@
-Module functions
+Module databases
 ================
 
 Functions have been documented using ``sphinx.ext.autodoc`` and the docstring
 style extension 'sphinx.ext.napoleon':
 
-.. autofunction:: SampleModule.module.fun_power
+.. autofunction:: OpenWF.db_access.connect
 
-.. include:: gen_modules/backreferences/SampleModule.module.fun_power.examples
+.. include:: gen_modules/backreferences/OpenWF.db_access.connect.examples
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

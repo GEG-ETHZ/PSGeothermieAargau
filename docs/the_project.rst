@@ -1,5 +1,5 @@
-Module classes
-==============
+The project
+===========
 
 Classes have been documented using ``sphinx.ext.autodoc`` and the docstring
 style extension 'sphinx.ext.napoleon':
