@@ -1,0 +1,23 @@
+
+
+Examples using ``gempy.map_series_to_surfaces``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="nananana NaNaNaNa EEEEYOOOO Gooodbye. connect of &#x27;OpenWF&#x27;.">
+
+.. only:: html
+
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_WP02_TEST_thumb.png
+     :alt: Export a GemPy Model
+
+     :ref:`sphx_glr_WP2geo_modeling_WP02_TEST.py`
+
+.. raw:: html
+
+    </div>
+
+.. only:: not html
+
+ * :ref:`sphx_glr_WP2geo_modeling_WP02_TEST.py`

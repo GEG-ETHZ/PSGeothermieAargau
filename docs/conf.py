@@ -13,11 +13,11 @@
 import datetime
 import os
 import sys
-sys.path.append('../')
+sys.path.insert(0, os.path.abspath('../'))
 # import sys
 import SampleModule
 import OpenWF
-# import gempy
+import gempy as gp
 import numpy as np
 
 from sphinx_gallery.sorting import FileNameSortKey
@@ -84,10 +84,12 @@ html_static_path = ['_static']
 sphinx_gallery_conf = {
     # path to your example scripts
     'examples_dirs': [
-        '../examples/data_analysis'],
+        '../examples/data_analysis',
+        '../examples/geo_modeling'],
     # path to where to save gallery generated output
     'gallery_dirs': [
-        'WP1data_analysis'],
+        'WP1data_analysis',
+        'WP2geo_modeling'],
     # Patter to search for example files
     "filename_pattern": r"\.py",
     # Remove the "Download all examples" button from the top level gallery
@@ -98,7 +100,7 @@ sphinx_gallery_conf = {
     'backreferences_dir': 'gen_modules/backreferences',
     # Modules for which function level galleries are created.  In
     # this case sphinx_gallery and numpy in a tuple of strings.
-    'doc_module': ('SampleModule', 'OpenWF'),
+    'doc_module': ('SampleModule', 'OpenWF', 'gempy'),
 }
 
 # configuration for intersphinx: refer to the Python standard library.

@@ -1,60 +1,40 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+Building a GemPy Model
+======================
 
-# # Create a geological model in GemPy
+nananana NaNaNaNa EEEEYOOOO Gooodbye. ``connect`` of 'OpenWF'.
+"""
+#%%
+# Create a geological model in GemPy
+# ----------------------------------
 # Geological modeling is the core task of Work Package 2 in this project. We use the opensource code GemPy for generating geological models whose purpose is to provide structure for later heat-transport simulations. 
 # 
 # In this notebook, we demonstrate how to build a geological model using input data from the 2D seismic line 82 in Leu 2008 \cite{leu_permokarbon-kartenskizze_2008}
-
-# In[1]:
-
 
 import sys, os
 sys.path.append("../..")
 
 import gempy as gp
-get_ipython().run_line_magic('matplotlib', 'inline')
-
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
-
-# In[2]:
-
-
-# Import data
-data_path = '../../data/processed/GemPy/'
+data_path = '../../data/GemPy/'
 geo_model = gp.create_model('Permo_Carb_Trough')
 gp.init_data(geo_model, [0, 30000., 0, 10., -7000, 1000.], [100, 1, 100],
                          path_o = data_path+'line82_foliations.csv',
-                         path_i = data_path+'line82_interfaces.csv', default_values=False);
+                         path_i = data_path+'line82_interfaces.csv', default_values=False)
 
-
-# In[3]:
-
+#%%
+# Show data
 
 gp.get_data(geo_model, 'surface_points').head()
 
-
-# In[4]:
-
-
-import matplotlib.pyplot as plt
 gp.plot.plot_data(geo_model, direction='y')
 
-
-# In[5]:
-
-
-import matplotlib.image as mimg
-img = mimg.imread('../../figs/line82-nf-10.png')
-plt.imshow(img);
-
-
-# In[5]:
-
-
+#%%
 # Assign formations to series
+
 gp.map_series_to_surfaces(geo_model,
                          {"Fault7_series": 'Fault7',
                           "Fault1_series": 'Fault1',
@@ -69,18 +49,10 @@ gp.map_series_to_surfaces(geo_model,
                          remove_unused_series=True)
 geo_model.surfaces
 
-
-# In[16]:
-
-
 geo_model.set_is_fault(['Fault7_series', 'Fault1_series', 'Fault6_series', 'Fault2_series', 
                         'Fault5_series', 'Fault3_series', 'Fault4_series'])
 #geo_model.set_is_finite_fault(series_fault=['Fault6_series', 'Fault5_series', 'Fault3_series', 'Fault4_series'],
 #                              toggle=True)
-
-
-# In[6]:
-
 
 geo_model.faults.faults_relations_df
 

@@ -23,6 +23,7 @@ from data acquisition to geothermal reservoir modeling.
    :caption: Galleries:
    
    WP1data_analysis/index
+   WP2geo_modeling/index
 
 
 Indices and tables
