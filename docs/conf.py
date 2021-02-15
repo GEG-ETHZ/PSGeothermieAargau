@@ -38,6 +38,7 @@ release = '0.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.autosectionlabel',
     'sphinx.ext.autodoc',
     'sphinx_gallery.gen_gallery',
     'sphinx.ext.napoleon',
@@ -45,6 +46,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.githubpages'
     ]
+# 'hachibee_sphinx_theme'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -60,19 +62,24 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
-# 'bizstyle'
-# html_theme_options = {
-#     'github_user': 'cgre-aachen',
-#     'github_repo': 'gempy',
-#     'github_type': 'star',
-#     'logo': './logos/gempy.png',
-#     'logo_name': True,
-#     'travis_button': True,
-#     'page_width': '1200px',
-#     'fixed_sidebar': False,
-#     'show_related': True,
-#     'sidebar_collapse': True,
+#import hachibee_sphinx_theme
+#html_theme_path = [hachibee_sphinx_theme.get_html_themes_path()]
+html_theme = 'haiku'
+html_logo = './images/logos/ps_aargau_logo_200px.png'
+# 'hachibee'
+# 'sphinx_rtd_theme'
+# 'alabaster'
+#html_theme_options = {
+#    'github_user': 'Japhiolite',
+#    'github_repo': 'PSGeothermieAargau',
+#    'github_type': 'star',
+#    'logo': './logos/ps_aargau_logo.png',
+#    'logo_name': False,
+#    'travis_button': False,
+#    'page_width': '1200px',
+#    'fixed_sidebar': False,
+#    'show_related': True,
+#   'sidebar_collapse': True,
 # }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -101,6 +108,7 @@ sphinx_gallery_conf = {
     # Modules for which function level galleries are created.  In
     # this case sphinx_gallery and numpy in a tuple of strings.
     'doc_module': ('SampleModule', 'OpenWF', 'gempy'),
+    'pypandoc': True
 }
 
 # configuration for intersphinx: refer to the Python standard library.

@@ -7,7 +7,19 @@ Welcome the Pilot Study Geothermie Aargau!
 ==========================================
 
 This documentation should serve as a step-by-step description of an open-source workflow
-from data acquisition to geothermal reservoir modeling.
+from data acquisition to geothermal reservoir modeling, which has been developed in a pilot project
+at the GEG group at ETH Zurich together with swisstopo. 
+One aim of the pilot project named "Pilot Study Geothermie Aargau", is to develop a reproducible and integrative
+workflow, fullly open-source, for a model-based getohermal prospection. With good data situation, and a distinct heat-flow anomaly, the 
+region around Brugg and Aargau in northern Switzerland poses a suited test area for this pilot study.
+Using the developed workflow, we aim to model this heat-flow anomaly, aiming to simulate the underlying heat-transport processes yielding
+heat-flow values of up to 140 mW/m².  
+
+More info can be found at the `GEG-project website <https://geg.ethz.ch/project-geothermal_aargau/>`_.
+
+.. image:: ./images/BaseMap_homepage.png
+  :width: 600
+  :alt: Map depicting the Canton of Aargau and heat-flow isolines
 
 .. toctree::
    :maxdepth: 2

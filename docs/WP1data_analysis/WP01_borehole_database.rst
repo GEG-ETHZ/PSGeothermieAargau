@@ -18,40 +18,56 @@
 .. _sphx_glr_WP1data_analysis_WP01_borehole_database.py:
 
 
-Accessing the temperature database
+Using the temperature database
 ==================================
 
-nananana NaNaNaNa EEEEYOOOO Gooodbye. ``connect`` of 'OpenWF'.
+In the following, I present ways to interact with a database of borehole temperatures in the study area, using the module `db_access`.
+These temperature data are used in other workpackages, e.g. for model calibration or MC-rejection.
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-47
+.. GENERATED FROM PYTHON SOURCE LINES 12-64
 
-Borehole Database  
+Borehole Database
 =================
 
-It is no surprise that the core of a data-driven project is data. Data which is organized in a specific manner, so that users can easily access, analyse, and manipulate data. Many different schemes exist, in which data can be organized, with a most common one being spreadsheet-like tables. Thus, spreadsheet software like Microsoft Excel or Libre-Office Calc are among popular solutions, when it comes to working with data.
+It is no surprise that the core of a data-driven project is data. Data which is organized in a specific manner, so that users can easily access,
+analyse, and manipulate data. Many different schemes exist, in which data can be organized, with a most common one being spreadsheet-like tables.
+Thus, spreadsheet software like Microsoft Excel or Libre-Office Calc are among popular solutions, when it comes to working with data.
 
-With growing amount of data, however, these software solutions may soon meet their limits, as they can get overly complicated. One example would be many `.xls` files, which are connected among each other using hyperlinks. This is obviously an error-prone solution, not really practical. Thus, greater amounts of data with a more complex structure, are usually maintained in a [database](https://en.wikipedia.org/wiki/Database), following a certain [data model](https://en.wikipedia.org/wiki/Data_model). Here, we use [SQLITE](https://www.sqlite.org/index.html) \cite{hipp_sqlite_2019} as underlying database solution, a SQL database engine. 
-
+With growing amount of data, however, these software solutions may soon meet their limits, as they can get overly complicated. One example would be many `.xls` files,
+which are connected among each other using hyperlinks. This is obviously an error-prone solution, not really practical. Thus, greater amounts of data with a more complex structure,
+are usually maintained in a `database <https://en.wikipedia.org/wiki/Database>`_, following a certain `data model <https://en.wikipedia.org/wiki/Data_model>`_.
+Here, we use `SQLITE <https://www.sqlite.org/index.html>`_ \cite{hipp_sqlite_2019} as underlying database solution, a SQL database engine.
+# 
 In the following, we will briefly describe the database structure, its content and provide some short examples how to access the database and work with the stored data.
 
 Data model
 ----------
 
-Within the database, we follow, as we use SQL, a [relational model](https://en.wikipedia.org/wiki/Relational_model) to organize stored data. This data comprises mainly borehole temperature measurements in the study area. The data was originally compiled by Schärli and Kohl \cite{scharli_archivierung_2002} in a set of excel tables. This *original* data, i.e. in its excel form, is available as supplementary material to the NAGRA Working report [NAB 12-61](https://www.nagra.ch/de/cat/publikationen/arbeitsberichte-nabs/nabs-2012/downloadcenter.htm). This report comprises temperature measurements for boreholes all over Switzerland. Additionally, a stratigraphical description is available for some boreholes. Figure \ref{fig:borehole_map} shows boreholes in Switzerland, which are deeper than 500 m. 
+Within the database, we follow, as we use SQL, a `relational model <https://en.wikipedia.org/wiki/Relational_model>`_ to organize stored data.
+This data comprises mainly borehole temperature measurements in the study area. The data was originally compiled by Schärli and Kohl \cite{scharli_archivierung_2002} in a set of excel tables. 
+This *original* data, i.e. in its excel form, is available as supplementary material to the NAGRA Working report
+`NAB 12-61 <https://www.nagra.ch/de/cat/publikationen/arbeitsberichte-nabs/nabs-2012/downloadcenter.htm>`_. 
+This report comprises temperature measurements for boreholes all over Switzerland. Additionally, a stratigraphical description is available for some boreholes. 
+Figure \ref{fig:borehole_map} shows boreholes in Switzerland, which are deeper than 500 m. 
 
 
 Many of the temperature data from these deep boreholes is compiled in Schärli and Kohl \cite{scharli_archivierung_2002}, in addition to temperature data from *shallow* boreholes, i.e. shallower than 500 m.
-In this work, we use a subset of this data which is (**a**) inside our area of interest, and (**b**) publicly available data. For instance, figure \ref{fig:database_map} shows a subset of deep boreholes (triangles) in the study area, colored by the data restriction. While blue represents open data, boreholes colored in red contain confidential data. Within the database, this information is stored, so confidential data can easily be erased from the database, in case it is made public.
+In this work, we use a subset of this data which is (**a**) inside our area of interest, and (**b**) publicly available data. 
+For instance, figure \ref{fig:database_map} shows a subset of deep boreholes (triangles) in the study area, colored by the data restriction. 
+While blue represents open data, boreholes colored in red contain confidential data. Within the database, this information is stored, so confidential data can easily be erased from the database, 
+in case it is made public.
 
 
-Currently, the database contains three related tables:  
+Currently, the database contains three related tables:
 * general borehole information (coordinates, name, original source, ...)  
 * temperature depth information for all boreholes  
-* available petrophysical information 
+* available petrophysical information  
 
-Not much petrophysical data is available from the boreholes. Temperature depth information, however, comprises more than 39000 data points. In the following, we present methods and procedures to access these data and work with it from within this notebook. For this, we use a mixture of SQL queries and methods of the data analysis library [`pandas`](https://pandas.pydata.org/). 
+Not much petrophysical data is available from the boreholes. Temperature depth information, however, comprises more than 39000 data points. 
+In the following, we present methods and procedures to access these data and work with it from within this notebook. For this, we use a mixture of SQL queries and methods of the data analysis library 
+`pandas <https://pandas.pydata.org/>`_. 
 
-Acessing data and visualizing 
+Acessing data and visualizing
 -----------------------------
 Querying a database is maybe the most often performed task, when it comes to databases. When you type something in a seach bar, for example, you query a database for the words you are looking for. The same, though in a more rudimentary form, can be done with the compiled "borehole temperature" database. 
 
@@ -63,7 +79,7 @@ The following code cells in this notebook show how:
 * store query results in a pandas dataframe and visualize them  
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-59
+.. GENERATED FROM PYTHON SOURCE LINES 64-76
 
 .. code-block:: default
 
@@ -86,11 +102,11 @@ The following code cells in this notebook show how:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-61
+.. GENERATED FROM PYTHON SOURCE LINES 77-78
 
 relative path to the .db file, which is the actual database
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-64
+.. GENERATED FROM PYTHON SOURCE LINES 78-81
 
 .. code-block:: default
 
@@ -104,11 +120,11 @@ relative path to the .db file, which is the actual database
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 65-66
+.. GENERATED FROM PYTHON SOURCE LINES 82-83
 
 connect to the database and get information about stored tables with the ``connect`` routine
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-69
+.. GENERATED FROM PYTHON SOURCE LINES 83-86
 
 .. code-block:: default
 
@@ -122,11 +138,13 @@ connect to the database and get information about stored tables with the ``conne
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-71
+.. GENERATED FROM PYTHON SOURCE LINES 87-90
 
-At this point, we successfully connected to the database. One next step would be to see, what different tables are stored in the database. `db_access` provides you with methods to do so. Of course, one can directly use an SQL query to do so. For user convenience, such queries are wrapped in some python methods of `db_access`. For instance, let's check the names of tables in the database:
+At this point, we successfully connected to the database. One next step would be to see, what different tables are stored in the database. `db_access` provides you with methods to do so. 
+Of course, one can directly use an SQL query to do so. For user convenience, such queries are wrapped in some python methods of `db_access`. 
+For instance, let's check the names of tables in the database:
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-77
+.. GENERATED FROM PYTHON SOURCE LINES 90-96
 
 .. code-block:: default
 
@@ -152,7 +170,7 @@ At this point, we successfully connected to the database. One next step would be
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-85
+.. GENERATED FROM PYTHON SOURCE LINES 97-104
 
 Essentially, these two commands do the same thing. In the `db_access` method, the `c.execute` and `c.fetchall` commands are bundled in one method, `.get_tables()`. The result are the three tables:  
 * borehole_information_temperatures  
@@ -162,7 +180,7 @@ Essentially, these two commands do the same thing. In the `db_access` method, th
 In its current state, `db_access` comprises very basic query methods. More specific data-queries still need to be done via the `c.execute` and `c.fetchall` chain which is extremely versatile.  
 For instance, consider out of the over 30000 data entries, we want to get all temperature measurements for Borehole Nr. 111. 
 
-.. GENERATED FROM PYTHON SOURCE LINES 85-89
+.. GENERATED FROM PYTHON SOURCE LINES 104-108
 
 .. code-block:: default
 
@@ -185,11 +203,11 @@ For instance, consider out of the over 30000 data entries, we want to get all te
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 90-91
+.. GENERATED FROM PYTHON SOURCE LINES 109-110
 
 To get the name of this borehole, we can relate to the table *borehole_information_temperatures* and query the name for the borehole with Nr. 111 in the exact same way:
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-96
+.. GENERATED FROM PYTHON SOURCE LINES 110-115
 
 .. code-block:: default
 
@@ -213,7 +231,7 @@ To get the name of this borehole, we can relate to the table *borehole_informati
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 97-105
+.. GENERATED FROM PYTHON SOURCE LINES 116-124
 
 .. code-block:: default
 
@@ -240,11 +258,11 @@ To get the name of this borehole, we can relate to the table *borehole_informati
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 106-107
+.. GENERATED FROM PYTHON SOURCE LINES 125-126
 
 ... or use a `db_access` method which returns this list of table headers:
 
-.. GENERATED FROM PYTHON SOURCE LINES 107-112
+.. GENERATED FROM PYTHON SOURCE LINES 126-131
 
 .. code-block:: default
 
@@ -268,12 +286,15 @@ To get the name of this borehole, we can relate to the table *borehole_informati
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 113-115
+.. GENERATED FROM PYTHON SOURCE LINES 132-137
 
-Now back to the query above, where we asked the database to provide all data for borehole *Riehen-1*, i.e. borehole Nr. 111. The query returns a list of table rows fitting the query command. While usable, it is difficult to read, at least for humans. This is, where pandas comes into play. As an extensive data analysis library, [pandas](https://pandas.pydata.org/) provides a lot of tools to deal with a database and present them in [dataframes](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html), which can be displayed in a way more organized way. Below, we submit a query for the temperature data for borehole Nr. 111 and display it.
+Now back to the query above, where we asked the database to provide all data for borehole *Riehen-1*, i.e. borehole Nr. 111. The query returns a list of table rows fitting the query command. 
+While usable, it is difficult to read, at least for humans. This is, where pandas comes into play. As an extensive data analysis library, `pandas <https://pandas.pydata.org/>`_ provides a lot of tools 
+to deal with a database and present them in `dataframes <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`_, which can be displayed in a way more organized way. 
+Below, we submit a query for the temperature data for borehole Nr. 111 and display it.
 query database for Borehole Nr. 111 and store it in the dataframe df.
 
-.. GENERATED FROM PYTHON SOURCE LINES 115-119
+.. GENERATED FROM PYTHON SOURCE LINES 137-141
 
 .. code-block:: default
 
@@ -369,11 +390,12 @@ query database for Borehole Nr. 111 and store it in the dataframe df.
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 120-121
+.. GENERATED FROM PYTHON SOURCE LINES 142-144
 
-Next to readability, another advantage of querying via pandas, and storing the result in a dataframe, is visualization. Pandas features some plotting functions, which can quickly plot parameters in a dataframe. For example, let's plot `Depth` versus `Temperature`:
+Next to readability, another advantage of querying via pandas, and storing the result in a dataframe, is visualization. Pandas features some plotting functions, which can quickly plot parameters in a 
+dataframe. For example, let's plot `Depth` versus `Temperature`:
 
-.. GENERATED FROM PYTHON SOURCE LINES 121-132
+.. GENERATED FROM PYTHON SOURCE LINES 144-155
 
 .. code-block:: default
 
@@ -410,9 +432,11 @@ Next to readability, another advantage of querying via pandas, and storing the r
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 133-143
+.. GENERATED FROM PYTHON SOURCE LINES 156-168
 
-Colleagues at [Georesources Switzerland Group](https://georessourcen.ethz.ch/en/#georesources-switzerland) evaluated temperature data from deep boreholes following certain criteria. According to their analysis, a subset of the deep boreholes contain enough data for a reliable heat-flow estimation. Boreholes passing this quality assessment are marked with white **+** in Figure \ref{fig:chosen_boreholes}. 
+Colleagues at `Georesources Switzerland Group <https://georessourcen.ethz.ch/en/#georesources-switzerland>`_ evaluated temperature data from deep boreholes following certain criteria. 
+According to their analysis, a subset of the deep boreholes contain enough data for a reliable heat-flow estimation. Boreholes passing this quality assessment are marked with white **+** 
+in Figure \ref{fig:chosen_boreholes}. 
 
 <hr>
 \begin{figure}
@@ -423,12 +447,13 @@ Colleagues at [Georesources Switzerland Group](https://georessourcen.ethz.ch/en/
 
 It should be noted, that data in these boreholes are all temperature logs with a high enough data density to reliably assess a temperature gradient.
 
-.. GENERATED FROM PYTHON SOURCE LINES 143-149
+.. GENERATED FROM PYTHON SOURCE LINES 168-175
 
 .. code-block:: default
 
 
-    # Until now, SQL queries consisted mainly of `select * ...` where the * represents *all*, i.e. selecting everything (similar to an `ls *` listing every content of a folder in bash). If now we want to know, for instance, all different Borehole numbers, which are the database ID for each borehole, we can use `select distinct ...`.
+    # Until now, SQL queries consisted mainly of `select * ...` where the * represents *all*, i.e. selecting everything (similar to an `ls *` listing every content of a folder in bash). 
+    # If now we want to know, for instance, all different Borehole numbers, which are the database ID for each borehole, we can use `select distinct ...`.
 
     all_borehole_numbers = pd.read_sql_query("select distinct Nr from temperature_data;", conn)
     all_borehole_numbers.head()
@@ -490,12 +515,12 @@ It should be noted, that data in these boreholes are all temperature logs with a
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 150-152
+.. GENERATED FROM PYTHON SOURCE LINES 176-178
 
 Out of this distinct list, only a few passed the QA step by the GS-Group. The ID-Numbers of these boreholes are compiled in the list below:
 Here is a list of boreholes which passed the QA step
 
-.. GENERATED FROM PYTHON SOURCE LINES 152-155
+.. GENERATED FROM PYTHON SOURCE LINES 178-181
 
 .. code-block:: default
 
@@ -509,14 +534,15 @@ Here is a list of boreholes which passed the QA step
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 156-160
+.. GENERATED FROM PYTHON SOURCE LINES 182-187
 
 Chaining queries
 ----------------
-When one searches for multiple keywords in, for instance, a google search, this narrows the number of potential results. Similarly this can be done when querying the database. As an example, let's query all data from the boreholes, which pass the QA-workflow by the GS-Group, and plot temperatures versus depth:
+When one searches for multiple keywords in, for instance, a google search, this narrows the number of potential results. Similarly this can be done when querying the database. 
+As an example, let's query all data from the boreholes, which pass the QA-workflow by the GS-Group, and plot temperatures versus depth:
 For instance, we want to get all the boreholes marked as _valid_ in one dataframe:
 
-.. GENERATED FROM PYTHON SOURCE LINES 160-172
+.. GENERATED FROM PYTHON SOURCE LINES 187-199
 
 .. code-block:: default
 
@@ -543,16 +569,17 @@ For instance, we want to get all the boreholes marked as _valid_ in one datafram
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 173-179
+.. GENERATED FROM PYTHON SOURCE LINES 200-207
 
-In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient. There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as **B**ottom **H**ole **T**emperatures (BHTs).  
+In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient. 
+There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as **B**ottom **H**ole **T**emperatures (BHTs).  
 If one would like to include *only* temperature logs in a database query, this can easily be done by extending the above chained query command with an `AND` keyword, so that a query would read:  
 ```SQL
 SELECT * FROM temperature_data WHERE Method = 'HRT' AND (Nr = ? OR Nr = ? OR ...);
 ```
 This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our `borehole_numbers` list, and if the measurement method is HRT.
 
-.. GENERATED FROM PYTHON SOURCE LINES 179-192
+.. GENERATED FROM PYTHON SOURCE LINES 207-220
 
 .. code-block:: default
 
@@ -580,12 +607,14 @@ This method essentially queries if a temperature measurement belongs to a boreho
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 193-195
+.. GENERATED FROM PYTHON SOURCE LINES 221-225
 
-This leaves all log measurements and sorts out BHT values, for instance. While `AND`, `OR` are the standard expressions for specifying different queries to be matched, there are many more useful query statements. There are multiple resources to list available SQL commands and queries, e.g. on [codeacademy](https://www.codecademy.com/learn/learn-sql/modules/learn-sql-queries/reference) or on [bitdegree](https://www.bitdegree.org/learn/sql-commands-list).  
+This leaves all log measurements and sorts out BHT values, for instance. While `AND`, `OR` are the standard expressions for specifying different queries to be matched, 
+there are many more useful query statements. There are multiple resources to list available SQL commands and queries, e.g. 
+on `codeacademy <https://www.codecademy.com/learn/learn-sql/modules/learn-sql-queries/reference>`_ or on `bitdegree <https://www.bitdegree.org/learn/sql-commands-list>`_.  
 To better distinguish the boreholes, let's add a legend to the plot.
 
-.. GENERATED FROM PYTHON SOURCE LINES 195-211
+.. GENERATED FROM PYTHON SOURCE LINES 225-241
 
 .. code-block:: default
 
@@ -616,23 +645,27 @@ To better distinguish the boreholes, let's add a legend to the plot.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 212-225
+.. GENERATED FROM PYTHON SOURCE LINES 242-259
 
 A word on data distribution  
 ---------------------------
 
-Until now, this notebook mainly dealt with the technical aspects of working with a database. It should provide the basic tools to perform actual analysis on the stored data. In preparation for another notebook, we analyse the distribution of data, to answer for example the question: *How probable is a temperature of X °C at a certain depth of Y km, according to our data?*  
-This may be done with another query, yielding all temperatures in a pre-defined depth bracket, for example. Another method for a quick estimate of data distribution is, to calculate the [Kernel Density Estimate](https://mathisonian.github.io/kde/) which, as the name says, is an estimate of a function underlying a certain distribution. Mathematically, it can be written as:  
+Until now, this notebook mainly dealt with the technical aspects of working with a database. It should provide the basic tools to perform actual analysis on the stored data. 
+In preparation for another notebook, we analyse the distribution of data, to answer for example the question: *How probable is a temperature of X °C at a certain depth of Y km, according to our data?*  
+This may be done with another query, yielding all temperatures in a pre-defined depth bracket, for example. Another method for a quick estimate of data distribution is, to calculate 
+the `Kernel Density Estimate <https://mathisonian.github.io/kde/>`_) which, as the name says, is an estimate of a function underlying a certain distribution. Mathematically, it can be written as:  
 
 $$ f(x) = \sum_i K \bigg(\frac{x-i}{bw}\bigg) $$ 
 
-Where $K$ is the *Kernel* or *Kernel function*, and $bw$ the *bandwidth*. The higher the bandwith, the smoother the resulting KDE, as it controls the distance, at which data points contribute to the current KDE-value. That is, a smaller bandwidth yields a more erratic KDE, while a high bandwidth value yields a smooth, yet shallower KDE where more distant points are taken into account.  
+Where $K$ is the *Kernel* or *Kernel function*, and $bw$ the *bandwidth*. The higher the bandwith, the smoother the resulting KDE, as it controls the distance, at which data points contribute to the 
+current KDE-value. That is, a smaller bandwidth yields a more erratic KDE, while a high bandwidth value yields a smooth, yet shallower KDE where more distant points are taken into account.  
 
-Here, we use the [scipy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html) implementation of a gaussian KDE. This means, $K$ is a gaussian Kernel. The bandwidth is estimated using a Scott estimate \cite{scott1979}, which automatically estimates an appropriate bandwidth. 
+Here, we use the `scipy <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html>`_ implementation of a gaussian KDE. This means, $K$ is a gaussian Kernel. 
+The bandwidth is estimated using a Scott estimate \cite{scott1979}, which automatically estimates an appropriate bandwidth. 
 
 In the following lines, we set up a linear regression through all borehole data and visualize the data distribution by coloring the data by their KDE value:
 
-.. GENERATED FROM PYTHON SOURCE LINES 225-254
+.. GENERATED FROM PYTHON SOURCE LINES 259-288
 
 .. code-block:: default
 
@@ -654,7 +687,7 @@ In the following lines, we set up a linear regression through all borehole data 
     xreg = np.linspace(10,110,100)
     yreg = reg.coef_[0] * xreg + reg.intercept_
 
-
+    # sphinx_gallery_thumbnail_number = 6
     fig, ax = plt.subplots(figsize=[16,10])
 
     cs = ax.scatter(valids['Temperature'], valids['Depth_asl'], c=z, s=70, alpha=.3, label='data')
@@ -686,11 +719,13 @@ In the following lines, we set up a linear regression through all borehole data 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 255-267
+.. GENERATED FROM PYTHON SOURCE LINES 289-303
 
-As to be expected from averaging temperature-depth data from multiple boreholes, the resulting temperature gradient reflects a normal continental temperature gradient. This indicates, that there is no regional-scale source which would act as a heat-source and would thus regionally increase temperature gradients, and by that the (conductive) heat flow. 
+As to be expected from averaging temperature-depth data from multiple boreholes, the resulting temperature gradient reflects a normal continental temperature gradient. 
+This indicates, that there is no regional-scale source which would act as a heat-source and would thus regionally increase temperature gradients, and by that the (conductive) heat flow. 
 Further, the majority of data can be found between 600 m and 1000 m depth between 50 °C and 60 °C. 
-It should be noted, that the kind of borehole has to be considered, when looking at data distribution. If borehole heat exchangers (BHE) are incorporated in the database, the most data will be at shallower depths, as BHEs usually extend to depths of around 200 m.  
+It should be noted, that the kind of borehole has to be considered, when looking at data distribution. 
+If borehole heat exchangers (BHE) are incorporated in the database, the most data will be at shallower depths, as BHEs usually extend to depths of around 200 m.  
 
 One last information about databases
 ------------------------------------
@@ -701,7 +736,7 @@ In this notebook, we worked with an SQL-database. This includes the standard ste
 * closing the database
 The last thing is important, as unexpected closure of non-closed databases may potentially corrupt them. So, the last step in working with the database is close it, as done in the following cell:
 
-.. GENERATED FROM PYTHON SOURCE LINES 267-271
+.. GENERATED FROM PYTHON SOURCE LINES 303-307
 
 .. code-block:: default
 
@@ -719,7 +754,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.887 seconds)
+   **Total running time of the script:** ( 0 minutes  5.072 seconds)
 
 
 .. _sphx_glr_download_WP1data_analysis_WP01_borehole_database.py:

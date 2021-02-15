@@ -5,14 +5,14 @@
 
 Computation times
 =================
-**00:08.924** total execution time for **WP1data_analysis** files:
+**00:05.072** total execution time for **WP1data_analysis** files:
 
 +--------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_WP1data_analysis_WP01_borehole_database.py` (``WP01_borehole_database.py``) | 00:08.887 | 0.0 MB |
+| :ref:`sphx_glr_WP1data_analysis_WP01_borehole_database.py` (``WP01_borehole_database.py``) | 00:05.072 | 0.0 MB |
 +--------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_WP1data_analysis_plot_0_samplemodule.py` (``plot_0_samplemodule.py``)       | 00:00.017 | 0.0 MB |
+| :ref:`sphx_glr_WP1data_analysis_plot_0_samplemodule.py` (``plot_0_samplemodule.py``)       | 00:00.000 | 0.0 MB |
 +--------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_WP1data_analysis_plot_2_data2.py` (``plot_2_data2.py``)                     | 00:00.011 | 0.0 MB |
+| :ref:`sphx_glr_WP1data_analysis_plot_1_download_data.py` (``plot_1_download_data.py``)     | 00:00.000 | 0.0 MB |
 +--------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_WP1data_analysis_plot_1_download_data.py` (``plot_1_download_data.py``)     | 00:00.010 | 0.0 MB |
+| :ref:`sphx_glr_WP1data_analysis_plot_2_data2.py` (``plot_2_data2.py``)                     | 00:00.000 | 0.0 MB |
 +--------------------------------------------------------------------------------------------+-----------+--------+

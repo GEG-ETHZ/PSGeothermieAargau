@@ -5,12 +5,12 @@ Examples using ``OpenWF.db_access.get_columns``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="nananana NaNaNaNa EEEEYOOOO Gooodbye. connect of &#x27;OpenWF&#x27;.">
+    <div class="sphx-glr-thumbcontainer" tooltip="In the following, I present ways to interact with a database of borehole temperatures in the st...">
 
 .. only:: html
 
  .. figure:: /WP1data_analysis/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
-     :alt: Accessing the temperature database
+     :alt: Using the temperature database
 
      :ref:`sphx_glr_WP1data_analysis_WP01_borehole_database.py`
 
