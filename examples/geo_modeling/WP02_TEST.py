@@ -65,4 +65,102 @@ gp.compute_model(geo_model, compute_mesh=False)
 
 gp.plot_2d(geo_model, direction='y', cell_number=45,show_data=False, show_boundaries=False, show_topography=False)
 
+# Exporting the Model to MOOSE
+# ----------------------------
+#
+# The voxel-model above already is the same as a model discretized in a hexahedral grid, so my immediately be used as input in a simulation tool, e.g. `MOOSE <https://mooseframework.org/>`_. 
+# For this, we need to access to the unit IDs assigned to each voxel in GemPy. The array containing these IDs is called `lith_block`. 
 
+#%%
+ids = geo_model.solutions.lith_block
+print(ids)
+
+
+# This array has the shape of `(x,)` and would be immediately useful, if GemPy and the chosen simulation code would _populate_ a grid in the same way. Of course, however, that is not the case. 
+# This is why we have to restructure the `lith_block` array, so it can be read correctly by MOOSE.
+#
+# The model resolution is extracted, so is the model extent:
+
+nx, ny, nz = geo_model.grid.regular_grid.resolution
+
+# model extent
+xmin, xmax, ymin, ymax, zmin, zmax = geo_model.grid.regular_grid.extent
+
+
+# These two parameters are important to, a) restructure `lith_block`, and b) write the input file for MOOSE correctly. 
+# For a), we need to reshape `lith_block` again to its three dimensions and _re-flatten_ it in a _MOOSE-conform_ way, i.e. reshape to 3D array and then flattened:
+
+units = ids.reshape((nx, ny, nz))
+# flatten MOOSE conform
+units = units.flatten('F')
+
+
+# The importance of `nx, ny, nz` is apparent from the cell above. But what about `xmin`, ..., `zmax`?  
+# A MOOSE input-file for mesh generation has the following syntax:  
+# 
+# ```python
+# [MeshGenerators]
+#   [./gmg]
+#     type = GeneratedMeshGenerator
+#     dim = 3
+#     nx = 50
+#     ny = 50
+#     nz = 80
+#     xmin = 0.0
+#     xmax = 2000.0
+#     yim = 0.0
+#     ymax = 2000.0
+#     zmin = 0.0
+#     zmax = 2000.0
+#     block_id = '1 2 3 4 5 6'
+#     block_name = 'Main_Fault Sandstone_2 Siltstone Shale Sandstone_1 basement'
+#   [../]
+# 
+#   [./subdomains]
+#     type = ElementSubdomainIDGenerator
+#     input = gmg
+#     subdomain_ids = ' ' # here you paste the transformed lith_block vector
+#   [../]
+# []
+# 
+# [Mesh]
+#   type = MeshGeneratorMesh
+# []
+# ```
+# 
+# So these parameters are required inputs in the `[MeshGenerators]` object in the MOOSE input file. `GemPy` has a method to directly create such an input file, stored in `gempy.utils.export.py`.  
+# 
+# The following cell shows how to call the method:
+
+import gempy.utils.export as export
+export.export_moose_input(geo_model, path='')
+
+
+# This method automatically stores a file `geo_model_units_moose_input.i` at the specified path. Either this input file could be extended with parameters to directly run a simulation, or it is used just for creating a mesh. In the latter case, the next step would be, to run the compiled MOOSE executable witch the optional flag `--mesh-only`.  
+# 
+# E.g. with using the `PorousFlow module <https://mooseframework.inl.gov/modules/porous_flow/>`_:
+# 
+# ```bash
+# $path_to_moose/moose/modules/porous_flow/porous_flow-opt -i pct_voxel_mesh.i --mesh-only
+# ```
+# 
+# How to compile MOOSE is described in their `documentation <https://mooseframework.inl.gov/getting_started/index.html>`_. 
+# 
+# The now generated mesh with the name `geo_model_units_moose_input_in.e` can be used as input for another MOOSE input file, which contains the main simulation parameters. 
+# To call the file with the grid, the following part has to be added in the MOOSE simulation input file:  
+# 
+# ```python
+# [Mesh]
+#   file = geo_model_units_moose_input_in.e
+# []
+# ```
+# 
+# <hr>
+# 
+# The final output of the simulation may also be such an `.e`, which can, for instance, be opened with `paraview <https://www.paraview.org/>`_. 
+# A simulated temperature field (purely conductive) of the created model would look like this:  
+# 
+# 
+# .. image:: ./images/GemPy_model_combined.png
+#  :width: 1200
+#  :alt: Side by side example of gempy model and MOOSE HT-simulation

@@ -18,8 +18,8 @@
 .. _sphx_glr_WP1data_analysis_WP01_borehole_database.py:
 
 
-Using the temperature database
-==================================
+Temperature database usage
+==========================
 
 In the following, I present ways to interact with a database of borehole temperatures in the study area, using the module `db_access`.
 These temperature data are used in other workpackages, e.g. for model calibration or MC-rejection.
@@ -37,7 +37,7 @@ With growing amount of data, however, these software solutions may soon meet the
 which are connected among each other using hyperlinks. This is obviously an error-prone solution, not really practical. Thus, greater amounts of data with a more complex structure,
 are usually maintained in a `database <https://en.wikipedia.org/wiki/Database>`_, following a certain `data model <https://en.wikipedia.org/wiki/Data_model>`_.
 Here, we use `SQLITE <https://www.sqlite.org/index.html>`_ \cite{hipp_sqlite_2019} as underlying database solution, a SQL database engine.
-# 
+
 In the following, we will briefly describe the database structure, its content and provide some short examples how to access the database and work with the stored data.
 
 Data model
@@ -754,7 +754,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.072 seconds)
+   **Total running time of the script:** ( 0 minutes  5.259 seconds)
 
 
 .. _sphx_glr_download_WP1data_analysis_WP01_borehole_database.py:

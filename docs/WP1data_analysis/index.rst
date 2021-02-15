@@ -17,7 +17,7 @@ Below are examples how data was acquired and used in the project:
 .. only:: html
 
  .. figure:: /WP1data_analysis/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
-     :alt: Using the temperature database
+     :alt: Temperature database usage
 
      :ref:`sphx_glr_WP1data_analysis_WP01_borehole_database.py`
 
