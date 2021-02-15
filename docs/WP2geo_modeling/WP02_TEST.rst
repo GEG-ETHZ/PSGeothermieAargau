@@ -21,9 +21,9 @@
 Export a GemPy Model
 ======================
 
-nananana NaNaNaNa EEEEYOOOO Gooodbye. ``connect`` of 'OpenWF'.
+This section briefly describes how to export a GemPy model to get a working input file for MOOSE. 
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-19
+.. GENERATED FROM PYTHON SOURCE LINES 8-20
 
 .. code-block:: default
 
@@ -46,14 +46,14 @@ nananana NaNaNaNa EEEEYOOOO Gooodbye. ``connect`` of 'OpenWF'.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-24
+.. GENERATED FROM PYTHON SOURCE LINES 21-25
 
 Creating a geological model  
 ---------------------------
 
 The procedure of generating a geological model is presented in detail in [Chapter 1-1](https://nbviewer.jupyter.org/github/cgre-aachen/gempy/blob/master/notebooks/tutorials/ch1-1_Basics.ipynb) of the GemPy tutorials, so it will only be briefly presented here
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-32
+.. GENERATED FROM PYTHON SOURCE LINES 25-33
 
 .. code-block:: default
 
@@ -77,15 +77,15 @@ The procedure of generating a geological model is presented in detail in [Chapte
 
     Active grids: ['regular']
 
-    tutorial_moose_exp  2021-02-12 18:26
+    tutorial_moose_exp  2021-02-15 18:17
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-34
+.. GENERATED FROM PYTHON SOURCE LINES 34-35
 
 present the units and series
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-38
+.. GENERATED FROM PYTHON SOURCE LINES 35-39
 
 .. code-block:: default
 
@@ -102,77 +102,77 @@ present the units and series
 
     <div class="output_subarea output_html rendered_html output_result">
     <style  type="text/css" >
-        #T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow0_col3 {
+        #T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow0_col3 {
                 background-color:  #015482;
-            }    #T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow1_col3 {
+            }    #T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow1_col3 {
                 background-color:  #9f0052;
-            }    #T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow2_col3 {
+            }    #T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow2_col3 {
                 background-color:  #ffbe00;
-            }    #T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow3_col3 {
+            }    #T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow3_col3 {
                 background-color:  #728f02;
-            }    #T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow4_col3 {
+            }    #T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow4_col3 {
                 background-color:  #443988;
-            }    #T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow5_col3 {
+            }    #T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow5_col3 {
                 background-color:  #ff3f20;
-            }</style><table id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2d" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
+            }</style><table id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2d" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
                     <tr>
-                            <th id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2dlevel0_row0" class="row_heading level0 row0" >0</th>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow0_col0" class="data row0 col0" >Shale</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow0_col1" class="data row0 col1" >Default series</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow0_col2" class="data row0 col2" >1</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow0_col3" class="data row0 col3" >#015482</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow0_col4" class="data row0 col4" >1</td>
+                            <th id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2dlevel0_row0" class="row_heading level0 row0" >0</th>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow0_col0" class="data row0 col0" >Shale</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow0_col1" class="data row0 col1" >Default series</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow0_col2" class="data row0 col2" >1</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow0_col3" class="data row0 col3" >#015482</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow0_col4" class="data row0 col4" >1</td>
                 </tr>
                 <tr>
-                            <th id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2dlevel0_row1" class="row_heading level0 row1" >1</th>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow1_col0" class="data row1 col0" >Sandstone_1</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow1_col1" class="data row1 col1" >Default series</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow1_col2" class="data row1 col2" >2</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow1_col3" class="data row1 col3" >#9f0052</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow1_col4" class="data row1 col4" >2</td>
+                            <th id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2dlevel0_row1" class="row_heading level0 row1" >1</th>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow1_col0" class="data row1 col0" >Sandstone_1</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow1_col1" class="data row1 col1" >Default series</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow1_col2" class="data row1 col2" >2</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow1_col3" class="data row1 col3" >#9f0052</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow1_col4" class="data row1 col4" >2</td>
                 </tr>
                 <tr>
-                            <th id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2dlevel0_row2" class="row_heading level0 row2" >2</th>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow2_col0" class="data row2 col0" >Siltstone</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow2_col1" class="data row2 col1" >Default series</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow2_col2" class="data row2 col2" >3</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow2_col3" class="data row2 col3" >#ffbe00</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow2_col4" class="data row2 col4" >3</td>
+                            <th id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2dlevel0_row2" class="row_heading level0 row2" >2</th>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow2_col0" class="data row2 col0" >Siltstone</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow2_col1" class="data row2 col1" >Default series</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow2_col2" class="data row2 col2" >3</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow2_col3" class="data row2 col3" >#ffbe00</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow2_col4" class="data row2 col4" >3</td>
                 </tr>
                 <tr>
-                            <th id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2dlevel0_row3" class="row_heading level0 row3" >3</th>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow3_col0" class="data row3 col0" >Sandstone_2</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow3_col1" class="data row3 col1" >Default series</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow3_col2" class="data row3 col2" >4</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow3_col3" class="data row3 col3" >#728f02</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow3_col4" class="data row3 col4" >4</td>
+                            <th id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2dlevel0_row3" class="row_heading level0 row3" >3</th>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow3_col0" class="data row3 col0" >Sandstone_2</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow3_col1" class="data row3 col1" >Default series</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow3_col2" class="data row3 col2" >4</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow3_col3" class="data row3 col3" >#728f02</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow3_col4" class="data row3 col4" >4</td>
                 </tr>
                 <tr>
-                            <th id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2dlevel0_row4" class="row_heading level0 row4" >4</th>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow4_col0" class="data row4 col0" >Main_Fault</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow4_col1" class="data row4 col1" >Default series</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow4_col2" class="data row4 col2" >5</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow4_col3" class="data row4 col3" >#443988</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow4_col4" class="data row4 col4" >5</td>
+                            <th id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2dlevel0_row4" class="row_heading level0 row4" >4</th>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow4_col0" class="data row4 col0" >Main_Fault</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow4_col1" class="data row4 col1" >Default series</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow4_col2" class="data row4 col2" >5</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow4_col3" class="data row4 col3" >#443988</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow4_col4" class="data row4 col4" >5</td>
                 </tr>
                 <tr>
-                            <th id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2dlevel0_row5" class="row_heading level0 row5" >5</th>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow5_col0" class="data row5 col0" >basement</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow5_col1" class="data row5 col1" >Basement</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow5_col2" class="data row5 col2" >1</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow5_col3" class="data row5 col3" >#ff3f20</td>
-                            <td id="T_7c5560d0_6d57_11eb_8a2b_184f329eea2drow5_col4" class="data row5 col4" >6</td>
+                            <th id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2dlevel0_row5" class="row_heading level0 row5" >5</th>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow5_col0" class="data row5 col0" >basement</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow5_col1" class="data row5 col1" >Basement</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow5_col2" class="data row5 col2" >1</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow5_col3" class="data row5 col3" >#ff3f20</td>
+                            <td id="T_bfb3c1f8_6fb1_11eb_8382_184f329eea2drow5_col4" class="data row5 col4" >6</td>
                 </tr>
         </tbody></table>
     </div>
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-40
+.. GENERATED FROM PYTHON SOURCE LINES 40-41
 
 combine units in series and make two series, as the fault needs its own
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-48
+.. GENERATED FROM PYTHON SOURCE LINES 41-49
 
 .. code-block:: default
 
@@ -226,11 +226,11 @@ combine units in series and make two series, as the fault needs its own
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-50
+.. GENERATED FROM PYTHON SOURCE LINES 50-51
 
 check whether series were assigned correctly
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-53
+.. GENERATED FROM PYTHON SOURCE LINES 51-54
 
 .. code-block:: default
 
@@ -246,79 +246,79 @@ check whether series were assigned correctly
 
     <div class="output_subarea output_html rendered_html output_result">
     <style  type="text/css" >
-        #T_7c83150c_6d57_11eb_8a2b_184f329eea2drow0_col3 {
+        #T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow0_col3 {
                 background-color:  #443988;
-            }    #T_7c83150c_6d57_11eb_8a2b_184f329eea2drow1_col3 {
+            }    #T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow1_col3 {
                 background-color:  #015482;
-            }    #T_7c83150c_6d57_11eb_8a2b_184f329eea2drow2_col3 {
+            }    #T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow2_col3 {
                 background-color:  #9f0052;
-            }    #T_7c83150c_6d57_11eb_8a2b_184f329eea2drow3_col3 {
+            }    #T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow3_col3 {
                 background-color:  #ffbe00;
-            }    #T_7c83150c_6d57_11eb_8a2b_184f329eea2drow4_col3 {
+            }    #T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow4_col3 {
                 background-color:  #728f02;
-            }    #T_7c83150c_6d57_11eb_8a2b_184f329eea2drow5_col3 {
+            }    #T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow5_col3 {
                 background-color:  #ff3f20;
-            }</style><table id="T_7c83150c_6d57_11eb_8a2b_184f329eea2d" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
+            }</style><table id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2d" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
                     <tr>
-                            <th id="T_7c83150c_6d57_11eb_8a2b_184f329eea2dlevel0_row0" class="row_heading level0 row0" >4</th>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow0_col0" class="data row0 col0" >Main_Fault</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow0_col1" class="data row0 col1" >Fault_Series</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow0_col2" class="data row0 col2" >1</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow0_col3" class="data row0 col3" >#443988</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow0_col4" class="data row0 col4" >1</td>
+                            <th id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2dlevel0_row0" class="row_heading level0 row0" >4</th>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow0_col0" class="data row0 col0" >Main_Fault</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow0_col1" class="data row0 col1" >Fault_Series</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow0_col2" class="data row0 col2" >1</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow0_col3" class="data row0 col3" >#443988</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow0_col4" class="data row0 col4" >1</td>
                 </tr>
                 <tr>
-                            <th id="T_7c83150c_6d57_11eb_8a2b_184f329eea2dlevel0_row1" class="row_heading level0 row1" >0</th>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow1_col0" class="data row1 col0" >Shale</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow1_col1" class="data row1 col1" >Strat_Series</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow1_col2" class="data row1 col2" >1</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow1_col3" class="data row1 col3" >#015482</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow1_col4" class="data row1 col4" >2</td>
+                            <th id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2dlevel0_row1" class="row_heading level0 row1" >0</th>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow1_col0" class="data row1 col0" >Shale</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow1_col1" class="data row1 col1" >Strat_Series</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow1_col2" class="data row1 col2" >1</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow1_col3" class="data row1 col3" >#015482</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow1_col4" class="data row1 col4" >2</td>
                 </tr>
                 <tr>
-                            <th id="T_7c83150c_6d57_11eb_8a2b_184f329eea2dlevel0_row2" class="row_heading level0 row2" >1</th>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow2_col0" class="data row2 col0" >Sandstone_1</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow2_col1" class="data row2 col1" >Strat_Series</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow2_col2" class="data row2 col2" >2</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow2_col3" class="data row2 col3" >#9f0052</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow2_col4" class="data row2 col4" >3</td>
+                            <th id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2dlevel0_row2" class="row_heading level0 row2" >1</th>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow2_col0" class="data row2 col0" >Sandstone_1</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow2_col1" class="data row2 col1" >Strat_Series</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow2_col2" class="data row2 col2" >2</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow2_col3" class="data row2 col3" >#9f0052</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow2_col4" class="data row2 col4" >3</td>
                 </tr>
                 <tr>
-                            <th id="T_7c83150c_6d57_11eb_8a2b_184f329eea2dlevel0_row3" class="row_heading level0 row3" >2</th>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow3_col0" class="data row3 col0" >Siltstone</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow3_col1" class="data row3 col1" >Strat_Series</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow3_col2" class="data row3 col2" >3</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow3_col3" class="data row3 col3" >#ffbe00</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow3_col4" class="data row3 col4" >4</td>
+                            <th id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2dlevel0_row3" class="row_heading level0 row3" >2</th>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow3_col0" class="data row3 col0" >Siltstone</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow3_col1" class="data row3 col1" >Strat_Series</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow3_col2" class="data row3 col2" >3</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow3_col3" class="data row3 col3" >#ffbe00</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow3_col4" class="data row3 col4" >4</td>
                 </tr>
                 <tr>
-                            <th id="T_7c83150c_6d57_11eb_8a2b_184f329eea2dlevel0_row4" class="row_heading level0 row4" >3</th>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow4_col0" class="data row4 col0" >Sandstone_2</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow4_col1" class="data row4 col1" >Strat_Series</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow4_col2" class="data row4 col2" >4</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow4_col3" class="data row4 col3" >#728f02</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow4_col4" class="data row4 col4" >5</td>
+                            <th id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2dlevel0_row4" class="row_heading level0 row4" >3</th>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow4_col0" class="data row4 col0" >Sandstone_2</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow4_col1" class="data row4 col1" >Strat_Series</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow4_col2" class="data row4 col2" >4</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow4_col3" class="data row4 col3" >#728f02</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow4_col4" class="data row4 col4" >5</td>
                 </tr>
                 <tr>
-                            <th id="T_7c83150c_6d57_11eb_8a2b_184f329eea2dlevel0_row5" class="row_heading level0 row5" >5</th>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow5_col0" class="data row5 col0" >basement</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow5_col1" class="data row5 col1" >Strat_Series</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow5_col2" class="data row5 col2" >5</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow5_col3" class="data row5 col3" >#ff3f20</td>
-                            <td id="T_7c83150c_6d57_11eb_8a2b_184f329eea2drow5_col4" class="data row5 col4" >6</td>
+                            <th id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2dlevel0_row5" class="row_heading level0 row5" >5</th>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow5_col0" class="data row5 col0" >basement</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow5_col1" class="data row5 col1" >Strat_Series</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow5_col2" class="data row5 col2" >5</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow5_col3" class="data row5 col3" >#ff3f20</td>
+                            <td id="T_bfe7ea8c_6fb1_11eb_8382_184f329eea2drow5_col4" class="data row5 col4" >6</td>
                 </tr>
         </tbody></table>
     </div>
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-57
+.. GENERATED FROM PYTHON SOURCE LINES 55-58
 
 Model generation
 ----------------
 After loading in the data, we set it up for interpolation and compute the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 57-69
+.. GENERATED FROM PYTHON SOURCE LINES 58-69
 
 .. code-block:: default
 
@@ -330,9 +330,8 @@ After loading in the data, we set it up for interpolation and compute the model.
 
     gp.compute_model(geo_model, compute_mesh=False)
 
-
+    # sphinx_gallery_thumbnail_number = 1
     gp.plot_2d(geo_model, direction='y', cell_number=45,show_data=False, show_boundaries=False, show_topography=False)
-
 
 
 
@@ -361,14 +360,182 @@ After loading in the data, we set it up for interpolation and compute the model.
     $C_o$            285714
     drift equations  [3, 3]
 
-    <gempy.plot.visualization_2d.Plot2D object at 0x7f3ee33b8dd0>
+    <gempy.plot.visualization_2d.Plot2D object at 0x7f47951ec510>
 
 
+
+.. GENERATED FROM PYTHON SOURCE LINES 70-75
+
+Exporting the Model to MOOSE
+----------------------------
+
+The voxel-model above already is the same as a model discretized in a hexahedral grid, so my immediately be used as input in a simulation tool, e.g. `MOOSE <https://mooseframework.org/>`_. 
+For this, we need to access to the unit IDs assigned to each voxel in GemPy. The array containing these IDs is called `lith_block`. 
+
+.. GENERATED FROM PYTHON SOURCE LINES 75-79
+
+.. code-block:: default
+
+
+    ids = geo_model.solutions.lith_block
+    print(ids)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [6. 6. 6. ... 2. 2. 2.]
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 80-84
+
+This array has the shape of `(x,)` and would be immediately useful, if GemPy and the chosen simulation code would _populate_ a grid in the same way. Of course, however, that is not the case. 
+This is why we have to restructure the `lith_block` array, so it can be read correctly by MOOSE.
+
+The model resolution is extracted, so is the model extent:
+
+.. GENERATED FROM PYTHON SOURCE LINES 84-90
+
+.. code-block:: default
+
+
+    nx, ny, nz = geo_model.grid.regular_grid.resolution
+
+    # model extent
+    xmin, xmax, ymin, ymax, zmin, zmax = geo_model.grid.regular_grid.extent
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 91-93
+
+These two parameters are important to, a) restructure `lith_block`, and b) write the input file for MOOSE correctly. 
+For a), we need to reshape `lith_block` again to its three dimensions and _re-flatten_ it in a _MOOSE-conform_ way, i.e. reshape to 3D array and then flattened:
+
+.. GENERATED FROM PYTHON SOURCE LINES 93-98
+
+.. code-block:: default
+
+
+    units = ids.reshape((nx, ny, nz))
+    # flatten MOOSE conform
+    units = units.flatten('F')
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 99-135
+
+The importance of `nx, ny, nz` is apparent from the cell above. But what about `xmin`, ..., `zmax`?  
+A MOOSE input-file for mesh generation has the following syntax:  
+
+```python
+[MeshGenerators]
+  [./gmg]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = 50
+    ny = 50
+    nz = 80
+    xmin = 0.0
+    xmax = 2000.0
+    yim = 0.0
+    ymax = 2000.0
+    zmin = 0.0
+    zmax = 2000.0
+    block_id = '1 2 3 4 5 6'
+    block_name = 'Main_Fault Sandstone_2 Siltstone Shale Sandstone_1 basement'
+  [../]
+
+  [./subdomains]
+    type = ElementSubdomainIDGenerator
+    input = gmg
+    subdomain_ids = ' ' # here you paste the transformed lith_block vector
+  [../]
+[]
+
+[Mesh]
+  type = MeshGeneratorMesh
+[]
+```
+
+So these parameters are required inputs in the `[MeshGenerators]` object in the MOOSE input file. `GemPy` has a method to directly create such an input file, stored in `gempy.utils.export.py`.  
+
+The following cell shows how to call the method:
+
+.. GENERATED FROM PYTHON SOURCE LINES 135-139
+
+.. code-block:: default
+
+
+    import gempy.utils.export as export
+    export.export_moose_input(geo_model, path='')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Successfully exported geological model as moose input to ./
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 140-166
+
+This method automatically stores a file `geo_model_units_moose_input.i` at the specified path. Either this input file could be extended with parameters to directly run a simulation, or it is used just for creating a mesh. In the latter case, the next step would be, to run the compiled MOOSE executable witch the optional flag `--mesh-only`.  
+
+E.g. with using the `PorousFlow module <https://mooseframework.inl.gov/modules/porous_flow/>`_:
+
+```bash
+$path_to_moose/moose/modules/porous_flow/porous_flow-opt -i pct_voxel_mesh.i --mesh-only
+```
+
+How to compile MOOSE is described in their `documentation <https://mooseframework.inl.gov/getting_started/index.html>`_. 
+
+The now generated mesh with the name `geo_model_units_moose_input_in.e` can be used as input for another MOOSE input file, which contains the main simulation parameters. 
+To call the file with the grid, the following part has to be added in the MOOSE simulation input file:  
+
+```python
+[Mesh]
+  file = geo_model_units_moose_input_in.e
+[]
+```
+
+<hr>
+
+The final output of the simulation may also be such an `.e`, which can, for instance, be opened with `paraview <https://www.paraview.org/>`_. 
+A simulated temperature field (purely conductive) of the created model would look like this: 
+
+.. image:: ../../docs/images/GemPy_model_combined.png
+  :width: 800
+  :alt: Side by side example of gempy model and MOOSE HT-simulation
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  39.615 seconds)
+   **Total running time of the script:** ( 0 minutes  34.698 seconds)
 
 
 .. _sphx_glr_download_WP2geo_modeling_WP02_TEST.py:

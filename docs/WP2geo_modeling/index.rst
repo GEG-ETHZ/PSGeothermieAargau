@@ -13,7 +13,7 @@ Below are examples how data was acquired and used in the project:
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="nananana NaNaNaNa EEEEYOOOO Gooodbye. connect of &#x27;OpenWF&#x27;.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS...">
 
 .. only:: html
 
