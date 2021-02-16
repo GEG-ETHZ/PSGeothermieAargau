@@ -5,14 +5,14 @@ Examples using ``gempy.core.model.Project.surfaces``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS...">
+    <div class="sphx-glr-thumbcontainer" tooltip="Based on four seismic sections from the NAGRA report  `NAGRA NTB 14-02 &lt;https://www.nagra.ch/da...">
 
 .. only:: html
 
- .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_WP02_TEST_thumb.png
-     :alt: Export a GemPy Model
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_Model_PCT_GemPy_thumb.png
+     :alt: Create a 3D model of a Permo-Carboniferous Trough (PCT)
 
-     :ref:`sphx_glr_WP2geo_modeling_WP02_TEST.py`
+     :ref:`sphx_glr_WP2geo_modeling_Model_PCT_GemPy.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``gempy.core.model.Project.surfaces``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2geo_modeling_WP02_TEST.py`
+ * :ref:`sphx_glr_WP2geo_modeling_Model_PCT_GemPy.py`

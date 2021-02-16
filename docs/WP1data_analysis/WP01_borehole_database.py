@@ -16,7 +16,7 @@ These temperature data are used in other workpackages, e.g. for model calibratio
 # analyse, and manipulate data. Many different schemes exist, in which data can be organized, with a most common one being spreadsheet-like tables.
 # Thus, spreadsheet software like Microsoft Excel or Libre-Office Calc are among popular solutions, when it comes to working with data.
 # 
-# With growing amount of data, however, these software solutions may soon meet their limits, as they can get overly complicated. One example would be many `.xls` files,
+# With growing amount of data, however, these software solutions may soon meet their limits, as they can get overly complicated. One example would be many :code:`.xls` files,
 # which are connected among each other using hyperlinks. This is obviously an error-prone solution, not really practical. Thus, greater amounts of data with a more complex structure,
 # are usually maintained in a `database <https://en.wikipedia.org/wiki/Database>`_, following a certain `data model <https://en.wikipedia.org/wiki/Data_model>`_.
 # Here, we use `SQLITE <https://www.sqlite.org/index.html>`_ \cite{hipp_sqlite_2019} as underlying database solution, a SQL database engine.
@@ -52,11 +52,12 @@ These temperature data are used in other workpackages, e.g. for model calibratio
 #
 # Acessing data and visualizing
 # -----------------------------
-# Querying a database is maybe the most often performed task, when it comes to databases. When you type something in a seach bar, for example, you query a database for the words you are looking for. The same, though in a more rudimentary form, can be done with the compiled "borehole temperature" database. 
+# Querying a database is maybe the most often performed task, when it comes to databases. When you type something in a seach bar, for example, you query a database for the words you are looking for. 
+# The same, though in a more rudimentary form, can be done with the compiled "borehole temperature" database. 
 # 
 # The following code cells in this notebook show how:
 # * to connect to the database  
-# * introduces a very small library `db_access`
+# * introduces a very small library :code:`db_access`
 # * get information about available tables in the database
 # * formulate queries to get desired data, e.g. temperature depth pairs for a specific borehole
 # * store query results in a pandas dataframe and visualize them  
@@ -84,8 +85,8 @@ db_path = '../../../../ETHeatflow/dbase_model_btemps.db'
 conn, c = db_access.connect(db_path)
 
 #%%
-# At this point, we successfully connected to the database. One next step would be to see, what different tables are stored in the database. `db_access` provides you with methods to do so. 
-# Of course, one can directly use an SQL query to do so. For user convenience, such queries are wrapped in some python methods of `db_access`. 
+# At this point, we successfully connected to the database. One next step would be to see, what different tables are stored in the database. :code:`db_access` provides you with methods to do so. 
+# Of course, one can directly use an SQL query to do so. For user convenience, such queries are wrapped in some python methods of :code:`db_access`. 
 # For instance, let's check the names of tables in the database:
 
 c.execute("SELECT name FROM sqlite_master WHERE type='table';")
@@ -94,7 +95,8 @@ print(c.fetchall())
 db_access.get_tables(c)
 
 #%%
-# Essentially, these two commands do the same thing. In the `db_access` method, the `c.execute` and `c.fetchall` commands are bundled in one method, `.get_tables()`. The result are the three tables:  
+# Essentially, these two commands do the same thing. In the :code:`db_access` method, the :code:`c.execute` and :code:`c.fetchall` commands are bundled in one method, :code:`.get_tables()`. 
+# The result are the three tables:  
 # * borehole_information_temperatures  
 # * temperature_data (with one backup table, marked with extension \_bak)  
 # * sample_information_petrophysics  
@@ -166,7 +168,7 @@ plt.show()
 # 
 # It should be noted, that data in these boreholes are all temperature logs with a high enough data density to reliably assess a temperature gradient.
 
-# Until now, SQL queries consisted mainly of `select * ...` where the * represents *all*, i.e. selecting everything (similar to an `ls *` listing every content of a folder in bash). 
+# Until now, SQL queries consisted mainly of :code:`select * ...` where the * represents *all*, i.e. selecting everything (similar to an `ls *` listing every content of a folder in bash). 
 # If now we want to know, for instance, all different Borehole numbers, which are the database ID for each borehole, we can use `select distinct ...`.
 
 all_borehole_numbers = pd.read_sql_query("select distinct Nr from temperature_data;", conn)
@@ -200,9 +202,12 @@ plt.show()
 # In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient. 
 # There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as **B**ottom **H**ole **T**emperatures (BHTs).  
 # If one would like to include *only* temperature logs in a database query, this can easily be done by extending the above chained query command with an `AND` keyword, so that a query would read:  
-# ```SQL
-# SELECT * FROM temperature_data WHERE Method = 'HRT' AND (Nr = ? OR Nr = ? OR ...);
-# ```
+#
+# .. code-block:: SQL  
+#
+#    SELECT * FROM temperature_data WHERE Method = 'HRT' AND (Nr = ? OR Nr = ? OR ...);
+# 
+#
 # This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our `borehole_numbers` list, and if the measurement method is HRT.
 
 valids = pd.read_sql_query("SELECT * FROM temperature_data WHERE Method = 'HRT' AND ("+

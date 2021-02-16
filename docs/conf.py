@@ -66,6 +66,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 #html_theme_path = [hachibee_sphinx_theme.get_html_themes_path()]
 html_theme = 'haiku'
 html_logo = './images/logos/ps_aargau_logo_200px.png'
+pygments_style = 'sphinx'
 # 'hachibee'
 # 'sphinx_rtd_theme'
 # 'alabaster'

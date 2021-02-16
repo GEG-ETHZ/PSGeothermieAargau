@@ -17,10 +17,10 @@ Below are examples how data was acquired and used in the project:
 
 .. only:: html
 
- .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_WP02_TEST_thumb.png
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_Export_MOOSE_thumb.png
      :alt: Export a GemPy Model
 
-     :ref:`sphx_glr_WP2geo_modeling_WP02_TEST.py`
+     :ref:`sphx_glr_WP2geo_modeling_Export_MOOSE.py`
 
 .. raw:: html
 
@@ -30,7 +30,28 @@ Below are examples how data was acquired and used in the project:
 .. toctree::
    :hidden:
 
-   /WP2geo_modeling/WP02_TEST
+   /WP2geo_modeling/Export_MOOSE
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Based on four seismic sections from the NAGRA report  `NAGRA NTB 14-02 &lt;https://www.nagra.ch/da...">
+
+.. only:: html
+
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_Model_PCT_GemPy_thumb.png
+     :alt: Create a 3D model of a Permo-Carboniferous Trough (PCT)
+
+     :ref:`sphx_glr_WP2geo_modeling_Model_PCT_GemPy.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /WP2geo_modeling/Model_PCT_GemPy
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

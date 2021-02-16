@@ -3,25 +3,21 @@ Export a GemPy Model
 ======================
 
 This section briefly describes how to export a GemPy model to get a working input file for MOOSE. 
-
+This example is mainly taken from the tutorial `gempy export MOOSE <https://github.com/cgre-aachen/gempy/blob/master/examples/integrations/gempy_export_MOOSE.py>`_ from the official GemPy repository.
+It will guide you through the process of exporting a geological model generated in `GemPy <https://www.gempy.org/>`_ (Tutorial Chapter 1-1 therein) so it is usable as a Mesh
+# in the `MOOSE <https://mooseframework.org/>`_ framework.
 """
-# # Export a geological model from GemPy to use in MOOSE
-# _implemented by [Jan Niederau](https://github.com/Japhiolite)_
-# 
-# This is a small example notebook guiding you through the process of exporting a geological model generated in [GemPy](https://www.gempy.org/) (Tutorial Chapter 1-1 therein) so it is usable as a Mesh in the [MOOSE](https://mooseframework.org/) framework.  
-# 
-# 
-# These two lines are necessary only if GemPy is not installed 
-
-import gempy as gp
-
-import matplotlib.pyplot as plt
 
 #%%
 # Creating a geological model  
 # ---------------------------
 #
-# The procedure of generating a geological model is presented in detail in [Chapter 1-1](https://nbviewer.jupyter.org/github/cgre-aachen/gempy/blob/master/notebooks/tutorials/ch1-1_Basics.ipynb) of the GemPy tutorials, so it will only be briefly presented here
+# The procedure of generating a geological model is presented in detail in `Chapter 1-1 <https://nbviewer.jupyter.org/github/cgre-aachen/gempy/blob/master/notebooks/tutorials/ch1-1_Basics.ipynb>`_ 
+# of the GemPy tutorials, so it will only be briefly presented here:
+
+#%%
+import gempy as gp
+import matplotlib.pyplot as plt
 
 geo_model = gp.create_model('tutorial_moose_exp')
 
@@ -33,6 +29,7 @@ gp.init_data(geo_model, [0,2000., 0,2000., 0,2000.], [50, 50, 80],
 #%%
 # present the units and series
 
+#%%
 geo_model.surfaces
 
 
@@ -99,35 +96,36 @@ units = units.flatten('F')
 # The importance of `nx, ny, nz` is apparent from the cell above. But what about `xmin`, ..., `zmax`?  
 # A MOOSE input-file for mesh generation has the following syntax:  
 # 
-# ```python
-# [MeshGenerators]
-#   [./gmg]
-#     type = GeneratedMeshGenerator
-#     dim = 3
-#     nx = 50
-#     ny = 50
-#     nz = 80
-#     xmin = 0.0
-#     xmax = 2000.0
-#     yim = 0.0
-#     ymax = 2000.0
-#     zmin = 0.0
-#     zmax = 2000.0
-#     block_id = '1 2 3 4 5 6'
-#     block_name = 'Main_Fault Sandstone_2 Siltstone Shale Sandstone_1 basement'
-#   [../]
+# .. code-block:: python  
+#
+#    [MeshGenerators] 
+#      [./gmg] 
+#        type = GeneratedMeshGenerator 
+#        dim = 3 
+#        nx = 50 
+#        ny = 50 
+#        nz = 80 
+#        xmin = 0.0 
+#        xmax = 2000.0 
+#        yim = 0.0 
+#        ymax = 2000.0 
+#        zmin = 0.0 
+#        zmax = 2000.0 
+#        block_id = '1 2 3 4 5 6' 
+#        block_name = 'Main_Fault Sandstone_2 Siltstone Shale Sandstone_1 basement' 
+#      [../]
+#    
+#      [./subdomains]
+#        type = ElementSubdomainIDGenerator 
+#        input = gmg 
+#        subdomain_ids = ' ' # here you paste the transformed lith_block vector 
+#      [../]
+#    []
+#    
+#    [Mesh]
+#      type = MeshGeneratorMesh 
+#    []
 # 
-#   [./subdomains]
-#     type = ElementSubdomainIDGenerator
-#     input = gmg
-#     subdomain_ids = ' ' # here you paste the transformed lith_block vector
-#   [../]
-# []
-# 
-# [Mesh]
-#   type = MeshGeneratorMesh
-# []
-# ```
 # 
 # So these parameters are required inputs in the `[MeshGenerators]` object in the MOOSE input file. `GemPy` has a method to directly create such an input file, stored in `gempy.utils.export.py`.  
 # 
@@ -150,13 +148,12 @@ export.export_moose_input(geo_model, path='')
 # The now generated mesh with the name `geo_model_units_moose_input_in.e` can be used as input for another MOOSE input file, which contains the main simulation parameters. 
 # To call the file with the grid, the following part has to be added in the MOOSE simulation input file:  
 # 
-# ```python
-# [Mesh]
-#   file = geo_model_units_moose_input_in.e
-# []
-# ```
-# 
-# <hr>
+# .. code-block:: python  
+#
+#    [Mesh]  
+#      file = geo_model_units_moose_input_in.e  
+#    []  
+#
 # 
 # The final output of the simulation may also be such an `.e`, which can, for instance, be opened with `paraview <https://www.paraview.org/>`_. 
 # A simulated temperature field (purely conductive) of the created model would look like this: 

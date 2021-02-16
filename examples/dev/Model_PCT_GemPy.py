@@ -1,8 +1,15 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+Export a GemPy Model
+======================
 
-# # Create a 3D model of a Permo-Carboniferous Trough (PCT)
-# 
+Modeling the Permo-Carboniferous Trough in northern Switzerland, a potential geothermal reservoir system
+
+"""
+
+#%% 
+# Create a 3D model of a Permo-Carboniferous Trough (PCT)
+# =======================================================
+#
 # Based on four seismic sections from the NAGRA report [NAGRA NTB 14-02](https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf) \cite{madritsch_nagra_2014}, we extracted interface and orientation points of main eras (paleozoic, mesozoic, cenozoic) and major graben faults. Data from these 2D sections are complemented with data from GeoMol 2019, e.g. base of the PCT, thrusts, and normal faults. 
 # 
 # The lithological units comprise the permo-carboniferous filling (paleozoic), Mesozoic, Tertiary strata, as well as the crystalline basement rocks. An important decision before building the geological model, is to define model units. Based on the purpose of the envisaged model, different units have to be defined. As the final result of this work will be an ensemble of advective heat-transport models, key paremeters for defining units are permeability, porosity, thermal conductivity of different geological layers. As part of the exploration work of nagra (National Cooperative for the Disposal of Radioactive Waste), regional and local hydrogeological models were constructed. The therein defined hydrostratigraphy provides the basis for defining the model units of this geological model. The regional hydrogeologic model is presented in the report 

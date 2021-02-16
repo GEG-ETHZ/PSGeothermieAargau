@@ -140,7 +140,7 @@ the number after 'plot\_' dictates the order the example appears in the gallery.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.010 seconds)
+   **Total running time of the script:** ( 0 minutes  0.032 seconds)
 
 
 .. _sphx_glr_download_WP1data_analysis_plot_1_download_data.py:

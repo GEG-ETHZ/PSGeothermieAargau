@@ -106,7 +106,7 @@ used when initiating the class, an informative statement is printed:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.017 seconds)
+   **Total running time of the script:** ( 0 minutes  0.010 seconds)
 
 
 .. _sphx_glr_download_WP1data_analysis_plot_0_samplemodule.py:

@@ -9,10 +9,10 @@ Examples using ``gempy.utils.export.export_moose_input``
 
 .. only:: html
 
- .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_WP02_TEST_thumb.png
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_Export_MOOSE_thumb.png
      :alt: Export a GemPy Model
 
-     :ref:`sphx_glr_WP2geo_modeling_WP02_TEST.py`
+     :ref:`sphx_glr_WP2geo_modeling_Export_MOOSE.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``gempy.utils.export.export_moose_input``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2geo_modeling_WP02_TEST.py`
+ * :ref:`sphx_glr_WP2geo_modeling_Export_MOOSE.py`
