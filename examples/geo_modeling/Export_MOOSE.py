@@ -158,6 +158,6 @@ export.export_moose_input(geo_model, path='')
 # The final output of the simulation may also be such an `.e`, which can, for instance, be opened with `paraview <https://www.paraview.org/>`_. 
 # A simulated temperature field (purely conductive) of the created model would look like this: 
 #
-# .. image:: ../../docs/images/GemPy_model_combined.png
+# .. image:: ../../_static/GemPy_model_combined.png
 #   :width: 800
 #   :alt: Side by side example of gempy model and MOOSE HT-simulation
