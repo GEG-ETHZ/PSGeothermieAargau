@@ -1,0 +1,23 @@
+
+
+Examples using ``gempy.core.model.Project.surfaces``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS...">
+
+.. only:: html
+
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_Export_MOOSE_thumb.png
+     :alt: Export a GemPy Model
+
+     :ref:`sphx_glr_WP2geo_modeling_Export_MOOSE.py`
+
+.. raw:: html
+
+    </div>
+
+.. only:: not html
+
+ * :ref:`sphx_glr_WP2geo_modeling_Export_MOOSE.py`
