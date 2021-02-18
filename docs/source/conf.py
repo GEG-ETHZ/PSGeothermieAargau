@@ -15,7 +15,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
 # import sys
-import SampleModule
 import OpenWF
 import gempy as gp
 import numpy as np
@@ -108,7 +107,7 @@ sphinx_gallery_conf = {
     'backreferences_dir': 'gen_modules/backreferences',
     # Modules for which function level galleries are created.  In
     # this case sphinx_gallery and numpy in a tuple of strings.
-    'doc_module': ('SampleModule', 'OpenWF', 'gempy'),
+    'doc_module': ('OpenWF', 'gempy'),
     'pypandoc': True
 }
 
