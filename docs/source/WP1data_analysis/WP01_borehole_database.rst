@@ -759,7 +759,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.227 seconds)
+   **Total running time of the script:** ( 0 minutes  6.053 seconds)
 
 
 .. _sphx_glr_download_WP1data_analysis_WP01_borehole_database.py:
