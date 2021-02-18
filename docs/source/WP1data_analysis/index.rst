@@ -30,69 +30,6 @@ Below are examples how data was acquired and used in the project:
    :hidden:
 
    /WP1data_analysis/WP01_borehole_database
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This example will demonstrate the power function and class_power from our package &#x27;SampleModule...">
-
-.. only:: html
-
- .. figure:: /WP1data_analysis/images/thumb/sphx_glr_plot_0_samplemodule_thumb.png
-     :alt: SampleModule example
-
-     :ref:`sphx_glr_WP1data_analysis_plot_0_samplemodule.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /WP1data_analysis/plot_0_samplemodule
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This example shows one way of dealing with large data files required for your examples.">
-
-.. only:: html
-
- .. figure:: /WP1data_analysis/images/thumb/sphx_glr_plot_1_download_data_thumb.png
-     :alt: Data download example
-
-     :ref:`sphx_glr_WP1data_analysis_plot_1_download_data.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /WP1data_analysis/plot_1_download_data
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="We can use the same iris dataset in this example, without downloading it twice as we know data_...">
-
-.. only:: html
-
- .. figure:: /WP1data_analysis/images/thumb/sphx_glr_plot_2_data2_thumb.png
-     :alt: Data download example 2
-
-     :ref:`sphx_glr_WP1data_analysis_plot_2_data2.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /WP1data_analysis/plot_2_data2
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
