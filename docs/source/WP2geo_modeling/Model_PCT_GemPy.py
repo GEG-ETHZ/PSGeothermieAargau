@@ -3,7 +3,7 @@ Create a 3D model of a Permo-Carboniferous Trough (PCT)
 =======================================================
 
 Based on four seismic sections from the NAGRA report 
-`NAGRA NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_ [1], 
+`NAGRA NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_ \cite{madritsch_nagra_2014}, 
 we extracted interface and orientation points of main eras (paleozoic, mesozoic, cenozoic) and major graben faults. 
 Data from these 2D sections are complemented with data from GeoMol 2019, e.g. base of the PCT, thrusts, and normal faults. 
 
@@ -12,15 +12,15 @@ is to define model units. Based on the purpose of the envisaged model, different
 key paremeters for defining units are permeability, porosity, thermal conductivity of different geological layers. As part of the exploration work of nagra 
 (National Cooperative for the Disposal of Radioactive Waste), regional and local hydrogeological models were constructed. The therein defined hydrostratigraphy provides the basis for defining the 
 model units of this geological model. The regional hydrogeologic model is presented in the report 
-`NAGRA NAB 13-23 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NABs\%202004\%20-\%202015/e_nab13-023.pdf>`_ [2]. 
+`NAGRA NAB 13-23 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NABs\%202004\%20-\%202015/e_nab13-023.pdf>`_ \cite{gmunder_regional_2014}. 
 
 With the regional model covering an area comprising all potential storage sites defined by nagra, local models were built as well. These models comprise a more detailed hydrostratigraphy. 
 
 The potential storage site "Jura Ost" is within our model area, thus we also consider the hydrostratigraphy defined in this local hydrogeological model presented in the report 
-`NAGRA NAB 13-26 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NABs\%202004%20-\%202015/e_nab13-026.pdf>`_ [3].
+`NAGRA NAB 13-26 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NABs\%202004%20-\%202015/e_nab13-026.pdf>`_ \cite{luo_hydrogeological_2014}. 
 
 The model comprises an area of 45 km x 32 km, in x- and y-direction, respectively. It extends down to a depth of 6 km, with reference sea level. 
-This notebook demonstrates step-by-step how the model is generated within the open source modeling software `GemPy <https://www.gempy.org/>`_ [4].  
+This notebook demonstrates step-by-step how the model is generated within the open source modeling software `GemPy <https://www.gempy.org/>`_ \cite{de_la_varga_gempy_2019}.  
 First, we will import libraries necessary to run this notebook:
 
 """
@@ -93,7 +93,7 @@ elif switch == 'inferred':
 #%%
 #
 # To be coherent with existing geological models, e.g. geological cross-sections by nagra, we adapt the coloring for units according to 
-# `NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_ [5]. 
+# `NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_. 
 # For this, we create a color dictionary linking the units of the model to hex-color-codes.
 
 col_dict = {'basement': '#efad83',
@@ -134,7 +134,7 @@ gp.plot_2d(geo_model, show_data=True, show_lith=False, show_results=False, direc
 # Setting up Cross sections from the Nagra Report
 # -----------------------------------------------
 #
-# As stated before, next to GeoMol [6], we incorporate geological interpretations from four migrated seismic sections, the NAGRA report 
+# As stated before, next to GeoMol \cite{team_geomolassessing_2015}, we incorporate geological interpretations from four migrated seismic sections,  the NAGRA report 
 # `NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_. 
 # For comparing the model results with the original interpretations, we define three cross sections in the model domain by specifying their start- and end-points and their resolution:
 #
@@ -274,19 +274,9 @@ sol = gp.compute_model(geo_model, compute_mesh=True)
 
 #%%
 # For comparing model results with geological interpretations of the aforementioned seismic sections, we plot the model units on top of the seismic profiles. 
-# Profiles 4.3 and 4.4 (nomenclature is taken from [1]) strike across the graben axis, while profile 4.8 goes roughly along the graben.
+# Profiles 4.3 and 4.4 (nomenclature is taken from \cite{madritsch_nagra_2014}) strike across the graben axis, while profile 4.8 goes roughly along the graben.
 # 
 # In the following plot, we model all profiles with the resulting geological grid, in the order from left to right: Profile 4.3, Profile 4.4, Profile 4.8.
 
 gp.plot_2d(geo_model, section_names=list(section_dict), show_block=True, show_boundaries=False, show_data=False,
           show_topography=True, show_results=True)
-
-#%%
-# References
-# ----------
-# [1]: Naef, H., and Madritsch, H.: Tektonische Karte des Nordschweizer Permokarbontrogs: Aktualisierung basierend auf 2D-Seismik und Schweredaten. Nagra Arbeitsbericht NAB 14-017, (2014).  
-# [2]: Gmünder, C., Malaguerra, F., Nusch, S., & Traber, D.: Regional Hydrogeo-logical Model of Northern Switzerland. Nagra Arbeitsbericht NAB, 13-23, (2014).  
-# [3]: Luo, J., Monninkhoff, B., Becker J.K.: Hydrogeological model Jura Ost. Nagra Arbeitsbericht NAB, 13-26, (2014).  
-# [4]: de la Varga, M., Schaaf, A., and Wellmann, F.: GemPy 1.0: Open-source stochastic geological modeling and inversion. Geoscientific Model Development, 12(1), (2019), 1. doi:http://dx.doi.org/10.5194/gmd-12-1-2019.  
-# [5]: Gautschi, A., & Zuidema, P. (ed): Nagra technical report 14-02, geological basics-Dossier I-Introduction and summary; SGT Etappe 2: Vorschlag weiter zu untersuchender geologischer Standortgebiete mit zugehörigen Standortarealen für die Oberflächenanlage--Geologische Grundlagen--Dossier I--Einleitung und Zusammenfassung, (2014).  
-# [6]: GeoMol Team (2015): GeoMol – Assessing subsurface potentials of the Alpine Foreland Basins for sustainable planning and use of natural resources – Project Report, 188 pp. (Augsburg, LfU).  

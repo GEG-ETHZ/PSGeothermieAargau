@@ -28,7 +28,7 @@ copyright = f'2019 - {year}, Jan Niederau'
 author = 'Jan Niederau'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = 'beta'
 
 
 # -- General configuration ---------------------------------------------------
