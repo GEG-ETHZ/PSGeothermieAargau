@@ -1,4 +1,4 @@
 {
     "restructuredtext.confPath": "${workspaceFolder}/docs",
-    "python.pythonPath": "/home/bl2/miniconda3/envs/env_datasci/bin/python"
+    "python.pythonPath": "C:\\Users\\brigg\\miniconda3\\envs\\gempygis_env\\python.exe"
 }
