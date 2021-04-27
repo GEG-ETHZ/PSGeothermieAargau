@@ -22,7 +22,7 @@ Create a 3D model of a Permo-Carboniferous Trough (PCT)
 =======================================================
 
 Based on four seismic sections from the NAGRA report 
-`NAGRA NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_ \cite{madritsch_nagra_2014}, 
+`NAGRA NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_ [1], 
 we extracted interface and orientation points of main eras (paleozoic, mesozoic, cenozoic) and major graben faults. 
 Data from these 2D sections are complemented with data from GeoMol 2019, e.g. base of the PCT, thrusts, and normal faults. 
 
@@ -31,15 +31,15 @@ is to define model units. Based on the purpose of the envisaged model, different
 key paremeters for defining units are permeability, porosity, thermal conductivity of different geological layers. As part of the exploration work of nagra 
 (National Cooperative for the Disposal of Radioactive Waste), regional and local hydrogeological models were constructed. The therein defined hydrostratigraphy provides the basis for defining the 
 model units of this geological model. The regional hydrogeologic model is presented in the report 
-`NAGRA NAB 13-23 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NABs\%202004\%20-\%202015/e_nab13-023.pdf>`_ \cite{gmunder_regional_2014}. 
+`NAGRA NAB 13-23 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NABs\%202004\%20-\%202015/e_nab13-023.pdf>`_ [2]. 
 
 With the regional model covering an area comprising all potential storage sites defined by nagra, local models were built as well. These models comprise a more detailed hydrostratigraphy. 
 
 The potential storage site "Jura Ost" is within our model area, thus we also consider the hydrostratigraphy defined in this local hydrogeological model presented in the report 
-`NAGRA NAB 13-26 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NABs\%202004%20-\%202015/e_nab13-026.pdf>`_ \cite{luo_hydrogeological_2014}. 
+`NAGRA NAB 13-26 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NABs\%202004%20-\%202015/e_nab13-026.pdf>`_ [3].
 
 The model comprises an area of 45 km x 32 km, in x- and y-direction, respectively. It extends down to a depth of 6 km, with reference sea level. 
-This notebook demonstrates step-by-step how the model is generated within the open source modeling software `GemPy <https://www.gempy.org/>`_ \cite{de_la_varga_gempy_2019}.  
+This notebook demonstrates step-by-step how the model is generated within the open source modeling software `GemPy <https://www.gempy.org/>`_ [4].  
 First, we will import libraries necessary to run this notebook:
 
 .. GENERATED FROM PYTHON SOURCE LINES 29-45
@@ -167,7 +167,7 @@ string either "known" or "inferred" to switch between model data
 .. GENERATED FROM PYTHON SOURCE LINES 94-97
 
 To be coherent with existing geological models, e.g. geological cross-sections by nagra, we adapt the coloring for units according to 
-`NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_. 
+`NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_ [5]. 
 For this, we create a color dictionary linking the units of the model to hex-color-codes.
 
 .. GENERATED FROM PYTHON SOURCE LINES 98-120
@@ -231,7 +231,7 @@ The following plot shows the different interface and orientation data loaded in 
  .. code-block:: none
 
 
-    <gempy.plot.visualization_2d.Plot2D object at 0x7f176a5d2210>
+    <gempy.plot.visualization_2d.Plot2D object at 0x7fdde96ad050>
 
 
 
@@ -246,7 +246,7 @@ GemPy interpolates these input data in space using a universal co-kriging approa
 Setting up Cross sections from the Nagra Report
 -----------------------------------------------
 
-As stated before, next to GeoMol \cite{team_geomolassessing_2015}, we incorporate geological interpretations from four migrated seismic sections,  the NAGRA report 
+As stated before, next to GeoMol [6], we incorporate geological interpretations from four migrated seismic sections, the NAGRA report 
 `NTB 14-02 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default\%20Folder/Publikationen/NTBs\%202014\%20-\%202015/d_ntb14-02\%20Dossier\%20I.pdf>`_. 
 For comparing the model results with the original interpretations, we define three cross sections in the model domain by specifying their start- and end-points and their resolution:
 
@@ -351,186 +351,186 @@ This, as well as the stop of major normal faults beneath the mesozoic units (the
 
     <div class="output_subarea output_html rendered_html output_result">
     <style  type="text/css" >
-        #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow0_col3 {
+        #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow0_col3 {
                 background-color:  #015482;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow1_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow1_col3 {
                 background-color:  #b0ac67;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow2_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow2_col3 {
                 background-color:  #47c4e2;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow3_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow3_col3 {
                 background-color:  #851515;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow4_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow4_col3 {
                 background-color:  #4585a8;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow5_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow5_col3 {
                 background-color:  #97ca68;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow6_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow6_col3 {
                 background-color:  #5DA629;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow7_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow7_col3 {
                 background-color:  #ffe19f;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow8_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow8_col3 {
                 background-color:  #92d2ec;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow9_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow9_col3 {
                 background-color:  #408f09;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow10_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow10_col3 {
                 background-color:  #f9ee3a;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow11_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow11_col3 {
                 background-color:  #ffcf59;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow12_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow12_col3 {
                 background-color:  #fbf379;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow13_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow13_col3 {
                 background-color:  #7f76b4;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow14_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow14_col3 {
                 background-color:  #fbf379;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow15_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow15_col3 {
                 background-color:  #b54343;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow16_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow16_col3 {
                 background-color:  #07801a;
-            }    #T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow17_col3 {
+            }    #T_a0ce5d08_a764_11eb_82f8_184f329eea2drow17_col3 {
                 background-color:  #efad83;
-            }</style><table id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2d" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
+            }</style><table id="T_a0ce5d08_a764_11eb_82f8_184f329eea2d" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
                     <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row0" class="row_heading level0 row0" >0</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow0_col0" class="data row0 col0" >BIH-Basement-N</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow0_col1" class="data row0 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow0_col2" class="data row0 col2" >1</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow0_col3" class="data row0 col3" >#015482</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow0_col4" class="data row0 col4" >1</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row0" class="row_heading level0 row0" >0</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow0_col0" class="data row0 col0" >BIH-Basement-N</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow0_col1" class="data row0 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow0_col2" class="data row0 col2" >1</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow0_col3" class="data row0 col3" >#015482</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow0_col4" class="data row0 col4" >1</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row1" class="row_heading level0 row1" >1</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow1_col0" class="data row1 col0" >Dogger</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow1_col1" class="data row1 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow1_col2" class="data row1 col2" >2</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow1_col3" class="data row1 col3" >#b0ac67</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow1_col4" class="data row1 col4" >2</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row1" class="row_heading level0 row1" >1</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow1_col0" class="data row1 col0" >Dogger</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow1_col1" class="data row1 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow1_col2" class="data row1 col2" >2</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow1_col3" class="data row1 col3" >#b0ac67</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow1_col4" class="data row1 col4" >2</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row2" class="row_heading level0 row2" >2</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow2_col0" class="data row2 col0" >Effinger-Schichten</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow2_col1" class="data row2 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow2_col2" class="data row2 col2" >3</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow2_col3" class="data row2 col3" >#47c4e2</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow2_col4" class="data row2 col4" >3</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row2" class="row_heading level0 row2" >2</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow2_col0" class="data row2 col0" >Effinger-Schichten</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow2_col1" class="data row2 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow2_col2" class="data row2 col2" >3</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow2_col3" class="data row2 col3" >#47c4e2</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow2_col4" class="data row2 col4" >3</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row3" class="row_heading level0 row3" >3</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow3_col0" class="data row3 col0" >Fault_Basement_A</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow3_col1" class="data row3 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow3_col2" class="data row3 col2" >4</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow3_col3" class="data row3 col3" >#851515</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow3_col4" class="data row3 col4" >4</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row3" class="row_heading level0 row3" >3</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow3_col0" class="data row3 col0" >Fault_Basement_A</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow3_col1" class="data row3 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow3_col2" class="data row3 col2" >4</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow3_col3" class="data row3 col3" >#851515</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow3_col4" class="data row3 col4" >4</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row4" class="row_heading level0 row4" >4</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow4_col0" class="data row4 col0" >Fault-south</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow4_col1" class="data row4 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow4_col2" class="data row4 col2" >5</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow4_col3" class="data row4 col3" >#4585a8</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow4_col4" class="data row4 col4" >5</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row4" class="row_heading level0 row4" >4</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow4_col0" class="data row4 col0" >Fault-south</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow4_col1" class="data row4 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow4_col2" class="data row4 col2" >5</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow4_col3" class="data row4 col3" >#4585a8</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow4_col4" class="data row4 col4" >5</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row5" class="row_heading level0 row5" >5</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow5_col0" class="data row5 col0" >graben-fill</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow5_col1" class="data row5 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow5_col2" class="data row5 col2" >6</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow5_col3" class="data row5 col3" >#97ca68</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow5_col4" class="data row5 col4" >6</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row5" class="row_heading level0 row5" >5</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow5_col0" class="data row5 col0" >graben-fill</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow5_col1" class="data row5 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow5_col2" class="data row5 col2" >6</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow5_col3" class="data row5 col3" >#97ca68</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow5_col4" class="data row5 col4" >6</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row6" class="row_heading level0 row6" >6</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow6_col0" class="data row6 col0" >Jurathrust5</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow6_col1" class="data row6 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow6_col2" class="data row6 col2" >7</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow6_col3" class="data row6 col3" >#5DA629</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow6_col4" class="data row6 col4" >7</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row6" class="row_heading level0 row6" >6</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow6_col0" class="data row6 col0" >Jurathrust5</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow6_col1" class="data row6 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow6_col2" class="data row6 col2" >7</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow6_col3" class="data row6 col3" >#5DA629</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow6_col4" class="data row6 col4" >7</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row7" class="row_heading level0 row7" >7</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow7_col0" class="data row7 col0" >Keuper</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow7_col1" class="data row7 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow7_col2" class="data row7 col2" >8</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow7_col3" class="data row7 col3" >#ffe19f</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow7_col4" class="data row7 col4" >8</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row7" class="row_heading level0 row7" >7</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow7_col0" class="data row7 col0" >Keuper</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow7_col1" class="data row7 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow7_col2" class="data row7 col2" >8</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow7_col3" class="data row7 col3" >#ffe19f</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow7_col4" class="data row7 col4" >8</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row8" class="row_heading level0 row8" >8</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow8_col0" class="data row8 col0" >Malm</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow8_col1" class="data row8 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow8_col2" class="data row8 col2" >9</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow8_col3" class="data row8 col3" >#92d2ec</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow8_col4" class="data row8 col4" >9</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row8" class="row_heading level0 row8" >8</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow8_col0" class="data row8 col0" >Malm</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow8_col1" class="data row8 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow8_col2" class="data row8 col2" >9</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow8_col3" class="data row8 col3" >#92d2ec</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow8_col4" class="data row8 col4" >9</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row9" class="row_heading level0 row9" >9</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow9_col0" class="data row9 col0" >Mandach</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow9_col1" class="data row9 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow9_col2" class="data row9 col2" >10</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow9_col3" class="data row9 col3" >#408f09</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow9_col4" class="data row9 col4" >10</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row9" class="row_heading level0 row9" >9</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow9_col0" class="data row9 col0" >Mandach</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow9_col1" class="data row9 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow9_col2" class="data row9 col2" >10</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow9_col3" class="data row9 col3" >#408f09</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow9_col4" class="data row9 col4" >10</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row10" class="row_heading level0 row10" >10</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow10_col0" class="data row10 col0" >Mittlerer-Muschelkalk</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow10_col1" class="data row10 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow10_col2" class="data row10 col2" >11</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow10_col3" class="data row10 col3" >#f9ee3a</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow10_col4" class="data row10 col4" >11</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row10" class="row_heading level0 row10" >10</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow10_col0" class="data row10 col0" >Mittlerer-Muschelkalk</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow10_col1" class="data row10 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow10_col2" class="data row10 col2" >11</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow10_col3" class="data row10 col3" >#f9ee3a</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow10_col4" class="data row10 col4" >11</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row11" class="row_heading level0 row11" >11</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow11_col0" class="data row11 col0" >Oberer-Muschelkalk</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow11_col1" class="data row11 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow11_col2" class="data row11 col2" >12</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow11_col3" class="data row11 col3" >#ffcf59</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow11_col4" class="data row11 col4" >12</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row11" class="row_heading level0 row11" >11</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow11_col0" class="data row11 col0" >Oberer-Muschelkalk</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow11_col1" class="data row11 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow11_col2" class="data row11 col2" >12</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow11_col3" class="data row11 col3" >#ffcf59</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow11_col4" class="data row11 col4" >12</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row12" class="row_heading level0 row12" >12</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow12_col0" class="data row12 col0" >OMM</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow12_col1" class="data row12 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow12_col2" class="data row12 col2" >13</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow12_col3" class="data row12 col3" >#fbf379</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow12_col4" class="data row12 col4" >13</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row12" class="row_heading level0 row12" >12</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow12_col0" class="data row12 col0" >OMM</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow12_col1" class="data row12 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow12_col2" class="data row12 col2" >13</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow12_col3" class="data row12 col3" >#fbf379</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow12_col4" class="data row12 col4" >13</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row13" class="row_heading level0 row13" >13</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow13_col0" class="data row13 col0" >Opalinuston</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow13_col1" class="data row13 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow13_col2" class="data row13 col2" >14</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow13_col3" class="data row13 col3" >#7f76b4</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow13_col4" class="data row13 col4" >14</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row13" class="row_heading level0 row13" >13</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow13_col0" class="data row13 col0" >Opalinuston</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow13_col1" class="data row13 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow13_col2" class="data row13 col2" >14</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow13_col3" class="data row13 col3" >#7f76b4</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow13_col4" class="data row13 col4" >14</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row14" class="row_heading level0 row14" >14</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow14_col0" class="data row14 col0" >USM</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow14_col1" class="data row14 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow14_col2" class="data row14 col2" >15</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow14_col3" class="data row14 col3" >#fbf379</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow14_col4" class="data row14 col4" >15</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row14" class="row_heading level0 row14" >14</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow14_col0" class="data row14 col0" >USM</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow14_col1" class="data row14 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow14_col2" class="data row14 col2" >15</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow14_col3" class="data row14 col3" >#fbf379</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow14_col4" class="data row14 col4" >15</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row15" class="row_heading level0 row15" >15</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow15_col0" class="data row15 col0" >Vorwald_Basement</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow15_col1" class="data row15 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow15_col2" class="data row15 col2" >16</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow15_col3" class="data row15 col3" >#b54343</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow15_col4" class="data row15 col4" >16</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row15" class="row_heading level0 row15" >15</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow15_col0" class="data row15 col0" >Vorwald_Basement</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow15_col1" class="data row15 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow15_col2" class="data row15 col2" >16</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow15_col3" class="data row15 col3" >#b54343</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow15_col4" class="data row15 col4" >16</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row16" class="row_heading level0 row16" >16</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow16_col0" class="data row16 col0" >Graben-fill-low</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow16_col1" class="data row16 col1" >Default series</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow16_col2" class="data row16 col2" >17</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow16_col3" class="data row16 col3" >#07801a</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow16_col4" class="data row16 col4" >17</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row16" class="row_heading level0 row16" >16</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow16_col0" class="data row16 col0" >Graben-fill-low</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow16_col1" class="data row16 col1" >Default series</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow16_col2" class="data row16 col2" >17</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow16_col3" class="data row16 col3" >#07801a</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow16_col4" class="data row16 col4" >17</td>
                 </tr>
                 <tr>
-                            <th id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2dlevel0_row17" class="row_heading level0 row17" >17</th>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow17_col0" class="data row17 col0" >basement</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow17_col1" class="data row17 col1" >Basement</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow17_col2" class="data row17 col2" >1</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow17_col3" class="data row17 col3" >#efad83</td>
-                            <td id="T_0a4bc7dc_a75d_11eb_93ab_184f329eea2drow17_col4" class="data row17 col4" >18</td>
+                            <th id="T_a0ce5d08_a764_11eb_82f8_184f329eea2dlevel0_row17" class="row_heading level0 row17" >17</th>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow17_col0" class="data row17 col0" >basement</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow17_col1" class="data row17 col1" >Basement</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow17_col2" class="data row17 col2" >1</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow17_col3" class="data row17 col3" >#efad83</td>
+                            <td id="T_a0ce5d08_a764_11eb_82f8_184f329eea2drow17_col4" class="data row17 col4" >18</td>
                 </tr>
         </tbody></table>
     </div>
@@ -587,186 +587,186 @@ series, as it forms the basal detachement of the Jura Mountains. Palaeozoic grab
 
     <div class="output_subarea output_html rendered_html output_result">
     <style  type="text/css" >
-        #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow0_col3 {
+        #T_a110fbf4_a764_11eb_82f8_184f329eea2drow0_col3 {
                 background-color:  #408f09;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow1_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow1_col3 {
                 background-color:  #5DA629;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow2_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow2_col3 {
                 background-color:  #851515;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow3_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow3_col3 {
                 background-color:  #4585a8;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow4_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow4_col3 {
                 background-color:  #b54343;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow5_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow5_col3 {
                 background-color:  #015482;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow6_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow6_col3 {
                 background-color:  #b0ac67;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow7_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow7_col3 {
                 background-color:  #47c4e2;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow8_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow8_col3 {
                 background-color:  #ffe19f;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow9_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow9_col3 {
                 background-color:  #92d2ec;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow10_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow10_col3 {
                 background-color:  #ffcf59;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow11_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow11_col3 {
                 background-color:  #fbf379;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow12_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow12_col3 {
                 background-color:  #7f76b4;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow13_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow13_col3 {
                 background-color:  #fbf379;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow14_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow14_col3 {
                 background-color:  #f9ee3a;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow15_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow15_col3 {
                 background-color:  #97ca68;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow16_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow16_col3 {
                 background-color:  #07801a;
-            }    #T_0a8e9080_a75d_11eb_93ab_184f329eea2drow17_col3 {
+            }    #T_a110fbf4_a764_11eb_82f8_184f329eea2drow17_col3 {
                 background-color:  #efad83;
-            }</style><table id="T_0a8e9080_a75d_11eb_93ab_184f329eea2d" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
+            }</style><table id="T_a110fbf4_a764_11eb_82f8_184f329eea2d" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
                     <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row0" class="row_heading level0 row0" >9</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow0_col0" class="data row0 col0" >Mandach</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow0_col1" class="data row0 col1" >Thrust_Mandach</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow0_col2" class="data row0 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow0_col3" class="data row0 col3" >#408f09</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow0_col4" class="data row0 col4" >1</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row0" class="row_heading level0 row0" >9</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow0_col0" class="data row0 col0" >Mandach</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow0_col1" class="data row0 col1" >Thrust_Mandach</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow0_col2" class="data row0 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow0_col3" class="data row0 col3" >#408f09</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow0_col4" class="data row0 col4" >1</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row1" class="row_heading level0 row1" >6</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow1_col0" class="data row1 col0" >Jurathrust5</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow1_col1" class="data row1 col1" >Thrust_Jura</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow1_col2" class="data row1 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow1_col3" class="data row1 col3" >#5DA629</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow1_col4" class="data row1 col4" >2</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row1" class="row_heading level0 row1" >6</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow1_col0" class="data row1 col0" >Jurathrust5</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow1_col1" class="data row1 col1" >Thrust_Jura</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow1_col2" class="data row1 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow1_col3" class="data row1 col3" >#5DA629</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow1_col4" class="data row1 col4" >2</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row2" class="row_heading level0 row2" >3</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow2_col0" class="data row2 col0" >Fault_Basement_A</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow2_col1" class="data row2 col1" >Fault_north_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow2_col2" class="data row2 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow2_col3" class="data row2 col3" >#851515</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow2_col4" class="data row2 col4" >3</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row2" class="row_heading level0 row2" >3</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow2_col0" class="data row2 col0" >Fault_Basement_A</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow2_col1" class="data row2 col1" >Fault_north_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow2_col2" class="data row2 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow2_col3" class="data row2 col3" >#851515</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow2_col4" class="data row2 col4" >3</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row3" class="row_heading level0 row3" >4</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow3_col0" class="data row3 col0" >Fault-south</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow3_col1" class="data row3 col1" >Fault_south_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow3_col2" class="data row3 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow3_col3" class="data row3 col3" >#4585a8</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow3_col4" class="data row3 col4" >4</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row3" class="row_heading level0 row3" >4</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow3_col0" class="data row3 col0" >Fault-south</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow3_col1" class="data row3 col1" >Fault_south_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow3_col2" class="data row3 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow3_col3" class="data row3 col3" >#4585a8</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow3_col4" class="data row3 col4" >4</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row4" class="row_heading level0 row4" >15</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow4_col0" class="data row4 col0" >Vorwald_Basement</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow4_col1" class="data row4 col1" >Vorwald_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow4_col2" class="data row4 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow4_col3" class="data row4 col3" >#b54343</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow4_col4" class="data row4 col4" >5</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row4" class="row_heading level0 row4" >15</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow4_col0" class="data row4 col0" >Vorwald_Basement</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow4_col1" class="data row4 col1" >Vorwald_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow4_col2" class="data row4 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow4_col3" class="data row4 col3" >#b54343</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow4_col4" class="data row4 col4" >5</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row5" class="row_heading level0 row5" >0</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow5_col0" class="data row5 col0" >BIH-Basement-N</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow5_col1" class="data row5 col1" >BIH_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow5_col2" class="data row5 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow5_col3" class="data row5 col3" >#015482</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow5_col4" class="data row5 col4" >6</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row5" class="row_heading level0 row5" >0</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow5_col0" class="data row5 col0" >BIH-Basement-N</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow5_col1" class="data row5 col1" >BIH_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow5_col2" class="data row5 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow5_col3" class="data row5 col3" >#015482</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow5_col4" class="data row5 col4" >6</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row6" class="row_heading level0 row6" >1</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow6_col0" class="data row6 col0" >Dogger</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow6_col1" class="data row6 col1" >Post_graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow6_col2" class="data row6 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow6_col3" class="data row6 col3" >#b0ac67</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow6_col4" class="data row6 col4" >7</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row6" class="row_heading level0 row6" >1</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow6_col0" class="data row6 col0" >Dogger</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow6_col1" class="data row6 col1" >Post_graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow6_col2" class="data row6 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow6_col3" class="data row6 col3" >#b0ac67</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow6_col4" class="data row6 col4" >7</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row7" class="row_heading level0 row7" >2</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow7_col0" class="data row7 col0" >Effinger-Schichten</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow7_col1" class="data row7 col1" >Post_graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow7_col2" class="data row7 col2" >2</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow7_col3" class="data row7 col3" >#47c4e2</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow7_col4" class="data row7 col4" >8</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row7" class="row_heading level0 row7" >2</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow7_col0" class="data row7 col0" >Effinger-Schichten</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow7_col1" class="data row7 col1" >Post_graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow7_col2" class="data row7 col2" >2</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow7_col3" class="data row7 col3" >#47c4e2</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow7_col4" class="data row7 col4" >8</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row8" class="row_heading level0 row8" >7</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow8_col0" class="data row8 col0" >Keuper</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow8_col1" class="data row8 col1" >Post_graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow8_col2" class="data row8 col2" >3</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow8_col3" class="data row8 col3" >#ffe19f</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow8_col4" class="data row8 col4" >9</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row8" class="row_heading level0 row8" >7</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow8_col0" class="data row8 col0" >Keuper</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow8_col1" class="data row8 col1" >Post_graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow8_col2" class="data row8 col2" >3</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow8_col3" class="data row8 col3" >#ffe19f</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow8_col4" class="data row8 col4" >9</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row9" class="row_heading level0 row9" >8</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow9_col0" class="data row9 col0" >Malm</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow9_col1" class="data row9 col1" >Post_graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow9_col2" class="data row9 col2" >4</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow9_col3" class="data row9 col3" >#92d2ec</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow9_col4" class="data row9 col4" >10</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row9" class="row_heading level0 row9" >8</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow9_col0" class="data row9 col0" >Malm</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow9_col1" class="data row9 col1" >Post_graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow9_col2" class="data row9 col2" >4</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow9_col3" class="data row9 col3" >#92d2ec</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow9_col4" class="data row9 col4" >10</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row10" class="row_heading level0 row10" >11</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow10_col0" class="data row10 col0" >Oberer-Muschelkalk</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow10_col1" class="data row10 col1" >Post_graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow10_col2" class="data row10 col2" >5</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow10_col3" class="data row10 col3" >#ffcf59</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow10_col4" class="data row10 col4" >11</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row10" class="row_heading level0 row10" >11</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow10_col0" class="data row10 col0" >Oberer-Muschelkalk</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow10_col1" class="data row10 col1" >Post_graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow10_col2" class="data row10 col2" >5</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow10_col3" class="data row10 col3" >#ffcf59</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow10_col4" class="data row10 col4" >11</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row11" class="row_heading level0 row11" >12</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow11_col0" class="data row11 col0" >OMM</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow11_col1" class="data row11 col1" >Post_graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow11_col2" class="data row11 col2" >6</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow11_col3" class="data row11 col3" >#fbf379</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow11_col4" class="data row11 col4" >12</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row11" class="row_heading level0 row11" >12</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow11_col0" class="data row11 col0" >OMM</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow11_col1" class="data row11 col1" >Post_graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow11_col2" class="data row11 col2" >6</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow11_col3" class="data row11 col3" >#fbf379</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow11_col4" class="data row11 col4" >12</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row12" class="row_heading level0 row12" >13</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow12_col0" class="data row12 col0" >Opalinuston</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow12_col1" class="data row12 col1" >Post_graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow12_col2" class="data row12 col2" >7</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow12_col3" class="data row12 col3" >#7f76b4</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow12_col4" class="data row12 col4" >13</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row12" class="row_heading level0 row12" >13</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow12_col0" class="data row12 col0" >Opalinuston</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow12_col1" class="data row12 col1" >Post_graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow12_col2" class="data row12 col2" >7</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow12_col3" class="data row12 col3" >#7f76b4</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow12_col4" class="data row12 col4" >13</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row13" class="row_heading level0 row13" >14</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow13_col0" class="data row13 col0" >USM</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow13_col1" class="data row13 col1" >Post_graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow13_col2" class="data row13 col2" >8</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow13_col3" class="data row13 col3" >#fbf379</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow13_col4" class="data row13 col4" >14</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row13" class="row_heading level0 row13" >14</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow13_col0" class="data row13 col0" >USM</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow13_col1" class="data row13 col1" >Post_graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow13_col2" class="data row13 col2" >8</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow13_col3" class="data row13 col3" >#fbf379</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow13_col4" class="data row13 col4" >14</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row14" class="row_heading level0 row14" >10</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow14_col0" class="data row14 col0" >Mittlerer-Muschelkalk</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow14_col1" class="data row14 col1" >Detachement</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow14_col2" class="data row14 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow14_col3" class="data row14 col3" >#f9ee3a</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow14_col4" class="data row14 col4" >15</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row14" class="row_heading level0 row14" >10</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow14_col0" class="data row14 col0" >Mittlerer-Muschelkalk</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow14_col1" class="data row14 col1" >Detachement</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow14_col2" class="data row14 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow14_col3" class="data row14 col3" >#f9ee3a</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow14_col4" class="data row14 col4" >15</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row15" class="row_heading level0 row15" >5</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow15_col0" class="data row15 col0" >graben-fill</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow15_col1" class="data row15 col1" >Graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow15_col2" class="data row15 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow15_col3" class="data row15 col3" >#97ca68</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow15_col4" class="data row15 col4" >16</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row15" class="row_heading level0 row15" >5</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow15_col0" class="data row15 col0" >graben-fill</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow15_col1" class="data row15 col1" >Graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow15_col2" class="data row15 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow15_col3" class="data row15 col3" >#97ca68</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow15_col4" class="data row15 col4" >16</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row16" class="row_heading level0 row16" >16</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow16_col0" class="data row16 col0" >Graben-fill-low</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow16_col1" class="data row16 col1" >Graben_series</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow16_col2" class="data row16 col2" >2</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow16_col3" class="data row16 col3" >#07801a</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow16_col4" class="data row16 col4" >17</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row16" class="row_heading level0 row16" >16</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow16_col0" class="data row16 col0" >Graben-fill-low</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow16_col1" class="data row16 col1" >Graben_series</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow16_col2" class="data row16 col2" >2</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow16_col3" class="data row16 col3" >#07801a</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow16_col4" class="data row16 col4" >17</td>
                 </tr>
                 <tr>
-                            <th id="T_0a8e9080_a75d_11eb_93ab_184f329eea2dlevel0_row17" class="row_heading level0 row17" >17</th>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow17_col0" class="data row17 col0" >basement</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow17_col1" class="data row17 col1" >Basement</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow17_col2" class="data row17 col2" >1</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow17_col3" class="data row17 col3" >#efad83</td>
-                            <td id="T_0a8e9080_a75d_11eb_93ab_184f329eea2drow17_col4" class="data row17 col4" >18</td>
+                            <th id="T_a110fbf4_a764_11eb_82f8_184f329eea2dlevel0_row17" class="row_heading level0 row17" >17</th>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow17_col0" class="data row17 col0" >basement</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow17_col1" class="data row17 col1" >Basement</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow17_col2" class="data row17 col2" >1</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow17_col3" class="data row17 col3" >#efad83</td>
+                            <td id="T_a110fbf4_a764_11eb_82f8_184f329eea2drow17_col4" class="data row17 col4" >18</td>
                 </tr>
         </tbody></table>
     </div>
@@ -1453,7 +1453,7 @@ Remember when we had a look at the input data and briefly mentioned the interpol
     $C_o$                               7.85476e+07
     drift equations  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 
-    <gempy.core.interpolator.InterpolatorModel object at 0x7f176a5856d0>
+    <gempy.core.interpolator.InterpolatorModel object at 0x7fdde9f93150>
 
 
 
@@ -1492,17 +1492,18 @@ as input.
 .. GENERATED FROM PYTHON SOURCE LINES 276-280
 
 For comparing model results with geological interpretations of the aforementioned seismic sections, we plot the model units on top of the seismic profiles. 
-Profiles 4.3 and 4.4 (nomenclature is taken from \cite{madritsch_nagra_2014}) strike across the graben axis, while profile 4.8 goes roughly along the graben.
+Profiles 4.3 and 4.4 (nomenclature is taken from [1]) strike across the graben axis, while profile 4.8 goes roughly along the graben.
 
 In the following plot, we model all profiles with the resulting geological grid, in the order from left to right: Profile 4.3, Profile 4.4, Profile 4.8.
 
-.. GENERATED FROM PYTHON SOURCE LINES 280-283
+.. GENERATED FROM PYTHON SOURCE LINES 280-284
 
 .. code-block:: default
 
 
     gp.plot_2d(geo_model, section_names=list(section_dict), show_block=True, show_boundaries=False, show_data=False,
               show_topography=True, show_results=True)
+
 
 
 
@@ -1518,14 +1519,25 @@ In the following plot, we model all profiles with the resulting geological grid,
  .. code-block:: none
 
 
-    <gempy.plot.visualization_2d.Plot2D object at 0x7f1760ac3c90>
+    <gempy.plot.visualization_2d.Plot2D object at 0x7fdde94bfbd0>
 
 
+
+.. GENERATED FROM PYTHON SOURCE LINES 285-292
+
+References
+----------
+[1]: Naef, H., and Madritsch, H.: Tektonische Karte des Nordschweizer Permokarbontrogs: Aktualisierung basierend auf 2D-Seismik und Schweredaten. Nagra Arbeitsbericht NAB 14-017, (2014).  
+[2]: Gmünder, C., Malaguerra, F., Nusch, S., & Traber, D.: Regional Hydrogeo-logical Model of Northern Switzerland. Nagra Arbeitsbericht NAB, 13-23, (2014).  
+[3]: Luo, J., Monninkhoff, B., Becker J.K.: Hydrogeological model Jura Ost. Nagra Arbeitsbericht NAB, 13-26, (2014).  
+[4]: de la Varga, M., Schaaf, A., and Wellmann, F.: GemPy 1.0: Open-source stochastic geological modeling and inversion. Geoscientific Model Development, 12(1), (2019), 1. doi:http://dx.doi.org/10.5194/gmd-12-1-2019.  
+[5]: Gautschi, A., & Zuidema, P. (ed): Nagra technical report 14-02, geological basics-Dossier I-Introduction and summary; SGT Etappe 2: Vorschlag weiter zu untersuchender geologischer Standortgebiete mit zugehörigen Standortarealen für die Oberflächenanlage--Geologische Grundlagen--Dossier I--Einleitung und Zusammenfassung, (2014).  
+[6]: GeoMol Team (2015): GeoMol – Assessing subsurface potentials of the Alpine Foreland Basins for sustainable planning and use of natural resources – Project Report, 188 pp. (Augsburg, LfU).  
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 8 minutes  3.583 seconds)
+   **Total running time of the script:** ( 5 minutes  51.379 seconds)
 
 
 .. _sphx_glr_download_WP2geo_modeling_Model_PCT_GemPy.py:
