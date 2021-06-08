@@ -1,9 +1,15 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+Monte Carlo simulation  
+======================
 
-# In[1]:
-
-
+The following tutorial will lead you through an example workflow on how to create a Monte Carlo simulation of 
+geological models, meaning we will produce different geological geometries and also simulate their gravity
+response.
+"""
+#%%
+# Importing libraries
+# ===================
+# First things first: let's import necessary libraries.
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -17,94 +23,22 @@ from gempy.assets.geophysics import GravityPreprocessing
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+plt.style.use('seaborn-talk')
 
-# For embedding matplotlib figures
-#%matplotlib qt5
-get_ipython().run_line_magic('matplotlib', 'inline')
+import sys
+sys.path.append('../../OpenWF/')
+from aux_functions import log_progress
 
-# Import improved plotting features
-from gempy.plot import visualization_2d as vv
-from gempy.plot import vista
-
-import seaborn as sn
-
-
-# In[2]:
-
-
+# Check gempy version used for running the code
 print(f"Code run with GemPy version: {gp.__version__}")
 
-
-# In[3]:
-
-
-## progress bar
-def log_progress(sequence, every=None, size=None, name='Items'):
-    from ipywidgets import IntProgress, HTML, VBox
-    from IPython.display import display
-
-    is_iterator = False
-    if size is None:
-        try:
-            size = len(sequence)
-        except TypeError:
-            is_iterator = True
-    if size is not None:
-        if every is None:
-            if size <= 200:
-                every = 1
-            else:
-                every = int(size / 200)     # every 0.5%
-    else:
-        assert every is not None, 'sequence is iterator, set every'
-
-    if is_iterator:
-        progress = IntProgress(min=0, max=1, value=1)
-        progress.bar_style = 'info'
-    else:
-        progress = IntProgress(min=0, max=size, value=0)
-    label = HTML()
-    box = VBox(children=[label, progress])
-    display(box)
-
-    index = 0
-    try:
-        for index, record in enumerate(sequence, 1):
-            if index == 1 or index % every == 0:
-                if is_iterator:
-                    label.value = '{name}: {index} / ?'.format(
-                        name=name,
-                        index=index
-                    )
-                else:
-                    progress.value = index
-                    label.value = u'{name}: {index} / {size}'.format(
-                        name=name,
-                        index=index,
-                        size=size
-                    )
-            yield record
-    except:
-        progress.bar_style = 'danger'
-        raise
-    else:
-        progress.bar_style = 'success'
-        progress.value = index
-        label.value = "{name}: {index}".format(
-            name=name,
-            index=str(index or '?')
-        )
-
-
-# # Model Initialization
+#%% 
+# Model Initialization
+# ====================
+#
 # First, we import the base Proof-of-Concept model (POC-model from here on), which was generated in the previous example. Using the loading method of GemPy `gp.load_model()` directly loads the model's input, already set with fault relations, surfaces assigned to a stack (series), etc.
 # Only thing left is to recompile and run the model.
 
-# In[5]:
-
-
-# With GemPy 2.2.9
 model_path = '../models/2021-06-04_POC_base_model'
 
 geo_model = gp.load_model('POC_PCT_model', path=model_path,
@@ -113,25 +47,19 @@ geo_model = gp.load_model('POC_PCT_model', path=model_path,
 # import DTM
 dtm = np.load('../models/20210319_MC_no_middle_filling/Graben_base_model/Graben_base_model_topography.npy')
 
-
+#%%
 # Using the method `.get_additional_data()`, we can display a summary of model information and parameters, such as the kriging parameters.
-
-# In[5]:
-
 
 geo_model.get_additional_data()
 
-
+#%%
 # Changing the kriging parameters affects the resulting models, e.g. the range represents the maximum correlation distance, or reducing the coefficient of correlation will yield a smoother, less "bumpy" model. For the POC-model, we set the `range` to 20000 and the correlation coefficient $C_o$ to 200000. Then we set up the interpolator, i.e. compile the functions which will calculate the scalar fields of our model surfaces.
-
-# In[6]:
-
 
 # adapt kriging to the parameters of previous example
 # decrease the kriging range
 geo_model.modify_kriging_parameters('range', 20000.)
 geo_model.modify_kriging_parameters('$C_o$', 2e5)
-#geo_model.modify_surface_points('all', smooth=1e-6)
+
 
 # Set the interpolator function
 # Create the theano model
@@ -141,40 +69,30 @@ gp.set_interpolator(geo_model,
                          verbose=[],
                          update_kriging=False);
 
-
-# In[9]:
-
-
-# Compute the model
+# compute the model
 sol = gp.compute_model(geo_model, compute_mesh=True)
 
-
+# %%
 # Now that the model is computed, lets have a look at a cross-section along the y-axis, so across the graben system:
-
-# In[10]:
-
 
 gp.plot_2d(geo_model, cell_number=25, direction='y', show_data=False, show_topography=False,
           show_lith=True, show_results=True, show_boundaries=False);
 
-
+#%%
 # The two distinct domains in this model are directly visible: (i) the old graben system (extensional regime), covered by the (ii) thrusted, younger units.
-
-# ## Add Gravity grid
+#
+# Add Gravity grid
+# ================
 # In the previous example, next to creating the model, we chose quasi-random locations for 15 gravity stations. The gravity signal of the base POC-model is simulated at these 15 stations. In the following workflows, we assume that these 15 stations were measured. So they serve as observed data for conditioning the MonteCarlo Ensemble of different geological geometries.
 
 # In[7]:
 
 
-grav_stations = pd.read_csv('../models/20210322_forw_grav_seed58.csv', 
+grav_stations = pd.read_csv('../../data/Data_for_MC/20210322_forw_grav_seed58.csv', 
                             names=['X', 'Y', 'Z', 'grav'])
 station_coordinates = np.stack((grav_stations.X.values, 
                                 grav_stations.Y.values, 
                                 grav_stations.Z.values), axis=1)
-
-
-# In[8]:
-
 
 fig = plt.figure(figsize=[11,5])
 cb = plt.scatter(grav_stations['X'], grav_stations['Y'], c=grav_stations['grav'], 
@@ -183,64 +101,52 @@ plt.colorbar(cb, label='gravity')
 plt.ylabel('y [m]')
 plt.xlabel('x [m]');
 
-
+#%%
 # These stations are used for creating a centered grid around each station. The centered grid has an extent of 10 cells in x- and y-direction, and 15 cells in the z-direction.
 
-# In[9]:
 
 
 geo_model.set_centered_grid(station_coordinates,  resolution = [10, 10, 15], radius=6000)
-#g = GravityPreprocessing(geo_model.grid.centered_grid)
-#tz = g.set_tz_kernel()
+g = GravityPreprocessing(geo_model.grid.centered_grid)
+tz = g.set_tz_kernel()
 
-
+#%%
 # We see that there are three active grids. On each, the gravity signal will be calculated. Of course, we can let it be calculated on each grid, but we may not need the information on e.g. the topography grid (which would for instance yield the geological map). 
 # So we can set only the centered grid to active, which speeds up the simulation.
 # 
 # **Note** that you'll need to model also the regular grid, if you plan to export the `lith_block` geological voxel model later on! 
 # As we want to also have the geometric changes in the lithological grid, we set `reset=False`. If we were to set it to `True`, only the 'centered' grid would be active.
 
-# In[10]:
-
-
 geo_model.set_active_grid('centered', reset=False)
 
-
+#%%
 # The centered grid will now be the only one where the model information is stored, meaning less computational time. Let's have a look how this comes in handy, when we start to modify the depth of units and calculate the gravity.
-
+#
 # Before running the simulations, we need to assign densities to the rock units, otherwise it will raise an error.
-
-# In[11]:
-
 
 # add densities - from abdelfettah 2014 and SAPHYR
 densities = [0, 0, 0, 0, 0, 2.466, 2.61, 2.53, 
              2.61, 2.47, 2.55, 2.67]
 geo_model.add_surface_values(densities, ['density'])
 
-
-# ## MC Variation
+#%%
+# MC Variation
+# ============
 # For varying the depth of units, we extract the indices of the units whose input points we want to modify. To guarantee that we always vary the original depth in each realization (and not the depth used in the previous realization), we first generate an initial-depth array, containing the original depth information of all input points:
-
-# In[12]:
-
 
 Z_init = geo_model.surface_points.df['Z'].copy()
 
-
+#%%
 # Having all the undisturbed depth values, we extract all surface points belonging to the units whose inputs we want to vary:
-
-# In[13]:
 
 
 graben_lower = geo_model.surface_points.df.query("surface=='Lower-filling'")
 graben_middle = geo_model.surface_points.df.query("surface=='Upper-filling'")
 unconformity = geo_model.surface_points.df.query("surface=='Unconformity'")
 
-
+#%%
 # Before running the Monte Carlo simulations, we set up the interpolator for a "fast-run", i.e. it optimizes runtime on cost of compilation time:
 
-# In[14]:
 
 
 gp.set_interpolator(geo_model, output=['gravity'], 
@@ -248,16 +154,12 @@ gp.set_interpolator(geo_model, output=['gravity'],
                     update_kriging=True)
 
 
-# In[25]:
-
 
 get_ipython().run_cell_magic('time', '', 'np.random.seed(1)\n# allocate array for lithology blocks\nlith_blocks = np.array([])\n# create a dictionary to store gravity of simulations\ngrav = dict() \n# get indices where the variable input points are\nLgraben = list(graben_lower.index)\nUgraben = list(graben_middle.index)\nUncon = list(unconformity.index)\nCindices = Lgraben + Ugraben + Uncon\n\n# set number of realizations\nn_iterations = 10\n\nfor i in log_progress(range(n_iterations), name=\'Models\'):\n    # vary surface points\n    Z_var = np.random.normal(0, 300, size=3)\n    Z_loc = np.hstack([Z_init[Lgraben] + Z_var[0],\n                   Z_init[Ugraben] + Z_var[1],\n                   Z_init[Uncon] + Z_var[2]])\n    # apply variation to model\n    geo_model.modify_surface_points(Cindices, Z=Z_loc)\n    # re-compute model\n    gp.compute_model(geo_model)\n    # store lithologies ONLY THERE IF REGULAR GRID IS ACTIVE\n    lith_blocks = np.append(lith_blocks, geo_model.solutions.lith_block)\n    # store gravity\n    grav[f"Real_{i}"] = geo_model.solutions.fw_gravity\n    \n\nlith_blocks = lith_blocks.reshape(n_iterations, -1)')
 
-
+#%%
 # ## Export models and gravity
 # For post-processing of use in different software (e.g. numerical simulators for heat- and mass-transport), knowing ways of exporting the MC-results, in this case the simulated gravity and the lithology-blocks, comes in handy. There are many different ways of saving stuff (e.g. pickle the simulation results), but here we present simple exports as `.csv` and `.npy` files.
-
-# In[26]:
 
 
 gravdf = pd.DataFrame.from_dict(grav)
@@ -267,35 +169,24 @@ gravdf["X"] = station_coordinates[:,0]
 gravdf["Y"] = station_coordinates[:,1]
 gravdf["Z"] =station_coordinates[:,2]
 
-
-# In[27]:
-
-
 gravdf.head()
 
-
+#%%
 # This can be saved as usual with `df.to_csv('pathname')` using Pandas. For the lithological block model, one good option is to save it as a numpy array, using `numpy.save()`.
-
-# In[28]:
-
 
 np.save('../models/20210319_MC_no_middle_filling/example_10realizations.npy', lith_blocks)
 
-
-# ## Quick model analysis
+#%%
+# Quick model analysis
+# --------------------
 # Let's have a quick first look at the resulting gravity and lithological block models. From the gravity dictionary, we can quickly generate a dataframe, convenient for further model analysis.
-
-# In[29]:
 
 
 prob_block = gp.bayesian.fields.probability(lith_blocks)
 ie_block = gp.bayesian.fields.information_entropy(prob_block)
 
-
+#%%
 # The following plot shows the probability of unit 5 in the probability block. With faults not being excluded, and counting of units starting with 0, we can see that the index 5 relates to the `Lower-filling` surface. The plot shows where to expect the unit. Everywhere, this unit is present throughout the simulations, the probability plot shows a bright yellow (probability = 1). Where it is always absent, we see the dark violet (probability = 0). The blueish-greenish areas are in between, meaning that in some realizations, the `Lower-filling` unit is present there, in other realization it is not.
-
-# In[30]:
-
 
 layer = 5
 gp.plot_2d(geo_model,
@@ -305,13 +196,10 @@ gp.plot_2d(geo_model,
                                  'norm': None}
             );
 
-
+#%%
 # In the for-loop above, we not only varied the bottom boundary of the `Lower-filling` unit, but also `Upper-filling` and `Unconformity`. Using the measure of information entropy, we can visualize the parts of the model, where the most change is happening, i.e. where entropy is largest. Black areas in the following plot have zero information entropy, as there is only one "microstate" for the system, i.e. the model ensemble.  
 # 
 # This means, we'd always encounter the same unit at the same place in every ensemble member. The colored areas, however, are areas where we'd encounter different geological units between ensemble members.
-
-# In[32]:
-
 
 gp.plot_2d(geo_model,
             show_lith=False, show_boundaries=False, show_data=False,
@@ -320,11 +208,8 @@ gp.plot_2d(geo_model,
                                  'norm': None}
             );
 
-
+#%%
 # Finally, let's have a look at the gravity. We'll simply have a look at mean and standard deviation of the simulated gravity of the ensemble:
-
-# In[66]:
-
 
 # make subplots with mean and std
 gravdf_plt = pd.DataFrame.from_dict(grav)
@@ -347,7 +232,6 @@ axs[1].set_title('Ensemble standard deviation')
 axs[0].set_ylabel('Y [m]')
 axs[0].set_xlabel('X [m]')
 axs[1].set_xlabel('X [m]')
-
 
 fig.tight_layout()
 
