@@ -25,9 +25,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 plt.style.use('seaborn-talk')
 
-import sys
-sys.path.append('../../OpenWF/')
-from aux_functions import log_progress
+#import sys
+#sys.path.append('../../OpenWF/')
+#from aux_functions import log_progress
 
 # Check gempy version used for running the code
 print(f"Code run with GemPy version: {gp.__version__}")
@@ -146,16 +146,45 @@ unconformity = geo_model.surface_points.df.query("surface=='Unconformity'")
 
 #%%
 # Before running the Monte Carlo simulations, we set up the interpolator for a "fast-run", i.e. it optimizes runtime on cost of compilation time:
-
-
-
 gp.set_interpolator(geo_model, output=['gravity'], 
                     theano_optimizer='fast_run', 
                     update_kriging=True)
 
+#%%
+# Now we are good to go and run the Monte Carlo simulation. In the following, we fix a numpy random number seed so that this MC-simulation is reproducible
+# Then, we create empty arrays and dictionaries for the lithologies and gravity, respectively. In a `for` loop, we then vary depths of interface points and
+# compute a model.
 
+np.random.seed(1)
+# allocate array for lithology blocks
+lith_blocks = np.array([])
+# create a dictionary to store gravity of simulations
+grav = dict() 
+# get indices where the variable input points are
+Lgraben = list(graben_lower.index)
+Ugraben = list(graben_middle.index)
+Uncon = list(unconformity.index)
+Cindices = Lgraben + Ugraben + Uncon
 
-get_ipython().run_cell_magic('time', '', 'np.random.seed(1)\n# allocate array for lithology blocks\nlith_blocks = np.array([])\n# create a dictionary to store gravity of simulations\ngrav = dict() \n# get indices where the variable input points are\nLgraben = list(graben_lower.index)\nUgraben = list(graben_middle.index)\nUncon = list(unconformity.index)\nCindices = Lgraben + Ugraben + Uncon\n\n# set number of realizations\nn_iterations = 10\n\nfor i in log_progress(range(n_iterations), name=\'Models\'):\n    # vary surface points\n    Z_var = np.random.normal(0, 300, size=3)\n    Z_loc = np.hstack([Z_init[Lgraben] + Z_var[0],\n                   Z_init[Ugraben] + Z_var[1],\n                   Z_init[Uncon] + Z_var[2]])\n    # apply variation to model\n    geo_model.modify_surface_points(Cindices, Z=Z_loc)\n    # re-compute model\n    gp.compute_model(geo_model)\n    # store lithologies ONLY THERE IF REGULAR GRID IS ACTIVE\n    lith_blocks = np.append(lith_blocks, geo_model.solutions.lith_block)\n    # store gravity\n    grav[f"Real_{i}"] = geo_model.solutions.fw_gravity\n    \n\nlith_blocks = lith_blocks.reshape(n_iterations, -1)')
+# set number of realizations
+n_iterations = 10
+
+for i in range(n_iterations):
+    # vary surface points   
+    Z_var = np.random.normal(0, 300, size=3)    
+    Z_loc = np.hstack([Z_init[Lgraben] + Z_var[0],
+                       Z_init[Ugraben] + Z_var[1],
+                       Z_init[Uncon] + Z_var[2]])
+    # apply variation to model
+    geo_model.modify_surface_points(Cindices, Z=Z_loc)
+    # re-compute model
+    gp.compute_model(geo_model)
+    # store lithologies ONLY THERE IF REGULAR GRID IS ACTIVE
+    lith_blocks = np.append(lith_blocks, geo_model.solutions.lith_block)
+    # store gravity
+    grav[f"Real_{i}"] = geo_model.solutions.fw_gravity
+
+lith_blocks = lith_blocks.reshape(n_iterations, -1)
 
 #%%
 # ## Export models and gravity
@@ -174,7 +203,7 @@ gravdf.head()
 #%%
 # This can be saved as usual with `df.to_csv('pathname')` using Pandas. For the lithological block model, one good option is to save it as a numpy array, using `numpy.save()`.
 
-np.save('../models/20210319_MC_no_middle_filling/example_10realizations.npy', lith_blocks)
+np.save('../../data/outputs/MCexample_10realizations.npy', lith_blocks)
 
 #%%
 # Quick model analysis
