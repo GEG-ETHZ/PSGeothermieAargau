@@ -1,0 +1,11 @@
+,Thrust1_series,Thrust2_series,Fault2_series,Fault5_series,Fault6_series,Post_tectonic_series,Detachement,Syn_tectonic_series2,Pre_tectonic_series,Basement
+Thrust1_series,False,True,False,False,False,True,False,False,False,False
+Thrust2_series,False,False,False,False,False,True,False,False,False,False
+Fault2_series,False,False,False,False,False,False,True,True,True,True
+Fault5_series,False,False,False,False,False,False,True,True,True,True
+Fault6_series,False,False,False,False,False,False,True,True,True,True
+Post_tectonic_series,False,False,False,False,False,False,False,False,False,False
+Detachement,False,False,False,False,False,False,False,False,False,False
+Syn_tectonic_series2,False,False,False,False,False,False,False,False,False,False
+Pre_tectonic_series,False,False,False,False,False,False,False,False,False,False
+Basement,False,False,False,False,False,False,False,False,False,False

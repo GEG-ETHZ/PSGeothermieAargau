@@ -7,9 +7,51 @@
 Geological Model
 ================
 
-Below are examples how data was acquired and used in the project:
+Below are examples how to build geological models from Data, among others acquired in WP1. Many examples use a Proof-of-Concept (POC) model to present the workflow:
 
 
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem...">
+
+.. only:: html
+
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
+     :alt: Generating a geological model and simulate its gravity
+
+     :ref:`sphx_glr_WP2geo_modeling_01_POC_generate-model.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /WP2geo_modeling/01_POC_generate-model
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will lead you through an example workflow on how to create a Monte Carlo...">
+
+.. only:: html
+
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
+     :alt: Monte Carlo simulation
+
+     :ref:`sphx_glr_WP2geo_modeling_02_POC_create-MC-ensemble.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /WP2geo_modeling/02_POC_create-MC-ensemble
 
 .. raw:: html
 

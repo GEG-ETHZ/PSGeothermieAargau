@@ -1,0 +1,11 @@
+,order_series,BottomRelation,isActive,isFault,isFinite
+Thrust1_series,1,Fault,True,True,False
+Thrust2_series,2,Fault,True,True,False
+Fault2_series,3,Fault,True,True,False
+Fault5_series,4,Fault,True,True,False
+Fault6_series,5,Fault,True,True,False
+Post_tectonic_series,6,Onlap,True,False,False
+Detachement,7,Erosion,True,False,False
+Syn_tectonic_series2,8,Onlap,True,False,False
+Pre_tectonic_series,9,Onlap,True,False,False
+Basement,10,Erosion,False,False,False

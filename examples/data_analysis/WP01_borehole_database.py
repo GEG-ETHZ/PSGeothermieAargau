@@ -63,6 +63,7 @@ These temperature data are used in other workpackages, e.g. for model calibratio
 # * store query results in a pandas dataframe and visualize them  
 # 
 import sys
+import platform
 sys.path.append('../..')
 import OpenWF.db_access as db_access
 
@@ -76,7 +77,11 @@ from sklearn.linear_model import LinearRegression
 
 #%%
 # relative path to the .db file, which is the actual database
-db_path = '../../../../ETHeatflow/dbase_model_btemps.db'
+os_name = platform.system()
+if os_name=='Linux':
+    db_path = '../../../../ETHeatflow/dbase_model_btemps.db'
+elif os_name=='Windows':
+    db_path = '../../../../polybox/data_boreholes_aargau/interim/data_nagra_12-61/d_nab_database/dbase_model_btemps.db'
 
 
 #%%

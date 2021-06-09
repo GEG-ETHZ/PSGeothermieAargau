@@ -1,0 +1,23 @@
+
+
+Examples using ``gempy.core.ImplicitCoKriging.grid``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will lead you through an example workflow on how to create a Monte Carlo...">
+
+.. only:: html
+
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
+     :alt: Monte Carlo simulation
+
+     :ref:`sphx_glr_WP2geo_modeling_02_POC_create-MC-ensemble.py`
+
+.. raw:: html
+
+    </div>
+
+.. only:: not html
+
+ * :ref:`sphx_glr_WP2geo_modeling_02_POC_create-MC-ensemble.py`

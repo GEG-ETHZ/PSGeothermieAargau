@@ -73,10 +73,10 @@ if switch == 'known':
     
     # Initialize the model, set dimension and load interface and orientation data
     gp.init_data(geo_model, [2640000, 2685000., 1240000., 1275000., -6000, 1000.], [50, 50, 50],
-                path_i = '../../../Editorial-Transitional-Heatflow/data/processed/GemPy/00_gempy_inputs/20201005_interfaces_Jurathrust5_cleaned2_w_boreholes_fault_unit.csv',
-                path_o = '../../../Editorial-Transitional-Heatflow/data/processed/GemPy/00_gempy_inputs/20201007_orientations_with_Jurathrust5_no_quat_meso_reduced2.csv');
-    #topo = geo_model.set_topography(source='gdal', filepath='../../data/processed/GemPy/Model_DTM_EPSG2056.tif');
-    geo_model.set_topography(source='gdal', filepath='../../../Editorial-Transitional-Heatflow/data/processed/GemPy/06_DTMs/DTM_200_for_GemPy_Model.tif');
+                path_i = '../../../Editorial-Transitional-Heatflow/data/processed/GemPy/00_gempy_inputs/2021-06-02_interfaces_no_fault_horizon_reduced_graben_and_mandach.csv',
+                path_o = '../../../Editorial-Transitional-Heatflow/data/processed/GemPy/00_gempy_inputs/20201007_orientations_with_Jurathrust5_no_quat_meso_reduced2.csv')
+    
+    geo_model.set_topography(source='gdal', filepath='../../../Editorial-Transitional-Heatflow/data/processed/GemPy/06_DTMs/DTM_200_for_GemPy_Model.tif')
 elif switch == 'inferred':
     # Import data - INFERRED
     # Create a model instance
@@ -85,9 +85,9 @@ elif switch == 'inferred':
     # Initialize the model, set dimension and load interface and orientation data
     gp.init_data(geo_model, [2640000, 2685000., 1240000., 1275000., -6000, 1000.], [50, 50, 50],
                 path_i = '../../data/processed/GemPy/00_gempy_inputs/20201005_interfaces_Jurathrust5_pct_inferred.csv',
-                path_o = '../../data/processed/GemPy/00_gempy_inputs/20201007_orientations_with_Jurathrust5_no_quat_meso_reduced2_pct_inferred.csv');
-    #topo = geo_model.set_topography(source='gdal', filepath='../../data/processed/GemPy/Model_DTM_EPSG2056.tif');
-    geo_model.set_topography(source='gdal', filepath='../../data/processed/GemPy/06_DTMs/DTM_200_for_GemPy_Model.tif');
+                path_o = '../../data/processed/GemPy/00_gempy_inputs/20201007_orientations_with_Jurathrust5_no_quat_meso_reduced2_pct_inferred.csv')
+    
+    geo_model.set_topography(source='gdal', filepath='../../data/processed/GemPy/06_DTMs/DTM_200_for_GemPy_Model.tif')
 
 
 #%%
@@ -97,7 +97,6 @@ elif switch == 'inferred':
 # For this, we create a color dictionary linking the units of the model to hex-color-codes.
 
 col_dict = {'basement': '#efad83',
-            'Graben-fill-low': '#07801a',
            'graben-fill': '#97ca68',
            'Mittlerer-Muschelkalk': '#f9ee3a',
            'Oberer-Muschelkalk': '#ffcf59',
@@ -196,7 +195,7 @@ gp.map_series_to_surfaces(geo_model,
                                                 'Keuper',
                                                 'Oberer-Muschelkalk'),
                           "Detachement": 'Mittlerer-Muschelkalk',
-                         "Graben_series": ('graben-fill', 'Graben-fill-low')},
+                         "Graben_series": 'graben-fill'},
                          remove_unused_series=True)
 geo_model.surfaces
 
@@ -262,7 +261,7 @@ geo_model.set_fault_relation(fr)
 gp.set_interpolator(geo_model,
                          compile_theano=True,
                          theano_optimizer='fast_compile',
-                         verbose=[]);
+                         verbose=[])
 
 #%%
 # Creating the model
