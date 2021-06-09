@@ -195,17 +195,17 @@ geo_model.set_active_grid('centered', reset=True)
 
 gp.set_interpolator(geo_model, output=['gravity'], theano_optimizer='fast_run', update_kriging=False)
 sol = gp.compute_model(geo_model)
+# reshape solved gravity and add coordinates
 grav = sol.fw_gravity
-
-
-# In[24]:
-
-
 grav1 = grav.reshape(len(grav),1)
-station_forw_grav = np.append(station_coordinates, grav1, axis=1)
+station_forw_grav = np.round(np.append(station_coordinates, grav1, axis=1),4)
+# make everything into a dataframe
+df_stations = pd.DataFrame(station_forw_grav, columns=["X", "Y", "Z", "grav"])
+# round X Y and Z to 2 decimals
+df_stations[['X','Y','Z']] = np.around(df_stations[['X','Y','Z']], 2)
 
 # %% 
 # and finally, we save the modeled gravity to be used as observations later on:
 
-np.savetxt('../../data/Data_for_MC/20210322_forw_grav_seed58.csv', station_forw_grav, fmt='%.2f, %.2f, %.2f, %.5f', header="X, Y, Z, grav")
+df_stations.to_csv('../../data/Data_for_MC/20210322_forw_grav_seed58.csv', index=False)
 
