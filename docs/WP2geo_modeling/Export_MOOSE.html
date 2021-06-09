@@ -4,22 +4,23 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Export a GemPy Model &#8212; Pilot Study Geothermie Aargau ALPHA documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/haiku.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Create a 3D model of a Permo-Carboniferous Trough (PCT)" href="Model_PCT_GemPy.html" />
-    <link rel="prev" title="Geological Model" href="index.html" /> 
+    <link rel="prev" title="Monte Carlo simulation" href="02_POC_create-MC-ensemble.html" /> 
   </head><body>
       <div class="header" role="banner"><img class="rightlogo" src="../_static/ps_aargau_logo_200px.png" alt="Logo"/><h1 class="heading"><a href="../index.html">
           <span>Pilot Study Geothermie Aargau ALPHA documentation</span></a></h1>
@@ -28,7 +29,7 @@
       <div class="topnav" role="navigation" aria-label="top navigation">
       
         <p>
-        «&#160;&#160;<a href="index.html">Geological Model</a>
+        «&#160;&#160;<a href="02_POC_create-MC-ensemble.html">Monte Carlo simulation</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="../index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -44,13 +45,13 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-wp2geo-modeling-export-moose-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="export-a-gempy-model">
+<section class="sphx-glr-example-title" id="export-a-gempy-model">
 <span id="sphx-glr-wp2geo-modeling-export-moose-py"></span><h1>Export a GemPy Model<a class="headerlink" href="#export-a-gempy-model" title="Permalink to this headline">¶</a></h1>
 <p>This section briefly describes how to export a GemPy model to get a working input file for MOOSE.
 This example is mainly taken from the tutorial <a class="reference external" href="https://github.com/cgre-aachen/gempy/blob/master/examples/integrations/gempy_export_MOOSE.py">gempy export MOOSE</a> from the official GemPy repository.
 It will guide you through the process of exporting a geological model generated in <a class="reference external" href="https://www.gempy.org/">GemPy</a> (Tutorial Chapter 1-1 therein) so it is usable as a Mesh
 # in the <a class="reference external" href="https://mooseframework.org/">MOOSE</a> framework.</p>
-<div class="section" id="creating-a-geological-model">
+<section id="creating-a-geological-model">
 <h2>Creating a geological model<a class="headerlink" href="#creating-a-geological-model" title="Permalink to this headline">¶</a></h2>
 <p>The procedure of generating a geological model is presented in detail in <a class="reference external" href="https://nbviewer.jupyter.org/github/cgre-aachen/gempy/blob/master/notebooks/tutorials/ch1-1_Basics.ipynb">Chapter 1-1</a>
 of the GemPy tutorials, so it will only be briefly presented here:</p>
@@ -254,8 +255,8 @@ tutorial_moose_exp  2021-02-17 13:58
     </tbody></table>
 </div>
 <br />
-<br /></div>
-<div class="section" id="model-generation">
+<br /></section>
+<section id="model-generation">
 <h2>Model generation<a class="headerlink" href="#model-generation" title="Permalink to this headline">¶</a></h2>
 <p>After loading in the data, we set it up for interpolation and compute the model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gp</span><span class="o">.</span><span class="n">set_interpolator</span><span class="p">(</span><span class="n">geo_model</span><span class="p">,</span>
@@ -287,8 +288,8 @@ drift equations  [3, 3]
 &lt;gempy.plot.visualization_2d.Plot2D object at 0x7f592eeb8490&gt;
 </pre></div>
 </div>
-</div>
-<div class="section" id="exporting-the-model-to-moose">
+</section>
+<section id="exporting-the-model-to-moose">
 <h2>Exporting the Model to MOOSE<a class="headerlink" href="#exporting-the-model-to-moose" title="Permalink to this headline">¶</a></h2>
 <p>The voxel-model above already is the same as a model discretized in a hexahedral grid, so my immediately be used as input in a simulation tool, e.g. <a class="reference external" href="https://mooseframework.org/">MOOSE</a>.
 For this, we need to access to the unit IDs assigned to each voxel in GemPy. The array containing these IDs is called <cite>lith_block</cite>.</p>
@@ -372,7 +373,7 @@ To call the file with the grid, the following part has to be added in the MOOSE 
 </div>
 <p>The final output of the simulation may also be such an <cite>.e</cite>, which can, for instance, be opened with <a class="reference external" href="https://www.paraview.org/">paraview</a>.
 A simulated temperature field (purely conductive) of the created model would look like this:</p>
-<a class="reference internal image-reference" href="WP2geo_modeling/../../_static/GemPy_model_combined.png"><img alt="Side by side example of gempy model and MOOSE HT-simulation" src="WP2geo_modeling/../../_static/GemPy_model_combined.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="../_static/GemPy_model_combined.png"><img alt="Side by side example of gempy model and MOOSE HT-simulation" src="../_static/GemPy_model_combined.png" style="width: 800px;" /></a>
 <p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  46.510 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-wp2geo-modeling-export-moose-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
@@ -383,15 +384,15 @@ A simulated temperature field (purely conductive) of the created model would loo
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>
       <div class="bottomnav" role="navigation" aria-label="bottom navigation">
       
         <p>
-        «&#160;&#160;<a href="index.html">Geological Model</a>
+        «&#160;&#160;<a href="02_POC_create-MC-ensemble.html">Monte Carlo simulation</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="../index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -402,7 +403,7 @@ A simulated temperature field (purely conductive) of the created model would loo
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 - 2021, Jan Niederau.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.0.
     </div>
   </body>
 </html>
