@@ -24,7 +24,7 @@ from gempy.plot import visualization_2d as vv
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+plt.style.use('seaborn-talk')
 
 # What GemPy version was used
 print(f"Code run with GemPy version: {gp.__version__}")
@@ -44,10 +44,10 @@ geo_model = gp.create_model('POC_model')
 # Initialize the model, set dimension and load interface and orientation data
 gp.init_data(geo_model, [0, 28000., 0, 14000., -6500, 1000.], [100, 50, 60],
             path_i = '../../data/GemPy/line82_interfaces_wo_middle_MC.csv',
-            path_o = '../../data/GemPy/line82_foliations_wo_middle_MC.csv');
-geo_model.set_topography(source='random', d_z=np.array([300,1000]));
+            path_o = '../../data/GemPy/line82_foliations_wo_middle_MC.csv')
+geo_model.set_topography(source='random', d_z=np.array([300,1000]))
 
-gp.plot_2d(geo_model, show_data=True, show_topography=True);
+gp.plot_2d(geo_model, show_data=True, show_topography=True)
 
 #%%
 # Adding information to the model
@@ -96,7 +96,7 @@ geo_model.surfaces
 
 geo_model.set_is_fault(['Thrust1_series', 'Thrust2_series',
                         'Fault2_series', 'Fault5_series', 'Fault6_series'],
-                      change_color=False);
+                      change_color=False)
 
 #%%
 # Further we have to set bottom relations, if a series is **not** erosive. For instance, the Units in the Graben are most likely onlapping units.
@@ -140,7 +140,7 @@ gp.set_interpolator(geo_model,
                          compile_theano=True,
                          theano_optimizer='fast_compile',
                          verbose=[],
-                         update_kriging=False);
+                         update_kriging=False)
 
 # Compute the model
 sol = gp.compute_model(geo_model)
