@@ -5,14 +5,14 @@ Examples using ``gempy.CenteredGrid.set_tz_kernel``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will lead you through an example workflow on how to create a Monte Carlo...">
+    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem...">
 
 .. only:: html
 
- .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: Monte Carlo simulation
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
+     :alt: Generating a geological model and simulate its gravity
 
-     :ref:`sphx_glr_WP2geo_modeling_02_POC_create-MC-ensemble.py`
+     :ref:`sphx_glr_WP2geo_modeling_01_POC_generate-model.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``gempy.CenteredGrid.set_tz_kernel``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2geo_modeling_02_POC_create-MC-ensemble.py`
+ * :ref:`sphx_glr_WP2geo_modeling_01_POC_generate-model.py`
