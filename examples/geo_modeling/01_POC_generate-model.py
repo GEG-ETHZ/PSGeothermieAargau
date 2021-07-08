@@ -9,7 +9,7 @@ and model their gravity response.
 # Create the base Proof-of-Concept Model
 # ======================================
 # 
-# Based on a seismic section from the NAGRA report [NAGRA NAB 14-17](https://www.nagra.ch/data/documents/database/dokumente/$default/Default%20Folder/Publikationen/NABs%202004%20-%202015/d_nab14-017.pdf), we extracted interface and orientation points for lithological units and faults.  
+# Based on a seismic section from the NAGRA report `NAGRA NAB 14-17 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default%20Folder/Publikationen/NABs%202004%20-%202015/d_nab14-017.pdf>`_[1], we extracted interface and orientation points for lithological units and faults.  
 # 
 # The lithological units comprise the permo-carboniferous filling (divided in three stages based on the report results), Mesozoic, Tertiary, and Quaternary strata, as well as the Palaeozoic crystalline basement rocks.
 
@@ -209,3 +209,7 @@ df_stations[['X','Y','Z']] = np.around(df_stations[['X','Y','Z']], 2)
 
 df_stations.to_csv('../../data/Data_for_MC/20210322_forw_grav_seed58.csv', index=False)
 
+#%%
+# References
+# ----------
+# [1] Naef, H., & Madritsch, H. (2014). Tektonische Karte des Nordschweizer Permokarbontrogs: Aktualisierung basierend auf 2D-Seismik und Schweredaten. Nagra Arbeitsbericht (NAB 14-17). Wettingen: Nagra.
