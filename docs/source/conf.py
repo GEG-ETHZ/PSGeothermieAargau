@@ -70,18 +70,18 @@ pygments_style = 'sphinx'
 # 'hachibee'
 # 'sphinx_rtd_theme'
 # 'alabaster'
-#html_theme_options = {
-#    'github_user': 'Japhiolite',
-#    'github_repo': 'PSGeothermieAargau',
-#    'github_type': 'star',
-#    'logo': './logos/ps_aargau_logo.png',
-#    'logo_name': False,
-#    'travis_button': False,
-#    'page_width': '1200px',
-#    'fixed_sidebar': False,
-#    'show_related': True,
-#   'sidebar_collapse': True,
-# }
+html_theme_options = {
+    'github_user': 'Japhiolite',
+    'github_repo': 'PSGeothermieAargau',
+    'github_type': 'star',
+    'logo': './logos/ps_aargau_logo.png',
+    'logo_name': False,
+    'travis_button': False,
+    'page_width': '1200px',
+    'fixed_sidebar': False,
+    'show_related': True,
+   'sidebar_collapse': True,
+ }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
