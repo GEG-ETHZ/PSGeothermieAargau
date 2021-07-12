@@ -92,12 +92,12 @@ html_static_path = ['_static']
 sphinx_gallery_conf = {
     # path to your example scripts
     'examples_dirs': [
-        '../../examples/data_analysis',
-        '../../examples/geo_modeling'],
+        '../../examples/WP1-data_analysis',
+        '../../examples/WP2-geo_modeling'],
     # path to where to save gallery generated output
     'gallery_dirs': [
-        'WP1data_analysis',
-        'WP2geo_modeling'],
+        'WP1-data_analysis',
+        'WP2-geo_modeling'],
     # Patter to search for example files
     "filename_pattern": r"\.py",
     # Remove the "Download all examples" button from the top level gallery
