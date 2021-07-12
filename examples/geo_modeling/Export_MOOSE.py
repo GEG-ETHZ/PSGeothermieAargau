@@ -1,6 +1,6 @@
 """
-Export a GemPy Model
-======================
+Export a GemPy Model to MOOSE
+=============================
 
 This section briefly describes how to export a GemPy model to get a working input file for MOOSE. 
 This example is mainly taken from the tutorial `gempy export MOOSE <https://github.com/cgre-aachen/gempy/blob/master/examples/integrations/gempy_export_MOOSE.py>`_ from the official GemPy repository.

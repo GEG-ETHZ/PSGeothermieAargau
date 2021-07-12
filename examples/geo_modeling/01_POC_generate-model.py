@@ -1,13 +1,13 @@
 """
-Generating a geological model and simulate its gravity
-======================================================
+Geological model creation and gravity simulation
+================================================
 
 The following tutorial will step-by-step lead you through an example workflow on creating a GemPy model from interface and orientation data, assigning densities to geological units,
 and model their gravity response.
 """
 #%%
 # Create the base Proof-of-Concept Model
-# ======================================
+# --------------------------------------
 # 
 # Based on a seismic section from the NAGRA report `NAGRA NAB 14-17 <https://www.nagra.ch/data/documents/database/dokumente/$default/Default%20Folder/Publikationen/NABs%202004%20-%202015/d_nab14-017.pdf>`_ [1], we extracted interface and orientation points for lithological units and faults.  
 # 
