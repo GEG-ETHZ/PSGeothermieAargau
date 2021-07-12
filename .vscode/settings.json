@@ -1,4 +1,5 @@
 {
     "restructuredtext.confPath": "${workspaceFolder}/docs",
-    "python.pythonPath": "C:\\Users\\brigg\\miniconda3\\envs\\gempygis_env\\python.exe"
+    "python.pythonPath": "C:\\Users\\brigg\\miniconda3\\envs\\gempygis_env\\python.exe",
+    "python.linting.enabled": false
 }

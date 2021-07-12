@@ -8,7 +8,7 @@ response.
 """
 #%%
 # Importing libraries
-# ===================
+# -------------------
 # First things first: let's import necessary libraries.
 import warnings
 warnings.filterwarnings("ignore")
@@ -34,7 +34,7 @@ print(f"Code run with GemPy version: {gp.__version__}")
 
 #%% 
 # Model Initialization
-# ====================
+# --------------------
 #
 # First, we import the base Proof-of-Concept model (POC-model from here on), which was generated in the previous example. Using the loading method of GemPy `gp.load_model()` directly loads the model's input, already set with fault relations, surfaces assigned to a stack (series), etc.
 # Only thing left is to recompile and run the model.
@@ -82,7 +82,7 @@ gp.plot_2d(geo_model, cell_number=25, direction='y', show_data=False, show_topog
 # The two distinct domains in this model are directly visible: (i) the old graben system (extensional regime), covered by the (ii) thrusted, younger units.
 #
 # Add Gravity grid
-# ================
+# ----------------
 # In the previous example, next to creating the model, we chose quasi-random locations for 15 gravity stations. The gravity signal of the base POC-model is simulated at these 15 stations. In the following workflows, we assume that these 15 stations were measured. So they serve as observed data for conditioning the MonteCarlo Ensemble of different geological geometries.
 
 # In[7]:
@@ -130,7 +130,7 @@ geo_model.add_surface_values(densities, ['density'])
 
 #%%
 # MC Variation
-# ============
+# ------------
 # For varying the depth of units, we extract the indices of the units whose input points we want to modify. To guarantee that we always vary the original depth in each realization (and not the depth used in the previous realization), we first generate an initial-depth array, containing the original depth information of all input points:
 
 Z_init = geo_model.surface_points.df['Z'].copy()
@@ -186,7 +186,8 @@ for i in range(n_iterations):
 lith_blocks = lith_blocks.reshape(n_iterations, -1)
 
 #%%
-# ## Export models and gravity
+# Export models and gravity
+# -------------------------
 # For post-processing of use in different software (e.g. numerical simulators for heat- and mass-transport), knowing ways of exporting the MC-results, in this case the simulated gravity and the lithology-blocks, comes in handy. There are many different ways of saving stuff (e.g. pickle the simulation results), but here we present simple exports as `.csv` and `.npy` files.
 
 
