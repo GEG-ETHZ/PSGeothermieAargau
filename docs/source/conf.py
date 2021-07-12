@@ -73,8 +73,6 @@ pygments_style = 'sphinx'
 html_theme_options = {
     'github_user': 'Japhiolite',
     'github_repo': 'PSGeothermieAargau',
-    'github_type': 'star',
-    'logo': './logos/ps_aargau_logo.png',
     'logo_name': False,
     'travis_button': False,
     'page_width': '1200px',
