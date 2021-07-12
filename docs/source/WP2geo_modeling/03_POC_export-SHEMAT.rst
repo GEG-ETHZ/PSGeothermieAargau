@@ -129,7 +129,7 @@ dimensions, and some are optional, like an array for the hydraulic head boundary
 
 
     xmin, xmax, ymin, ymax, zmin, zmax = geo_model.grid.regular_grid.extent
-    temp_data = '../../data/processed/temperature_data/2021-05-11_temp_for_shemat_HRT_HT_BHT.csv'
+    temp_data = '../../data/SHEMAT-Suite/all_boreholes_as_shemat_data.csv'
 
 
 
@@ -472,16 +472,24 @@ OpenWF.shemat_preprocessing.
     with open("../../models/SHEMAT-Suite_input/shemade.job", 'w') as jobfile:
         jobfile.write(shemade)
 
+
+
 .. rst-class:: sphx-glr-script-out
 
-.. code-block:: pytb
+ Out:
 
-    Traceback (most recent call last):
-      File "C:\Users\brigg\git\PSGeothermieAargau\examples\geo_modeling\03_POC_export-SHEMAT.py", line 101, in <module>
-        shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=model, units=units,
-      File "C:\Users\brigg\git\PSGeothermieAargau\OpenWF\shemat_preprocessing.py", line 139, in export_shemat_suite_input_file
-        with open(data_file, 'r') as file:
-    FileNotFoundError: [Errno 2] No such file or directory: '../../data/processed/temperature_data/2021-05-11_temp_for_shemat_HRT_HT_BHT.csv'
+ .. code-block:: none
+
+    Successfully exported geological model POC_MC_0 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_1 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_2 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_3 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_4 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_5 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_6 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_7 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_8 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
+    Successfully exported geological model POC_MC_9 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input
 
 
 
@@ -489,7 +497,7 @@ OpenWF.shemat_preprocessing.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.856 seconds)
+   **Total running time of the script:** ( 0 minutes  1.476 seconds)
 
 
 .. _sphx_glr_download_WP2geo_modeling_03_POC_export-SHEMAT.py:

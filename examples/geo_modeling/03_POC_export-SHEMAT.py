@@ -49,7 +49,7 @@ lith_blocks_topo = lith_blocks_topo.reshape(len(lith_blocks), -1)
 # dimensions, and some are optional, like an array for the hydraulic head boundary condition, or observed data.
 
 xmin, xmax, ymin, ymax, zmin, zmax = geo_model.grid.regular_grid.extent
-temp_data = '../../data/processed/temperature_data/2021-05-11_temp_for_shemat_HRT_HT_BHT.csv'
+temp_data = '../../data/SHEMAT-Suite/all_boreholes_as_shemat_data.csv'
 
 
 #%% 
