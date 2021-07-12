@@ -28,7 +28,7 @@ response.
 .. GENERATED FROM PYTHON SOURCE LINES 10-13
 
 Importing libraries
-===================
+-------------------
 First things first: let's import necessary libraries.
 
 .. GENERATED FROM PYTHON SOURCE LINES 13-35
@@ -75,7 +75,7 @@ First things first: let's import necessary libraries.
 .. GENERATED FROM PYTHON SOURCE LINES 36-41
 
 Model Initialization
-====================
+--------------------
 
 First, we import the base Proof-of-Concept model (POC-model from here on), which was generated in the previous example. Using the loading method of GemPy `gp.load_model()` directly loads the model's input, already set with fault relations, surfaces assigned to a stack (series), etc.
 Only thing left is to recompile and run the model.
@@ -212,11 +212,11 @@ Using the method `.get_additional_data()`, we can display a summary of model inf
         <tr>
           <th rowspan="3" valign="top">Kriging</th>
           <th>range</th>
-          <td>32190.837206</td>
+          <td>32190.8</td>
         </tr>
         <tr>
           <th>$C_o$</th>
-          <td>24672619.047619</td>
+          <td>2.46726e+07</td>
         </tr>
         <tr>
           <th>drift equations</th>
@@ -225,7 +225,7 @@ Using the method `.get_additional_data()`, we can display a summary of model inf
         <tr>
           <th rowspan="2" valign="top">Rescaling</th>
           <th>rescaling factor</th>
-          <td>56916.66598</td>
+          <td>56916.7</td>
         </tr>
         <tr>
           <th>centers</th>
@@ -282,8 +282,8 @@ Changing the kriging parameters affects the resulting models, e.g. the range rep
     Compilation Done!
     Kriging values: 
                                               values
-    range                                   20000.0
-    $C_o$                                  200000.0
+    range                                     20000
+    $C_o$                                    200000
     drift equations  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 
 
@@ -316,7 +316,7 @@ Now that the model is computed, lets have a look at a cross-section along the y-
  .. code-block:: none
 
 
-    <gempy.plot.visualization_2d.Plot2D object at 0x00000263C4BBEBE0>
+    <gempy.plot.visualization_2d.Plot2D object at 0x000001CAEE2796A0>
 
 
 
@@ -325,7 +325,7 @@ Now that the model is computed, lets have a look at a cross-section along the y-
 The two distinct domains in this model are directly visible: (i) the old graben system (extensional regime), covered by the (ii) thrusted, younger units.
 
 Add Gravity grid
-================
+----------------
 In the previous example, next to creating the model, we chose quasi-random locations for 15 gravity stations. The gravity signal of the base POC-model is simulated at these 15 stations. In the following workflows, we assume that these 15 stations were measured. So they serve as observed data for conditioning the MonteCarlo Ensemble of different geological geometries.
 
 .. GENERATED FROM PYTHON SOURCE LINES 87-103
@@ -460,132 +460,138 @@ Before running the simulations, we need to assign densities to the rock units, o
 
     <div class="output_subarea output_html rendered_html output_result">
     <style  type="text/css" >
-    #T_1fd0c_row0_col3,#T_1fd0c_row1_col3{
+        #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow0_col3 {
                 background-color:  #5DA629;
-            }#T_1fd0c_row2_col3,#T_1fd0c_row3_col3,#T_1fd0c_row4_col3{
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow1_col3 {
+                background-color:  #5DA629;
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow2_col3 {
                 background-color:  #015482;
-            }#T_1fd0c_row5_col3{
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow3_col3 {
+                background-color:  #015482;
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow4_col3 {
+                background-color:  #015482;
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow5_col3 {
                 background-color:  #dbdbac;
-            }#T_1fd0c_row6_col3{
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow6_col3 {
                 background-color:  #e588f3;
-            }#T_1fd0c_row7_col3{
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow7_col3 {
                 background-color:  #ff792b;
-            }#T_1fd0c_row8_col3{
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow8_col3 {
                 background-color:  #725c9a;
-            }#T_1fd0c_row9_col3{
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow9_col3 {
                 background-color:  #cfc199;
-            }#T_1fd0c_row10_col3{
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow10_col3 {
                 background-color:  #a5d490;
-            }#T_1fd0c_row11_col3{
+            }    #T_21a9ec84_e310_11eb_a3b5_00e04c6800carow11_col3 {
                 background-color:  #c7848f;
-            }</style><table id="T_1fd0c_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>        <th class="col_heading level0 col5" >density</th>    </tr></thead><tbody>
+            }</style><table id="T_21a9ec84_e310_11eb_a3b5_00e04c6800ca" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>        <th class="col_heading level0 col5" >density</th>    </tr></thead><tbody>
                     <tr>
-                            <th id="T_1fd0c_level0_row0" class="row_heading level0 row0" >9</th>
-                            <td id="T_1fd0c_row0_col0" class="data row0 col0" >Thrust1_south</td>
-                            <td id="T_1fd0c_row0_col1" class="data row0 col1" >Thrust1_series</td>
-                            <td id="T_1fd0c_row0_col2" class="data row0 col2" >1</td>
-                            <td id="T_1fd0c_row0_col3" class="data row0 col3" >#5DA629</td>
-                            <td id="T_1fd0c_row0_col4" class="data row0 col4" >1</td>
-                            <td id="T_1fd0c_row0_col5" class="data row0 col5" >0.000000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row0" class="row_heading level0 row0" >9</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow0_col0" class="data row0 col0" >Thrust1_south</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow0_col1" class="data row0 col1" >Thrust1_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow0_col2" class="data row0 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow0_col3" class="data row0 col3" >#5DA629</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow0_col4" class="data row0 col4" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow0_col5" class="data row0 col5" >0.000000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row1" class="row_heading level0 row1" >10</th>
-                            <td id="T_1fd0c_row1_col0" class="data row1 col0" >Thrust2_south</td>
-                            <td id="T_1fd0c_row1_col1" class="data row1 col1" >Thrust2_series</td>
-                            <td id="T_1fd0c_row1_col2" class="data row1 col2" >1</td>
-                            <td id="T_1fd0c_row1_col3" class="data row1 col3" >#5DA629</td>
-                            <td id="T_1fd0c_row1_col4" class="data row1 col4" >2</td>
-                            <td id="T_1fd0c_row1_col5" class="data row1 col5" >0.000000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row1" class="row_heading level0 row1" >10</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow1_col0" class="data row1 col0" >Thrust2_south</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow1_col1" class="data row1 col1" >Thrust2_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow1_col2" class="data row1 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow1_col3" class="data row1 col3" >#5DA629</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow1_col4" class="data row1 col4" >2</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow1_col5" class="data row1 col5" >0.000000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row2" class="row_heading level0 row2" >0</th>
-                            <td id="T_1fd0c_row2_col0" class="data row2 col0" >Fault2</td>
-                            <td id="T_1fd0c_row2_col1" class="data row2 col1" >Fault2_series</td>
-                            <td id="T_1fd0c_row2_col2" class="data row2 col2" >1</td>
-                            <td id="T_1fd0c_row2_col3" class="data row2 col3" >#015482</td>
-                            <td id="T_1fd0c_row2_col4" class="data row2 col4" >3</td>
-                            <td id="T_1fd0c_row2_col5" class="data row2 col5" >0.000000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row2" class="row_heading level0 row2" >0</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow2_col0" class="data row2 col0" >Fault2</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow2_col1" class="data row2 col1" >Fault2_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow2_col2" class="data row2 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow2_col3" class="data row2 col3" >#015482</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow2_col4" class="data row2 col4" >3</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow2_col5" class="data row2 col5" >0.000000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row3" class="row_heading level0 row3" >1</th>
-                            <td id="T_1fd0c_row3_col0" class="data row3 col0" >Fault5</td>
-                            <td id="T_1fd0c_row3_col1" class="data row3 col1" >Fault5_series</td>
-                            <td id="T_1fd0c_row3_col2" class="data row3 col2" >1</td>
-                            <td id="T_1fd0c_row3_col3" class="data row3 col3" >#015482</td>
-                            <td id="T_1fd0c_row3_col4" class="data row3 col4" >4</td>
-                            <td id="T_1fd0c_row3_col5" class="data row3 col5" >0.000000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row3" class="row_heading level0 row3" >1</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow3_col0" class="data row3 col0" >Fault5</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow3_col1" class="data row3 col1" >Fault5_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow3_col2" class="data row3 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow3_col3" class="data row3 col3" >#015482</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow3_col4" class="data row3 col4" >4</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow3_col5" class="data row3 col5" >0.000000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row4" class="row_heading level0 row4" >2</th>
-                            <td id="T_1fd0c_row4_col0" class="data row4 col0" >Fault6</td>
-                            <td id="T_1fd0c_row4_col1" class="data row4 col1" >Fault6_series</td>
-                            <td id="T_1fd0c_row4_col2" class="data row4 col2" >1</td>
-                            <td id="T_1fd0c_row4_col3" class="data row4 col3" >#015482</td>
-                            <td id="T_1fd0c_row4_col4" class="data row4 col4" >5</td>
-                            <td id="T_1fd0c_row4_col5" class="data row4 col5" >0.000000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row4" class="row_heading level0 row4" >2</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow4_col0" class="data row4 col0" >Fault6</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow4_col1" class="data row4 col1" >Fault6_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow4_col2" class="data row4 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow4_col3" class="data row4 col3" >#015482</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow4_col4" class="data row4 col4" >5</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow4_col5" class="data row4 col5" >0.000000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row5" class="row_heading level0 row5" >6</th>
-                            <td id="T_1fd0c_row5_col0" class="data row5 col0" >Tertiary</td>
-                            <td id="T_1fd0c_row5_col1" class="data row5 col1" >Post_tectonic_series</td>
-                            <td id="T_1fd0c_row5_col2" class="data row5 col2" >1</td>
-                            <td id="T_1fd0c_row5_col3" class="data row5 col3" >#dbdbac</td>
-                            <td id="T_1fd0c_row5_col4" class="data row5 col4" >6</td>
-                            <td id="T_1fd0c_row5_col5" class="data row5 col5" >2.466000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row5" class="row_heading level0 row5" >6</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow5_col0" class="data row5 col0" >Tertiary</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow5_col1" class="data row5 col1" >Post_tectonic_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow5_col2" class="data row5 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow5_col3" class="data row5 col3" >#dbdbac</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow5_col4" class="data row5 col4" >6</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow5_col5" class="data row5 col5" >2.466000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row6" class="row_heading level0 row6" >8</th>
-                            <td id="T_1fd0c_row6_col0" class="data row6 col0" >Pink</td>
-                            <td id="T_1fd0c_row6_col1" class="data row6 col1" >Post_tectonic_series</td>
-                            <td id="T_1fd0c_row6_col2" class="data row6 col2" >2</td>
-                            <td id="T_1fd0c_row6_col3" class="data row6 col3" >#e588f3</td>
-                            <td id="T_1fd0c_row6_col4" class="data row6 col4" >7</td>
-                            <td id="T_1fd0c_row6_col5" class="data row6 col5" >2.610000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row6" class="row_heading level0 row6" >8</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow6_col0" class="data row6 col0" >Pink</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow6_col1" class="data row6 col1" >Post_tectonic_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow6_col2" class="data row6 col2" >2</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow6_col3" class="data row6 col3" >#e588f3</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow6_col4" class="data row6 col4" >7</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow6_col5" class="data row6 col5" >2.610000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row7" class="row_heading level0 row7" >7</th>
-                            <td id="T_1fd0c_row7_col0" class="data row7 col0" >Orange</td>
-                            <td id="T_1fd0c_row7_col1" class="data row7 col1" >Post_tectonic_series</td>
-                            <td id="T_1fd0c_row7_col2" class="data row7 col2" >3</td>
-                            <td id="T_1fd0c_row7_col3" class="data row7 col3" >#ff792b</td>
-                            <td id="T_1fd0c_row7_col4" class="data row7 col4" >8</td>
-                            <td id="T_1fd0c_row7_col5" class="data row7 col5" >2.530000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row7" class="row_heading level0 row7" >7</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow7_col0" class="data row7 col0" >Orange</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow7_col1" class="data row7 col1" >Post_tectonic_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow7_col2" class="data row7 col2" >3</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow7_col3" class="data row7 col3" >#ff792b</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow7_col4" class="data row7 col4" >8</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow7_col5" class="data row7 col5" >2.530000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row8" class="row_heading level0 row8" >5</th>
-                            <td id="T_1fd0c_row8_col0" class="data row8 col0" >Unconformity</td>
-                            <td id="T_1fd0c_row8_col1" class="data row8 col1" >Detachement</td>
-                            <td id="T_1fd0c_row8_col2" class="data row8 col2" >1</td>
-                            <td id="T_1fd0c_row8_col3" class="data row8 col3" >#725c9a</td>
-                            <td id="T_1fd0c_row8_col4" class="data row8 col4" >9</td>
-                            <td id="T_1fd0c_row8_col5" class="data row8 col5" >2.610000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row8" class="row_heading level0 row8" >5</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow8_col0" class="data row8 col0" >Unconformity</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow8_col1" class="data row8 col1" >Detachement</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow8_col2" class="data row8 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow8_col3" class="data row8 col3" >#725c9a</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow8_col4" class="data row8 col4" >9</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow8_col5" class="data row8 col5" >2.610000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row9" class="row_heading level0 row9" >4</th>
-                            <td id="T_1fd0c_row9_col0" class="data row9 col0" >Upper-filling</td>
-                            <td id="T_1fd0c_row9_col1" class="data row9 col1" >Syn_tectonic_series2</td>
-                            <td id="T_1fd0c_row9_col2" class="data row9 col2" >1</td>
-                            <td id="T_1fd0c_row9_col3" class="data row9 col3" >#cfc199</td>
-                            <td id="T_1fd0c_row9_col4" class="data row9 col4" >10</td>
-                            <td id="T_1fd0c_row9_col5" class="data row9 col5" >2.470000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row9" class="row_heading level0 row9" >4</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow9_col0" class="data row9 col0" >Upper-filling</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow9_col1" class="data row9 col1" >Syn_tectonic_series2</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow9_col2" class="data row9 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow9_col3" class="data row9 col3" >#cfc199</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow9_col4" class="data row9 col4" >10</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow9_col5" class="data row9 col5" >2.470000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row10" class="row_heading level0 row10" >3</th>
-                            <td id="T_1fd0c_row10_col0" class="data row10 col0" >Lower-filling</td>
-                            <td id="T_1fd0c_row10_col1" class="data row10 col1" >Pre_tectonic_series</td>
-                            <td id="T_1fd0c_row10_col2" class="data row10 col2" >1</td>
-                            <td id="T_1fd0c_row10_col3" class="data row10 col3" >#a5d490</td>
-                            <td id="T_1fd0c_row10_col4" class="data row10 col4" >11</td>
-                            <td id="T_1fd0c_row10_col5" class="data row10 col5" >2.550000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row10" class="row_heading level0 row10" >3</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow10_col0" class="data row10 col0" >Lower-filling</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow10_col1" class="data row10 col1" >Pre_tectonic_series</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow10_col2" class="data row10 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow10_col3" class="data row10 col3" >#a5d490</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow10_col4" class="data row10 col4" >11</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow10_col5" class="data row10 col5" >2.550000</td>
                 </tr>
                 <tr>
-                            <th id="T_1fd0c_level0_row11" class="row_heading level0 row11" >11</th>
-                            <td id="T_1fd0c_row11_col0" class="data row11 col0" >basement</td>
-                            <td id="T_1fd0c_row11_col1" class="data row11 col1" >Basement</td>
-                            <td id="T_1fd0c_row11_col2" class="data row11 col2" >1</td>
-                            <td id="T_1fd0c_row11_col3" class="data row11 col3" >#c7848f</td>
-                            <td id="T_1fd0c_row11_col4" class="data row11 col4" >12</td>
-                            <td id="T_1fd0c_row11_col5" class="data row11 col5" >2.670000</td>
+                            <th id="T_21a9ec84_e310_11eb_a3b5_00e04c6800calevel0_row11" class="row_heading level0 row11" >11</th>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow11_col0" class="data row11 col0" >basement</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow11_col1" class="data row11 col1" >Basement</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow11_col2" class="data row11 col2" >1</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow11_col3" class="data row11 col3" >#c7848f</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow11_col4" class="data row11 col4" >12</td>
+                            <td id="T_21a9ec84_e310_11eb_a3b5_00e04c6800carow11_col5" class="data row11 col5" >2.670000</td>
                 </tr>
         </tbody></table>
     </div>
@@ -595,7 +601,7 @@ Before running the simulations, we need to assign densities to the rock units, o
 .. GENERATED FROM PYTHON SOURCE LINES 132-135
 
 MC Variation
-============
+------------
 For varying the depth of units, we extract the indices of the units whose input points we want to modify. To guarantee that we always vary the original depth in each realization (and not the depth used in the previous realization), we first generate an initial-depth array, containing the original depth information of all input points:
 
 .. GENERATED FROM PYTHON SOURCE LINES 135-138
@@ -664,11 +670,11 @@ Before running the Monte Carlo simulations, we set up the interpolator for a "fa
     Compilation Done!
     Kriging values: 
                                               values
-    range                              32190.837206
-    $C_o$                           24672619.047619
+    range                                   32190.8
+    $C_o$                               2.46726e+07
     drift equations  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 
-    <gempy.core.interpolator.InterpolatorModel object at 0x00000263C3B3DAF0>
+    <gempy.core.interpolator.InterpolatorModel object at 0x000001CAED8F1F40>
 
 
 
@@ -721,12 +727,13 @@ compute a model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 189-191
+.. GENERATED FROM PYTHON SOURCE LINES 189-192
 
-## Export models and gravity
+Export models and gravity
+-------------------------
 For post-processing of use in different software (e.g. numerical simulators for heat- and mass-transport), knowing ways of exporting the MC-results, in this case the simulated gravity and the lithology-blocks, comes in handy. There are many different ways of saving stuff (e.g. pickle the simulation results), but here we present simple exports as `.csv` and `.npy` files.
 
-.. GENERATED FROM PYTHON SOURCE LINES 191-202
+.. GENERATED FROM PYTHON SOURCE LINES 192-203
 
 .. code-block:: default
 
@@ -870,11 +877,11 @@ For post-processing of use in different software (e.g. numerical simulators for 
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 203-204
+.. GENERATED FROM PYTHON SOURCE LINES 204-205
 
 This can be saved as usual with `df.to_csv('pathname')` using Pandas. For the lithological block model, one good option is to save it as a numpy array, using `numpy.save()`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 204-207
+.. GENERATED FROM PYTHON SOURCE LINES 205-208
 
 .. code-block:: default
 
@@ -888,13 +895,13 @@ This can be saved as usual with `df.to_csv('pathname')` using Pandas. For the li
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 208-211
+.. GENERATED FROM PYTHON SOURCE LINES 209-212
 
 Quick model analysis
 --------------------
 Let's have a quick first look at the resulting gravity and lithological block models. From the gravity dictionary, we can quickly generate a dataframe, convenient for further model analysis.
 
-.. GENERATED FROM PYTHON SOURCE LINES 211-216
+.. GENERATED FROM PYTHON SOURCE LINES 212-217
 
 .. code-block:: default
 
@@ -910,11 +917,11 @@ Let's have a quick first look at the resulting gravity and lithological block mo
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 217-218
+.. GENERATED FROM PYTHON SOURCE LINES 218-219
 
 The following plot shows the probability of unit 5 in the probability block. With faults not being excluded, and counting of units starting with 0, we can see that the index 5 relates to the `Lower-filling` surface. The plot shows where to expect the unit. Everywhere, this unit is present throughout the simulations, the probability plot shows a bright yellow (probability = 1). Where it is always absent, we see the dark violet (probability = 0). The blueish-greenish areas are in between, meaning that in some realizations, the `Lower-filling` unit is present there, in other realization it is not.
 
-.. GENERATED FROM PYTHON SOURCE LINES 218-227
+.. GENERATED FROM PYTHON SOURCE LINES 219-228
 
 .. code-block:: default
 
@@ -942,17 +949,17 @@ The following plot shows the probability of unit 5 in the probability block. Wit
  .. code-block:: none
 
 
-    <gempy.plot.visualization_2d.Plot2D object at 0x00000263CF216CA0>
+    <gempy.plot.visualization_2d.Plot2D object at 0x000001CAF591A670>
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 228-231
+.. GENERATED FROM PYTHON SOURCE LINES 229-232
 
 In the for-loop above, we not only varied the bottom boundary of the `Lower-filling` unit, but also `Upper-filling` and `Unconformity`. Using the measure of information entropy, we can visualize the parts of the model, where the most change is happening, i.e. where entropy is largest. Black areas in the following plot have zero information entropy, as there is only one "microstate" for the system, i.e. the model ensemble.  
 
 This means, we'd always encounter the same unit at the same place in every ensemble member. The colored areas, however, are areas where we'd encounter different geological units between ensemble members.
 
-.. GENERATED FROM PYTHON SOURCE LINES 231-239
+.. GENERATED FROM PYTHON SOURCE LINES 232-240
 
 .. code-block:: default
 
@@ -979,15 +986,15 @@ This means, we'd always encounter the same unit at the same place in every ensem
  .. code-block:: none
 
 
-    <gempy.plot.visualization_2d.Plot2D object at 0x00000263CEF94E50>
+    <gempy.plot.visualization_2d.Plot2D object at 0x000001CAF5E4FCD0>
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 240-241
+.. GENERATED FROM PYTHON SOURCE LINES 241-242
 
 Finally, let's have a look at the gravity. We'll simply have a look at mean and standard deviation of the simulated gravity of the ensemble:
 
-.. GENERATED FROM PYTHON SOURCE LINES 241-266
+.. GENERATED FROM PYTHON SOURCE LINES 242-267
 
 .. code-block:: default
 
@@ -1030,7 +1037,7 @@ Finally, let's have a look at the gravity. We'll simply have a look at mean and 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 5 minutes  40.593 seconds)
+   **Total running time of the script:** ( 4 minutes  54.234 seconds)
 
 
 .. _sphx_glr_download_WP2geo_modeling_02_POC_create-MC-ensemble.py:

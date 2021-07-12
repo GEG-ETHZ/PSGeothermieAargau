@@ -55,6 +55,27 @@ Below are examples how to build geological models from Data, among others acquir
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
+
+.. only:: html
+
+ .. figure:: /WP2geo_modeling/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
+     :alt: Create SHEMAT-Suite models
+
+     :ref:`sphx_glr_WP2geo_modeling_03_POC_export-SHEMAT.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /WP2geo_modeling/03_POC_export-SHEMAT
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS...">
 
 .. only:: html
