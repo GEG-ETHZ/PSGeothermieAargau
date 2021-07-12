@@ -19,8 +19,6 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Geological Model" href="../WP2geo_modeling/index.html" />
-    <link rel="prev" title="Data Analysis" href="index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -39,11 +37,11 @@
             
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-wp1data-analysis-wp01-borehole-database-py"><span class="std std-ref">here</span></a>
+<p>Click <a class="reference internal" href="#sphx-glr-download-wp1-data-analysis-wp01-borehole-database-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="temperature-database-usage">
-<span id="sphx-glr-wp1data-analysis-wp01-borehole-database-py"></span><h1>Temperature database usage<a class="headerlink" href="#temperature-database-usage" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-wp1-data-analysis-wp01-borehole-database-py"></span><h1>Temperature database usage<a class="headerlink" href="#temperature-database-usage" title="Permalink to this headline">¶</a></h1>
 <p>In the following, I present ways to interact with a database of borehole temperatures in the study area, using the module <cite>db_access</cite>.
 These temperature data are used in other workpackages, e.g. for model calibration or MC-rejection.</p>
 </section>
@@ -275,9 +273,9 @@ dataframe. For example, let’s plot <cite>Depth</cite> versus <cite>Temperature
 </pre></div>
 </div>
 <ul class="sphx-glr-horizontal">
-<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_001.png" />
+<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_0011.png" />
 </li>
-<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_002.png" />
+<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_0021.png" />
 </li>
 </ul>
 <p>Colleagues at <a class="reference external" href="https://georessourcen.ethz.ch/en/#georesources-switzerland">Georesources Switzerland Group</a> evaluated temperature data from deep boreholes following certain criteria.
@@ -370,7 +368,7 @@ For instance, we want to get all the boreholes marked as _valid_ in one datafram
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_003.png" />
+<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_0031.png" />
 <p>In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient.
 There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as <a href="#id3"><span class="problematic" id="id4">**</span></a>B**ottom <a href="#id5"><span class="problematic" id="id6">**</span></a>H**ole <a href="#id7"><span class="problematic" id="id8">**</span></a>T**emperatures (BHTs).
 If one would like to include <em>only</em> temperature logs in a database query, this can easily be done by extending the above chained query command with an <cite>AND</cite> keyword, so that a query would read:</p>
@@ -391,7 +389,7 @@ If one would like to include <em>only</em> temperature logs in a database query,
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_004.png" />
+<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_0041.png" />
 <p>This leaves all log measurements and sorts out BHT values, for instance. While <cite>AND</cite>, <cite>OR</cite> are the standard expressions for specifying different queries to be matched,
 there are many more useful query statements. There are multiple resources to list available SQL commands and queries, e.g.
 on <a class="reference external" href="https://www.codecademy.com/learn/learn-sql/modules/learn-sql-queries/reference">codeacademy</a> or on <a class="reference external" href="https://www.bitdegree.org/learn/sql-commands-list">bitdegree</a>.
@@ -412,7 +410,7 @@ To better distinguish the boreholes, let’s add a legend to the plot.</p>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.axis.XAxis.tick_top.html#matplotlib.axis.XAxis.tick_top" title="matplotlib.axis.XAxis.tick_top" class="sphx-glr-backref-module-matplotlib-axis sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_005.png" />
+<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_0051.png" />
 </section>
 <section id="a-word-on-data-distribution">
 <h2>A word on data distribution<a class="headerlink" href="#a-word-on-data-distribution" title="Permalink to this headline">¶</a></h2>
@@ -456,7 +454,7 @@ The bandwidth is estimated using a Scott estimate cite{scott1979}, which automat
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_006.png" />
+<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_0061.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>coefficient of determination: 0.919941448842173
 intercept: 734.2354941567851
@@ -481,13 +479,13 @@ The last thing is important, as unexpected closure of non-closed databases may p
 <a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection" title="sqlite3.Connection" class="sphx-glr-backref-module-sqlite3 sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">conn</span></a><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.798 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-wp1data-analysis-wp01-borehole-database-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.960 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-wp1-data-analysis-wp01-borehole-database-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/6454c5619af21c91d4370a21fb760178/WP01_borehole_database.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">WP01_borehole_database.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/cf82e8dd50bcc65ea7bdedf4d3f3542d/WP01_borehole_database.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">WP01_borehole_database.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/61bc5f680f7e489edffe74e00d06f6b4/WP01_borehole_database.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">WP01_borehole_database.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/304028d1cea8249421407993483dd234/WP01_borehole_database.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">WP01_borehole_database.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -504,10 +502,22 @@ The last thing is important, as unexpected closure of non-closed databases may p
             <p class="logo"><a href="../index.html">
               <img class="logo" src="../_static/ps_aargau_logo_200px.png" alt="Logo"/>
             </a></p>
-<h1 class="logo"><a href="../index.html">Pilot Study Geothermie Aargau</a></h1>
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/./logos/ps_aargau_logo.png" alt="Logo"/>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Japhiolite&repo=PSGeothermieAargau&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 
@@ -520,12 +530,8 @@ The last thing is important, as unexpected closure of non-closed databases may p
 <li class="toctree-l1"><a class="reference internal" href="../the_project.html">The project</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Galleries:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Data Analysis</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Temperature database usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#borehole-database">Borehole Database</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../WP1data_analysis/index.html">Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../WP2geo_modeling/index.html">Geological Model</a></li>
 </ul>
 
@@ -533,10 +539,6 @@ The last thing is important, as unexpected closure of non-closed databases may p
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Data Analysis</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Data Analysis</a></li>
-      <li>Next: <a href="../WP2geo_modeling/index.html" title="next chapter">Geological Model</a></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -570,7 +572,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/WP1data_analysis/WP01_borehole_database.rst.txt"
+      <a href="../_sources/WP1-data_analysis/WP01_borehole_database.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
