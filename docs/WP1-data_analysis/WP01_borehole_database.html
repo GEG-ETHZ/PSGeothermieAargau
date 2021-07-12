@@ -273,9 +273,9 @@ dataframe. For example, let’s plot <cite>Depth</cite> versus <cite>Temperature
 </pre></div>
 </div>
 <ul class="sphx-glr-horizontal">
-<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_0011.png" />
+<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_001.png" />
 </li>
-<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_0021.png" />
+<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_002.png" />
 </li>
 </ul>
 <p>Colleagues at <a class="reference external" href="https://georessourcen.ethz.ch/en/#georesources-switzerland">Georesources Switzerland Group</a> evaluated temperature data from deep boreholes following certain criteria.
@@ -368,7 +368,7 @@ For instance, we want to get all the boreholes marked as _valid_ in one datafram
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_0031.png" />
+<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_003.png" />
 <p>In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient.
 There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as <a href="#id3"><span class="problematic" id="id4">**</span></a>B**ottom <a href="#id5"><span class="problematic" id="id6">**</span></a>H**ole <a href="#id7"><span class="problematic" id="id8">**</span></a>T**emperatures (BHTs).
 If one would like to include <em>only</em> temperature logs in a database query, this can easily be done by extending the above chained query command with an <cite>AND</cite> keyword, so that a query would read:</p>
@@ -389,7 +389,7 @@ If one would like to include <em>only</em> temperature logs in a database query,
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_0041.png" />
+<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_004.png" />
 <p>This leaves all log measurements and sorts out BHT values, for instance. While <cite>AND</cite>, <cite>OR</cite> are the standard expressions for specifying different queries to be matched,
 there are many more useful query statements. There are multiple resources to list available SQL commands and queries, e.g.
 on <a class="reference external" href="https://www.codecademy.com/learn/learn-sql/modules/learn-sql-queries/reference">codeacademy</a> or on <a class="reference external" href="https://www.bitdegree.org/learn/sql-commands-list">bitdegree</a>.
@@ -410,7 +410,7 @@ To better distinguish the boreholes, let’s add a legend to the plot.</p>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.axis.XAxis.tick_top.html#matplotlib.axis.XAxis.tick_top" title="matplotlib.axis.XAxis.tick_top" class="sphx-glr-backref-module-matplotlib-axis sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_0051.png" />
+<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_005.png" />
 </section>
 <section id="a-word-on-data-distribution">
 <h2>A word on data distribution<a class="headerlink" href="#a-word-on-data-distribution" title="Permalink to this headline">¶</a></h2>
@@ -454,7 +454,7 @@ The bandwidth is estimated using a Scott estimate cite{scott1979}, which automat
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_0061.png" />
+<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_006.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>coefficient of determination: 0.919941448842173
 intercept: 734.2354941567851
@@ -502,12 +502,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
             <p class="logo"><a href="../index.html">
               <img class="logo" src="../_static/ps_aargau_logo_200px.png" alt="Logo"/>
             </a></p>
-<p class="logo">
-  <a href="../index.html">
-    <img class="logo" src="../_static/./logos/ps_aargau_logo.png" alt="Logo"/>
-    
-  </a>
-</p>
+<h1 class="logo"><a href="../index.html">Pilot Study Geothermie Aargau</a></h1>
 
 
 
@@ -515,7 +510,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Japhiolite&repo=PSGeothermieAargau&type=star&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=Japhiolite&repo=PSGeothermieAargau&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
