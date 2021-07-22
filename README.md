@@ -5,4 +5,4 @@ The gallery is meant to lead through the open workflow from data compilation to 
 
 ## License  
 
-The content of this project documentation licensed under [CC-BY](https://choosealicense.com/licenses/cc-by-4.0/), the written source code of the developed workflow is licensed under [GPLv3](https://choosealicense.com/licenses/gpl-3.0/).
+The content of this project documentation licensed under [CC-BY](https://choosealicense.com/licenses/cc-by-4.0/), the written source code of the developed workflow is licensed under [MIT](https://choosealicense.com/licenses/mit/).
