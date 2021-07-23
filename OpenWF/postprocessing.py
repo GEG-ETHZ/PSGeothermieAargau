@@ -390,29 +390,32 @@ def extract_parameters(datafile, parameters: list=['temp','uindex'], dimension: 
     Returns:
         [type]: [description]
     """
+    param_dict = {}
     if type(datafile)=='str':
         f = read_hdf_file(datafile)
     else:
         f = h5py.File(datafile,'r')
     
     z, y, x = f['temp'].shape
-    X = f['x'][0,0,:]
-    Y = f['y'][0,:,0]
-    Z = f['z'][:,0,0]
+    param_dict['x'] = f['x'][0,0,:]
+    param_dict['y'] = f['y'][0,:,0]
+    param_dict['z'] = f['z'][:,0,0]
+    
+    
     if dimension==3:
-        temp = f['temp'][:,:,:]
-        uindex = f['uindex'][:,:,:]
+        for i in parameters:
+            param_dict[i] = f[i][:,:,:]
     elif dimension==2:
         if direction=='x':
-            temp = f['temp'][:,:,x//2]
-            uindex = f['uindex'][:,:,x//2]
+            for i in parameters:
+                param_dict[i] = f[i][:,:,x//2]
         elif direction=='y':
-            temp = f['temp'][:,y//2,:]
-            uindex = f['uindex'][:,y//2,:]
+            for i in parameters:
+                param_dict[i] = f[i][:,y//2,:]
         elif direction=='z':
-            temp = f['temp'][z//2,:,:]
-            uindex = f['uindex'][z//2,:,:]
-    return temp,uindex
+            for i in parameters:
+                param_dict[i] = f[i][z//2,:,:]
+    return param_dict
 
 # def homogenize_comment(file):
 #     inp = open(file, 'rt')
