@@ -83,9 +83,6 @@ def available_parameters(file: h5py.File):
 
     return a_subset
 
-
-
-
 def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int=0, z_extent: float=6000.):
     """Plot a slice of available parameters through the model in x, y, or z direction. 
 
@@ -279,34 +276,7 @@ def fahrenheit_to_celsius(temp_fahrenheit, difference=False):
         return (temp_fahrenheit - 32) * 5 / 9
     else:
         return temp_fahrenheit * 5 / 9
-
-
-def homogenize_comment(file):
-    inp = open(file, 'rt')
-    outp = open(file+'_homogenized', 'wt')
-    for line in inp:    
-        outp.write(line.replace('%', '#'))#.replace('    ',','))
-        
-    inp.close()
-    outp.close()
-            
-
-def get_groups(seq, group_by):
-    data = []
-    for line in seq:
-        # Here the `startswith()` logic can be replaced with other
-        # condition(s) depending on the requirement.
-        newline = line.replace('%', '#')
-            
-        if newline.startswith(group_by):
-            if data:
-                yield data
-                data = []
-        data.append(newline)
-
-    if data:
-        yield data
-        
+      
 def read2dict(file: str='.'):
     """Read a parameter file and store it as a dictionary
 
@@ -408,31 +378,63 @@ def plot_apriori_aposteriori(parameter_data, parameter, borehole, save=False, in
     
     if save:
         fig.savefig(f"{borehole}_parameter_{parameter}.png", dpi=300, bbox_inches='tight')
+  
+def extract_parameters(datafile, parameters: list=['temp','uindex'], dimension: int=3, direction: str='x'):
+    """extract single parameter fields from an HDF5 file for postprocessing.
+
+    Args:
+        datafile ([type]): [description]
+        dimension (int, optional): [description]. Defaults to 3.
+        direction (str, optional): [description]. Defaults to 'x'.
+
+    Returns:
+        [type]: [description]
+    """
+    if type(datafile)=='str':
+        f = read_hdf_file(datafile)
+    else:
+        f = h5py.File(datafile,'r')
     
-#def extTui(datafile, dimension=3, direction='x'):
-#    """[summary]
-#
-#    Args:
-#        datafile ([type]): [description]
-#        dimension (int, optional): [description]. Defaults to 3.
-#        direction (str, optional): [description]. Defaults to 'x'.
-#
-#    Returns:
-#        [type]: [description]
-#    """
-#    f = h5py.File(datafile,'r')
-#    z, y, x = f['temp'].shape
-#    if dimension==3:
-#        temp = f['temp'][:,:,:]
-#        uindex = f['uindex'][:,:,:]
-#    elif dimension==2:
-#        if direction=='x':
-#            temp = f['temp'][:,:,x//2]
-#            uindex = f['uindex'][:,:,x//2]
-#        elif direction=='y':
-#            temp = f['temp'][:,y//2,:]
-#            uindex = f['uindex'][:,y//2,:]
-#        elif direction=='z':
-#            temp = f['temp'][z//2,:,:]
-#            uindex = f['uindex'][z//2,:,:]
-#    return temp,uindex
+    z, y, x = f['temp'].shape
+    X = f['x'][0,0,:]
+    Y = f['y'][0,:,0]
+    Z = f['z'][:,0,0]
+    if dimension==3:
+        temp = f['temp'][:,:,:]
+        uindex = f['uindex'][:,:,:]
+    elif dimension==2:
+        if direction=='x':
+            temp = f['temp'][:,:,x//2]
+            uindex = f['uindex'][:,:,x//2]
+        elif direction=='y':
+            temp = f['temp'][:,y//2,:]
+            uindex = f['uindex'][:,y//2,:]
+        elif direction=='z':
+            temp = f['temp'][z//2,:,:]
+            uindex = f['uindex'][z//2,:,:]
+    return temp,uindex
+
+    def homogenize_comment(file):
+    inp = open(file, 'rt')
+    outp = open(file+'_homogenized', 'wt')
+    for line in inp:    
+        outp.write(line.replace('%', '#'))#.replace('    ',','))
+        
+    inp.close()
+    outp.close()            
+
+def get_groups(seq, group_by):
+    data = []
+    for line in seq:
+        # Here the `startswith()` logic can be replaced with other
+        # condition(s) depending on the requirement.
+        newline = line.replace('%', '#')
+            
+        if newline.startswith(group_by):
+            if data:
+                yield data
+                data = []
+        data.append(newline)
+
+    if data:
+        yield data
