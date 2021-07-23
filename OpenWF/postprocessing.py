@@ -391,10 +391,10 @@ def extract_parameters(datafile, parameters: list=['temp','uindex'], dimension: 
         [type]: [description]
     """
     param_dict = {}
-    if type(datafile)=='str':
+    if type(datafile)==str:
         f = read_hdf_file(datafile)
     else:
-        f = h5py.File(datafile,'r')
+        f = datafile
     
     z, y, x = f['temp'].shape
     param_dict['x'] = f['x'][0,0,:]
