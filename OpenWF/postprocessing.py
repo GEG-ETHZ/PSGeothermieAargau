@@ -414,27 +414,27 @@ def extract_parameters(datafile, parameters: list=['temp','uindex'], dimension: 
             uindex = f['uindex'][z//2,:,:]
     return temp,uindex
 
-    def homogenize_comment(file):
-    inp = open(file, 'rt')
-    outp = open(file+'_homogenized', 'wt')
-    for line in inp:    
-        outp.write(line.replace('%', '#'))#.replace('    ',','))
+# def homogenize_comment(file):
+#     inp = open(file, 'rt')
+#     outp = open(file+'_homogenized', 'wt')
+#     for line in inp:    
+#         outp.write(line.replace('%', '#'))#.replace('    ',','))
         
-    inp.close()
-    outp.close()            
+#     inp.close()
+#     outp.close()            
 
-def get_groups(seq, group_by):
-    data = []
-    for line in seq:
-        # Here the `startswith()` logic can be replaced with other
-        # condition(s) depending on the requirement.
-        newline = line.replace('%', '#')
+# def get_groups(seq, group_by):
+#     data = []
+#     for line in seq:
+#         # Here the `startswith()` logic can be replaced with other
+#         # condition(s) depending on the requirement.
+#         newline = line.replace('%', '#')
             
-        if newline.startswith(group_by):
-            if data:
-                yield data
-                data = []
-        data.append(newline)
+#         if newline.startswith(group_by):
+#             if data:
+#                 yield data
+#                 data = []
+#         data.append(newline)
 
-    if data:
-        yield data
+#     if data:
+#         yield data
