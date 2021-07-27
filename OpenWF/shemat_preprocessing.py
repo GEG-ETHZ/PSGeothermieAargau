@@ -74,7 +74,8 @@ def conc_lithblocks(path: str='.'):
     return all_lith_blocks
 
 def export_shemat_suite_input_file(geo_model, lithology_block, 
-                                   units: pd.DataFrame=None, bcs_file: str=None, 
+                                   units: pd.DataFrame=None, head_bcs_file: str=None, 
+                                   temp_bcs_file: str=None, hf_value: float=0.07,
                                    data_file: str=None, borehole_logs: np.array=None,
                                    path: str=None, filename: str='geo_model_SHEMAT_input_erode'):
     """Method to export a 3D geological model as SHEMAT-Suite input-file for a conductive HT-simulation. 
@@ -83,7 +84,7 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
         geo_model (gp model): gempy model
         lithology_block (numpy array): array containing the lithology IDs for the regular grid of the model
         units (pd.DataFrame, optional): unit petrophysical parameters for SHEMAT-Suite model. Defaults to None.
-        bcs_file (str, optional): boundary condition file for spatially varying boundary conditions (e.g. head by topography). Defaults to None.
+        head_bcs_file (str, optional): boundary condition file for spatially varying boundary conditions (e.g. head by topography). Defaults to None.
         data_file (str, optional): data for calibrating the model, e.g. temperatures from boreholes. Defaults to None.
         borehole_logs (np.array, optional): coordinates for synthetic borehole logs, will write parameters such as pressure and temperature. Defaults to None.
         path (str, optional): save path for the SHEMAT-Suite input file. Defaults to None.
@@ -115,14 +116,23 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
     combined_string = " ".join(combined)
     
     # bcs
-    if bcs_file is not None:
-        with open(bcs_file, 'r') as file:
+    if head_bcs_file is not None:
+        with open(head_bcs_file, 'r') as file:
             bc_vals = file.read()
             file.seek(0)
             lines = len(file.readlines())
             head_bcs = f"# head bcd, records={lines}\n{bc_vals}"
     else:
         head_bcs = f"# head bcd, simple=top, error=ignore\n{nx*ny}*{nz*delz}"
+
+    if temp_bcs_file is not None:
+        with open(temp_bcs_file, 'r') as file:
+            bc_vals_t = file.read()
+            file.seek(0)
+            lines = len(file.readlines())
+            temp_bcs = f"# temp bcn, records={lines}\n{bc_vals_t}"
+    else:
+        temp_bcs = f"# temp bcn, simple=base, error=ignore\n{nx*ny}*{hf_value}"
     
     # borehole logs
     if borehole_logs is not None:
@@ -241,8 +251,7 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
 !==========>>>>>   define boundary properties
 # temp bcd, simple=top, value=init
 
-# temp bcn, simple=base, error=ignore
-{nx*ny}*0.092
+{temp_bcs}
 
 {head_bcs}
 
