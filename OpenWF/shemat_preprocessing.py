@@ -130,7 +130,8 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
             bc_vals_t = file.read()
             file.seek(0)
             lines = len(file.readlines())
-            temp_bcs = f"# temp bcn, records={lines}\n{bc_vals_t}"
+            #temp_bcs = f"# temp bcn, records={lines}\n{bc_vals_t}"
+            temp_bcs = f"# temp bcn, simple=base, error=ignore\n{bc_vals_t}"
     else:
         temp_bcs = f"# temp bcn, simple=base, error=ignore\n{nx*ny}*{hf_value}"
     
