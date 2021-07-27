@@ -75,7 +75,7 @@ def conc_lithblocks(path: str='.'):
 
 def export_shemat_suite_input_file(geo_model, lithology_block, 
                                    units: pd.DataFrame=None, head_bcs_file: str=None, 
-                                   temp_bcs_file: str=None, hf_value: float=0.07,
+                                   hf_bcs_file: str=None, hf_value: float=0.07,
                                    data_file: str=None, borehole_logs: np.array=None,
                                    path: str=None, filename: str='geo_model_SHEMAT_input_erode'):
     """Method to export a 3D geological model as SHEMAT-Suite input-file for a conductive HT-simulation. 
@@ -125,8 +125,8 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
     else:
         head_bcs = f"# head bcd, simple=top, error=ignore\n{nx*ny}*{nz*delz}"
 
-    if temp_bcs_file is not None:
-        with open(temp_bcs_file, 'r') as file:
+    if hf_bcs_file is not None:
+        with open(hf_bcs_file, 'r') as file:
             bc_vals_t = file.read()
             file.seek(0)
             lines = len(file.readlines())
