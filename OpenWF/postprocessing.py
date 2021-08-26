@@ -186,7 +186,8 @@ def calc_hf(data: h5py.File, depth_interval:list, model_depth: float=6000., dire
     upper = find_nearest(zasl, depth_interval[0])
     lower = find_nearest(zasl, depth_interval[1])
     
-    temp_diff = np.sum(np.gradient(data['temp'][upper:lower+1,:,:], axis=0),axis=0)
+    temp_diff = data['temp'][upper,:,:] - data['temp'][lower,:,:]
+    #temp_diff = np.sum(np.gradient(data['temp'][upper:lower+1,:,:], axis=0),axis=0)
     tc_av = hmean(data['lz'][upper:lower+1,:,:])
     z_diff = zasl[upper] - zasl[lower]
 
