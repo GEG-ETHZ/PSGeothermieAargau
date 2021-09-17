@@ -170,11 +170,11 @@ def find_nearest(array, value):
     
     return idx
 
-def calc_hf(data: h5py.File, depth_interval:list, model_depth: float=6000., direction: bool=False):
+def calc_cond_hf_over_interval(data: h5py.File, depth_interval:list, model_depth: float=6000., direction: bool=False):
     """calculate the vertical heatflow over a certain depth interval.
 
     Args:
-        data (h5py.File): [description]
+        data (h5py.File): HDF5 file with simulated variables
         depth_interval (list): list of depth interval with [deeper, shallower] values
         model_depth (float, optional): vertical extent of the model in meter. Defaults to 6000..
         direction (boolean, optional): if set to True, direction of heatflow will be included, i.e. negative heat flows for outward ones
@@ -197,6 +197,39 @@ def calc_hf(data: h5py.File, depth_interval:list, model_depth: float=6000., dire
         hf = np.abs(-tc_av * (temp_diff/z_diff))
 
     return hf
+
+def calc_cond_hf(data: h5py.File, direction: str='full'):
+    """Calculate the conductive heat flow for the whole model cube in x, y, z direction
+
+    Args:
+        data (h5py.File): HDF5 file with simulated variables
+        direction (str, optional): string to return either full (x,y,z) heat flow, or just one direction.
+                                    x returns just in x-direction, y just in y-direction, z just in z-direction. Defaults to 'full'.
+
+    Returns:
+        [np.ndarray]: array with the heat flow in the specified direction, or the full. then the method returns three variables, 
+                        one for each direction.
+    """
+    dz = data['delz'][:,0,0]
+    dy = data['dely'][0,:,0]
+    dx = data['delx'][0,0,:]
+    temp_diff = np.gradient(data['temp'][:,:,:])
+    tdx = temp_diff[2]/dx
+    tdy = temp_diff[1]/dy
+    tdz = temp_diff[0]/dz
+    
+    qx = -data['lx'][:,:,:] * tdx
+    qy = -data['ly'][:,:,:] * tdy
+    qz = -data['lz'][:,:,:] * tdz
+    
+    if direction=='full':
+        return qx, qy, qz
+    elif direction=='x':
+        return qx
+    elif direction=='y':
+        return qy
+    elif direction=='z':
+        return qz
 
 def plot_logs(data, delz, borehole: int=0, apa=0.7, z_extent: float=6000., col_dict: dict={}):
     """Plot temperature logs of simulated and observed temperatures with lithologies as background
