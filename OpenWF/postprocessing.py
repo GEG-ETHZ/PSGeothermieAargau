@@ -231,6 +231,16 @@ def calc_cond_hf(data: h5py.File, direction: str='full'):
     elif direction=='z':
         return qz
 
+def add_dataset_to_hdf(f: h5py.File, name: str='parameter', values=None):
+    """Add data to an existing h5py file, which has to be loaded with r+, or a
+
+    Args:
+        f (h5py.File): loaded HDF5 file, loaded using read_hdf_file with write=True
+        name (str, optional): name of the dataset. Defaults to 'parameter'.
+        values ([type], optional): dataset values. Defaults to None.
+    """
+    dset = f.create_dataset(name, data=values)
+
 def plot_logs(data, delz, borehole: int=0, apa=0.7, z_extent: float=6000., col_dict: dict={}):
     """Plot temperature logs of simulated and observed temperatures with lithologies as background
 
