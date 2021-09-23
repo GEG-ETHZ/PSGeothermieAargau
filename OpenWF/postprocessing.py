@@ -231,8 +231,77 @@ def calc_cond_hf(data: h5py.File, direction: str='full'):
     elif direction=='z':
         return qz
 
+def heatcapacity(data: h5py.File):
+    """Calculate the specific, isobaric heat capacity of water based on Zyvoloski 1997.
+
+
+    Args:
+        data (h5py.File): HDF5 file with the heat transport simulation
+
+    Returns:
+        cpf: 3D array of the specific heat capacity of water
+
+    Zyvoloski, G.A., Robinson, B.A., Dash, Z.V., & Trease, L.L. Summary
+    of the models and methods for the FEHM application - a
+    finite-element heat- and mass-transfer code. United
+    States. doi:10.2172/565545.
+    """
+    Y = [0.25623465e-3, 0.10184405e-2, 0.22554970e-4,
+         0.34836663e-7, 0.41769866e-2, -0.21244879e-4,
+         0.25493516e-7, 0.89557885e-4, 0.10855046e-6, -0.21720560e-6]
+    Z = [0.10000000e+1, 0.23513278e-1, 0.48716386e-4,
+         -0.19935046e-8, -0.50770309e-2, 0.57780287e-5,
+         0.90972916e-9, -0.58981537e-4, -0.12990752e-7,
+         0.45872518e-8]
+    
+    t = data['temp'][:,:,:]
+    p = data['pres'][:,:,:] * 1e-6
+    
+    p2 = p*p
+    p3 = p2*p
+    p4 = p3*p
+    t2 = t*t
+    t3 = t2*t
+    tp = p*t
+    tp2 = t*p2
+    t2p = t2*p
+    
+    #Numerator of rational function approximation
+    ta = Y[0] + Y[1]*p + Y[2]*p2 + Y[3]*p3 + Y[4]*t \
+        + Y[5]*t2 + Y[6]*t3 + Y[7]*tp + Y[8]*tp2 + Y[9]*t2p
+
+    #Denominator of rational function approximation
+    tb = Z[0] + Z[1]*p + Z[2]*p2 + Z[3]*p3 + Z[4]*t \
+        + Z[5]*t2 + Z[6]*t3 + Z[7]*tp + Z[8]*tp2 + Z[9]*t2p
+
+    #Enthalpy
+    enth = ta/tb
+
+    #Derivative of numerator
+    da = Y[4] + 2.0*Y[5]*t + 3.0*Y[6]*t2 + Y[7]*p \
+        + Y[8]*p2 + 2.0*Y[9]*tp
+
+    #Derivative of denominator
+    db = Z[4] + 2.0*Z[5]*t + 3.0*Z[6]*t2 + Z[7]*p \
+        + Z[8]*p2 + 2.0*Z[9]*tp
+
+    #Denominator squared
+    b2 = tb*tb
+
+    #Derivative, quotient rule
+    denthdt = da/tb - ta*db/b2
+
+    #Isobaric heat capacity (J/kg/K)
+    cpf = denthdt*1.0e6
+    
+    return cpf
+
+def calc_adv_hf(data: h5py.File, direction: str='full'):
+    pass
+
+
 def add_dataset_to_hdf(f: h5py.File, name: str='parameter', values=None):
-    """Add data to an existing h5py file, which has to be loaded with r+, or a
+    """Add data to an existing h5py file, which has to be loaded with 'r+', or 'a'
 
     Args:
         f (h5py.File): loaded HDF5 file, loaded using read_hdf_file with write=True
