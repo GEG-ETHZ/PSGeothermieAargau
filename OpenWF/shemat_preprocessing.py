@@ -73,9 +73,10 @@ def conc_lithblocks(path: str='.'):
         
     return all_lith_blocks
 
-def export_shemat_suite_input_file(geo_model, lithology_block, 
+def export_shemat_suite_input_file(geo_model, lithology_block, output: str="vtk hdf",
                                    units: pd.DataFrame=None, head_bcs_file: str=None, 
-                                   hf_bcs_file: str=None, hf_value: float=0.07,
+                                   top_temp_bcs_file: str=None, hf_bcs_file: str=None, 
+                                   hf_value: float=0.07, conduction_only: bool=True,
                                    data_file: str=None, borehole_logs: np.array=None,
                                    path: str=None, filename: str='geo_model_SHEMAT_input_erode'):
     """Method to export a 3D geological model as SHEMAT-Suite input-file for a conductive HT-simulation. 
@@ -83,8 +84,10 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
     Args:
         geo_model (gp model): gempy model
         lithology_block (numpy array): array containing the lithology IDs for the regular grid of the model
+        output (str, optional): declare which output files should be generated hdf=HDF5, vtk=VTK, plt=PLT (tecplot)
         units (pd.DataFrame, optional): unit petrophysical parameters for SHEMAT-Suite model. Defaults to None.
         head_bcs_file (str, optional): boundary condition file for spatially varying boundary conditions (e.g. head by topography). Defaults to None.
+        top_temp_bcs_file (str, optional): boundary condition file for spatially varying boundary conditions (e.g. temperature due to topography). Defaults to None.
         data_file (str, optional): data for calibrating the model, e.g. temperatures from boreholes. Defaults to None.
         borehole_logs (np.array, optional): coordinates for synthetic borehole logs, will write parameters such as pressure and temperature. Defaults to None.
         path (str, optional): save path for the SHEMAT-Suite input file. Defaults to None.
@@ -114,6 +117,12 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
     combined = ["%s*%s" % (pair) for pair in zip(sequence,unit_id)]
 
     combined_string = " ".join(combined)
+
+    # heat transport
+    if conduction_only==True:
+        heat_transport = "temp"
+    else:
+        heat_transport = "temp head"
     
     # bcs
     if head_bcs_file is not None:
@@ -124,6 +133,15 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
             head_bcs = f"# head bcd, records={lines}\n{bc_vals}"
     else:
         head_bcs = f"# head bcd, simple=top, error=ignore\n{nx*ny}*{nz*delz}"
+        
+    if top_temp_bcs_file is not None:
+        with open(top_temp_bcs_file, 'r') as file:
+            bc_vals_tt = file.read()
+            file.seek(0)
+            lines = len(file.readlines())
+            temp_t_bcs = f"# temp bcd, records={lines}\n{bc_vals_tt}"
+    else:
+        temp_t_bcs = f"# temp bcd, simple=top, error=ignore, value=init"
 
     if hf_bcs_file is not None:
         with open(hf_bcs_file, 'r') as file:
@@ -198,9 +216,9 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
 48000000
 54000000
     
-# file output: hdf
+# file output: {output}
 
-# active temp head
+# active {heat_transport}
 
 # PROPS=bas
 
@@ -238,11 +256,9 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
 1.0d-2 1.0
 
 !==========>>>>> INITIAL VALUES
-# temp init 
-{nx*ny*nz}*11.0d0  
+# temp init HDF5=temp_init.h5
 
-# head init 
-{nx*ny*nz}*{nz*delz}
+# head init HDF5=head_init.h5
 
 !==========>>>>> UNIT DESCRIPTION
 !!
@@ -250,11 +266,15 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
 {unitstring}
 
 !==========>>>>>   define boundary properties
-# temp bcd, simple=top, value=init
+{temp_t_bcs}
 
 {temp_bcs}
 
 {head_bcs}
+
+# head bcd, simple=back, error=ignore, value=init
+
+# temp bcd, simple=back, error=ignore, value=init
 
 {data_string}
 
@@ -271,4 +291,4 @@ def export_shemat_suite_input_file(geo_model, lithology_block,
     f.write(fstring)
     f.close()
     
-    print(f"Successfully exported geological model {filename} as SHEMAT-Suite input to "+path)      
+    print(f"Successfully exported geological model {filename} as SHEMAT-Suite input to "+path)
