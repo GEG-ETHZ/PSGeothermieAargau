@@ -20,6 +20,12 @@ OpenWF.db\_access module
    :undoc-members:
    :show-inheritance:
 
+.. include:: gen_modules/backreferences/OpenWF.db_access.connect.examples
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
 OpenWF.postprocessing module
 ----------------------------
 
@@ -28,6 +34,11 @@ OpenWF.postprocessing module
    :undoc-members:
    :show-inheritance:
 
+.. include:: gen_modules/backreferences/OpenWF.postprocessing.examples
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
 OpenWF.shemat\_preprocessing module
 -----------------------------------
 
@@ -35,6 +46,11 @@ OpenWF.shemat\_preprocessing module
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. include:: gen_modules/backreferences/OpenWF.shemat_preprocessing.export_shemat_suite_input_file.examples
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
 
 Module contents
 ---------------
