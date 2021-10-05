@@ -31,6 +31,7 @@ geo_model = gp.load_model('POC_PCT_model',
                          path=model_path, recompile=False)
 topo = geo_model._grid.topography.values.shape
 topo_mask = geo_model._grid.regular_grid.mask_topo
+dtm = np.load(model_path+'POC_PCT_model_topography.npy')
 
 #%%
 # Load the MC-lithologies
@@ -43,6 +44,37 @@ lith_blocks_topo = np.array([])
 for i in lith_blocks:
     lith_blocks_topo = np.append(lith_blocks_topo, shemsuite.topomask(geo_model, i))
 lith_blocks_topo = lith_blocks_topo.reshape(len(lith_blocks), -1)
+
+#%%
+# The model topography is not only important for the geological model, i.e. cutting geology with topography to produce a geological map, but is also vital for later on heat transport simulations.
+# Especially if a simulation should consider advective/convective heat transport, as these can be driven by the topography. Similarly, surface temperature correlates with altitute. 
+# Hence, knowing topography is important, when we want to have a realistic top boundary condition for temperature in a model which includes topography. Usually, surface temperature is available from 
+# meteorologic services. If, however, that is not the case, surface temperature as a function of altitude can be estimated from an average lapse rate $L$ (0.0065 K/m) and knowledge of temperature at 
+# sea level. 
+
+# calculate surface temperatures
+sea_temp = 288 # in Kelvin
+L = 0.0065 # in Kelvin per metre
+surf_temp = (sea_temp - L * dtm[:,:,2]) - 273.15
+
+# create figure
+fig, axs = plt.subplots(1,2, figsize=[15,4], sharey=True)
+
+m = axs[0].contourf(dtm[:,:,0], dtm[:,:,1], dtm[:,:,2],20, cmap='gist_earth', zorder=0)
+axs[0].contour(dtm[:,:,0], dtm[:,:,1], dtm[:,:,2],10, colors='gray', zorder=1)
+
+s = axs[1].contourf(dtm[:,:,0], dtm[:,:,1], surf_temp,20, cmap='gist_heat', zorder=0)
+axs[1].contour(dtm[:,:,0], dtm[:,:,1], dtm[:,:,2],10, colors='gray', zorder=1)
+fig.colorbar(m, ax=axs[0], label='meter')
+fig.colorbar(s, ax=axs[1], label='°C')
+axs[0].set_title('Topography')
+axs[1].set_title('Surface temperature')
+axs[0].set_ylabel('Y [m]')
+axs[0].set_xlabel('X [m]')
+axs[1].set_xlabel('X [m]')
+
+
+fig.tight_layout()
 
 #%%
 # Now we prepared the lithologies, which are necessary for the `# uindex` field in a SHEMA-Suite input file, we can prepare the other parameters. Of which some are necessary, like the model
