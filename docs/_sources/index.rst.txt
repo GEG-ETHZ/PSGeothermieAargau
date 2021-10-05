@@ -6,6 +6,9 @@
 Welcome the Pilot Study Geothermie Aargau!
 ==========================================
 
+.. note::
+   This project is under active development.
+
 This documentation should serve as a step-by-step description of an open-source workflow
 from data acquisition to geothermal reservoir modeling, which has been developed in a pilot project
 at the GEG group at ETH Zurich together with swisstopo. 

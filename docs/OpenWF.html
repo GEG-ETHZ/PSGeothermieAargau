@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenWF package &#8212; Pilot Study Geothermie Aargau ALPHA documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="openwf-package">
+<h1>OpenWF package<a class="headerlink" href="#openwf-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-OpenWF.aux_functions">
+<span id="openwf-aux-functions-module"></span><h2>OpenWF.aux_functions module<a class="headerlink" href="#module-OpenWF.aux_functions" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.aux_functions.log_progress">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.aux_functions.</span></span><span class="sig-name descname"><span class="pre">log_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">every</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Items'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.aux_functions.log_progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ipywidget for displaying a progress bar. Developed by Elisa Heim</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequence</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><em>type</em></a><em>]</em>) – [description]</p></li>
+<li><p><strong>every</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><em>type</em></a><em>]</em><em>, </em><em>optional</em>) – [description]. Defaults to None.</p></li>
+<li><p><strong>size</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><em>type</em></a><em>]</em><em>, </em><em>optional</em>) – [description]. Defaults to None.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – [description]. Defaults to ‘Items’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>Ipywidget</em> – a progress bar showing current / max number of models.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-OpenWF.db_access">
+<span id="openwf-db-access-module"></span><h2>OpenWF.db_access module<a class="headerlink" href="#module-OpenWF.db_access" title="Permalink to this headline">¶</a></h2>
+<p>db_access is a compendium of high-level python functions to mess around with a database.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.db_access.close">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.db_access.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Yes'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.db_access.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close connection to the database, commit or dont.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.db_access.connect">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.db_access.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.db_access.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to an existing sqlite database file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_file</strong> – string - path to database file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>connection object or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.db_access.get_columns">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.db_access.</span></span><span class="sig-name descname"><span class="pre">get_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.db_access.get_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all columns in a specified table.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.db_access.get_tables">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.db_access.</span></span><span class="sig-name descname"><span class="pre">get_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.db_access.get_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all table names in the database.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-OpenWF.postprocessing">
+<span id="openwf-postprocessing-module"></span><h2>OpenWF.postprocessing module<a class="headerlink" href="#module-OpenWF.postprocessing" title="Permalink to this headline">¶</a></h2>
+<p>This file contains postprocessing methods for the SHEMAT-Suite models, created using the 2-step-conditioning workflow developed in the project Pilot Study Geothermics Aargau.</p>
+<p>Methods comprise plotting and calculation of parameters, such as the heatflow.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.add_dataset_to_hdf">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">add_dataset_to_hdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">h5py._hl.files.File</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'parameter'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.add_dataset_to_hdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add data to an existing h5py file, which has to be loaded with ‘r+’, or ‘a’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>h5py.File</em>) – loaded HDF5 file, loaded using read_hdf_file with write=True</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – name of the dataset. Defaults to ‘parameter’.</p></li>
+<li><p><strong>values</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><em>type</em></a><em>]</em><em>, </em><em>optional</em>) – dataset values. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.available_parameters">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">available_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">h5py._hl.files.File</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.available_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a summary of available parameters in the simulation file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>h5py.File</em>) – loaded HDF5 file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary with available parameters and short definition</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>available parameters [<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.calc_adv_hf">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">calc_adv_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">h5py._hl.files.File</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'full'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.calc_adv_hf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.calc_cond_hf">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">calc_cond_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">h5py._hl.files.File</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'full'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.calc_cond_hf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the conductive heat flow for the whole model cube in x, y, z direction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>h5py.File</em>) – HDF5 file with simulated variables</p></li>
+<li><p><strong>direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – string to return either full (x,y,z) heat flow, or just one direction.
+x returns just in x-direction, y just in y-direction, z just in z-direction. Defaults to ‘full’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>array with the heat flow in the specified direction, or the full. then the method returns three variables,</dt><dd><p>one for each direction.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[np.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.calc_cond_hf_over_interval">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">calc_cond_hf_over_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">h5py._hl.files.File</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth_interval</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_depth</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">6000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.calc_cond_hf_over_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the vertical heatflow over a certain depth interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>h5py.File</em>) – HDF5 file with simulated variables</p></li>
+<li><p><strong>depth_interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list of depth interval with [deeper, shallower] values</p></li>
+<li><p><strong>model_depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – vertical extent of the model in meter. Defaults to 6000..</p></li>
+<li><p><strong>direction</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if set to True, direction of heatflow will be included, i.e. negative heat flows for outward ones</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>average heat flow over the defined depth interval</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>hf [array]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.extract_parameters">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">extract_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datafile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">['temp',</span> <span class="pre">'uindex']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'x'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.extract_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>extract single parameter fields from an HDF5 file for postprocessing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datafile</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><em>type</em></a><em>]</em>) – [description]</p></li>
+<li><p><strong>dimension</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – [description]. Defaults to 3.</p></li>
+<li><p><strong>direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – [description]. Defaults to ‘x’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)">type</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.fahrenheit_to_celsius">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">fahrenheit_to_celsius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_fahrenheit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">difference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.fahrenheit_to_celsius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform Fahrenheit temperatures to Celsius</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>temp_fahrenheit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – temperature in fahrenheit</p></li>
+<li><p><strong>difference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – relative difference to zero. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>temperature in Celsius</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)">type</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.find_nearest">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">find_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.find_nearest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find nearest cell index to given value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><em>type</em></a><em>]</em>) – array with dimension values, i.e. x, y, or z direction</p></li>
+<li><p><strong>value</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><em>type</em></a><em>]</em>) – target value, i.e. some coordinate in x, y, or z direction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>closest cell index to defined value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)">type</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.heatcapacity">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">heatcapacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">h5py._hl.files.File</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.heatcapacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the specific, isobaric heat capacity of water based on Zyvoloski 1997.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>h5py.File</em>) – HDF5 file with the heat transport simulation</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>3D array of the specific heat capacity of water</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>cpf</p>
+</dd>
+</dl>
+<p>Zyvoloski, G.A., Robinson, B.A., Dash, Z.V., &amp; Trease, L.L. Summary
+of the models and methods for the FEHM application - a
+finite-element heat- and mass-transfer code. United
+States. doi:10.2172/565545.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.load_inv">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">load_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.load_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load SHEMAT-Suite simulation data files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – path to shemat-suite datafile. Files include simulated and observed values for #data nodes in the shemat-suite model. Defaults to ‘.’.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dataframe with loaded values</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[Pandas Dataframe]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.plot_apriori_aposteriori">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">plot_apriori_aposteriori</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borehole</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">100]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.plot_apriori_aposteriori" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.plot_log_inv">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">plot_log_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inv_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forw_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borehole</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_extent</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.plot_log_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the simulated and measured temperature log of a borehole in front of borehole stratigraphy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inv_data</strong> (<em>pandas dataframe</em>) – dataframe with simulated data from shemat-suite</p></li>
+<li><p><strong>forw_data</strong> (<em>pandas dataframe</em>) – dataframe with observed data</p></li>
+<li><p><strong>parameter_data</strong> (<em>dictionary</em>) – dictionary with arrays from parameter files, read in with read2dict method</p></li>
+<li><p><strong>borehole</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – borehole ID</p></li>
+<li><p><strong>delz</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – vertical cell size of the model in meters (assuming regular grid)</p></li>
+<li><p><strong>z_extent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – vertical model extent in meters</p></li>
+<li><p><strong>col_dict</strong> (<em>dictionary</em>) – dictionary pairing lithology IDs to colors</p></li>
+<li><p><strong>reduction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – data reduction for plotting (in case you have so many points in your log)</p></li>
+<li><p><strong>apa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – alpha value. Defaults to 0.7.</p></li>
+<li><p><strong>save</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – save option for plot. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.plot_logs">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">plot_logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borehole</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_extent</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">6000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.plot_logs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot temperature logs of simulated and observed temperatures with lithologies as background</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pandas Dataframe</em><em>)</em>) – dataframe with borehole temperature data and cell values, i.e. i,j,k</p></li>
+<li><p><strong>delz</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – cell size in z direction</p></li>
+<li><p><strong>borehole</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – borehole ID. Defaults to 0.</p></li>
+<li><p><strong>apa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – alpha value. Defaults to 0.7.</p></li>
+<li><p><strong>z_extent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – vertical model dimension. Defaults to 6000..</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.plot_slice">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">plot_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'temp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'x'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_number</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_extent</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">6000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.plot_slice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a slice of available parameters through the model in x, y, or z direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (<em>HDF5</em>) – hdf5 file of SHEMAT-Suite results</p></li>
+<li><p><strong>parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – parameter to be plotted. . Defaults to ‘temp’.</p></li>
+<li><p><strong>direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – [description]. Defaults to ‘x’.</p></li>
+<li><p><strong>cell_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – [description]. Defaults to 0.</p></li>
+<li><p><strong>z_extent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – [description]. Defaults to 6000..</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.read2dict">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">read2dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.read2dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a parameter file and store it as a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>string</em>) – path to file loaded. These are the parameter files generated by SHEMAT-Suite in gradient based inversion</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary with parameter blocks as arrays for different sections in the parameter file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_dict [dictionary]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.postprocessing.read_hdf_file">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.postprocessing.</span></span><span class="sig-name descname"><span class="pre">read_hdf_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.postprocessing.read_hdf_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short method to load an hdf5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>string</em>) – path to the stored .h5 file</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-OpenWF.shemat_preprocessing">
+<span id="openwf-shemat-preprocessing-module"></span><h2>OpenWF.shemat_preprocessing module<a class="headerlink" href="#module-OpenWF.shemat_preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>This file contains preprocessing methods for creating SHEMAT-Suite models, created using the 2-step-conditioning workflow developed in the project Pilot Study Geothermics Aargau.</p>
+<p>Methods comprise masking the geological model with topography and calculation of parameters, such as the heatflow.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.conc_lithblocks">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">conc_lithblocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.conc_lithblocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concatenate multiple lith block files (npy files) in a folder into one numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Path to the numpy array files. Defaults to ‘.’.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>concatenated lith blocks in a numpy array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.export_shemat_suite_input_file">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">export_shemat_suite_input_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lithology_block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'vtk</span> <span class="pre">hdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">head_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_temp_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hf_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hf_value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conduction_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borehole_logs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geo_model_SHEMAT_input_erode'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.export_shemat_suite_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to export a 3D geological model as SHEMAT-Suite input-file for a conductive HT-simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geo_model</strong> (<em>gp model</em>) – gempy model</p></li>
+<li><p><strong>lithology_block</strong> (<em>numpy array</em>) – array containing the lithology IDs for the regular grid of the model</p></li>
+<li><p><strong>output</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – declare which output files should be generated hdf=HDF5, vtk=VTK, plt=PLT (tecplot)</p></li>
+<li><p><strong>units</strong> (<em>pd.DataFrame</em><em>, </em><em>optional</em>) – unit petrophysical parameters for SHEMAT-Suite model. Defaults to None.</p></li>
+<li><p><strong>head_bcs_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – boundary condition file for spatially varying boundary conditions (e.g. head by topography). Defaults to None.</p></li>
+<li><p><strong>top_temp_bcs_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – boundary condition file for spatially varying boundary conditions (e.g. temperature due to topography). Defaults to None.</p></li>
+<li><p><strong>data_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – data for calibrating the model, e.g. temperatures from boreholes. Defaults to None.</p></li>
+<li><p><strong>borehole_logs</strong> (<em>np.array</em><em>, </em><em>optional</em>) – coordinates for synthetic borehole logs, will write parameters such as pressure and temperature. Defaults to None.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – save path for the SHEMAT-Suite input file. Defaults to None.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – name of the SHEMAt-Suite input file. Defaults to ‘geo_model_SHEMAT_input_erode’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.normalize">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize a df-column</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><em>type</em></a><em>]</em>) – column of a pandas dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>normalized version of said dataframe</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)">type</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.topomask">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">topomask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lith_block</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.topomask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to mask the GemPy model with topography and change masked IDs to a new one for air.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geo_model</strong> (<em>gp model</em>) – gempy geomodel</p></li>
+<li><p><strong>lith_block</strong> (<em>np.array</em>) – numpy array with the lith_block solution of a gempy model in a defined regular grid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>lith_block masked with topography, so including cell IDs representing topography.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-OpenWF">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-OpenWF" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/ps_aargau_logo_200px.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pilot Study Geothermie Aargau</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Japhiolite&repo=PSGeothermieAargau&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_project.html">The project</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Galleries:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="WP1data_analysis/index.html">Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WP2geo_modeling/index.html">Geological Model</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019 - 2021, Jan Niederau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/OpenWF.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
