@@ -5,44 +5,6 @@ Examples using ``gempy.ImplicitCoKriging.grid``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem...">
-
-.. only:: html
-
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
-
-     :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will lead you through an example workflow on how to create a Monte Carlo...">
-
-.. only:: html
-
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: Monte Carlo simulation
-
-     :ref:`sphx_glr_WP2-geo_modeling_02_POC_create-MC-ensemble.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_WP2-geo_modeling_02_POC_create-MC-ensemble.py`
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
 
 .. only:: html
@@ -59,22 +21,3 @@ Examples using ``gempy.ImplicitCoKriging.grid``
 .. only:: not html
 
  * :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS...">
-
-.. only:: html
-
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_Export_MOOSE_thumb.png
-     :alt: Export a GemPy Model to MOOSE
-
-     :ref:`sphx_glr_WP2-geo_modeling_Export_MOOSE.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_WP2-geo_modeling_Export_MOOSE.py`

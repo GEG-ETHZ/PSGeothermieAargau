@@ -5,25 +5,6 @@ Examples using ``gempy.ImplicitCoKriging.surfaces``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem...">
-
-.. only:: html
-
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
-
-     :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
 
 .. only:: html
@@ -40,41 +21,3 @@ Examples using ``gempy.ImplicitCoKriging.surfaces``
 .. only:: not html
 
  * :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS...">
-
-.. only:: html
-
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_Export_MOOSE_thumb.png
-     :alt: Export a GemPy Model to MOOSE
-
-     :ref:`sphx_glr_WP2-geo_modeling_Export_MOOSE.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_WP2-geo_modeling_Export_MOOSE.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Based on four seismic sections from the NAGRA report  `NAGRA NTB 14-02 &lt;https://www.nagra.ch/da...">
-
-.. only:: html
-
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_Model_PCT_GemPy_thumb.png
-     :alt: Create a 3D model of a Permo-Carboniferous Trough (PCT)
-
-     :ref:`sphx_glr_WP2-geo_modeling_Model_PCT_GemPy.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_WP2-geo_modeling_Model_PCT_GemPy.py`

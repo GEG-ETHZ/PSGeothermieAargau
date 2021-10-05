@@ -28,7 +28,7 @@ Create SHEMAT-Suite models
 
 Libraries
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-21
+.. GENERATED FROM PYTHON SOURCE LINES 11-23
 
 .. code-block:: default
 
@@ -40,6 +40,8 @@ Libraries
     import itertools as it
     import gempy as gp
     import pandas as pd
+    import matplotlib.pyplot as plt
+
     print(f"Run with GemPy version {gp.__version__}")
 
 
@@ -57,7 +59,7 @@ Libraries
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-27
+.. GENERATED FROM PYTHON SOURCE LINES 24-29
 
 load the base model
 -------------------
@@ -65,7 +67,7 @@ For creating SHEMAT-Suite input files from the Monte Carlo Ensemble we created i
 in :ref:`sphx_glr_examples_geo_modeling_01_POC_generate-model.py`. As we want to have the topography also in the SHEMAT-Suite model later on, we will create a mask of the model topography, called
 `topo_mask`
 
-.. GENERATED FROM PYTHON SOURCE LINES 27-35
+.. GENERATED FROM PYTHON SOURCE LINES 29-38
 
 .. code-block:: default
 
@@ -76,6 +78,7 @@ in :ref:`sphx_glr_examples_geo_modeling_01_POC_generate-model.py`. As we want to
                              path=model_path, recompile=False)
     topo = geo_model._grid.topography.values.shape
     topo_mask = geo_model._grid.regular_grid.mask_topo
+    dtm = np.load(model_path+'/POC_PCT_model_topography.npy')
 
 
 
@@ -93,13 +96,13 @@ in :ref:`sphx_glr_examples_geo_modeling_01_POC_generate-model.py`. As we want to
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-39
+.. GENERATED FROM PYTHON SOURCE LINES 39-42
 
 Load the MC-lithologies
 -----------------------
 Next, we load the lithology blocks created by the MC example and mask them by the topography
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-47
+.. GENERATED FROM PYTHON SOURCE LINES 42-50
 
 .. code-block:: default
 
@@ -118,12 +121,61 @@ Next, we load the lithology blocks created by the MC example and mask them by th
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-50
+.. GENERATED FROM PYTHON SOURCE LINES 51-56
+
+The model topography is not only important for the geological model, i.e. cutting geology with topography to produce a geological map, but is also vital for later on heat transport simulations.
+Especially if a simulation should consider advective/convective heat transport, as these can be driven by the topography. Similarly, surface temperature correlates with altitute. 
+Hence, knowing topography is important, when we want to have a realistic top boundary condition for temperature in a model which includes topography. Usually, surface temperature is available from 
+meteorologic services. If, however, that is not the case, surface temperature as a function of altitude can be estimated from an average lapse rate $L$ (0.0065 K/m) and knowledge of temperature at 
+sea level. 
+
+.. GENERATED FROM PYTHON SOURCE LINES 56-81
+
+.. code-block:: default
+
+
+    # calculate surface temperatures
+    sea_temp = 288 # in Kelvin
+    L = 0.0065 # in Kelvin per metre
+    surf_temp = (sea_temp - L * dtm[:,:,2]) - 273.15
+
+    # create figure
+    fig, axs = plt.subplots(1,2, figsize=[15,4], sharey=True)
+
+    m = axs[0].contourf(dtm[:,:,0], dtm[:,:,1], dtm[:,:,2],20, cmap='gist_earth', zorder=0)
+    axs[0].contour(dtm[:,:,0], dtm[:,:,1], dtm[:,:,2],10, colors='gray', zorder=1)
+
+    s = axs[1].contourf(dtm[:,:,0], dtm[:,:,1], surf_temp,20, cmap='gist_heat', zorder=0)
+    axs[1].contour(dtm[:,:,0], dtm[:,:,1], dtm[:,:,2],10, colors='gray', zorder=1)
+    fig.colorbar(m, ax=axs[0], label='meter')
+    fig.colorbar(s, ax=axs[1], label='°C')
+    axs[0].set_title('Topography')
+    axs[1].set_title('Surface temperature')
+    axs[0].set_ylabel('Y [m]')
+    axs[0].set_xlabel('X [m]')
+    axs[1].set_xlabel('X [m]')
+
+
+    fig.tight_layout()
+
+
+
+
+.. image-sg:: /WP2-geo_modeling/images/sphx_glr_03_POC_export-SHEMAT_001.png
+   :alt: Topography, Surface temperature
+   :srcset: /WP2-geo_modeling/images/sphx_glr_03_POC_export-SHEMAT_001.png
+   :class: sphx-glr-single-img
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 82-84
 
 Now we prepared the lithologies, which are necessary for the `# uindex` field in a SHEMA-Suite input file, we can prepare the other parameters. Of which some are necessary, like the model
 dimensions, and some are optional, like an array for the hydraulic head boundary condition, or observed data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-55
+.. GENERATED FROM PYTHON SOURCE LINES 84-89
 
 .. code-block:: default
 
@@ -139,14 +191,14 @@ dimensions, and some are optional, like an array for the hydraulic head boundary
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-60
+.. GENERATED FROM PYTHON SOURCE LINES 90-94
 
 Set up the units for the SHEMAT-Suite model
 -------------------------------------------
 One core element of a SHEMAT-Suite Input file is the `# units` table. This table comprises the petrophysical parameters of the lithological units whose geometry is stored in the `# uindex` field.
 The following code shows an example of how set up the `# units` table as a dataframe to be then stored in a SHEMAT-Suite input file. 
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-65
+.. GENERATED FROM PYTHON SOURCE LINES 94-99
 
 .. code-block:: default
 
@@ -253,12 +305,12 @@ The following code shows an example of how set up the `# units` table as a dataf
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-68
+.. GENERATED FROM PYTHON SOURCE LINES 100-102
 
 Now we create a dictionary with values for important parameters of each of the 12 units:
 And join it with the existing units dataframe.
 
-.. GENERATED FROM PYTHON SOURCE LINES 68-75
+.. GENERATED FROM PYTHON SOURCE LINES 102-109
 
 .. code-block:: default
 
@@ -276,11 +328,11 @@ And join it with the existing units dataframe.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-77
+.. GENERATED FROM PYTHON SOURCE LINES 110-111
 
 So now, the `units` table looks like this:
 
-.. GENERATED FROM PYTHON SOURCE LINES 77-79
+.. GENERATED FROM PYTHON SOURCE LINES 111-113
 
 .. code-block:: default
 
@@ -423,13 +475,13 @@ So now, the `units` table looks like this:
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 80-83
+.. GENERATED FROM PYTHON SOURCE LINES 114-117
 
 It is still missing the air component though. We have to add this, because the cells above the topography are
 assigned to a unit representing the air. For mimicking the long-wavelength radiation outward from the ground, we assign
 a high thermal conductivity to the air. If we were to assign a realistic low thermal conductivity, it would work as an insulator.
 
-.. GENERATED FROM PYTHON SOURCE LINES 83-90
+.. GENERATED FROM PYTHON SOURCE LINES 117-124
 
 .. code-block:: default
 
@@ -447,7 +499,7 @@ a high thermal conductivity to the air. If we were to assign a realistic low the
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-96
+.. GENERATED FROM PYTHON SOURCE LINES 125-130
 
 Export to SHEMAT-Suite
 ----------------------
@@ -455,7 +507,7 @@ We are now all set for combining the lithology arrays, the `# units` table, temp
 into a SHEMAT-Suite input file. For this, we use the method `export_shemat_suite_input_file` in 
 OpenWF.shemat_preprocessing.
 
-.. GENERATED FROM PYTHON SOURCE LINES 96-107
+.. GENERATED FROM PYTHON SOURCE LINES 130-141
 
 .. code-block:: default
 
@@ -497,7 +549,7 @@ OpenWF.shemat_preprocessing.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.301 seconds)
+   **Total running time of the script:** ( 0 minutes  1.587 seconds)
 
 
 .. _sphx_glr_download_WP2-geo_modeling_03_POC_export-SHEMAT.py:

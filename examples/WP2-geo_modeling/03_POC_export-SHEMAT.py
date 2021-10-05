@@ -16,6 +16,8 @@ import numpy as np
 import itertools as it
 import gempy as gp
 import pandas as pd
+import matplotlib.pyplot as plt
+
 print(f"Run with GemPy version {gp.__version__}")
 
 #%%
@@ -31,7 +33,7 @@ geo_model = gp.load_model('POC_PCT_model',
                          path=model_path, recompile=False)
 topo = geo_model._grid.topography.values.shape
 topo_mask = geo_model._grid.regular_grid.mask_topo
-dtm = np.load(model_path+'POC_PCT_model_topography.npy')
+dtm = np.load(model_path+'/POC_PCT_model_topography.npy')
 
 #%%
 # Load the MC-lithologies
