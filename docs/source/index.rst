@@ -38,8 +38,8 @@ More info can be found at the `GEG-project website <https://geg.ethz.ch/project-
    :maxdepth: 2
    :caption: Galleries:
    
-   WP1data_analysis/index
-   WP2geo_modeling/index
+   WP1-data_analysis/index
+   WP2-geo_modeling/index
 
 
 Indices and tables
