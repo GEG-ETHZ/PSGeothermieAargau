@@ -81,7 +81,7 @@ os_name = platform.system()
 if os_name=='Linux':
     db_path = '../../../../ETHeatflow/dbase_model_btemps.db'
 elif os_name=='Windows':
-    db_path = '../../../../polybox/data_boreholes_aargau/interim/data_nagra_12-61/d_nab_database/dbase_model_btemps.db'
+    db_path = '../../../../db_borehole_temps/dbase_model_btemps.db'
 
 
 #%%
@@ -205,15 +205,15 @@ plt.show()
 
 #%%
 # In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient. 
-# There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as **B**ottom **H**ole **T**emperatures (BHTs).  
-# If one would like to include *only* temperature logs in a database query, this can easily be done by extending the above chained query command with an `AND` keyword, so that a query would read:  
+# There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as **B** ottom **H** ole **T** emperatures (BHTs).  
+# If one would like to include *only* temperature logs in a database query, this can easily be done by extending the above chained query command with an ``AND`` keyword, so that a query would read:  
 #
 # .. code-block:: SQL  
 #
 #    SELECT * FROM temperature_data WHERE Method = 'HRT' AND (Nr = ? OR Nr = ? OR ...);
 # 
 #
-# This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our `borehole_numbers` list, and if the measurement method is HRT.
+# This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our ``borehole_numbers`` list, and if the measurement method is HRT.
 
 valids = pd.read_sql_query("SELECT * FROM temperature_data WHERE Method = 'HRT' AND ("+
                         " OR ".join(["Nr = {}".format(n) for n in borehole_numbers])+")", conn)

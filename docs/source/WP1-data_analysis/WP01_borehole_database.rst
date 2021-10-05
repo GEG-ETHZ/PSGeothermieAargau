@@ -116,7 +116,7 @@ relative path to the .db file, which is the actual database
     if os_name=='Linux':
         db_path = '../../../../ETHeatflow/dbase_model_btemps.db'
     elif os_name=='Windows':
-        db_path = '../../../../polybox/data_boreholes_aargau/interim/data_nagra_12-61/d_nab_database/dbase_model_btemps.db'
+        db_path = '../../../../db_borehole_temps/dbase_model_btemps.db'
 
 
 
@@ -425,15 +425,17 @@ dataframe. For example, let's plot `Depth` versus `Temperature`:
 
     *
 
-      .. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_001.png
-          :alt: WP01 borehole database
-          :class: sphx-glr-multi-img
+      .. image-sg:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_001.png
+         :alt: WP01 borehole database
+         :srcset: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_001.png
+         :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_002.png
-          :alt: WP01 borehole database
-          :class: sphx-glr-multi-img
+      .. image-sg:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_002.png
+         :alt: WP01 borehole database
+         :srcset: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_002.png
+         :class: sphx-glr-multi-img
 
 
 
@@ -568,9 +570,10 @@ For instance, we want to get all the boreholes marked as _valid_ in one datafram
 
 
 
-.. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_003.png
-    :alt: WP01 borehole database
-    :class: sphx-glr-single-img
+.. image-sg:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_003.png
+   :alt: WP01 borehole database
+   :srcset: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_003.png
+   :class: sphx-glr-single-img
 
 
 
@@ -579,15 +582,15 @@ For instance, we want to get all the boreholes marked as _valid_ in one datafram
 .. GENERATED FROM PYTHON SOURCE LINES 207-217
 
 In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient. 
-There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as **B**ottom **H**ole **T**emperatures (BHTs).  
-If one would like to include *only* temperature logs in a database query, this can easily be done by extending the above chained query command with an `AND` keyword, so that a query would read:  
+There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as **B** ottom **H** ole **T** emperatures (BHTs).  
+If one would like to include *only* temperature logs in a database query, this can easily be done by extending the above chained query command with an ``AND`` keyword, so that a query would read:  
 
 .. code-block:: SQL  
 
    SELECT * FROM temperature_data WHERE Method = 'HRT' AND (Nr = ? OR Nr = ? OR ...);
 
 
-This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our `borehole_numbers` list, and if the measurement method is HRT.
+This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our ``borehole_numbers`` list, and if the measurement method is HRT.
 
 .. GENERATED FROM PYTHON SOURCE LINES 217-230
 
@@ -609,9 +612,10 @@ This method essentially queries if a temperature measurement belongs to a boreho
 
 
 
-.. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_004.png
-    :alt: WP01 borehole database
-    :class: sphx-glr-single-img
+.. image-sg:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_004.png
+   :alt: WP01 borehole database
+   :srcset: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_004.png
+   :class: sphx-glr-single-img
 
 
 
@@ -647,9 +651,10 @@ To better distinguish the boreholes, let's add a legend to the plot.
 
 
 
-.. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_005.png
-    :alt: temperature [°C]
-    :class: sphx-glr-single-img
+.. image-sg:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_005.png
+   :alt: temperature [°C]
+   :srcset: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_005.png
+   :class: sphx-glr-single-img
 
 
 
@@ -711,9 +716,10 @@ In the following lines, we set up a linear regression through all borehole data 
 
 
 
-.. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_006.png
-    :alt: temperature [°C]
-    :class: sphx-glr-single-img
+.. image-sg:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_006.png
+   :alt: temperature [°C]
+   :srcset: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_006.png
+   :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -723,7 +729,7 @@ In the following lines, we set up a linear regression through all borehole data 
  .. code-block:: none
 
     coefficient of determination: 0.919941448842173
-    intercept: 734.2354941567851
+    intercept: 734.2354941567842
     slope: [-26.74206681]
 
 
@@ -764,7 +770,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.960 seconds)
+   **Total running time of the script:** ( 0 minutes  1.678 seconds)
 
 
 .. _sphx_glr_download_WP1-data_analysis_WP01_borehole_database.py:
