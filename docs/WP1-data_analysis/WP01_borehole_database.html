@@ -105,7 +105,7 @@ The same, though in a more rudimentary form, can be done with the compiled “bo
 <span class="k">if</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">os_name</span></a><span class="o">==</span><span class="s1">&#39;Linux&#39;</span><span class="p">:</span>
     <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db_path</span></a> <span class="o">=</span> <span class="s1">&#39;../../../../ETHeatflow/dbase_model_btemps.db&#39;</span>
 <span class="k">elif</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">os_name</span></a><span class="o">==</span><span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
-    <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db_path</span></a> <span class="o">=</span> <span class="s1">&#39;../../../../polybox/data_boreholes_aargau/interim/data_nagra_12-61/d_nab_database/dbase_model_btemps.db&#39;</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">db_path</span></a> <span class="o">=</span> <span class="s1">&#39;../../../../db_borehole_temps/dbase_model_btemps.db&#39;</span>
 </pre></div>
 </div>
 <p>connect to the database and get information about stored tables with the <code class="docutils literal notranslate"><span class="pre">connect</span></code> routine</p>
@@ -274,10 +274,8 @@ dataframe. For example, let’s plot <cite>Depth</cite> versus <cite>Temperature
 </pre></div>
 </div>
 <ul class="sphx-glr-horizontal">
-<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_001.png" />
-</li>
-<li><img alt="WP01 borehole database" class="sphx-glr-multi-img" src="../_images/sphx_glr_WP01_borehole_database_002.png" />
-</li>
+<li><img src="../_images/sphx_glr_WP01_borehole_database_001.png" srcset="../_images/sphx_glr_WP01_borehole_database_001.png" alt="WP01 borehole database" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_WP01_borehole_database_002.png" srcset="../_images/sphx_glr_WP01_borehole_database_002.png" alt="WP01 borehole database" class = "sphx-glr-multi-img"/></li>
 </ul>
 <p>Colleagues at <a class="reference external" href="https://georessourcen.ethz.ch/en/#georesources-switzerland">Georesources Switzerland Group</a> evaluated temperature data from deep boreholes following certain criteria.
 According to their analysis, a subset of the deep boreholes contain enough data for a reliable heat-flow estimation. Boreholes passing this quality assessment are marked with white <strong>+</strong>
@@ -369,14 +367,13 @@ For instance, we want to get all the boreholes marked as _valid_ in one datafram
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_003.png" />
-<p>In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient.
-There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as <a href="#id3"><span class="problematic" id="id4">**</span></a>B**ottom <a href="#id5"><span class="problematic" id="id6">**</span></a>H**ole <a href="#id7"><span class="problematic" id="id8">**</span></a>T**emperatures (BHTs).
-If one would like to include <em>only</em> temperature logs in a database query, this can easily be done by extending the above chained query command with an <cite>AND</cite> keyword, so that a query would read:</p>
+<img src="../_images/sphx_glr_WP01_borehole_database_003.png" srcset="../_images/sphx_glr_WP01_borehole_database_003.png" alt="WP01 borehole database" class = "sphx-glr-single-img"/><p>In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient.
+There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as <strong>B</strong> ottom <strong>H</strong> ole <strong>T</strong> emperatures (BHTs).
+If one would like to include <em>only</em> temperature logs in a database query, this can easily be done by extending the above chained query command with an <code class="docutils literal notranslate"><span class="pre">AND</span></code> keyword, so that a query would read:</p>
 <div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">temperature_data</span> <span class="k">WHERE</span> <span class="k">Method</span> <span class="o">=</span> <span class="s1">&#39;HRT&#39;</span> <span class="k">AND</span> <span class="p">(</span><span class="n">Nr</span> <span class="o">=</span> <span class="o">?</span> <span class="k">OR</span> <span class="n">Nr</span> <span class="o">=</span> <span class="o">?</span> <span class="k">OR</span> <span class="p">...);</span>
 </pre></div>
 </div>
-<p>This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our <cite>borehole_numbers</cite> list, and if the measurement method is HRT.</p>
+<p>This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our <code class="docutils literal notranslate"><span class="pre">borehole_numbers</span></code> list, and if the measurement method is HRT.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">valids</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM temperature_data WHERE Method = &#39;HRT&#39; AND (&quot;</span><span class="o">+</span>
                         <span class="s2">&quot; OR &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;Nr = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">borehole_numbers</span></a><span class="p">])</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection" title="sqlite3.Connection" class="sphx-glr-backref-module-sqlite3 sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">conn</span></a><span class="p">)</span>
 <span class="n">boreholes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&quot;select * from borehole_information_temperatures where &quot;</span><span class="o">+</span>
@@ -390,8 +387,7 @@ If one would like to include <em>only</em> temperature logs in a database query,
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="WP01 borehole database" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_004.png" />
-<p>This leaves all log measurements and sorts out BHT values, for instance. While <cite>AND</cite>, <cite>OR</cite> are the standard expressions for specifying different queries to be matched,
+<img src="../_images/sphx_glr_WP01_borehole_database_004.png" srcset="../_images/sphx_glr_WP01_borehole_database_004.png" alt="WP01 borehole database" class = "sphx-glr-single-img"/><p>This leaves all log measurements and sorts out BHT values, for instance. While <cite>AND</cite>, <cite>OR</cite> are the standard expressions for specifying different queries to be matched,
 there are many more useful query statements. There are multiple resources to list available SQL commands and queries, e.g.
 on <a class="reference external" href="https://www.codecademy.com/learn/learn-sql/modules/learn-sql-queries/reference">codeacademy</a> or on <a class="reference external" href="https://www.bitdegree.org/learn/sql-commands-list">bitdegree</a>.
 To better distinguish the boreholes, let’s add a legend to the plot.</p>
@@ -411,8 +407,7 @@ To better distinguish the boreholes, let’s add a legend to the plot.</p>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.axis.XAxis.tick_top.html#matplotlib.axis.XAxis.tick_top" title="matplotlib.axis.XAxis.tick_top" class="sphx-glr-backref-module-matplotlib-axis sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_005.png" />
-</div>
+<img src="../_images/sphx_glr_WP01_borehole_database_005.png" srcset="../_images/sphx_glr_WP01_borehole_database_005.png" alt="temperature [°C]" class = "sphx-glr-single-img"/></div>
 <div class="section" id="a-word-on-data-distribution">
 <h2>A word on data distribution<a class="headerlink" href="#a-word-on-data-distribution" title="Permalink to this headline">¶</a></h2>
 <p>Until now, this notebook mainly dealt with the technical aspects of working with a database. It should provide the basic tools to perform actual analysis on the stored data.
@@ -455,10 +450,9 @@ The bandwidth is estimated using a Scott estimate cite{scott1979}, which automat
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="temperature [°C]" class="sphx-glr-single-img" src="../_images/sphx_glr_WP01_borehole_database_006.png" />
-<p class="sphx-glr-script-out">Out:</p>
+<img src="../_images/sphx_glr_WP01_borehole_database_006.png" srcset="../_images/sphx_glr_WP01_borehole_database_006.png" alt="temperature [°C]" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>coefficient of determination: 0.919941448842173
-intercept: 734.2354941567851
+intercept: 734.2354941567842
 slope: [-26.74206681]
 </pre></div>
 </div>
@@ -480,7 +474,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
 <a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection" title="sqlite3.Connection" class="sphx-glr-backref-module-sqlite3 sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">conn</span></a><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.960 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.678 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-wp1-data-analysis-wp01-borehole-database-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/cf82e8dd50bcc65ea7bdedf4d3f3542d/WP01_borehole_database.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">WP01_borehole_database.py</span></code></a></p>
