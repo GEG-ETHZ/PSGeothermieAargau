@@ -20,11 +20,3 @@ The project consists of 4 main work packages, which are shown in the figure belo
   :width: 800
   :alt: Graphical description of the 4 work packages
   :class: with-shadow 
-
-
-.. autoclass:: OpenWF.db_access.connect
-
-.. include:: gen_modules/backreferences/OpenWF.db_access.connect.examples
-.. raw:: html
-
-    <div class="sphx-glr-clear"></div>
