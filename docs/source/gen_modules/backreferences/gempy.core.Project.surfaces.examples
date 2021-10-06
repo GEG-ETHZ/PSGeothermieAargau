@@ -5,14 +5,14 @@ Examples using ``gempy.core.Project.surfaces``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="Based on four seismic sections from the NAGRA report  `NAGRA NTB 14-02 &lt;https://www.nagra.ch/da...">
 
 .. only:: html
 
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
-     :alt: Create SHEMAT-Suite models
+ .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_Model_PCT_GemPy_thumb.png
+     :alt: Create a 3D model of a Permo-Carboniferous Trough (PCT)
 
-     :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
+     :ref:`sphx_glr_WP2-geo_modeling_Model_PCT_GemPy.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``gempy.core.Project.surfaces``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
+ * :ref:`sphx_glr_WP2-geo_modeling_Model_PCT_GemPy.py`

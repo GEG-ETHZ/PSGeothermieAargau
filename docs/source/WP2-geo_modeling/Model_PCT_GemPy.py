@@ -236,10 +236,10 @@ geo_model.faults.faults_relations_df
 #%%
 # We know that faults do not affect all lithological series equally. For instance, thrusts will not affect the paleozoic sediments filling the graben. 
 # Just as the mesozoic units are not affected by the normal faults. Thus we set up a fault relation matrix, considering:  
-# ::
-#    * thrusts only affect Mesozoic units    
-#    * normal faults only affect Basement, Graben_series  
-#    * normal faults stop at thrusts
+# 
+# - thrusts only affect Mesozoic units    
+# - normal faults only affect Basement, Graben_series  
+# - normal faults stop at thrusts
 # We can update the fault relations by creating a boolean matrix of shape similar to :code:`faults_relations_df`, to assign which fault displaces which unit, etc. Then we use this
 # boolean matrix to set fault relations using the :code:`set_fault_relation()` method.
 

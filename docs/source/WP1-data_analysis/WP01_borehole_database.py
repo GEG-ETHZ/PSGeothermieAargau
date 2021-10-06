@@ -19,7 +19,7 @@ These temperature data are used in other workpackages, e.g. for model calibratio
 # With growing amount of data, however, these software solutions may soon meet their limits, as they can get overly complicated. One example would be many :code:`.xls` files,
 # which are connected among each other using hyperlinks. This is obviously an error-prone solution, not really practical. Thus, greater amounts of data with a more complex structure,
 # are usually maintained in a `database <https://en.wikipedia.org/wiki/Database>`_, following a certain `data model <https://en.wikipedia.org/wiki/Data_model>`_.
-# Here, we use `SQLITE <https://www.sqlite.org/index.html>`_ \cite{hipp_sqlite_2019} as underlying database solution, a SQL database engine.
+# Here, we use `SQLITE <https://www.sqlite.org/index.html>`_ [1] as underlying database solution, a SQL database engine.
 #
 # In the following, we will briefly describe the database structure, its content and provide some short examples how to access the database and work with the stored data.
 #
@@ -27,14 +27,14 @@ These temperature data are used in other workpackages, e.g. for model calibratio
 # ----------
 #
 # Within the database, we follow, as we use SQL, a `relational model <https://en.wikipedia.org/wiki/Relational_model>`_ to organize stored data.
-# This data comprises mainly borehole temperature measurements in the study area. The data was originally compiled by Schärli and Kohl \cite{scharli_archivierung_2002} in a set of excel tables. 
+# This data comprises mainly borehole temperature measurements in the study area. The data was originally compiled by Schärli and Kohl [2] in a set of excel tables. 
 # This *original* data, i.e. in its excel form, is available as supplementary material to the NAGRA Working report
 # `NAB 12-61 <https://www.nagra.ch/de/cat/publikationen/arbeitsberichte-nabs/nabs-2012/downloadcenter.htm>`_. 
 # This report comprises temperature measurements for boreholes all over Switzerland. Additionally, a stratigraphical description is available for some boreholes. 
 # Figure \ref{fig:borehole_map} shows boreholes in Switzerland, which are deeper than 500 m. 
 # 
 # 
-# Many of the temperature data from these deep boreholes is compiled in Schärli and Kohl \cite{scharli_archivierung_2002}, in addition to temperature data from *shallow* boreholes, i.e. shallower than 500 m.
+# Many of the temperature data from these deep boreholes is compiled in Schärli and Kohl [2], in addition to temperature data from *shallow* boreholes, i.e. shallower than 500 m.
 # In this work, we use a subset of this data which is (**a**) inside our area of interest, and (**b**) publicly available data. 
 # For instance, figure \ref{fig:database_map} shows a subset of deep boreholes (triangles) in the study area, colored by the data restriction. 
 # While blue represents open data, boreholes colored in red contain confidential data. Within the database, this information is stored, so confidential data can easily be erased from the database, 
@@ -164,17 +164,14 @@ plt.show()
 # According to their analysis, a subset of the deep boreholes contain enough data for a reliable heat-flow estimation. Boreholes passing this quality assessment are marked with white **+** 
 # in Figure \ref{fig:chosen_boreholes}. 
 # 
-# <hr>
-# \begin{figure}
-#     \includegraphics[width=10cm]{https://i.ibb.co/m5P5fCc/Base-Map-boreholes-database-valid-loic.png}
-#     \caption{\label{fig:chosen_boreholes} Map of the study area, similar to Figure 2. Boreholes passing the quality assessment step are marked with white **+**.}
-# \end{figure}
-# <hr>
+# .. image:: ./_static/BaseMap_boreholes_database_valid_loic.png
+#   :width: 800
+#   :alt: valid boreholes in the study area
+#   :class: with-shadow 
 # 
 # It should be noted, that data in these boreholes are all temperature logs with a high enough data density to reliably assess a temperature gradient.
-
-# Until now, SQL queries consisted mainly of :code:`select * ...` where the * represents *all*, i.e. selecting everything (similar to an `ls *` listing every content of a folder in bash). 
-# If now we want to know, for instance, all different Borehole numbers, which are the database ID for each borehole, we can use `select distinct ...`.
+# Until now, SQL queries consisted mainly of ``select * ...`` where the ``*`` represents ``*all*``, i.e. selecting everything (similar to an ``ls *`` listing every content of a folder in bash). 
+# If now we want to know, for instance, all different Borehole numbers, which are the database ID for each borehole, we can use ``select distinct ...``.
 
 all_borehole_numbers = pd.read_sql_query("select distinct Nr from temperature_data;", conn)
 all_borehole_numbers.head()
@@ -257,13 +254,14 @@ ax.xaxis.tick_top()
 # This may be done with another query, yielding all temperatures in a pre-defined depth bracket, for example. Another method for a quick estimate of data distribution is, to calculate 
 # the `Kernel Density Estimate <https://mathisonian.github.io/kde/>`_) which, as the name says, is an estimate of a function underlying a certain distribution. Mathematically, it can be written as:  
 # 
-# $$ f(x) = \sum_i K \bigg(\frac{x-i}{bw}\bigg) $$ 
+# .. math::
+#    f(x) = \sum_i K \bigg(\frac{x-i}{bw}\bigg)  
 # 
-# Where $K$ is the *Kernel* or *Kernel function*, and $bw$ the *bandwidth*. The higher the bandwith, the smoother the resulting KDE, as it controls the distance, at which data points contribute to the 
+# Where :math:`K` is the *Kernel* or *Kernel function*, and :math:`bw` the *bandwidth*. The higher the bandwith, the smoother the resulting KDE, as it controls the distance, at which data points contribute to the 
 # current KDE-value. That is, a smaller bandwidth yields a more erratic KDE, while a high bandwidth value yields a smooth, yet shallower KDE where more distant points are taken into account.  
 # 
-# Here, we use the `scipy <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html>`_ implementation of a gaussian KDE. This means, $K$ is a gaussian Kernel. 
-# The bandwidth is estimated using a Scott estimate \cite{scott1979}, which automatically estimates an appropriate bandwidth. 
+# Here, we use the `scipy <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html>`_ implementation of a gaussian KDE. This means, :math:`K` is a gaussian Kernel. 
+# The bandwidth is estimated using a Scott estimate [3], which automatically estimates an appropriate bandwidth. 
 # 
 # In the following lines, we set up a linear regression through all borehole data and visualize the data distribution by coloring the data by their KDE value:
 
@@ -314,3 +312,9 @@ plt.show()
 c.close()
 conn.close()
 
+#%%
+# References
+# ----------
+# [1] Hipp, D. R., Kennedy, D., & Mistachkin, J. (2010). Sqlite documentation.
+# [2] Schärli, U., & Kohl, T. (2002). Archivierung und Kompilation geothermischer Daten der Schweiz und angrenzender Gebiete. Schweizerische Geophysikalische Kommission.
+# [3] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
