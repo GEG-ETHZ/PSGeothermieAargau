@@ -63,11 +63,10 @@ Here, we use <a class="reference external" href="https://www.sqlite.org/index.ht
 This data comprises mainly borehole temperature measurements in the study area. The data was originally compiled by Schärli and Kohl [2] in a set of excel tables.
 This <em>original</em> data, i.e. in its excel form, is available as supplementary material to the NAGRA Working report
 <a class="reference external" href="https://www.nagra.ch/de/cat/publikationen/arbeitsberichte-nabs/nabs-2012/downloadcenter.htm">NAB 12-61</a>.
-This report comprises temperature measurements for boreholes all over Switzerland. Additionally, a stratigraphical description is available for some boreholes.
-Figure ref{fig:borehole_map} shows boreholes in Switzerland, which are deeper than 500 m.</p>
+This report comprises temperature measurements for boreholes all over Switzerland. Additionally, a stratigraphical description is available for some boreholes.</p>
 <p>Many of the temperature data from these deep boreholes is compiled in Schärli and Kohl [2], in addition to temperature data from <em>shallow</em> boreholes, i.e. shallower than 500 m.
 In this work, we use a subset of this data which is (<strong>a</strong>) inside our area of interest, and (<strong>b</strong>) publicly available data.
-For instance, figure ref{fig:database_map} shows a subset of deep boreholes (triangles) in the study area, colored by the data restriction.
+For instance, the map further down shows a subset of deep boreholes (triangles) in the study area, colored by the data restriction.
 While blue represents open data, boreholes colored in red contain confidential data. Within the database, this information is stored, so confidential data can easily be erased from the database,
 in case it is made public.</p>
 <p>Currently, the database contains three related tables:
@@ -83,11 +82,11 @@ In the following, we present methods and procedures to access these data and wor
 <p>Querying a database is maybe the most often performed task, when it comes to databases. When you type something in a seach bar, for example, you query a database for the words you are looking for.
 The same, though in a more rudimentary form, can be done with the compiled “borehole temperature” database.</p>
 <p>The following code cells in this notebook show how:
-* to connect to the database
-* introduces a very small library <code class="code docutils literal notranslate"><span class="pre">db_access</span></code>
-* get information about available tables in the database
-* formulate queries to get desired data, e.g. temperature depth pairs for a specific borehole
-* store query results in a pandas dataframe and visualize them</p>
+- to connect to the database
+- introduces a very small library <code class="code docutils literal notranslate"><span class="pre">db_access</span></code>
+- get information about available tables in the database
+- formulate queries to get desired data, e.g. temperature depth pairs for a specific borehole
+- store query results in a pandas dataframe and visualize them</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">platform</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">)</span>
@@ -130,9 +129,9 @@ For instance, let’s check the names of tables in the database:</p>
 </div>
 <p>Essentially, these two commands do the same thing. In the <code class="code docutils literal notranslate"><span class="pre">db_access</span></code> method, the <code class="code docutils literal notranslate"><span class="pre">c.execute</span></code> and <code class="code docutils literal notranslate"><span class="pre">c.fetchall</span></code> commands are bundled in one method, <code class="code docutils literal notranslate"><span class="pre">.get_tables()</span></code>.
 The result are the three tables:
-* borehole_information_temperatures
-* temperature_data (with one backup table, marked with extension _bak)
-* sample_information_petrophysics</p>
+- borehole_information_temperatures
+- temperature_data (with one backup table, marked with extension _bak)
+- sample_information_petrophysics</p>
 <p>In its current state, <cite>db_access</cite> comprises very basic query methods. More specific data-queries still need to be done via the <cite>c.execute</cite> and <cite>c.fetchall</cite> chain which is extremely versatile.
 For instance, consider out of the over 30000 data entries, we want to get all temperature measurements for Borehole Nr. 111.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor" title="sqlite3.Cursor" class="sphx-glr-backref-module-sqlite3 sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM </span><span class="si">{tn}</span><span class="s2"> WHERE </span><span class="si">{idf}</span><span class="s2">=111;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tn</span><span class="o">=</span><span class="s1">&#39;temperature_data&#39;</span><span class="p">,</span> <span class="n">idf</span><span class="o">=</span><span class="s1">&#39;Nr&#39;</span><span class="p">))</span>
@@ -280,8 +279,8 @@ dataframe. For example, let’s plot <cite>Depth</cite> versus <cite>Temperature
 </ul>
 <p>Colleagues at <a class="reference external" href="https://georessourcen.ethz.ch/en/#georesources-switzerland">Georesources Switzerland Group</a> evaluated temperature data from deep boreholes following certain criteria.
 According to their analysis, a subset of the deep boreholes contain enough data for a reliable heat-flow estimation. Boreholes passing this quality assessment are marked with white <strong>+</strong>
-in Figure ref{fig:chosen_boreholes}.</p>
-<a class="with-shadow reference internal image-reference" href="WP1-data_analysis/_static/BaseMap_boreholes_database_valid_loic.png"><img alt="valid boreholes in the study area" class="with-shadow" src="WP1-data_analysis/_static/BaseMap_boreholes_database_valid_loic.png" style="width: 800px;" /></a>
+in the following map.</p>
+<a class="with-shadow reference internal image-reference" href="../_images/BaseMap_boreholes_database_valid_loic.png"><img alt="valid boreholes in the study area" class="with-shadow" src="../_images/BaseMap_boreholes_database_valid_loic.png" style="width: 800px;" /></a>
 <p>It should be noted, that data in these boreholes are all temperature logs with a high enough data density to reliably assess a temperature gradient.
 Until now, SQL queries consisted mainly of <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">*</span> <span class="pre">...</span></code> where the <code class="docutils literal notranslate"><span class="pre">*</span></code> represents <code class="docutils literal notranslate"><span class="pre">*all*</span></code>, i.e. selecting everything (similar to an <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*</span></code> listing every content of a folder in bash).
 If now we want to know, for instance, all different Borehole numbers, which are the database ID for each borehole, we can use <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">distinct</span> <span class="pre">...</span></code>.</p>
@@ -474,7 +473,7 @@ The last thing is important, as unexpected closure of non-closed databases may p
 <p>[1] Hipp, D. R., Kennedy, D., &amp; Mistachkin, J. (2010). Sqlite documentation.
 [2] Schärli, U., &amp; Kohl, T. (2002). Archivierung und Kompilation geothermischer Daten der Schweiz und angrenzender Gebiete. Schweizerische Geophysikalische Kommission.
 [3] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.892 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.483 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-wp1-data-analysis-wp01-borehole-database-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/cf82e8dd50bcc65ea7bdedf4d3f3542d/WP01_borehole_database.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">WP01_borehole_database.py</span></code></a></p>
