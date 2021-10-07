@@ -36,7 +36,7 @@ Thus, spreadsheet software like Microsoft Excel or Libre-Office Calc are among p
 With growing amount of data, however, these software solutions may soon meet their limits, as they can get overly complicated. One example would be many :code:`.xls` files,
 which are connected among each other using hyperlinks. This is obviously an error-prone solution, not really practical. Thus, greater amounts of data with a more complex structure,
 are usually maintained in a `database <https://en.wikipedia.org/wiki/Database>`_, following a certain `data model <https://en.wikipedia.org/wiki/Data_model>`_.
-Here, we use `SQLITE <https://www.sqlite.org/index.html>`_ \cite{hipp_sqlite_2019} as underlying database solution, a SQL database engine.
+Here, we use `SQLITE <https://www.sqlite.org/index.html>`_ [1] as underlying database solution, a SQL database engine.
 
 In the following, we will briefly describe the database structure, its content and provide some short examples how to access the database and work with the stored data.
 
@@ -44,14 +44,14 @@ Data model
 ----------
 
 Within the database, we follow, as we use SQL, a `relational model <https://en.wikipedia.org/wiki/Relational_model>`_ to organize stored data.
-This data comprises mainly borehole temperature measurements in the study area. The data was originally compiled by Schärli and Kohl \cite{scharli_archivierung_2002} in a set of excel tables. 
+This data comprises mainly borehole temperature measurements in the study area. The data was originally compiled by Schärli and Kohl [2] in a set of excel tables. 
 This *original* data, i.e. in its excel form, is available as supplementary material to the NAGRA Working report
 `NAB 12-61 <https://www.nagra.ch/de/cat/publikationen/arbeitsberichte-nabs/nabs-2012/downloadcenter.htm>`_. 
 This report comprises temperature measurements for boreholes all over Switzerland. Additionally, a stratigraphical description is available for some boreholes. 
 Figure \ref{fig:borehole_map} shows boreholes in Switzerland, which are deeper than 500 m. 
 
 
-Many of the temperature data from these deep boreholes is compiled in Schärli and Kohl \cite{scharli_archivierung_2002}, in addition to temperature data from *shallow* boreholes, i.e. shallower than 500 m.
+Many of the temperature data from these deep boreholes is compiled in Schärli and Kohl [2], in addition to temperature data from *shallow* boreholes, i.e. shallower than 500 m.
 In this work, we use a subset of this data which is (**a**) inside our area of interest, and (**b**) publicly available data. 
 For instance, figure \ref{fig:database_map} shows a subset of deep boreholes (triangles) in the study area, colored by the data restriction. 
 While blue represents open data, boreholes colored in red contain confidential data. Within the database, this information is stored, so confidential data can easily be erased from the database, 
@@ -447,22 +447,19 @@ Colleagues at `Georesources Switzerland Group <https://georessourcen.ethz.ch/en/
 According to their analysis, a subset of the deep boreholes contain enough data for a reliable heat-flow estimation. Boreholes passing this quality assessment are marked with white **+** 
 in Figure \ref{fig:chosen_boreholes}. 
 
-<hr>
-\begin{figure}
-    \includegraphics[width=10cm]{https://i.ibb.co/m5P5fCc/Base-Map-boreholes-database-valid-loic.png}
-    \caption{\label{fig:chosen_boreholes} Map of the study area, similar to Figure 2. Boreholes passing the quality assessment step are marked with white **+**.}
-\end{figure}
-<hr>
+.. image:: ./_static/BaseMap_boreholes_database_valid_loic.png
+  :width: 800
+  :alt: valid boreholes in the study area
+  :class: with-shadow 
 
 It should be noted, that data in these boreholes are all temperature logs with a high enough data density to reliably assess a temperature gradient.
+Until now, SQL queries consisted mainly of ``select * ...`` where the ``*`` represents ``*all*``, i.e. selecting everything (similar to an ``ls *`` listing every content of a folder in bash). 
+If now we want to know, for instance, all different Borehole numbers, which are the database ID for each borehole, we can use ``select distinct ...``.
 
-.. GENERATED FROM PYTHON SOURCE LINES 175-182
+.. GENERATED FROM PYTHON SOURCE LINES 175-179
 
 .. code-block:: default
 
-
-    # Until now, SQL queries consisted mainly of :code:`select * ...` where the * represents *all*, i.e. selecting everything (similar to an `ls *` listing every content of a folder in bash). 
-    # If now we want to know, for instance, all different Borehole numbers, which are the database ID for each borehole, we can use `select distinct ...`.
 
     all_borehole_numbers = pd.read_sql_query("select distinct Nr from temperature_data;", conn)
     all_borehole_numbers.head()
@@ -524,12 +521,12 @@ It should be noted, that data in these boreholes are all temperature logs with a
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 183-185
+.. GENERATED FROM PYTHON SOURCE LINES 180-182
 
 Out of this distinct list, only a few passed the QA step by the GS-Group. The ID-Numbers of these boreholes are compiled in the list below:
 Here is a list of boreholes which passed the QA step
 
-.. GENERATED FROM PYTHON SOURCE LINES 185-188
+.. GENERATED FROM PYTHON SOURCE LINES 182-185
 
 .. code-block:: default
 
@@ -543,7 +540,7 @@ Here is a list of boreholes which passed the QA step
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 189-194
+.. GENERATED FROM PYTHON SOURCE LINES 186-191
 
 Chaining queries
 ----------------
@@ -551,7 +548,7 @@ When one searches for multiple keywords in, for instance, a google search, this 
 As an example, let's query all data from the boreholes, which pass the QA-workflow by the GS-Group, and plot temperatures versus depth:
 For instance, we want to get all the boreholes marked as _valid_ in one dataframe:
 
-.. GENERATED FROM PYTHON SOURCE LINES 194-206
+.. GENERATED FROM PYTHON SOURCE LINES 191-203
 
 .. code-block:: default
 
@@ -579,7 +576,7 @@ For instance, we want to get all the boreholes marked as _valid_ in one datafram
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 207-217
+.. GENERATED FROM PYTHON SOURCE LINES 204-214
 
 In this plot, where temperature measurements are colored by borehole number, we see that the temperature measurements from different boreholes overall follow a similar gradient. 
 There are, however, singular points next to the dense cluster of continuous temperature logs. These are data points from different measuring procedures, such as **B** ottom **H** ole **T** emperatures (BHTs).  
@@ -592,7 +589,7 @@ If one would like to include *only* temperature logs in a database query, this c
 
 This method essentially queries if a temperature measurement belongs to a borehole with the number specified in our ``borehole_numbers`` list, and if the measurement method is HRT.
 
-.. GENERATED FROM PYTHON SOURCE LINES 217-230
+.. GENERATED FROM PYTHON SOURCE LINES 214-227
 
 .. code-block:: default
 
@@ -621,14 +618,14 @@ This method essentially queries if a temperature measurement belongs to a boreho
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 231-235
+.. GENERATED FROM PYTHON SOURCE LINES 228-232
 
 This leaves all log measurements and sorts out BHT values, for instance. While `AND`, `OR` are the standard expressions for specifying different queries to be matched, 
 there are many more useful query statements. There are multiple resources to list available SQL commands and queries, e.g. 
 on `codeacademy <https://www.codecademy.com/learn/learn-sql/modules/learn-sql-queries/reference>`_ or on `bitdegree <https://www.bitdegree.org/learn/sql-commands-list>`_.  
 To better distinguish the boreholes, let's add a legend to the plot.
 
-.. GENERATED FROM PYTHON SOURCE LINES 235-251
+.. GENERATED FROM PYTHON SOURCE LINES 232-248
 
 .. code-block:: default
 
@@ -660,7 +657,7 @@ To better distinguish the boreholes, let's add a legend to the plot.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 252-269
+.. GENERATED FROM PYTHON SOURCE LINES 249-267
 
 A word on data distribution  
 ---------------------------
@@ -670,17 +667,18 @@ In preparation for another notebook, we analyse the distribution of data, to ans
 This may be done with another query, yielding all temperatures in a pre-defined depth bracket, for example. Another method for a quick estimate of data distribution is, to calculate 
 the `Kernel Density Estimate <https://mathisonian.github.io/kde/>`_) which, as the name says, is an estimate of a function underlying a certain distribution. Mathematically, it can be written as:  
 
-$$ f(x) = \sum_i K \bigg(\frac{x-i}{bw}\bigg) $$ 
+.. math::
+   f(x) = \sum_i K \bigg(\frac{x-i}{bw}\bigg)  
 
-Where $K$ is the *Kernel* or *Kernel function*, and $bw$ the *bandwidth*. The higher the bandwith, the smoother the resulting KDE, as it controls the distance, at which data points contribute to the 
+Where :math:`K` is the *Kernel* or *Kernel function*, and :math:`bw` the *bandwidth*. The higher the bandwith, the smoother the resulting KDE, as it controls the distance, at which data points contribute to the 
 current KDE-value. That is, a smaller bandwidth yields a more erratic KDE, while a high bandwidth value yields a smooth, yet shallower KDE where more distant points are taken into account.  
 
-Here, we use the `scipy <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html>`_ implementation of a gaussian KDE. This means, $K$ is a gaussian Kernel. 
-The bandwidth is estimated using a Scott estimate \cite{scott1979}, which automatically estimates an appropriate bandwidth. 
+Here, we use the `scipy <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html>`_ implementation of a gaussian KDE. This means, :math:`K` is a gaussian Kernel. 
+The bandwidth is estimated using a Scott estimate [3], which automatically estimates an appropriate bandwidth. 
 
 In the following lines, we set up a linear regression through all borehole data and visualize the data distribution by coloring the data by their KDE value:
 
-.. GENERATED FROM PYTHON SOURCE LINES 269-298
+.. GENERATED FROM PYTHON SOURCE LINES 267-296
 
 .. code-block:: default
 
@@ -735,7 +733,7 @@ In the following lines, we set up a linear regression through all borehole data 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 299-313
+.. GENERATED FROM PYTHON SOURCE LINES 297-311
 
 As to be expected from averaging temperature-depth data from multiple boreholes, the resulting temperature gradient reflects a normal continental temperature gradient. 
 This indicates, that there is no regional-scale source which would act as a heat-source and would thus regionally increase temperature gradients, and by that the (conductive) heat flow. 
@@ -752,7 +750,7 @@ In this notebook, we worked with an SQL-database. This includes the standard ste
 * closing the database
 The last thing is important, as unexpected closure of non-closed databases may potentially corrupt them. So, the last step in working with the database is close it, as done in the following cell:
 
-.. GENERATED FROM PYTHON SOURCE LINES 313-317
+.. GENERATED FROM PYTHON SOURCE LINES 311-315
 
 .. code-block:: default
 
@@ -767,10 +765,18 @@ The last thing is important, as unexpected closure of non-closed databases may p
 
 
 
+.. GENERATED FROM PYTHON SOURCE LINES 316-320
+
+References
+----------
+[1] Hipp, D. R., Kennedy, D., & Mistachkin, J. (2010). Sqlite documentation.
+[2] Schärli, U., & Kohl, T. (2002). Archivierung und Kompilation geothermischer Daten der Schweiz und angrenzender Gebiete. Schweizerische Geophysikalische Kommission.
+[3] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.678 seconds)
+   **Total running time of the script:** ( 0 minutes  1.892 seconds)
 
 
 .. _sphx_glr_download_WP1-data_analysis_WP01_borehole_database.py:
