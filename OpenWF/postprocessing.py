@@ -24,13 +24,16 @@ __version__ = "0.0.1"
 __maintainer__ = "Jan Niederau"
 __status__ = "Prototype"
 
-def read_hdf_file(filepath: str="."):
+def read_hdf_file(filepath: str=".", write: bool=False):
     """Short method to load an hdf5 file.
 
     Args:
         filepath (string): path to the stored .h5 file
     """
     model_fid = h5py.File(filepath, 'r')
+    
+    if write==True:
+        model_fid = h5py.File(filepath, 'r+')
 
     return model_fid
 
