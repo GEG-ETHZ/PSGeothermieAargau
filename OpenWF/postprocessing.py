@@ -86,7 +86,7 @@ def available_parameters(file: h5py.File):
 
     return a_subset
 
-def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int=0, z_extent: float=6000.):
+def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int=0):
     """Plot a slice of available parameters through the model in x, y, or z direction. 
 
     Args:
@@ -94,11 +94,11 @@ def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int
         parameter (str, optional): parameter to be plotted. . Defaults to 'temp'.
         direction (str, optional): [description]. Defaults to 'x'.
         cell_number (int, optional): [description]. Defaults to 0.
-        z_extent (float, optional): [description]. Defaults to 6000..
     """
-    if type(file)=='str':
+    if type(file)==str:
         f = read_hdf_file(file)
-    
+    else:
+        f = file
     try:
         param = f[parameter][:,:,:]
     except KeyError:
@@ -108,6 +108,7 @@ def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int
     x = f['x'][0,0,:]
     y = f['y'][0,:,0]
     z = f['z'][:,0,0]
+    z_extent = z[0] + z[-1]
     zasl = z - z_extent
     
     if direction=='x':
@@ -213,9 +214,9 @@ def calc_cond_hf(data: h5py.File, direction: str='full'):
         [np.ndarray]: array with the heat flow in the specified direction, or the full. then the method returns three variables, 
                         one for each direction.
     """
-    dz = data['delz'][:,0,0]
-    dy = data['dely'][0,:,0]
-    dx = data['delx'][0,0,:]
+    dz = data['delz'][:,:,:]
+    dy = data['dely'][:,:,:]
+    dx = data['delx'][:,:,:]
     temp_diff = np.gradient(data['temp'][:,:,:])
     tdx = temp_diff[2]/dx
     tdy = temp_diff[1]/dy
