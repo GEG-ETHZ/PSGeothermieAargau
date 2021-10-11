@@ -86,14 +86,15 @@ def available_parameters(file: h5py.File):
 
     return a_subset
 
-def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int=0):
+def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int=0, model_depth: float=None):
     """Plot a slice of available parameters through the model in x, y, or z direction. 
 
     Args:
         file (HDF5): hdf5 file of SHEMAT-Suite results
         parameter (str, optional): parameter to be plotted. . Defaults to 'temp'.
-        direction (str, optional): [description]. Defaults to 'x'.
-        cell_number (int, optional): [description]. Defaults to 0.
+        direction (str, optional): direction in which the slice is plotted. Defaults to 'x'.
+        cell_number (int, optional): cell number at which the slice is plotted. Defaults to 0.
+        model_depth (float, optional): model depth in meter above sea level. So if it extends 3 km below sea lvl, enter 3000. Defaults to None.
     """
     if type(file)==str:
         f = read_hdf_file(file)
@@ -108,8 +109,11 @@ def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int
     x = f['x'][0,0,:]
     y = f['y'][0,:,0]
     z = f['z'][:,0,0]
-    z_extent = z[0] + z[-1]
-    zasl = z - z_extent
+    
+    if model_depth == None:
+        z_extent = z[0] + z[-1]
+    else:
+        z_extent = model_depth
     
     if direction=='x':
         pa_cs = param[:,:,cell_number]
@@ -149,7 +153,7 @@ def plot_slice(file, parameter: str='temp', direction: str='x', cell_number: int
         
         cs = plt.contourf(x,y,pa_cs,23,cmap='viridis')
         plt.contour(x,y,ui_cs, colors='#222222')
-        plt.title(f'{parameter}, z-direction, {zasl[cell_number]} m depth', fontsize=16)
+        plt.title(f'{parameter}, z-direction, {z[cell_number]-model_depth} m a.s.l.', fontsize=16)
         plt.tick_params(axis='both',labelsize=14)
         plt.xlabel('x [m]',fontsize=16)
         plt.ylabel('y [m]',fontsize=16)
