@@ -413,10 +413,18 @@ The vtk file has a couple of scalar values stored (seen in the table with data a
 
 
 
+.. GENERATED FROM PYTHON SOURCE LINES 148-153
+
+References
+----------
+[1] Keller, J., Rath, V., Bruckmann, J., Mottaghy, D., Clauser, C., Wolf, A., Seidler, R., Bücker, H.M., Klitzsch, N. (2020). 
+SHEMAT-Suite: An open-source code for simulating flow, heat and species transport in porous media. SoftwareX, 12, 100533.  
+[2] Sullivan, C., & Kaszynski, A. (2019). PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK). Journal of Open Source Software, 4(37), 1450.
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.712 seconds)
+   **Total running time of the script:** ( 0 minutes  11.141 seconds)
 
 
 .. _sphx_glr_download_WP3-heat_transport_POC-HFD_calculation.py:
