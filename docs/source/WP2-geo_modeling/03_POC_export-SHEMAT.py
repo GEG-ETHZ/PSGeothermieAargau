@@ -134,7 +134,7 @@ for c in range(len(lith_blocks_topo)):
     model_name = f"POC_MC_{c}"
     shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=model, units=units,  
                                    data_file=temp_data,
-                                   path='../../models/SHEMAT-Suite_input',
+                                   path='../../models/SHEMAT-Suite_input/',
                                   filename=model_name)
     shemade += model_name + " \n"
 with open("../../models/SHEMAT-Suite_input/shemade.job", 'w') as jobfile:
