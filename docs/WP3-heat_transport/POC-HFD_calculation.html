@@ -17,6 +17,7 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Heat Transport Model" href="index.html" />
@@ -53,10 +54,6 @@ in OpenWF for loading the result file, displaying the parameters it contains and
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">OpenWF.postprocessing</span> <span class="k">as</span> <span class="nn">pp</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -88,24 +85,23 @@ C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583:
 </div>
 <p>Simulation results from SHEMAT-Suite can be written in different file formats, such as VTK (Visualization Toolkit) HDF5 (Hierarchical Data Format), or PLT (TecPlot). In addition,
 optional outputs, such as ASCII-Files with comparison of simulated values to measured ones can be provided. Further, a status log of the simulation and other meta-files.
-A full coverage of possible output files is provided in the SHEMAT-Suite wiki ( <a class="reference external" href="https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home">https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home</a>).
+A full coverage of possible output files is provided in the <a class="reference external" href="https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home">SHEMAT-Suite wiki</a>.
 In this tutorial, we will work with HDF5 files and VTK files. The majority of methods in OpenWF are tailored towards HDF5 files, which are smaller than their VTK relatives.</p>
 <p>However, there exists a powerful visualization code for python which builds upon vtk, called pyvista. We will briefly showcase its capabilities at the end of this tutorial.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ## Load HDF5 file</span>
-<span class="c1"># From the base POC model, we created a SHEMAT-Suite input file. This was then executed with the compiled SHEMAT-Suite code. As basic information: we look at conductive heat transport,</span>
-<span class="c1"># i.e. no fluid flow, and heat transport is described by Fourier&#39;s law of heat conduction :math:`q = - \lambda \nabla T`. At the base of the model, the heat flow boundary condition is</span>
-<span class="c1"># set to</span>
-<span class="c1"># 72 mW/m:math:`^2`.</span>
-<span class="c1">#</span>
-<span class="c1"># OpenWF has a built in method for loading HDF5 files, though reading a file is a one-liner using the library ``h5py``.</span>
-<span class="c1"># .. code-block:: python</span>
-<span class="c1">#    fid = h5py.File(&#39;../../models/SHEMAT-Suite_output/SHEMAT_PCT_base_model_final.h5&#39;)</span>
-<span class="c1">#</span>
-<span class="c1"># The file can be loaded in different states, among others for &#39;r&#39; for read, &#39;a&#39; for append, &#39;w&#39; for write, etc. The ``read_hdf`` method in</span>
-<span class="c1"># OpenWF lets the user also choose the state to load the HDF5 file.</span>
-
-
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model_path</span></a> <span class="o">=</span> <span class="s1">&#39;../../models/SHEMAT-Suite_output/SHEMAT_PCT_base_model_temp_final.h5&#39;</span>
+<section id="load-hdf5-file">
+<h2>Load HDF5 file<a class="headerlink" href="#load-hdf5-file" title="Permalink to this headline">¶</a></h2>
+<p>From the base POC model, we created a SHEMAT-Suite input file. This was then executed with the compiled SHEMAT-Suite code. As basic information: we look at conductive heat transport,
+i.e. no fluid flow, and heat transport is described by Fourier’s law of heat conduction <span class="math notranslate nohighlight">\(q = - \lambda \nabla T\)</span>. At the base of the model, the heat flow boundary condition is
+set to
+72 mW/m:math:<cite>^2</cite>.</p>
+<p>OpenWF has a built in method for loading HDF5 files, though reading a file is a one-liner using the library <code class="docutils literal notranslate"><span class="pre">h5py</span></code>.
+.. code-block:: python</p>
+<blockquote>
+<div><p>fid = h5py.File(‘../../models/SHEMAT-Suite_output/SHEMAT_PCT_base_model_final.h5’)</p>
+</div></blockquote>
+<p>The file can be loaded in different states, among others for ‘r’ for read, ‘a’ for append, ‘w’ for write, etc. The <code class="docutils literal notranslate"><span class="pre">read_hdf</span></code> method in
+OpenWF lets the user also choose the state to load the HDF5 file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model_path</span></a> <span class="o">=</span> <span class="s1">&#39;../../models/SHEMAT-Suite_output/SHEMAT_PCT_base_model_temp_final.h5&#39;</span>
 <span class="n">fid</span> <span class="o">=</span> <span class="n">pp</span><span class="o">.</span><span class="n">read_hdf_file</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model_path</span></a><span class="p">,</span> <span class="n">write</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -132,18 +128,16 @@ contour field.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot slice temperature</span>
 <a href="https://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="matplotlib.pyplot.figure" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
 <span class="n">pp</span><span class="o">.</span><span class="n">plot_slice</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model_path</span></a><span class="p">,</span> <span class="n">parameter</span><span class="o">=</span><span class="s1">&#39;temp&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cell_number</span></a><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">model_depth</span><span class="o">=</span><span class="mf">6500.</span><span class="p">)</span>
-
-<span class="c1"># plot slice fluid density</span>
+</pre></div>
+</div>
+<img alt="temp,y-direction, cell 25" class="sphx-glr-single-img" src="../_images/sphx_glr_POC-HFD_calculation_001.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot slice fluid density</span>
 <a href="https://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="matplotlib.pyplot.figure" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
 <span class="n">pp</span><span class="o">.</span><span class="n">plot_slice</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">model_path</span></a><span class="p">,</span> <span class="n">parameter</span><span class="o">=</span><span class="s1">&#39;rhof&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cell_number</span></a><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">model_depth</span><span class="o">=</span><span class="mi">6500</span><span class="p">)</span>
 </pre></div>
 </div>
-<ul class="sphx-glr-horizontal">
-<li><img alt="temp,y-direction, cell 25" class="sphx-glr-multi-img" src="../_images/sphx_glr_POC-HFD_calculation_001.png" />
-</li>
-<li><img alt="rhof,y-direction, cell 25" class="sphx-glr-multi-img" src="../_images/sphx_glr_POC-HFD_calculation_002.png" />
-</li>
-</ul>
+<img alt="rhof,y-direction, cell 25" class="sphx-glr-single-img" src="../_images/sphx_glr_POC-HFD_calculation_002.png" />
+</section>
 <section id="heat-flow-estimation">
 <h2>Heat flow estimation<a class="headerlink" href="#heat-flow-estimation" title="Permalink to this headline">¶</a></h2>
 <p>SHEMAT-Suite does not provide the heat flow for HDF5 files. It does, however, store it in the vtk output. To also have the heat flow for HDF5 files, we provide a method for calculating
@@ -217,9 +211,9 @@ so providing the average heat flow over this depth interval.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(66559.23100162232, 37166.316308288086, -6286.250039329339),
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(49464.563148517394, 42464.563148517394, 39214.563148517394),
  (14000.0, 7000.0, 3750.0),
- (-0.12097599460730063, 0.49671247799105134, 0.8594425652344453)]
+ (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
 <p>The vtk file has a couple of scalar values stored (seen in the table with data arrays). We can switch the active scalars to temperature for example using:</p>
@@ -229,12 +223,12 @@ so providing the average heat flow over this depth interval.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(62742.59444914501, -9934.34607798934, -29575.562669257357),
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(49464.563148517394, 42464.563148517394, 39214.563148517394),
  (14000.0, 7000.0, 3750.0),
- (0.3559442240900044, -0.5128455757225675, 0.7812125989759464)]
+ (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  24.541 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.712 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-wp3-heat-transport-poc-hfd-calculation-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/0fa23d0f53b16963fc40833bc10e3e77/POC-HFD_calculation.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">POC-HFD_calculation.py</span></code></a></p>

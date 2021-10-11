@@ -16,19 +16,17 @@ sys.path.append('../../')
 import OpenWF.postprocessing as pp
 import matplotlib.pyplot as plt
 
-import seaborn as sns
-sns.set_style('ticks')
-sns.set_context('talk')
-
 #%%
 # Simulation results from SHEMAT-Suite can be written in different file formats, such as VTK (Visualization Toolkit) HDF5 (Hierarchical Data Format), or PLT (TecPlot). In addition, 
 # optional outputs, such as ASCII-Files with comparison of simulated values to measured ones can be provided. Further, a status log of the simulation and other meta-files. 
-# A full coverage of possible output files is provided in the SHEMAT-Suite wiki ( https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home). 
+# A full coverage of possible output files is provided in the `SHEMAT-Suite wiki <https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home>`_. 
 # In this tutorial, we will work with HDF5 files and VTK files. The majority of methods in OpenWF are tailored towards HDF5 files, which are smaller than their VTK relatives.
 # 
 # However, there exists a powerful visualization code for python which builds upon vtk, called pyvista. We will briefly showcase its capabilities at the end of this tutorial.
 
-# ## Load HDF5 file
+#%%
+# Load HDF5 file
+# --------------
 # From the base POC model, we created a SHEMAT-Suite input file. This was then executed with the compiled SHEMAT-Suite code. As basic information: we look at conductive heat transport, 
 # i.e. no fluid flow, and heat transport is described by Fourier's law of heat conduction :math:`q = - \lambda \nabla T`. At the base of the model, the heat flow boundary condition is 
 # set to 
@@ -64,6 +62,8 @@ pp.available_parameters(fid)
 # plot slice temperature
 fig = plt.figure(figsize=[15,7])
 pp.plot_slice(model_path, parameter='temp', direction='y', cell_number=25, model_depth=6500.)
+
+#%%
 
 # plot slice fluid density
 fig = plt.figure(figsize=[15,7])
