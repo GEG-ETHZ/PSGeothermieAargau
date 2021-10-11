@@ -26,7 +26,7 @@ solving coupled heat transport in porous media. It is written in fortran and use
 In this example, we will load a heat transport simulation from the base POC model we created in "Geological model creation and gravity simulation". We will demonstrate methods contained 
 in OpenWF for loading the result file, displaying the parameters it contains and how to visualize these parameters. Finally, we will calculate the conductive heat flow and plot it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-23
+.. GENERATED FROM PYTHON SOURCE LINES 11-19
 
 .. code-block:: default
 
@@ -37,10 +37,6 @@ in OpenWF for loading the result file, displaying the parameters it contains and
     sys.path.append('../../')
     import OpenWF.postprocessing as pp
     import matplotlib.pyplot as plt
-
-    import seaborn as sns
-    sns.set_style('ticks')
-    sns.set_context('talk')
 
 
 
@@ -80,32 +76,35 @@ in OpenWF for loading the result file, displaying the parameters it contains and
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-30
+.. GENERATED FROM PYTHON SOURCE LINES 20-26
 
 Simulation results from SHEMAT-Suite can be written in different file formats, such as VTK (Visualization Toolkit) HDF5 (Hierarchical Data Format), or PLT (TecPlot). In addition, 
 optional outputs, such as ASCII-Files with comparison of simulated values to measured ones can be provided. Further, a status log of the simulation and other meta-files. 
-A full coverage of possible output files is provided in the SHEMAT-Suite wiki ( https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home). 
+A full coverage of possible output files is provided in the `SHEMAT-Suite wiki <https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home>`_. 
 In this tutorial, we will work with HDF5 files and VTK files. The majority of methods in OpenWF are tailored towards HDF5 files, which are smaller than their VTK relatives.
 
 However, there exists a powerful visualization code for python which builds upon vtk, called pyvista. We will briefly showcase its capabilities at the end of this tutorial.
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-48
+.. GENERATED FROM PYTHON SOURCE LINES 28-41
+
+Load HDF5 file
+--------------
+From the base POC model, we created a SHEMAT-Suite input file. This was then executed with the compiled SHEMAT-Suite code. As basic information: we look at conductive heat transport, 
+i.e. no fluid flow, and heat transport is described by Fourier's law of heat conduction :math:`q = - \lambda \nabla T`. At the base of the model, the heat flow boundary condition is 
+set to 
+72 mW/m:math:`^2`.
+
+OpenWF has a built in method for loading HDF5 files, though reading a file is a one-liner using the library ``h5py``. 
+.. code-block:: python
+   fid = h5py.File('../../models/SHEMAT-Suite_output/SHEMAT_PCT_base_model_final.h5')
+
+The file can be loaded in different states, among others for 'r' for read, 'a' for append, 'w' for write, etc. The ``read_hdf`` method in 
+OpenWF lets the user also choose the state to load the HDF5 file.
+
+.. GENERATED FROM PYTHON SOURCE LINES 41-46
 
 .. code-block:: default
 
-
-    # ## Load HDF5 file
-    # From the base POC model, we created a SHEMAT-Suite input file. This was then executed with the compiled SHEMAT-Suite code. As basic information: we look at conductive heat transport, 
-    # i.e. no fluid flow, and heat transport is described by Fourier's law of heat conduction :math:`q = - \lambda \nabla T`. At the base of the model, the heat flow boundary condition is 
-    # set to 
-    # 72 mW/m:math:`^2`.
-    # 
-    # OpenWF has a built in method for loading HDF5 files, though reading a file is a one-liner using the library ``h5py``. 
-    # .. code-block:: python
-    #    fid = h5py.File('../../models/SHEMAT-Suite_output/SHEMAT_PCT_base_model_final.h5')
-    # 
-    # The file can be loaded in different states, among others for 'r' for read, 'a' for append, 'w' for write, etc. The ``read_hdf`` method in 
-    # OpenWF lets the user also choose the state to load the HDF5 file.
 
 
     model_path = '../../models/SHEMAT-Suite_output/SHEMAT_PCT_base_model_temp_final.h5'
@@ -118,11 +117,11 @@ However, there exists a powerful visualization code for python which builds upon
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-50
+.. GENERATED FROM PYTHON SOURCE LINES 47-48
 
 To check the parameters stored in the HDF5 file, you can query the loaded h5py file for its keys, i.e. the "labels" of the data boxes stored in the HDF5 file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-53
+.. GENERATED FROM PYTHON SOURCE LINES 48-51
 
 .. code-block:: default
 
@@ -144,12 +143,12 @@ To check the parameters stored in the HDF5 file, you can query the loaded h5py f
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-56
+.. GENERATED FROM PYTHON SOURCE LINES 52-54
 
 As some of these acronyms can have no meaning to new users, we implemented a method, specifically for SHEMAT-Suite generated HDF5 files to present information about 
 the stored parameters:
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-59
+.. GENERATED FROM PYTHON SOURCE LINES 54-57
 
 .. code-block:: default
 
@@ -171,13 +170,13 @@ the stored parameters:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-63
+.. GENERATED FROM PYTHON SOURCE LINES 58-61
 
 The postprocessing in OpenWF has methods for quickly displaying the parameters in each of the model dimensions in a 2D slice. For instance, we will look at a profile through the model 
 parallel to the y direction, thus showing a crosssection of the model. In lines, it shows the interfaces between different geological units, and the specified parameter as a colored 
 contour field. 
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-73
+.. GENERATED FROM PYTHON SOURCE LINES 61-66
 
 .. code-block:: default
 
@@ -185,6 +184,22 @@ contour field.
     # plot slice temperature
     fig = plt.figure(figsize=[15,7])
     pp.plot_slice(model_path, parameter='temp', direction='y', cell_number=25, model_depth=6500.)
+
+
+
+
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_001.png
+    :alt: temp,y-direction, cell 25
+    :class: sphx-glr-single-img
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 67-73
+
+.. code-block:: default
+
 
     # plot slice fluid density
     fig = plt.figure(figsize=[15,7])
@@ -194,20 +209,9 @@ contour field.
 
 
 
-.. rst-class:: sphx-glr-horizontal
-
-
-    *
-
-      .. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_001.png
-          :alt: temp,y-direction, cell 25
-          :class: sphx-glr-multi-img
-
-    *
-
-      .. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_002.png
-          :alt: rhof,y-direction, cell 25
-          :class: sphx-glr-multi-img
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_002.png
+    :alt: rhof,y-direction, cell 25
+    :class: sphx-glr-single-img
 
 
 
@@ -373,9 +377,9 @@ This line loads the VTK file. For information about its content, we can simply c
  .. code-block:: none
 
 
-    [(66559.23100162232, 37166.316308288086, -6286.250039329339),
+    [(49464.563148517394, 42464.563148517394, 39214.563148517394),
      (14000.0, 7000.0, 3750.0),
-     (-0.12097599460730063, 0.49671247799105134, 0.8594425652344453)]
+     (0.0, 0.0, 1.0)]
 
 
 
@@ -403,16 +407,16 @@ The vtk file has a couple of scalar values stored (seen in the table with data a
  .. code-block:: none
 
 
-    [(62742.59444914501, -9934.34607798934, -29575.562669257357),
+    [(49464.563148517394, 42464.563148517394, 39214.563148517394),
      (14000.0, 7000.0, 3750.0),
-     (0.3559442240900044, -0.5128455757225675, 0.7812125989759464)]
+     (0.0, 0.0, 1.0)]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  24.541 seconds)
+   **Total running time of the script:** ( 0 minutes  12.712 seconds)
 
 
 .. _sphx_glr_download_WP3-heat_transport_POC-HFD_calculation.py:
