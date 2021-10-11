@@ -33,6 +33,7 @@ More info can be found at the `GEG-project website <https://geg.ethz.ch/project-
    modules
    wp1_data
    wp2_geo_model
+   wp3_heat_tansport
 
 .. toctree::
    :maxdepth: 2
@@ -40,6 +41,7 @@ More info can be found at the `GEG-project website <https://geg.ethz.ch/project-
    
    WP1-data_analysis/index
    WP2-geo_modeling/index
+   WP3-heat_transport/index
 
 
 Indices and tables
