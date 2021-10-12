@@ -18,8 +18,14 @@ sys.path.insert(0, os.path.abspath('../../'))
 import OpenWF
 import gempy as gp
 import numpy as np
+import pyvista
+# necessary when building the sphinx gallery
+pyvista.BUILDING_GALLERY = True
+pyvista.OFF_SCREEN = True
 
-from sphinx_gallery.sorting import FileNameSortKey
+pyvista.set_plot_theme('document')
+
+from sphinx_gallery.sorting import FileNameSortKey, ExplicitOrder
 
 # -- Project information -----------------------------------------------------
 year = datetime.date.today().year
@@ -95,9 +101,12 @@ sphinx_gallery_conf = {
         '../../examples/WP3-heat_transport'],
     # path to where to save gallery generated output
     'gallery_dirs': [
-        'WP1-data_analysis',
-        'WP2-geo_modeling',
-        'WP3-heat_transport'],
+        'Examples-and-Tutorials'],#,
+        #'WP2-geo_modeling',
+        #'WP3-heat_transport'],
+    'subsection_order': ExplicitOrder(['../../examples/WP1-data_analysis',
+                                        '../../examples/WP2-geo_modeling',
+                                        '../../examples/WP3-heat_transport']),
     # Patter to search for example files
     "filename_pattern": r"\.py",
     # Remove the "Download all examples" button from the top level gallery
@@ -110,7 +119,7 @@ sphinx_gallery_conf = {
     # this case sphinx_gallery and numpy in a tuple of strings.
     'doc_module': ('OpenWF', 'gempy'),
     'pypandoc': True,
-    # 'image_scrapers': ('pyvista',)
+    'image_scrapers': ('pyvista',)
 }
 
 # configuration for intersphinx: refer to the Python standard library.

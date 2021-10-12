@@ -2,7 +2,7 @@
 
 
 
-.. _sphx_glr_WP1-data_analysis:
+.. _sphx_glr_Examples-and-Tutorials:
 
 Data Analysis
 ================
@@ -16,10 +16,10 @@ Below are examples how data was acquired and used in the project:
 
 .. only:: html
 
- .. figure:: /WP1-data_analysis/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
+ .. figure:: /Examples-and-Tutorials/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
      :alt: Temperature database usage
 
-     :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py`
+     :ref:`sphx_glr_Examples-and-Tutorials_WP01_borehole_database.py`
 
 .. raw:: html
 
@@ -29,7 +29,7 @@ Below are examples how data was acquired and used in the project:
 .. toctree::
    :hidden:
 
-   /WP1-data_analysis/WP01_borehole_database
+   /Examples-and-Tutorials/WP01_borehole_database
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
