@@ -42,37 +42,6 @@ in OpenWF for loading the result file, displaying the parameters it contains and
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'rocket' which already exists.
-      mpl_cm.register_cmap(_name, _cmap)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'rocket_r' which already exists.
-      mpl_cm.register_cmap(_name + "_r", _cmap_r)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'mako' which already exists.
-      mpl_cm.register_cmap(_name, _cmap)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'mako_r' which already exists.
-      mpl_cm.register_cmap(_name + "_r", _cmap_r)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'icefire' which already exists.
-      mpl_cm.register_cmap(_name, _cmap)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'icefire_r' which already exists.
-      mpl_cm.register_cmap(_name + "_r", _cmap_r)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'vlag' which already exists.
-      mpl_cm.register_cmap(_name, _cmap)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'vlag_r' which already exists.
-      mpl_cm.register_cmap(_name + "_r", _cmap_r)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'flare' which already exists.
-      mpl_cm.register_cmap(_name, _cmap)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'flare_r' which already exists.
-      mpl_cm.register_cmap(_name + "_r", _cmap_r)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'crest' which already exists.
-      mpl_cm.register_cmap(_name, _cmap)
-    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'crest_r' which already exists.
-      mpl_cm.register_cmap(_name + "_r", _cmap_r)
-
 
 
 
@@ -188,10 +157,6 @@ contour field.
 
 
 
-.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_001.png
-    :alt: temp,y-direction, cell 25
-    :class: sphx-glr-single-img
-
 
 
 
@@ -208,10 +173,6 @@ contour field.
 
 
 
-
-.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_002.png
-    :alt: rhof,y-direction, cell 25
-    :class: sphx-glr-single-img
 
 
 
@@ -271,10 +232,6 @@ y-direction at index 29 of the z-direction. In the HDF5-file, we further count f
 
 
 
-.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_003.png
-    :alt: POC HFD calculation
-    :class: sphx-glr-single-img
-
 
 .. rst-class:: sphx-glr-script-out
 
@@ -283,7 +240,7 @@ y-direction at index 29 of the z-direction. In the HDF5-file, we further count f
  .. code-block:: none
 
 
-    Text(100.83333333333333, 0.5, 'Y [m]')
+    Text(0, 0.5, 'Y [m]')
 
 
 
@@ -314,10 +271,6 @@ so providing the average heat flow over this depth interval.
 
 
 
-.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_004.png
-    :alt: Heat flow, at -3500.0 m a.s.l. depth, over a 1000 m depth interval
-    :class: sphx-glr-single-img
-
 
 .. rst-class:: sphx-glr-script-out
 
@@ -326,7 +279,7 @@ so providing the average heat flow over this depth interval.
  .. code-block:: none
 
 
-    Text(100.83333333333333, 0.5, 'Y [m]')
+    Text(0, 0.5, 'Y [m]')
 
 
 
@@ -369,6 +322,10 @@ This line loads the VTK file. For information about its content, we can simply c
 
 
 
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_001.png
+    :alt: POC HFD calculation
+    :class: sphx-glr-single-img
+
 
 .. rst-class:: sphx-glr-script-out
 
@@ -399,6 +356,10 @@ The vtk file has a couple of scalar values stored (seen in the table with data a
 
 
 
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_002.png
+    :alt: POC HFD calculation
+    :class: sphx-glr-single-img
+
 
 .. rst-class:: sphx-glr-script-out
 
@@ -424,7 +385,7 @@ SHEMAT-Suite: An open-source code for simulating flow, heat and species transpor
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.141 seconds)
+   **Total running time of the script:** ( 0 minutes  10.080 seconds)
 
 
 .. _sphx_glr_download_WP3-heat_transport_POC-HFD_calculation.py:
