@@ -14,16 +14,20 @@ import datetime
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
-# import sys
-import OpenWF
-import gempy as gp
-import numpy as np
 import pyvista
-# necessary when building the sphinx gallery
-pyvista.BUILDING_GALLERY = True
-pyvista.OFF_SCREEN = True
+import numpy as np
 
+pyvista.set_error_output_file('errors.txt')
+# Ensure that offscreen rendering is used for docs generation
+pyvista.OFF_SCREEN = True  
+# Preferred plotting style for documentation
 pyvista.set_plot_theme('document')
+pyvista.rcParams['window_size'] = np.array([1024, 768]) * 2
+# Save figures in specified directory
+pyvista.FIGURE_PATH = os.path.join(os.path.abspath('./images/'), 'auto-generated/')
+pyvista.BUILDING_GALLERY = True
+if not os.path.exists(pyvista.FIGURE_PATH):
+    os.makedirs(pyvista.FIGURE_PATH)
 
 from sphinx_gallery.sorting import FileNameSortKey, ExplicitOrder
 
@@ -117,9 +121,12 @@ sphinx_gallery_conf = {
     'backreferences_dir': 'gen_modules/backreferences',
     # Modules for which function level galleries are created.  In
     # this case sphinx_gallery and numpy in a tuple of strings.
-    'doc_module': ('OpenWF', 'gempy'),
-    'pypandoc': True,
-    'image_scrapers': ('matplotlib','pyvista')
+    'doc_module': ('OpenWF', 'gempy', 'numpy', 'pandas', 'matplotlib'),
+    'pypandoc': False,
+    'image_scrapers': ('pyvista', 'matplotlib'),
+    'first_notebook_cell': ("%matplotlib inline\n"
+                            "from pyvista import set_plot_theme\n"
+                            "set_plot_theme('document')")
 }
 
 # configuration for intersphinx: refer to the Python standard library.
