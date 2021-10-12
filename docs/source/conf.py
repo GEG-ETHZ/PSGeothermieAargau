@@ -108,9 +108,9 @@ sphinx_gallery_conf = {
         'WP1-data_analysis',
         'WP2-geo_modeling',
         'WP3-heat_transport'],
-    'subsection_order': ExplicitOrder(['../../examples/WP1-data_analysis',
-                                        '../../examples/WP2-geo_modeling',
-                                        '../../examples/WP3-heat_transport']),
+    #'subsection_order': ExplicitOrder(['../../examples/WP1-data_analysis',
+    #                                    '../../examples/WP2-geo_modeling',
+    #                                    '../../examples/WP3-heat_transport']),
     # Patter to search for example files
     "filename_pattern": r"\.py",
     # Remove the "Download all examples" button from the top level gallery
@@ -123,7 +123,7 @@ sphinx_gallery_conf = {
     # this case sphinx_gallery and numpy in a tuple of strings.
     'doc_module': ('OpenWF', 'gempy', 'numpy', 'pandas', 'matplotlib'),
     'pypandoc': False,
-    'image_scrapers': ('pyvista', 'matplotlib'),
+    'image_scrapers': ('matplotlib'),
     'first_notebook_cell': ("%matplotlib inline\n"
                             "from pyvista import set_plot_theme\n"
                             "set_plot_theme('document')")

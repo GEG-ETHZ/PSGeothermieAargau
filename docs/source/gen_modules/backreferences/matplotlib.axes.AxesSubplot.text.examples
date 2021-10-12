@@ -1,0 +1,23 @@
+
+
+Examples using ``matplotlib.axes.AxesSubplot.text``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In the following, I present ways to interact with a database of borehole temperatures in the st...">
+
+.. only:: html
+
+ .. figure:: /WP1-data_analysis/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
+     :alt: Temperature database usage
+
+     :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py`
+
+.. raw:: html
+
+    </div>
+
+.. only:: not html
+
+ * :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py`

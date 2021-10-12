@@ -230,7 +230,7 @@ plt.show()
 # To better distinguish the boreholes, let's add a legend to the plot.
 
 name = "Paired"
-cmap = get_cmap(name)  # type: matplotlib.colors.ListedColormap
+cmap = get_cmap(name)
 colors = cmap.colors  # type: list
 
 fig, ax = plt.subplots(figsize=[16,12])

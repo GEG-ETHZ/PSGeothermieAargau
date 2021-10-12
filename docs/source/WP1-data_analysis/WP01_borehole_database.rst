@@ -419,6 +419,21 @@ dataframe. For example, let's plot `Depth` versus `Temperature`:
 
 
 
+.. rst-class:: sphx-glr-horizontal
+
+
+    *
+
+      .. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_001.png
+          :alt: WP01 borehole database
+          :class: sphx-glr-multi-img
+
+    *
+
+      .. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_002.png
+          :alt: WP01 borehole database
+          :class: sphx-glr-multi-img
+
 
 
 
@@ -549,6 +564,10 @@ For instance, we want to get all the boreholes marked as _valid_ in one datafram
 
 
 
+.. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_003.png
+    :alt: WP01 borehole database
+    :class: sphx-glr-single-img
+
 
 
 
@@ -586,6 +605,10 @@ This method essentially queries if a temperature measurement belongs to a boreho
 
 
 
+.. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_004.png
+    :alt: WP01 borehole database
+    :class: sphx-glr-single-img
+
 
 
 
@@ -603,7 +626,7 @@ To better distinguish the boreholes, let's add a legend to the plot.
 
 
     name = "Paired"
-    cmap = get_cmap(name)  # type: matplotlib.colors.ListedColormap
+    cmap = get_cmap(name)
     colors = cmap.colors  # type: list
 
     fig, ax = plt.subplots(figsize=[16,12])
@@ -619,6 +642,10 @@ To better distinguish the boreholes, let's add a legend to the plot.
 
 
 
+
+.. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_005.png
+    :alt: temperature [°C]
+    :class: sphx-glr-single-img
 
 
 
@@ -681,6 +708,10 @@ In the following lines, we set up a linear regression through all borehole data 
 
 
 
+.. image:: /WP1-data_analysis/images/sphx_glr_WP01_borehole_database_006.png
+    :alt: temperature [°C]
+    :class: sphx-glr-single-img
+
 
 .. rst-class:: sphx-glr-script-out
 
@@ -738,7 +769,7 @@ References
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.320 seconds)
+   **Total running time of the script:** ( 0 minutes  4.292 seconds)
 
 
 .. _sphx_glr_download_WP1-data_analysis_WP01_borehole_database.py:

@@ -31,9 +31,6 @@ More info can be found at the `GEG-project website <https://geg.ethz.ch/project-
    getting_started
    the_project
    modules
-   wp1_data
-   wp2_geo_model
-   wp3_heat_tansport
 
 .. toctree::
    :maxdepth: 2
