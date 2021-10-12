@@ -5,8 +5,8 @@
 
 Computation times
 =================
-**00:02.320** total execution time for **WP1-data_analysis** files:
+**00:04.292** total execution time for **WP1-data_analysis** files:
 
 +---------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py` (``WP01_borehole_database.py``) | 00:02.320 | 0.0 MB |
+| :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py` (``WP01_borehole_database.py``) | 00:04.292 | 0.0 MB |
 +---------------------------------------------------------------------------------------------+-----------+--------+
