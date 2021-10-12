@@ -123,7 +123,7 @@ sphinx_gallery_conf = {
     # this case sphinx_gallery and numpy in a tuple of strings.
     'doc_module': ('OpenWF', 'gempy', 'numpy', 'pandas', 'matplotlib'),
     'pypandoc': False,
-    'image_scrapers': ('matplotlib'),
+    'image_scrapers': ('matplotlib', 'pyvista'),
     'first_notebook_cell': ("%matplotlib inline\n"
                             "from pyvista import set_plot_theme\n"
                             "set_plot_theme('document')")

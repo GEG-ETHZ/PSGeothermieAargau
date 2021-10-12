@@ -1,0 +1,23 @@
+
+
+Examples using ``pandas.DirNamesMixin.join``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
+
+.. only:: html
+
+ .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
+     :alt: Create SHEMAT-Suite models
+
+     :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
+
+.. raw:: html
+
+    </div>
+
+.. only:: not html
+
+ * :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
