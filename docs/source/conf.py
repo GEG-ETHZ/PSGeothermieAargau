@@ -119,7 +119,7 @@ sphinx_gallery_conf = {
     # this case sphinx_gallery and numpy in a tuple of strings.
     'doc_module': ('OpenWF', 'gempy'),
     'pypandoc': True,
-    'image_scrapers': ('pyvista',)
+    'image_scrapers': ('matplotlib','pyvista')
 }
 
 # configuration for intersphinx: refer to the Python standard library.
