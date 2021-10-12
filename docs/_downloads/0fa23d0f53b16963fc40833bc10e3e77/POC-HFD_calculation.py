@@ -118,7 +118,8 @@ plt.contour(x,y,ui_cs, colors='k')
 plt.colorbar(cs, label='HF mW/m$^2$')
 plt.title(f"Heat flow, at {mid_depth} m a.s.l. depth, over a {np.abs(deeper-shallower)} m depth interval")
 plt.xlabel('X [m]')
-plt.ylabel('Y [m]');
+plt.ylabel('Y [m]')
+plt.show();
 
 #%%
 # VTK and pyvista
