@@ -101,9 +101,9 @@ sphinx_gallery_conf = {
         '../../examples/WP3-heat_transport'],
     # path to where to save gallery generated output
     'gallery_dirs': [
-        'Examples-and-Tutorials'],#,
-        #'WP2-geo_modeling',
-        #'WP3-heat_transport'],
+        'WP1-data_analysis',
+        'WP2-geo_modeling',
+        'WP3-heat_transport'],
     'subsection_order': ExplicitOrder(['../../examples/WP1-data_analysis',
                                         '../../examples/WP2-geo_modeling',
                                         '../../examples/WP3-heat_transport']),
