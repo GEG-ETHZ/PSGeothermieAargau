@@ -157,6 +157,10 @@ contour field.
 
 
 
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_001.png
+    :alt: temp,y-direction, cell 25
+    :class: sphx-glr-single-img
+
 
 
 
@@ -173,6 +177,10 @@ contour field.
 
 
 
+
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_002.png
+    :alt: rhof,y-direction, cell 25
+    :class: sphx-glr-single-img
 
 
 
@@ -232,6 +240,10 @@ y-direction at index 29 of the z-direction. In the HDF5-file, we further count f
 
 
 
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_003.png
+    :alt: POC HFD calculation
+    :class: sphx-glr-single-img
+
 
 .. rst-class:: sphx-glr-script-out
 
@@ -240,7 +252,7 @@ y-direction at index 29 of the z-direction. In the HDF5-file, we further count f
  .. code-block:: none
 
 
-    Text(0, 0.5, 'Y [m]')
+    Text(100.83333333333333, 0.5, 'Y [m]')
 
 
 
@@ -249,7 +261,7 @@ y-direction at index 29 of the z-direction. In the HDF5-file, we further count f
 Next to calculating the heatflow in each cell, we implemented a method to calculate it over a specified interval, e.g. over the depth interval of -4000 m to -3000 m, 
 so providing the average heat flow over this depth interval.
 
-.. GENERATED FROM PYTHON SOURCE LINES 108-123
+.. GENERATED FROM PYTHON SOURCE LINES 108-124
 
 .. code-block:: default
 
@@ -266,30 +278,27 @@ so providing the average heat flow over this depth interval.
     plt.colorbar(cs, label='HF mW/m$^2$')
     plt.title(f"Heat flow, at {mid_depth} m a.s.l. depth, over a {np.abs(deeper-shallower)} m depth interval")
     plt.xlabel('X [m]')
-    plt.ylabel('Y [m]');
+    plt.ylabel('Y [m]')
+    plt.show();
+
+
+
+
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_004.png
+    :alt: Heat flow, at -3500.0 m a.s.l. depth, over a 1000 m depth interval
+    :class: sphx-glr-single-img
 
 
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    Text(0, 0.5, 'Y [m]')
-
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 124-127
+.. GENERATED FROM PYTHON SOURCE LINES 125-128
 
 VTK and pyvista
 ---------------
 `Pyvista <https://docs.pyvista.org/>`_ [2] is a python library for working with 3D meshes and providing an interface for VTK files.
 
-.. GENERATED FROM PYTHON SOURCE LINES 127-133
+.. GENERATED FROM PYTHON SOURCE LINES 128-134
 
 .. code-block:: default
 
@@ -306,11 +315,11 @@ VTK and pyvista
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 134-135
+.. GENERATED FROM PYTHON SOURCE LINES 135-136
 
 This line loads the VTK file. For information about its content, we can simply call the variable:
 
-.. GENERATED FROM PYTHON SOURCE LINES 135-140
+.. GENERATED FROM PYTHON SOURCE LINES 136-141
 
 .. code-block:: default
 
@@ -322,7 +331,7 @@ This line loads the VTK file. For information about its content, we can simply c
 
 
 
-.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_001.png
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_005.png
     :alt: POC HFD calculation
     :class: sphx-glr-single-img
 
@@ -340,11 +349,11 @@ This line loads the VTK file. For information about its content, we can simply c
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 141-142
+.. GENERATED FROM PYTHON SOURCE LINES 142-143
 
 The vtk file has a couple of scalar values stored (seen in the table with data arrays). We can switch the active scalars to temperature for example using:
 
-.. GENERATED FROM PYTHON SOURCE LINES 142-147
+.. GENERATED FROM PYTHON SOURCE LINES 143-148
 
 .. code-block:: default
 
@@ -356,7 +365,7 @@ The vtk file has a couple of scalar values stored (seen in the table with data a
 
 
 
-.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_002.png
+.. image:: /WP3-heat_transport/images/sphx_glr_POC-HFD_calculation_006.png
     :alt: POC HFD calculation
     :class: sphx-glr-single-img
 
@@ -374,7 +383,7 @@ The vtk file has a couple of scalar values stored (seen in the table with data a
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 148-153
+.. GENERATED FROM PYTHON SOURCE LINES 149-154
 
 References
 ----------
@@ -385,7 +394,7 @@ SHEMAT-Suite: An open-source code for simulating flow, heat and species transpor
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  10.080 seconds)
+   **Total running time of the script:** ( 0 minutes  11.182 seconds)
 
 
 .. _sphx_glr_download_WP3-heat_transport_POC-HFD_calculation.py:
