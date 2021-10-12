@@ -161,6 +161,10 @@ sea level.
 
 
 
+.. image:: /WP2-geo_modeling/images/sphx_glr_03_POC_export-SHEMAT_001.png
+    :alt: Topography, Surface temperature
+    :class: sphx-glr-single-img
+
 
 
 
@@ -544,7 +548,7 @@ OpenWF.shemat_preprocessing.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.170 seconds)
+   **Total running time of the script:** ( 0 minutes  2.050 seconds)
 
 
 .. _sphx_glr_download_WP2-geo_modeling_03_POC_export-SHEMAT.py:
