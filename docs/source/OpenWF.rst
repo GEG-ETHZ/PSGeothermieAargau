@@ -33,8 +33,7 @@ OpenWF.shemat\_preprocessing module
    :undoc-members:
    :show-inheritance:
 
-.. include:: gen_modules/backreferences/OpenWF.shemat_preprocessing.export_shemat_suite_input_file.examples, 
-             gen_modules/backreferences/OpenWF.shemat_preprocessing.topomask.examples
+.. include:: gen_modules/backreferences/OpenWF.shemat_preprocessing.export_shemat_suite_input_file.examples gen_modules/backreferences/OpenWF.shemat_preprocessing.topomask.examples
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
