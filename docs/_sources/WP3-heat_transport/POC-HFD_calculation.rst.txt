@@ -42,6 +42,37 @@ in OpenWF for loading the result file, displaying the parameters it contains and
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'rocket' which already exists.
+      mpl_cm.register_cmap(_name, _cmap)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'rocket_r' which already exists.
+      mpl_cm.register_cmap(_name + "_r", _cmap_r)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'mako' which already exists.
+      mpl_cm.register_cmap(_name, _cmap)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'mako_r' which already exists.
+      mpl_cm.register_cmap(_name + "_r", _cmap_r)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'icefire' which already exists.
+      mpl_cm.register_cmap(_name, _cmap)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'icefire_r' which already exists.
+      mpl_cm.register_cmap(_name + "_r", _cmap_r)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'vlag' which already exists.
+      mpl_cm.register_cmap(_name, _cmap)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'vlag_r' which already exists.
+      mpl_cm.register_cmap(_name + "_r", _cmap_r)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'flare' which already exists.
+      mpl_cm.register_cmap(_name, _cmap)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'flare_r' which already exists.
+      mpl_cm.register_cmap(_name + "_r", _cmap_r)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap 'crest' which already exists.
+      mpl_cm.register_cmap(_name, _cmap)
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\seaborn\cm.py:1583: UserWarning: Trying to register the cmap 'crest_r' which already exists.
+      mpl_cm.register_cmap(_name + "_r", _cmap_r)
+
 
 
 
@@ -383,18 +414,17 @@ The vtk file has a couple of scalar values stored (seen in the table with data a
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 149-154
+.. GENERATED FROM PYTHON SOURCE LINES 149-153
 
 References
 ----------
-[1] Keller, J., Rath, V., Bruckmann, J., Mottaghy, D., Clauser, C., Wolf, A., Seidler, R., Bücker, H.M., Klitzsch, N. (2020). 
-SHEMAT-Suite: An open-source code for simulating flow, heat and species transport in porous media. SoftwareX, 12, 100533.  
-[2] Sullivan, C., & Kaszynski, A. (2019). PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK). Journal of Open Source Software, 4(37), 1450.
+| [1] Keller, J., Rath, V., Bruckmann, J., Mottaghy, D., Clauser, C., Wolf, A., Seidler, R., Bücker, H.M., Klitzsch, N. (2020). SHEMAT-Suite: An open-source code for simulating flow, heat and species transport in porous media. SoftwareX, 12, 100533.  
+| [2] Sullivan, C., & Kaszynski, A. (2019). PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK). Journal of Open Source Software, 4(37), 1450.
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.182 seconds)
+   **Total running time of the script:** ( 0 minutes  10.645 seconds)
 
 
 .. _sphx_glr_download_WP3-heat_transport_POC-HFD_calculation.py:

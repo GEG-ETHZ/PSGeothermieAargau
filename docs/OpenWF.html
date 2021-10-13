@@ -109,6 +109,105 @@
 </figure>
 </div><div class="sphx-glr-clear"></div></section>
 </section>
+<section id="module-OpenWF.shemat_preprocessing">
+<span id="openwf-shemat-preprocessing-module"></span><h2>OpenWF.shemat_preprocessing module<a class="headerlink" href="#module-OpenWF.shemat_preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>This file contains preprocessing methods for creating SHEMAT-Suite models, created using the 2-step-conditioning workflow developed in the project Pilot Study Geothermics Aargau.</p>
+<p>Methods comprise masking the geological model with topography and calculation of parameters, such as the heatflow.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.conc_lithblocks">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">conc_lithblocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.conc_lithblocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concatenate multiple lith block files (npy files) in a folder into one numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – Path to the numpy array files. Defaults to ‘.’.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>concatenated lith blocks in a numpy array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.export_shemat_suite_input_file">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">export_shemat_suite_input_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lithology_block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'vtk</span> <span class="pre">hdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.3)"><span class="pre">pandas.core.frame.DataFrame</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">head_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_temp_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hf_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hf_value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conduction_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borehole_logs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geo_model_SHEMAT_input_erode'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.export_shemat_suite_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to export a 3D geological model as SHEMAT-Suite input-file for a conductive HT-simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geo_model</strong> (<em>gp model</em>) – gempy model</p></li>
+<li><p><strong>lithology_block</strong> (<em>numpy array</em>) – array containing the lithology IDs for the regular grid of the model</p></li>
+<li><p><strong>output</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – declare which output files should be generated hdf=HDF5, vtk=VTK, plt=PLT (tecplot)</p></li>
+<li><p><strong>units</strong> (<em>pd.DataFrame</em><em>, </em><em>optional</em>) – unit petrophysical parameters for SHEMAT-Suite model. Defaults to None.</p></li>
+<li><p><strong>head_bcs_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – boundary condition file for spatially varying boundary conditions (e.g. head by topography). Defaults to None.</p></li>
+<li><p><strong>top_temp_bcs_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – boundary condition file for spatially varying boundary conditions (e.g. temperature due to topography). Defaults to None.</p></li>
+<li><p><strong>data_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – data for calibrating the model, e.g. temperatures from boreholes. Defaults to None.</p></li>
+<li><p><strong>borehole_logs</strong> (<em>np.array</em><em>, </em><em>optional</em>) – coordinates for synthetic borehole logs, will write parameters such as pressure and temperature. Defaults to None.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – save path for the SHEMAT-Suite input file. Defaults to None.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – name of the SHEMAt-Suite input file. Defaults to ‘geo_model_SHEMAT_input_erode’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.normalize">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize a df-column</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.10)"><em>type</em></a><em>]</em>) – column of a pandas dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>normalized version of said dataframe</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.10)">type</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.topomask">
+<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">topomask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lith_block</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.topomask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to mask the GemPy model with topography and change masked IDs to a new one for air.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geo_model</strong> (<em>gp model</em>) – gempy geomodel</p></li>
+<li><p><strong>lith_block</strong> (<em>np.array</em>) – numpy array with the lith_block solution of a gempy model in a defined regular grid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>lith_block masked with topography, so including cell IDs representing topography.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="examples-using-openwf-shemat-preprocessing-export-shemat-suite-input-file">
+<h3>Examples using <code class="docutils literal notranslate"><span class="pre">OpenWF.shemat_preprocessing.export_shemat_suite_input_file</span></code><a class="headerlink" href="#examples-using-openwf-shemat-preprocessing-export-shemat-suite-input-file" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models"><figure class="align-default" id="id2">
+<img alt="Create SHEMAT-Suite models" src="_images/sphx_glr_03_POC_export-SHEMAT_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="WP2-geo_modeling/03_POC_export-SHEMAT.html#sphx-glr-wp2-geo-modeling-03-poc-export-shemat-py"><span class="std std-ref">Create SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></section>
+<section id="examples-using-openwf-shemat-preprocessing-topomask">
+<h3>Examples using <code class="docutils literal notranslate"><span class="pre">OpenWF.shemat_preprocessing.topomask</span></code><a class="headerlink" href="#examples-using-openwf-shemat-preprocessing-topomask" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models"><figure class="align-default" id="id3">
+<img alt="Create SHEMAT-Suite models" src="_images/sphx_glr_03_POC_export-SHEMAT_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="WP2-geo_modeling/03_POC_export-SHEMAT.html#sphx-glr-wp2-geo-modeling-03-poc-export-shemat-py"><span class="std std-ref">Create SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div class="sphx-glr-clear"></div></section>
+</section>
 <section id="module-OpenWF.postprocessing">
 <span id="openwf-postprocessing-module"></span><h2>OpenWF.postprocessing module<a class="headerlink" href="#module-OpenWF.postprocessing" title="Permalink to this headline">¶</a></h2>
 <p>This file contains postprocessing methods for the SHEMAT-Suite models, created using the 2-step-conditioning workflow developed in the project Pilot Study Geothermics Aargau.</p>
@@ -385,88 +484,52 @@ States. doi:10.2172/565545.</p>
 </dl>
 </dd></dl>
 
-<div class="sphx-glr-clear"></div></section>
-<section id="module-OpenWF.shemat_preprocessing">
-<span id="openwf-shemat-preprocessing-module"></span><h2>OpenWF.shemat_preprocessing module<a class="headerlink" href="#module-OpenWF.shemat_preprocessing" title="Permalink to this headline">¶</a></h2>
-<p>This file contains preprocessing methods for creating SHEMAT-Suite models, created using the 2-step-conditioning workflow developed in the project Pilot Study Geothermics Aargau.</p>
-<p>Methods comprise masking the geological model with topography and calculation of parameters, such as the heatflow.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.conc_lithblocks">
-<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">conc_lithblocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.conc_lithblocks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Concatenate multiple lith block files (npy files) in a folder into one numpy array</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – Path to the numpy array files. Defaults to ‘.’.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>concatenated lith blocks in a numpy array</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.array</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.export_shemat_suite_input_file">
-<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">export_shemat_suite_input_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lithology_block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'vtk</span> <span class="pre">hdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.3)"><span class="pre">pandas.core.frame.DataFrame</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">head_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_temp_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hf_bcs_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hf_value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conduction_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borehole_logs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'geo_model_SHEMAT_input_erode'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.export_shemat_suite_input_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to export a 3D geological model as SHEMAT-Suite input-file for a conductive HT-simulation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>geo_model</strong> (<em>gp model</em>) – gempy model</p></li>
-<li><p><strong>lithology_block</strong> (<em>numpy array</em>) – array containing the lithology IDs for the regular grid of the model</p></li>
-<li><p><strong>output</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – declare which output files should be generated hdf=HDF5, vtk=VTK, plt=PLT (tecplot)</p></li>
-<li><p><strong>units</strong> (<em>pd.DataFrame</em><em>, </em><em>optional</em>) – unit petrophysical parameters for SHEMAT-Suite model. Defaults to None.</p></li>
-<li><p><strong>head_bcs_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – boundary condition file for spatially varying boundary conditions (e.g. head by topography). Defaults to None.</p></li>
-<li><p><strong>top_temp_bcs_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – boundary condition file for spatially varying boundary conditions (e.g. temperature due to topography). Defaults to None.</p></li>
-<li><p><strong>data_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – data for calibrating the model, e.g. temperatures from boreholes. Defaults to None.</p></li>
-<li><p><strong>borehole_logs</strong> (<em>np.array</em><em>, </em><em>optional</em>) – coordinates for synthetic borehole logs, will write parameters such as pressure and temperature. Defaults to None.</p></li>
-<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – save path for the SHEMAT-Suite input file. Defaults to None.</p></li>
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – name of the SHEMAt-Suite input file. Defaults to ‘geo_model_SHEMAT_input_erode’.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.normalize">
-<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.normalize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Normalize a df-column</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>df</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.10)"><em>type</em></a><em>]</em>) – column of a pandas dataframe</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>normalized version of said dataframe</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.10)">type</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="OpenWF.shemat_preprocessing.topomask">
-<span class="sig-prename descclassname"><span class="pre">OpenWF.shemat_preprocessing.</span></span><span class="sig-name descname"><span class="pre">topomask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lith_block</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OpenWF.shemat_preprocessing.topomask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to mask the GemPy model with topography and change masked IDs to a new one for air.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>geo_model</strong> (<em>gp model</em>) – gempy geomodel</p></li>
-<li><p><strong>lith_block</strong> (<em>np.array</em>) – numpy array with the lith_block solution of a gempy model in a defined regular grid</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>lith_block masked with topography, so including cell IDs representing topography.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.array</p>
-</dd>
-</dl>
-</dd></dl>
-
-<div class="sphx-glr-clear"></div></section>
+<section id="examples-using-openwf-postprocessing-read-hdf-file">
+<h3>Examples using <code class="docutils literal notranslate"><span class="pre">OpenWF.postprocessing.read_hdf_file</span></code><a class="headerlink" href="#examples-using-openwf-postprocessing-read-hdf-file" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models"><figure class="align-default" id="id4">
+<img alt="Analysis of SHEMAT-Suite models" src="_images/sphx_glr_POC-HFD_calculation_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="WP3-heat_transport/POC-HFD_calculation.html#sphx-glr-wp3-heat-transport-poc-hfd-calculation-py"><span class="std std-ref">Analysis of SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></section>
+<section id="examples-using-openwf-postprocessing-plot-slice">
+<h3>Examples using <code class="docutils literal notranslate"><span class="pre">OpenWF.postprocessing.plot_slice</span></code><a class="headerlink" href="#examples-using-openwf-postprocessing-plot-slice" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models"><figure class="align-default" id="id5">
+<img alt="Analysis of SHEMAT-Suite models" src="_images/sphx_glr_POC-HFD_calculation_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="WP3-heat_transport/POC-HFD_calculation.html#sphx-glr-wp3-heat-transport-poc-hfd-calculation-py"><span class="std std-ref">Analysis of SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></section>
+<section id="examples-using-openwf-postprocessing-available-parameters">
+<h3>Examples using <code class="docutils literal notranslate"><span class="pre">OpenWF.postprocessing.available_parameters</span></code><a class="headerlink" href="#examples-using-openwf-postprocessing-available-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models"><figure class="align-default" id="id6">
+<img alt="Analysis of SHEMAT-Suite models" src="_images/sphx_glr_POC-HFD_calculation_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="WP3-heat_transport/POC-HFD_calculation.html#sphx-glr-wp3-heat-transport-poc-hfd-calculation-py"><span class="std std-ref">Analysis of SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></section>
+<section id="examples-using-openwf-postprocessing-calc-cond-hf">
+<h3>Examples using <code class="docutils literal notranslate"><span class="pre">OpenWF.postprocessing.calc_cond_hf</span></code><a class="headerlink" href="#examples-using-openwf-postprocessing-calc-cond-hf" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models"><figure class="align-default" id="id7">
+<img alt="Analysis of SHEMAT-Suite models" src="_images/sphx_glr_POC-HFD_calculation_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="WP3-heat_transport/POC-HFD_calculation.html#sphx-glr-wp3-heat-transport-poc-hfd-calculation-py"><span class="std std-ref">Analysis of SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></section>
+<section id="examples-using-openwf-postprocessing-calc-cond-hf-over-interval">
+<h3>Examples using <code class="docutils literal notranslate"><span class="pre">OpenWF.postprocessing.calc_cond_hf_over_interval</span></code><a class="headerlink" href="#examples-using-openwf-postprocessing-calc-cond-hf-over-interval" title="Permalink to this headline">¶</a></h3>
+<div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models"><figure class="align-default" id="id8">
+<img alt="Analysis of SHEMAT-Suite models" src="_images/sphx_glr_POC-HFD_calculation_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="WP3-heat_transport/POC-HFD_calculation.html#sphx-glr-wp3-heat-transport-poc-hfd-calculation-py"><span class="std std-ref">Analysis of SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div class="sphx-glr-clear"></div></section>
+</section>
 <section id="module-OpenWF">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-OpenWF" title="Permalink to this headline">¶</a></h2>
 </section>

@@ -283,9 +283,9 @@ gp.plot_2d(geo_model, section_names=list(section_dict), show_block=True, show_bo
 #%%
 # References
 # ----------
-# [1]: Naef, H., and Madritsch, H.: Tektonische Karte des Nordschweizer Permokarbontrogs: Aktualisierung basierend auf 2D-Seismik und Schweredaten. Nagra Arbeitsbericht NAB 14-017, (2014).  
-# [2]: Gmünder, C., Malaguerra, F., Nusch, S., & Traber, D.: Regional Hydrogeo-logical Model of Northern Switzerland. Nagra Arbeitsbericht NAB, 13-23, (2014).  
-# [3]: Luo, J., Monninkhoff, B., Becker J.K.: Hydrogeological model Jura Ost. Nagra Arbeitsbericht NAB, 13-26, (2014).  
-# [4]: de la Varga, M., Schaaf, A., and Wellmann, F.: GemPy 1.0: Open-source stochastic geological modeling and inversion. Geoscientific Model Development, 12(1), (2019), 1. doi:http://dx.doi.org/10.5194/gmd-12-1-2019.  
-# [5]: Gautschi, A., & Zuidema, P. (ed): Nagra technical report 14-02, geological basics-Dossier I-Introduction and summary; SGT Etappe 2: Vorschlag weiter zu untersuchender geologischer Standortgebiete mit zugehörigen Standortarealen für die Oberflächenanlage--Geologische Grundlagen--Dossier I--Einleitung und Zusammenfassung, (2014).  
-# [6]: GeoMol Team (2015): GeoMol – Assessing subsurface potentials of the Alpine Foreland Basins for sustainable planning and use of natural resources – Project Report, 188 pp. (Augsburg, LfU).  
+# | [1]: Naef, H., and Madritsch, H.: Tektonische Karte des Nordschweizer Permokarbontrogs: Aktualisierung basierend auf 2D-Seismik und Schweredaten. Nagra Arbeitsbericht NAB 14-017, (2014).  
+# | [2]: Gmünder, C., Malaguerra, F., Nusch, S., & Traber, D.: Regional Hydrogeo-logical Model of Northern Switzerland. Nagra Arbeitsbericht NAB, 13-23, (2014).  
+# | [3]: Luo, J., Monninkhoff, B., Becker J.K.: Hydrogeological model Jura Ost. Nagra Arbeitsbericht NAB, 13-26, (2014).  
+# | [4]: de la Varga, M., Schaaf, A., and Wellmann, F.: GemPy 1.0: Open-source stochastic geological modeling and inversion. Geoscientific Model Development, 12(1), (2019), 1. doi:http://dx.doi.org/10.5194/gmd-12-1-2019.  
+# | [5]: Gautschi, A., & Zuidema, P. (ed): Nagra technical report 14-02, geological basics-Dossier I-Introduction and summary; SGT Etappe 2: Vorschlag weiter zu untersuchender geologischer Standortgebiete mit zugehörigen Standortarealen für die Oberflächenanlage--Geologische Grundlagen--Dossier I--Einleitung und Zusammenfassung, (2014).  
+# | [6]: GeoMol Team (2015): GeoMol – Assessing subsurface potentials of the Alpine Foreland Basins for sustainable planning and use of natural resources – Project Report, 188 pp. (Augsburg, LfU).  

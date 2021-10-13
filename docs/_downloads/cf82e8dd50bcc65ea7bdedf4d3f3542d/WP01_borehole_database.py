@@ -314,6 +314,6 @@ conn.close()
 #%%
 # References
 # ----------
-# [1] Hipp, D. R., Kennedy, D., & Mistachkin, J. (2010). Sqlite documentation.  
-# [2] Schärli, U., & Kohl, T. (2002). Archivierung und Kompilation geothermischer Daten der Schweiz und angrenzender Gebiete. Schweizerische Geophysikalische Kommission.  
-# [3] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
+# | [1] Hipp, D. R., Kennedy, D., & Mistachkin, J. (2010). Sqlite documentation.  
+# | [2] Schärli, U., & Kohl, T. (2002). Archivierung und Kompilation geothermischer Daten der Schweiz und angrenzender Gebiete. Schweizerische Geophysikalische Kommission.  
+# | [3] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.

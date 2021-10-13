@@ -5,8 +5,8 @@
 
 Computation times
 =================
-**00:11.182** total execution time for **WP3-heat_transport** files:
+**00:10.645** total execution time for **WP3-heat_transport** files:
 
 +----------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_WP3-heat_transport_POC-HFD_calculation.py` (``POC-HFD_calculation.py``) | 00:11.182 | 0.0 MB |
+| :ref:`sphx_glr_WP3-heat_transport_POC-HFD_calculation.py` (``POC-HFD_calculation.py``) | 00:10.645 | 0.0 MB |
 +----------------------------------------------------------------------------------------+-----------+--------+
