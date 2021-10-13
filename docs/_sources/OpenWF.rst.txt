@@ -34,8 +34,10 @@ OpenWF.shemat\_preprocessing module
    :show-inheritance:
 
 .. include:: gen_modules/backreferences/OpenWF.shemat_preprocessing.export_shemat_suite_input_file.examples
-.. include:: gen_modules/backreferences/OpenWF.shemat_preprocessing.topomask.examples
 
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
 
 OpenWF.postprocessing module
 ----------------------------
@@ -45,11 +47,8 @@ OpenWF.postprocessing module
    :undoc-members:
    :show-inheritance:
 
-.. include:: gen_modules/backreferences/OpenWF.postprocessing.read_hdf_file.examples
-.. include:: gen_modules/backreferences/OpenWF.postprocessing.plot_slice.examples
-.. include:: gen_modules/backreferences/OpenWF.postprocessing.available_parameters.examples
 .. include:: gen_modules/backreferences/OpenWF.postprocessing.calc_cond_hf.examples
-.. include:: gen_modules/backreferences/OpenWF.postprocessing.calc_cond_hf_over_interval.examples
+
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
