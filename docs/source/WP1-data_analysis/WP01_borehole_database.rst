@@ -762,14 +762,14 @@ The last thing is important, as unexpected closure of non-closed databases may p
 
 References
 ----------
-[1] Hipp, D. R., Kennedy, D., & Mistachkin, J. (2010). Sqlite documentation.  
-[2] Schärli, U., & Kohl, T. (2002). Archivierung und Kompilation geothermischer Daten der Schweiz und angrenzender Gebiete. Schweizerische Geophysikalische Kommission.  
-[3] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
+| [1] Hipp, D. R., Kennedy, D., & Mistachkin, J. (2010). Sqlite documentation.  
+| [2] Schärli, U., & Kohl, T. (2002). Archivierung und Kompilation geothermischer Daten der Schweiz und angrenzender Gebiete. Schweizerische Geophysikalische Kommission.  
+| [3] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.292 seconds)
+   **Total running time of the script:** ( 0 minutes  3.951 seconds)
 
 
 .. _sphx_glr_download_WP1-data_analysis_WP01_borehole_database.py:

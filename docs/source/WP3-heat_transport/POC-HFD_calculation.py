@@ -148,7 +148,6 @@ simulation.plot();
 #%%
 # References
 # ----------
-# [1] Keller, J., Rath, V., Bruckmann, J., Mottaghy, D., Clauser, C., Wolf, A., Seidler, R., Bücker, H.M., Klitzsch, N. (2020). 
-# SHEMAT-Suite: An open-source code for simulating flow, heat and species transport in porous media. SoftwareX, 12, 100533.  
-# [2] Sullivan, C., & Kaszynski, A. (2019). PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK). Journal of Open Source Software, 4(37), 1450.
+# | [1] Keller, J., Rath, V., Bruckmann, J., Mottaghy, D., Clauser, C., Wolf, A., Seidler, R., Bücker, H.M., Klitzsch, N. (2020). SHEMAT-Suite: An open-source code for simulating flow, heat and species transport in porous media. SoftwareX, 12, 100533.  
+# | [2] Sullivan, C., & Kaszynski, A. (2019). PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK). Journal of Open Source Software, 4(37), 1450.
 
