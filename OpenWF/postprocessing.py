@@ -538,6 +538,26 @@ def extract_parameters(datafile, parameters: list=['temp','uindex'], dimension: 
                 param_dict[i] = f[i][z//2,:,:]
     return param_dict
 
+def calc_tgradient(data, direction=True):
+    """Return the temperature gradient in z-direction
+
+    Args:
+        data (HDF5): HDF5 File with simulation results
+        direction (bool, optional): direction considered (positive downward, negative upward). Defaults to True.
+
+    Returns:
+        gradT (np.array): array of the temperature gradient
+    """
+    temp = data['temp'][:,:,:]
+    z = data['z'][:,0,0]
+    
+    gradT = -np.gradient(temp)[0]/np.gradient(z)
+    
+    if direction==False:
+        gradT = np.abs(gradT)
+        
+    return gradT
+
 # def homogenize_comment(file):
 #     inp = open(file, 'rt')
 #     outp = open(file+'_homogenized', 'wt')
