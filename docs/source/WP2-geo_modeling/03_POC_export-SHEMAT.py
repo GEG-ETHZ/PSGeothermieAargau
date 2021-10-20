@@ -79,6 +79,78 @@ axs[1].set_xlabel('X [m]')
 fig.tight_layout()
 
 #%%
+# Create Top Boundary Conditions for head and temperature
+# -------------------------------------------------------
+#
+# First we load the lithology grid of the base model and make sure, the lithology IDs are all integers. 
+# To know where we would have air cells, we mask the lithology grid with the model topology. Now, the air has its own unit, which is per default the maximum lithology ID + 1.
+
+lith_grid = np.load('../../models/POC_base_model_lith_blocks.npy')
+
+# make sure that lithologies are integer
+lith_grid = np.round(lith_grid,0).astype('int')
+lith_grid_topo = shemsuite.topomask(geo_model, lith_grid)
+
+#%%
+# Then, we reshape the lithologies in the model resolution to get a 3D array, representing the model grid.
+
+res = geo_model._grid.regular_grid.resolution
+liths3D = lith_grid_topo.reshape((res), order='C')
+
+#%%
+# Now, we know that the maximum lithology is 12 (or if now, we can call it with ``geo_model.surfaces``), so we can check where in the 3D array the lithology ID is 13 and save 
+# these indices
+
+ijk = np.where(liths3D[:,:,:]==13)
+
+#%%
+# Let's now reshape the array for SHEMAT-Suite, which needs X, Y, Z
+ijk_shem = np.stack([ijk[0], ijk[1], ijk[2]], axis=1)
+
+#%% and get the topography and temperature assigned to theses indices
+
+head = np.zeros(len(ijk_shem))
+temp = np.zeros(len(ijk_shem))
+
+for i in range(len(ijk_shem)):
+    indices = ijk_shem[i,:2]
+    head[i] = dtm[:,:,2][indices[0], indices[1]]
+    temp[i] = surf_temp[indices[0], indices[1]]
+
+#%%
+# Next, we reshape the temperature and head boundary conditions back to a 1D vector and append them
+# to the ijk vector for SHEMAT-Suite
+
+head_reshaped = head.reshape(-1,1)
+temp_reshaped = temp.reshape(-1,1)
+
+ijkh = np.append(ijk_shem, head_reshaped, axis=1)
+ijkt = np.append(ijk_shem, temp_reshaped, axis=1)
+
+#%%
+# It is important to remember, that indices between Python and Fortran (language of SHEMAt-Suite) are different.
+# Whil Python starts with 0, Fortran starts with 1. Hence, we have to add 1 to the first three columns of the ijk arrays
+# To make them Fortran compatible
+
+ijkh[:,:3] = ijkh[:,:3] + 1
+ijkt[:,:3] = ijkt[:,:3] + 1
+
+# finally add the model height below sea-level to the head boundary condition
+ijkh[:,3] = ijkh[:,3] + 6500
+
+# SHEMAT requires an direction column for the boundary conditions 
+direction = np.zeros_like(head_reshaped)
+
+ijkh_d = np.append(ijkh, direction, axis=1)
+ijkt_d = np.append(ijkh, direction, axis=1)
+
+#%%
+# Now, that we have the two arrays with conditions assigned to single cells, we can save them as txt files for later usage
+
+np.savetxt('../../data/SHEMAT-Suite/POC_head_bcd.txt', ijkh_d, fmt='%d, %d, %d, %.3f, %d')
+np.savetxt('../../data/SHEMAT-Suite/POCtemp_bcd.txt', ijkt_d, fmt='%d, %d, %d, %.3f, %d')
+
+#%%
 # Now we prepared the lithologies, which are necessary for the `# uindex` field in a SHEMA-Suite input file, we can prepare the other parameters. Of which some are necessary, like the model
 # dimensions, and some are optional, like an array for the hydraulic head boundary condition, or observed data.
 
@@ -133,9 +205,17 @@ for c in range(len(lith_blocks_topo)):
     model = lith_blocks_topo[c,:]
     model_name = f"POC_MC_{c}"
     shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=model, units=units,  
-                                   data_file=temp_data,
+                                   data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/head_bcd.txt',
+                                   top_temp_bcs_file='../../data/SHEMAT-Suite/temp_bcd.txt',
                                    path='../../models/SHEMAT-Suite_input/',
                                   filename=model_name)
     shemade += model_name + " \n"
+shemade += "POC_base_model"
 with open("../../models/SHEMAT-Suite_input/shemade.job", 'w') as jobfile:
     jobfile.write(shemade)
+
+shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=lith_grid_topo, units=units,  
+                                   data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/head_bcd.txt',
+                                   top_temp_bcs_file='../../data/SHEMAT-Suite/temp_bcd.txt',
+                                   path='../../models/SHEMAT-Suite_input/',
+                                  filename='POC_base_model')
