@@ -158,6 +158,12 @@ gp.plot_2d(geo_model, cell_number=25, direction='y', show_data=False, show_topog
           show_lith=True, show_results=True, show_boundaries=True)
 
 #%%
+# The displayed lithologies are stored in a regular grid, which we defined at the beginning. 
+# We can store this grid, containing the lithology IDs in space for further postprocessing
+
+np.save('../../models/POC_base_model_lith_blocks.npy', np.round(geo_model.solutions.lith_block,0).astype('int'))
+
+#%%
 # Simulate Gravity
 # ================
 # Using the now generated POC-model, we simulate its gravity at different locations. These locations will be treated as observations later on in the workflow. 

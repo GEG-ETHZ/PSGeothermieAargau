@@ -54,6 +54,9 @@ Libraries
 
  .. code-block:: none
 
+    C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\gempy\__init__.py:16: UserWarning: Unable to enable faulthandler:
+    '_LoggingTee' object has no attribute 'fileno'
+      warnings.warn('Unable to enable faulthandler:\n%s' % str(e))
     Run with GemPy version 2.2.9
 
 
@@ -169,12 +172,185 @@ sea level.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-84
+.. GENERATED FROM PYTHON SOURCE LINES 82-87
+
+Create Top Boundary Conditions for head and temperature
+-------------------------------------------------------
+
+First we load the lithology grid of the base model and make sure, the lithology IDs are all integers. 
+To know where we would have air cells, we mask the lithology grid with the model topology. Now, the air has its own unit, which is per default the maximum lithology ID + 1.
+
+.. GENERATED FROM PYTHON SOURCE LINES 87-94
+
+.. code-block:: default
+
+
+    lith_grid = np.load('../../models/POC_base_model_lith_blocks.npy')
+
+    # make sure that lithologies are integer
+    lith_grid = np.round(lith_grid,0).astype('int')
+    lith_grid_topo = shemsuite.topomask(geo_model, lith_grid)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 95-96
+
+Then, we reshape the lithologies in the model resolution to get a 3D array, representing the model grid.
+
+.. GENERATED FROM PYTHON SOURCE LINES 96-100
+
+.. code-block:: default
+
+
+    res = geo_model._grid.regular_grid.resolution
+    liths3D = lith_grid_topo.reshape((res), order='C')
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 101-103
+
+Now, we know that the maximum lithology is 12 (or if now, we can call it with ``geo_model.surfaces``), so we can check where in the 3D array the lithology ID is 13 and save 
+these indices
+
+.. GENERATED FROM PYTHON SOURCE LINES 103-106
+
+.. code-block:: default
+
+
+    ijk = np.where(liths3D[:,:,:]==13)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 107-108
+
+Let's now reshape the array for SHEMAT-Suite, which needs X, Y, Z
+
+.. GENERATED FROM PYTHON SOURCE LINES 108-110
+
+.. code-block:: default
+
+    ijk_shem = np.stack([ijk[0], ijk[1], ijk[2]], axis=1)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 111-120
+
+.. code-block:: default
+
+
+    head = np.zeros(len(ijk_shem))
+    temp = np.zeros(len(ijk_shem))
+
+    for i in range(len(ijk_shem)):
+        indices = ijk_shem[i,:2]
+        head[i] = dtm[:,:,2][indices[0], indices[1]]
+        temp[i] = surf_temp[indices[0], indices[1]]
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 121-123
+
+Next, we reshape the temperature and head boundary conditions back to a 1D vector and append them
+to the ijk vector for SHEMAT-Suite
+
+.. GENERATED FROM PYTHON SOURCE LINES 123-130
+
+.. code-block:: default
+
+
+    head_reshaped = head.reshape(-1,1)
+    temp_reshaped = temp.reshape(-1,1)
+
+    ijkh = np.append(ijk_shem, head_reshaped, axis=1)
+    ijkt = np.append(ijk_shem, temp_reshaped, axis=1)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 131-134
+
+It is important to remember, that indices between Python and Fortran (language of SHEMAt-Suite) are different.
+Whil Python starts with 0, Fortran starts with 1. Hence, we have to add 1 to the first three columns of the ijk arrays
+To make them Fortran compatible
+
+.. GENERATED FROM PYTHON SOURCE LINES 134-147
+
+.. code-block:: default
+
+
+    ijkh[:,:3] = ijkh[:,:3] + 1
+    ijkt[:,:3] = ijkt[:,:3] + 1
+
+    # finally add the model height below sea-level to the head boundary condition
+    ijkh[:,3] = ijkh[:,3] + 6500
+
+    # SHEMAT requires an direction column for the boundary conditions 
+    direction = np.zeros_like(head_reshaped)
+
+    ijkh_d = np.append(ijkh, direction, axis=1)
+    ijkt_d = np.append(ijkh, direction, axis=1)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 148-149
+
+Now, that we have the two arrays with conditions assigned to single cells, we can save them as txt files for later usage
+
+.. GENERATED FROM PYTHON SOURCE LINES 149-153
+
+.. code-block:: default
+
+
+    np.savetxt('../../data/SHEMAT-Suite/POC_head_bcd.txt', ijkh_d, fmt='%d, %d, %d, %.3f, %d')
+    np.savetxt('../../data/SHEMAT-Suite/POCtemp_bcd.txt', ijkt_d, fmt='%d, %d, %d, %.3f, %d')
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 154-156
 
 Now we prepared the lithologies, which are necessary for the `# uindex` field in a SHEMA-Suite input file, we can prepare the other parameters. Of which some are necessary, like the model
 dimensions, and some are optional, like an array for the hydraulic head boundary condition, or observed data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-89
+.. GENERATED FROM PYTHON SOURCE LINES 156-161
 
 .. code-block:: default
 
@@ -190,14 +366,14 @@ dimensions, and some are optional, like an array for the hydraulic head boundary
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 90-94
+.. GENERATED FROM PYTHON SOURCE LINES 162-166
 
 Set up the units for the SHEMAT-Suite model
 -------------------------------------------
 One core element of a SHEMAT-Suite Input file is the `# units` table. This table comprises the petrophysical parameters of the lithological units whose geometry is stored in the `# uindex` field.
 The following code shows an example of how set up the `# units` table as a dataframe to be then stored in a SHEMAT-Suite input file. 
 
-.. GENERATED FROM PYTHON SOURCE LINES 94-99
+.. GENERATED FROM PYTHON SOURCE LINES 166-171
 
 .. code-block:: default
 
@@ -304,12 +480,12 @@ The following code shows an example of how set up the `# units` table as a dataf
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 100-102
+.. GENERATED FROM PYTHON SOURCE LINES 172-174
 
 Now we create a dictionary with values for important parameters of each of the 12 units:
 And join it with the existing units dataframe.
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-109
+.. GENERATED FROM PYTHON SOURCE LINES 174-181
 
 .. code-block:: default
 
@@ -327,11 +503,11 @@ And join it with the existing units dataframe.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 110-111
+.. GENERATED FROM PYTHON SOURCE LINES 182-183
 
 So now, the `units` table looks like this:
 
-.. GENERATED FROM PYTHON SOURCE LINES 111-113
+.. GENERATED FROM PYTHON SOURCE LINES 183-185
 
 .. code-block:: default
 
@@ -474,13 +650,13 @@ So now, the `units` table looks like this:
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 114-117
+.. GENERATED FROM PYTHON SOURCE LINES 186-189
 
 It is still missing the air component though. We have to add this, because the cells above the topography are
 assigned to a unit representing the air. For mimicking the long-wavelength radiation outward from the ground, we assign
 a high thermal conductivity to the air. If we were to assign a realistic low thermal conductivity, it would work as an insulator.
 
-.. GENERATED FROM PYTHON SOURCE LINES 117-124
+.. GENERATED FROM PYTHON SOURCE LINES 189-196
 
 .. code-block:: default
 
@@ -498,7 +674,7 @@ a high thermal conductivity to the air. If we were to assign a realistic low the
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 125-130
+.. GENERATED FROM PYTHON SOURCE LINES 197-202
 
 Export to SHEMAT-Suite
 ----------------------
@@ -506,7 +682,7 @@ We are now all set for combining the lithology arrays, the `# units` table, temp
 into a SHEMAT-Suite input file. For this, we use the method `export_shemat_suite_input_file` in 
 OpenWF.shemat_preprocessing.
 
-.. GENERATED FROM PYTHON SOURCE LINES 130-141
+.. GENERATED FROM PYTHON SOURCE LINES 202-221
 
 .. code-block:: default
 
@@ -516,12 +692,20 @@ OpenWF.shemat_preprocessing.
         model = lith_blocks_topo[c,:]
         model_name = f"POC_MC_{c}"
         shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=model, units=units,  
-                                       data_file=temp_data,
+                                       data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/head_bcd.txt',
+                                       top_temp_bcs_file='../../data/SHEMAT-Suite/temp_bcd.txt',
                                        path='../../models/SHEMAT-Suite_input/',
                                       filename=model_name)
         shemade += model_name + " \n"
+    shemade += "POC_base_model"
     with open("../../models/SHEMAT-Suite_input/shemade.job", 'w') as jobfile:
         jobfile.write(shemade)
+
+    shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=lith_grid_topo, units=units,  
+                                       data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/head_bcd.txt',
+                                       top_temp_bcs_file='../../data/SHEMAT-Suite/temp_bcd.txt',
+                                       path='../../models/SHEMAT-Suite_input/',
+                                      filename='POC_base_model')
 
 
 
@@ -541,6 +725,7 @@ OpenWF.shemat_preprocessing.
     Successfully exported geological model POC_MC_7 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input/
     Successfully exported geological model POC_MC_8 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input/
     Successfully exported geological model POC_MC_9 as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input/
+    Successfully exported geological model POC_base_model as SHEMAT-Suite input to ../../models/SHEMAT-Suite_input/
 
 
 
@@ -548,7 +733,7 @@ OpenWF.shemat_preprocessing.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.050 seconds)
+   **Total running time of the script:** ( 0 minutes  7.449 seconds)
 
 
 .. _sphx_glr_download_WP2-geo_modeling_03_POC_export-SHEMAT.py:
