@@ -558,6 +558,30 @@ def calc_tgradient(data, direction=True):
         
     return gradT
 
+def c_rmse(predicted, target):
+    rm_sq_diff = np.sqrt((predicted.sub(target, axis=0)**2).mean())
+    return rm_sq_diff
+
+def rejection(rmse, rnseed=np.random.seed(0), verbose=True):
+    rnseed
+    Ref = rmse[0]
+    accept = []
+    P = []
+    k = 0
+    for i in range(1,len(rmse)):
+        if rmse[i] < Ref:
+            Ref = rmse[i]
+            accept.append(i)
+            
+        elif random.random() < np.exp(-(rmse[i] - Ref)/(u_g)):
+            P.append(np.exp(-(rmse[i] - Ref)/(u_g)))
+            Ref = rmse[i]
+            accept.append(i)
+            k +=1
+    if verbose==True:
+        print(f"{len(accept)} realizations were accepted.")
+    return accept, P
+    
 # def homogenize_comment(file):
 #     inp = open(file, 'rt')
 #     outp = open(file+'_homogenized', 'wt')

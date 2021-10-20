@@ -5,25 +5,6 @@ Examples using ``gempy.Project.set_active_grid``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem...">
-
-.. only:: html
-
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
-
-     :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will lead you through an example workflow on how to create a Monte Carlo...">
 
 .. only:: html

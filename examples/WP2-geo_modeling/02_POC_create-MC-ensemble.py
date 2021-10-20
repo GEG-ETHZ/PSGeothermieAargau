@@ -242,6 +242,8 @@ gp.plot_2d(geo_model,
 
 # make subplots with mean and std
 gravdf_plt = pd.DataFrame.from_dict(grav)
+gravdf_plt.to_csv('../../data/outputs/MCexample_10grav.csv', index=False)
+
 fig, axs = plt.subplots(1,2, figsize=[15,5], sharey=True)
 m_grav = np.mean(gravdf_plt, axis=1)
 st_grav = np.std(gravdf_plt, axis=1)
