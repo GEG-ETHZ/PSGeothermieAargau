@@ -1,0 +1,1373 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Create a 3D model of a Permo-Carboniferous Trough (PCT) &#8212; Pilot Study Geothermie Aargau ALPHA documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-model-pct-gempy-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="create-a-3d-model-of-a-permo-carboniferous-trough-pct">
+<span id="sphx-glr-examples-model-pct-gempy-py"></span><h1>Create a 3D model of a Permo-Carboniferous Trough (PCT)<a class="headerlink" href="#create-a-3d-model-of-a-permo-carboniferous-trough-pct" title="Permalink to this headline">¶</a></h1>
+<p>Based on four seismic sections from the NAGRA report
+<a class="reference external" href="https://www.nagra.ch/data/documents/database/dokumente/$default/Default%20Folder/Publikationen/NTBs%202014%20-%202015/d_ntb14-02%20Dossier%20I.pdf">NAGRA NTB 14-02</a> [1],
+we extracted interface and orientation points of main eras (paleozoic, mesozoic, cenozoic) and major graben faults.
+Data from these 2D sections are complemented with data from GeoMol 2019, e.g. base of the PCT, thrusts, and normal faults.</p>
+<p>The lithological units comprise the permo-carboniferous filling (paleozoic), Mesozoic, Tertiary strata, as well as the crystalline basement rocks. An important decision before building the geological model,
+is to define model units. Based on the purpose of the envisaged model, different units have to be defined. As the final result of this work will be an ensemble of advective heat-transport models,
+key paremeters for defining units are permeability, porosity, thermal conductivity of different geological layers. As part of the exploration work of nagra
+(National Cooperative for the Disposal of Radioactive Waste), regional and local hydrogeological models were constructed. The therein defined hydrostratigraphy provides the basis for defining the
+model units of this geological model. The regional hydrogeologic model is presented in the report
+<a class="reference external" href="https://www.nagra.ch/data/documents/database/dokumente/$default/Default%20Folder/Publikationen/NABs%202004%20-%202015/e_nab13-023.pdf">NAGRA NAB 13-23</a> [2].</p>
+<p>With the regional model covering an area comprising all potential storage sites defined by nagra, local models were built as well. These models comprise a more detailed hydrostratigraphy.</p>
+<p>The potential storage site “Jura Ost” is within our model area, thus we also consider the hydrostratigraphy defined in this local hydrogeological model presented in the report
+<a class="reference external" href="https://www.nagra.ch/data/documents/database/dokumente/$default/Default%20Folder/Publikationen/NABs%202004%20-%202015/e_nab13-026.pdf">NAGRA NAB 13-26</a> [3].</p>
+<p>The model comprises an area of 45 km x 32 km, in x- and y-direction, respectively. It extends down to a depth of 6 km, with reference sea level.
+This notebook demonstrates step-by-step how the model is generated within the open source modeling software <a class="reference external" href="https://www.gempy.org/">GemPy</a> [4].
+First, we will import libraries necessary to run this notebook:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing GemPy</span>
+<span class="kn">import</span> <span class="nn">gempy</span> <span class="k">as</span> <span class="nn">gp</span>
+
+<span class="c1"># Import improved plotting features from GemPy</span>
+<span class="kn">from</span> <span class="nn">gempy.plot</span> <span class="kn">import</span> <span class="n">visualization_2d</span> <span class="k">as</span> <span class="n">vv</span>
+<span class="kn">from</span> <span class="nn">gempy.plot</span> <span class="kn">import</span> <span class="n">vista</span>
+
+<span class="c1"># Importing auxilary libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<a href="https://matplotlib.org/api/matplotlib_configuration_api.html#matplotlib.RcParams" title="matplotlib.RcParams" class="sphx-glr-backref-module-matplotlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span></a><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\gempy\__init__.py:16: UserWarning: Unable to enable faulthandler:
+&#39;_LoggingTee&#39; object has no attribute &#39;fileno&#39;
+  warnings.warn(&#39;Unable to enable faulthandler:\n%s&#39; % str(e))
+</pre></div>
+</div>
+<p>This example code was generated with Gempy-Version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GemPy Version: </span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">gp</span><span class="o">.</span><span class="n">__version__</span></a><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>GemPy Version: 2.2.9
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Initialize the model</dt><dd><p>For modeling the PermoCarboniferous trough (<strong>PCT</strong>) in GemPy, we need to initialize a GemPy model object. This model object comprises multiple input data, such as interface points and orientations,
+which we previously stored in a <cite>.csv</cite> file. Further, we import the topography from a GeoTiff file.
+Conceptually, we create two models:</p>
+</dd>
+</dl>
+<p>.  1. With data of the the base of the PCT known
+.  2. With additional data where the base of the PCT is inferred</p>
+<blockquote>
+<div><p>The distinction of inferred vs. known locations of the PCT is based on GeoMol 2019, an update geological model of the Swiss Molasse Basin and adjacent areas. Known and inferred parts of the PCT in
+GeoMol can be seen <a class="reference external" href="https://viewer.geomol.ch/webgui/gui2.php?viewHash=02171f57ee58a4082d3eb9cdc541c08b">here</a>.</p>
+<p>In this notebook, the user can choose whether only the “known” parts of the PCT base will be considered for modeling, or also the the inferred parts.</p>
+</div></blockquote>
+<p>string either “known” or “inferred” to switch between model data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">switch</span></a> <span class="o">=</span> <span class="s2">&quot;known&quot;</span>
+
+<span class="k">if</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">switch</span></a> <span class="o">==</span> <span class="s1">&#39;known&#39;</span><span class="p">:</span>
+    <span class="c1"># Import data - NOT INFERRED</span>
+    <span class="c1"># Create a model instance</span>
+    <span class="n">geo_model</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="s1">&#39;PCT_model&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Initialize the model, set dimension and load interface and orientation data</span>
+    <span class="n">gp</span><span class="o">.</span><span class="n">init_data</span><span class="p">(</span><span class="n">geo_model</span><span class="p">,</span> <span class="p">[</span><span class="mi">2640000</span><span class="p">,</span> <span class="mf">2685000.</span><span class="p">,</span> <span class="mf">1240000.</span><span class="p">,</span> <span class="mf">1275000.</span><span class="p">,</span> <span class="o">-</span><span class="mi">6000</span><span class="p">,</span> <span class="mf">1000.</span><span class="p">],</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+                <span class="n">path_i</span> <span class="o">=</span> <span class="s1">&#39;../../../Editorial-Transitional-Heatflow/data/processed/GemPy/00_gempy_inputs/2021-06-02_interfaces_no_fault_horizon_reduced_graben_and_mandach.csv&#39;</span><span class="p">,</span>
+                <span class="n">path_o</span> <span class="o">=</span> <span class="s1">&#39;../../../Editorial-Transitional-Heatflow/data/processed/GemPy/00_gempy_inputs/20201007_orientations_with_Jurathrust5_no_quat_meso_reduced2.csv&#39;</span><span class="p">)</span>
+
+    <span class="n">geo_model</span><span class="o">.</span><span class="n">set_topography</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;gdal&#39;</span><span class="p">,</span> <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;../../../Editorial-Transitional-Heatflow/data/processed/GemPy/06_DTMs/DTM_200_for_GemPy_Model.tif&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">switch</span></a> <span class="o">==</span> <span class="s1">&#39;inferred&#39;</span><span class="p">:</span>
+    <span class="c1"># Import data - INFERRED</span>
+    <span class="c1"># Create a model instance</span>
+    <span class="n">geo_model</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="s1">&#39;PCT_model_inferred&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Initialize the model, set dimension and load interface and orientation data</span>
+    <span class="n">gp</span><span class="o">.</span><span class="n">init_data</span><span class="p">(</span><span class="n">geo_model</span><span class="p">,</span> <span class="p">[</span><span class="mi">2640000</span><span class="p">,</span> <span class="mf">2685000.</span><span class="p">,</span> <span class="mf">1240000.</span><span class="p">,</span> <span class="mf">1275000.</span><span class="p">,</span> <span class="o">-</span><span class="mi">6000</span><span class="p">,</span> <span class="mf">1000.</span><span class="p">],</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+                <span class="n">path_i</span> <span class="o">=</span> <span class="s1">&#39;../../data/processed/GemPy/00_gempy_inputs/20201005_interfaces_Jurathrust5_pct_inferred.csv&#39;</span><span class="p">,</span>
+                <span class="n">path_o</span> <span class="o">=</span> <span class="s1">&#39;../../data/processed/GemPy/00_gempy_inputs/20201007_orientations_with_Jurathrust5_no_quat_meso_reduced2_pct_inferred.csv&#39;</span><span class="p">)</span>
+
+    <span class="n">geo_model</span><span class="o">.</span><span class="n">set_topography</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;gdal&#39;</span><span class="p">,</span> <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;../../data/processed/GemPy/06_DTMs/DTM_200_for_GemPy_Model.tif&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Active grids: [&#39;regular&#39;]
+Cropped raster to geo_model.grid.extent.
+depending on the size of the raster, this can take a while...
+storing converted file...
+Active grids: [&#39;regular&#39; &#39;topography&#39;]
+</pre></div>
+</div>
+<p>To be coherent with existing geological models, e.g. geological cross-sections by nagra, we adapt the coloring for units according to
+<a class="reference external" href="https://www.nagra.ch/data/documents/database/dokumente/$default/Default%20Folder/Publikationen/NTBs%202014%20-%202015/d_ntb14-02%20Dossier%20I.pdf">NTB 14-02</a> [5].
+For this, we create a color dictionary linking the units of the model to hex-color-codes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">col_dict</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;basement&#39;</span><span class="p">:</span> <span class="s1">&#39;#efad83&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;graben-fill&#39;</span><span class="p">:</span> <span class="s1">&#39;#97ca68&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Mittlerer-Muschelkalk&#39;</span><span class="p">:</span> <span class="s1">&#39;#f9ee3a&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Oberer-Muschelkalk&#39;</span><span class="p">:</span> <span class="s1">&#39;#ffcf59&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Keuper&#39;</span><span class="p">:</span> <span class="s1">&#39;#ffe19f&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Opalinuston&#39;</span><span class="p">:</span> <span class="s1">&#39;#7f76b4&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Dogger&#39;</span><span class="p">:</span> <span class="s1">&#39;#b0ac67&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Effinger-Schichten&#39;</span><span class="p">:</span> <span class="s1">&#39;#47c4e2&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Malm&#39;</span><span class="p">:</span> <span class="s1">&#39;#92d2ec&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;USM&#39;</span><span class="p">:</span> <span class="s1">&#39;#fbf379&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;OMM&#39;</span><span class="p">:</span> <span class="s1">&#39;#fbf379&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;BIH-Basement-N&#39;</span><span class="p">:</span> <span class="s1">&#39;#015482&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Fault-south&#39;</span><span class="p">:</span> <span class="s1">&#39;#4585a8&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Fault_Basement_A&#39;</span><span class="p">:</span> <span class="s1">&#39;#851515&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Vorwald_Basement&#39;</span><span class="p">:</span> <span class="s1">&#39;#b54343&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Jurathrust5&#39;</span><span class="p">:</span> <span class="s1">&#39;#5DA629&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Mandach&#39;</span><span class="p">:</span> <span class="s1">&#39;#408f09&#39;</span><span class="p">}</span>
+
+<span class="n">geo_model</span><span class="o">.</span><span class="n">surfaces</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">change_colors</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">col_dict</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<section id="visualize-the-data-distribution">
+<h2>Visualize the data distribution<a class="headerlink" href="#visualize-the-data-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The following plot shows the different interface and orientation data loaded in the previous cell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gp</span><span class="o">.</span><span class="n">plot_2d</span><span class="p">(</span><span class="n">geo_model</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_lith</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="Cell Number: mid Direction: z" class="sphx-glr-single-img" src="../_images/sphx_glr_Model_PCT_GemPy_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;gempy.plot.visualization_2d.Plot2D object at 0x000002184E3B0EB0&gt;
+</pre></div>
+</div>
+<p>The different colors in the plot represent the different model units. Circles represent the interface points, while arrows define the orientation of the respective surface in space.</p>
+<p>GemPy interpolates these input data in space using a universal co-kriging approach. Later on, we will set up the interpolator.</p>
+</section>
+<section id="setting-up-cross-sections-from-the-nagra-report">
+<h2>Setting up Cross sections from the Nagra Report<a class="headerlink" href="#setting-up-cross-sections-from-the-nagra-report" title="Permalink to this headline">¶</a></h2>
+<p>As stated before, next to GeoMol [6], we incorporate geological interpretations from four migrated seismic sections, the NAGRA report
+<a class="reference external" href="https://www.nagra.ch/data/documents/database/dokumente/$default/Default%20Folder/Publikationen/NTBs%202014%20-%202015/d_ntb14-02%20Dossier%20I.pdf">NTB 14-02</a>.
+For comparing the model results with the original interpretations, we define three cross sections in the model domain by specifying their start- and end-points and their resolution:</p>
+<p>set three sections which go roughly North South:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">section_dict</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;section4_3&#39;</span><span class="p">:([</span><span class="mi">2670826</span><span class="p">,</span><span class="mi">1268793</span><span class="p">],[</span><span class="mi">2676862</span><span class="p">,</span><span class="mi">1255579</span><span class="p">],[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">]),</span>
+                 <span class="s1">&#39;section4_4&#39;</span><span class="p">:([</span><span class="mi">2649021</span><span class="p">,</span><span class="mi">1267107</span><span class="p">],[</span><span class="mi">2659842</span><span class="p">,</span><span class="mi">1246715</span><span class="p">],[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">]),</span>
+                 <span class="s1">&#39;section4_8&#39;</span><span class="p">:([</span><span class="mi">2643284</span><span class="p">,</span><span class="mi">1259358</span><span class="p">],[</span><span class="mi">2680261</span><span class="p">,</span><span class="mi">1268521</span><span class="p">],[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">])}</span>
+<span class="n">geo_model</span><span class="o">.</span><span class="n">set_section_grid</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">section_dict</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Active grids: [&#39;regular&#39; &#39;topography&#39; &#39;sections&#39;]
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>start</th>
+      <th>stop</th>
+      <th>resolution</th>
+      <th>dist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>section4_3</th>
+      <td>[2670826, 1268793]</td>
+      <td>[2676862, 1255579]</td>
+      <td>[100, 100]</td>
+      <td>14527.322258</td>
+    </tr>
+    <tr>
+      <th>section4_4</th>
+      <td>[2649021, 1267107]</td>
+      <td>[2659842, 1246715]</td>
+      <td>[100, 100]</td>
+      <td>23085.226986</td>
+    </tr>
+    <tr>
+      <th>section4_8</th>
+      <td>[2643284, 1259358]</td>
+      <td>[2680261, 1268521]</td>
+      <td>[100, 100]</td>
+      <td>38095.394709</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<br /></section>
+<section id="display-model-information">
+<h2>Display Model Information<a class="headerlink" href="#display-model-information" title="Permalink to this headline">¶</a></h2>
+<p>In the following, we will go through model construction step-by-step. As an overview, we display the different units (here called <cite>surfaces</cite>) included in the model.
+Note that also faults are surfaces within this model context. Currently, they are not marked as faults, and GemPy would treat them as the base of another geological model unit.</p>
+<p>To clarify, we model the base of a unit volume. That is, everything above the base surface is the respective unit, until the next base surface is reached.
+In total, our model comprises 17 <cite>surfaces</cite>. Everything beneath is filled with the 18th surface, called <cite>basement</cite>.</p>
+<p>### Surfaces
+The majority of the structural features, i.e. normal- and thrust faults, are named following the names in GeoMol.
+Main features of the model is the asymetric graben system, with the major normal faults (<code class="code docutils literal notranslate"><span class="pre">Fault_Basement_A</span></code>, <code class="code docutils literal notranslate"><span class="pre">Fault-south</span></code>, <code class="code docutils literal notranslate"><span class="pre">BIH-Basement-N</span></code>),
+and the graben fill, which is not present beyond the graben shoulders, unless where it is inferred.
+This, as well as the stop of major normal faults beneath the mesozoic units (the base of <code class="code docutils literal notranslate"><span class="pre">Mittlerer-Muschelkalk</span></code>) are important considerations for the modeling process.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geo_model</span><span class="o">.</span><span class="n">surfaces</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<style  type="text/css" >
+    #T_3117ed7d_3735_11ec_9985_00e04c6800carow0_col3 {
+            background-color:  #015482;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow1_col3 {
+            background-color:  #b0ac67;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow2_col3 {
+            background-color:  #47c4e2;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow3_col3 {
+            background-color:  #851515;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow4_col3 {
+            background-color:  #4585a8;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow5_col3 {
+            background-color:  #5DA629;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow6_col3 {
+            background-color:  #ffe19f;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow7_col3 {
+            background-color:  #92d2ec;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow8_col3 {
+            background-color:  #408f09;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow9_col3 {
+            background-color:  #f9ee3a;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow10_col3 {
+            background-color:  #ffcf59;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow11_col3 {
+            background-color:  #fbf379;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow12_col3 {
+            background-color:  #7f76b4;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow13_col3 {
+            background-color:  #fbf379;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow14_col3 {
+            background-color:  #b54343;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow15_col3 {
+            background-color:  #97ca68;
+        }    #T_3117ed7d_3735_11ec_9985_00e04c6800carow16_col3 {
+            background-color:  #efad83;
+        }</style><table id="T_3117ed7d_3735_11ec_9985_00e04c6800ca" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
+                <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row0" class="row_heading level0 row0" >0</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow0_col0" class="data row0 col0" >BIH-Basement-N</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow0_col1" class="data row0 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow0_col2" class="data row0 col2" >1</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow0_col3" class="data row0 col3" >#015482</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow0_col4" class="data row0 col4" >1</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row1" class="row_heading level0 row1" >1</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow1_col0" class="data row1 col0" >Dogger</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow1_col1" class="data row1 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow1_col2" class="data row1 col2" >2</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow1_col3" class="data row1 col3" >#b0ac67</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow1_col4" class="data row1 col4" >2</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row2" class="row_heading level0 row2" >2</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow2_col0" class="data row2 col0" >Effinger-Schichten</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow2_col1" class="data row2 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow2_col2" class="data row2 col2" >3</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow2_col3" class="data row2 col3" >#47c4e2</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow2_col4" class="data row2 col4" >3</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row3" class="row_heading level0 row3" >3</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow3_col0" class="data row3 col0" >Fault_Basement_A</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow3_col1" class="data row3 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow3_col2" class="data row3 col2" >4</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow3_col3" class="data row3 col3" >#851515</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow3_col4" class="data row3 col4" >4</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row4" class="row_heading level0 row4" >4</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow4_col0" class="data row4 col0" >Fault-south</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow4_col1" class="data row4 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow4_col2" class="data row4 col2" >5</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow4_col3" class="data row4 col3" >#4585a8</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow4_col4" class="data row4 col4" >5</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row5" class="row_heading level0 row5" >5</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow5_col0" class="data row5 col0" >Jurathrust5</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow5_col1" class="data row5 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow5_col2" class="data row5 col2" >6</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow5_col3" class="data row5 col3" >#5DA629</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow5_col4" class="data row5 col4" >6</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row6" class="row_heading level0 row6" >6</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow6_col0" class="data row6 col0" >Keuper</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow6_col1" class="data row6 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow6_col2" class="data row6 col2" >7</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow6_col3" class="data row6 col3" >#ffe19f</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow6_col4" class="data row6 col4" >7</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row7" class="row_heading level0 row7" >7</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow7_col0" class="data row7 col0" >Malm</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow7_col1" class="data row7 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow7_col2" class="data row7 col2" >8</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow7_col3" class="data row7 col3" >#92d2ec</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow7_col4" class="data row7 col4" >8</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row8" class="row_heading level0 row8" >8</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow8_col0" class="data row8 col0" >Mandach</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow8_col1" class="data row8 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow8_col2" class="data row8 col2" >9</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow8_col3" class="data row8 col3" >#408f09</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow8_col4" class="data row8 col4" >9</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row9" class="row_heading level0 row9" >9</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow9_col0" class="data row9 col0" >Mittlerer-Muschelkalk</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow9_col1" class="data row9 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow9_col2" class="data row9 col2" >10</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow9_col3" class="data row9 col3" >#f9ee3a</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow9_col4" class="data row9 col4" >10</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row10" class="row_heading level0 row10" >10</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow10_col0" class="data row10 col0" >Oberer-Muschelkalk</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow10_col1" class="data row10 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow10_col2" class="data row10 col2" >11</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow10_col3" class="data row10 col3" >#ffcf59</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow10_col4" class="data row10 col4" >11</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row11" class="row_heading level0 row11" >11</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow11_col0" class="data row11 col0" >OMM</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow11_col1" class="data row11 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow11_col2" class="data row11 col2" >12</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow11_col3" class="data row11 col3" >#fbf379</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow11_col4" class="data row11 col4" >12</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row12" class="row_heading level0 row12" >12</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow12_col0" class="data row12 col0" >Opalinuston</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow12_col1" class="data row12 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow12_col2" class="data row12 col2" >13</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow12_col3" class="data row12 col3" >#7f76b4</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow12_col4" class="data row12 col4" >13</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row13" class="row_heading level0 row13" >13</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow13_col0" class="data row13 col0" >USM</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow13_col1" class="data row13 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow13_col2" class="data row13 col2" >14</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow13_col3" class="data row13 col3" >#fbf379</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow13_col4" class="data row13 col4" >14</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row14" class="row_heading level0 row14" >14</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow14_col0" class="data row14 col0" >Vorwald_Basement</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow14_col1" class="data row14 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow14_col2" class="data row14 col2" >15</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow14_col3" class="data row14 col3" >#b54343</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow14_col4" class="data row14 col4" >15</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row15" class="row_heading level0 row15" >15</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow15_col0" class="data row15 col0" >graben-fill</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow15_col1" class="data row15 col1" >Default series</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow15_col2" class="data row15 col2" >16</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow15_col3" class="data row15 col3" >#97ca68</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow15_col4" class="data row15 col4" >16</td>
+            </tr>
+            <tr>
+                        <th id="T_3117ed7d_3735_11ec_9985_00e04c6800calevel0_row16" class="row_heading level0 row16" >16</th>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow16_col0" class="data row16 col0" >basement</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow16_col1" class="data row16 col1" >Basement</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow16_col2" class="data row16 col2" >1</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow16_col3" class="data row16 col3" >#efad83</td>
+                        <td id="T_3117ed7d_3735_11ec_9985_00e04c6800carow16_col4" class="data row16 col4" >17</td>
+            </tr>
+    </tbody></table>
+</div>
+<br />
+<br /></section>
+<section id="characteristics">
+<h2>Characteristics<a class="headerlink" href="#characteristics" title="Permalink to this headline">¶</a></h2>
+<p>One characteristic seen in the table above, is that all surfaces are assigned to a <code class="code docutils literal notranslate"><span class="pre">series</span></code> called <code class="code docutils literal notranslate"><span class="pre">Default</span> <span class="pre">series</span></code>.
+A _series_ in GemPy indicates whether units should be interpolated using the same parameters. That is, all <code class="code docutils literal notranslate"><span class="pre">surfaces</span></code> within the same <code class="code docutils literal notranslate"><span class="pre">series</span></code> will be sub-parallel.
+Thus, surfaces have to be grouped into different series, depending on their geometry in space. For instance, sub-parallel layers of a sedimentary sequence should be grouped in the same series,
+while an unconformity, or a fault should be assorted to its own series.</p>
+<p>In this model, we group the majority of mesozoic and cenozoic units in one series, called <code class="code docutils literal notranslate"><span class="pre">Post_graben_series</span></code>. Only the mesozoic surface <code class="code docutils literal notranslate"><span class="pre">Mittlerer-Muschelkalk</span></code> will be assigned its own
+series, as it forms the basal detachement of the Jura Mountains. Palaeozoic graben sediments are also assigned its own series.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assign formations to series</span>
+<span class="n">gp</span><span class="o">.</span><span class="n">map_series_to_surfaces</span><span class="p">(</span><span class="n">geo_model</span><span class="p">,</span>
+                         <span class="p">{</span><span class="s2">&quot;Thrust_Mandach&quot;</span><span class="p">:</span> <span class="s1">&#39;Mandach&#39;</span><span class="p">,</span>
+                          <span class="s2">&quot;Thrust_Jura&quot;</span><span class="p">:</span> <span class="s1">&#39;Jurathrust5&#39;</span><span class="p">,</span>
+                          <span class="c1">#&quot;Thrust_Jura6&quot;: &#39;Jurathrust6&#39;, #(&#39;Jurathrust4&#39;, &#39;Jurathrust5&#39;, &#39;Jurathrust6&#39;),</span>
+                          <span class="s2">&quot;Fault_north_series&quot;</span><span class="p">:</span> <span class="s1">&#39;Fault_Basement_A&#39;</span><span class="p">,</span>
+                          <span class="s2">&quot;Fault_south_series&quot;</span><span class="p">:</span> <span class="s1">&#39;Fault-south&#39;</span><span class="p">,</span>
+                          <span class="s2">&quot;Vorwald_series&quot;</span><span class="p">:</span> <span class="s1">&#39;Vorwald_Basement&#39;</span><span class="p">,</span>
+                          <span class="s2">&quot;BIH_series&quot;</span><span class="p">:</span> <span class="s1">&#39;BIH-Basement-N&#39;</span><span class="p">,</span>
+                          <span class="s2">&quot;Fault_north_series&quot;</span><span class="p">:</span> <span class="s1">&#39;Fault_Basement_A&#39;</span><span class="p">,</span>
+                          <span class="s2">&quot;Fault_south_series&quot;</span><span class="p">:</span> <span class="s1">&#39;Fault-south&#39;</span><span class="p">,</span>
+                         <span class="s2">&quot;Post_graben_series&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;OMM&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;USM&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Malm&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Effinger-Schichten&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Dogger&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Opalinuston&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Keuper&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Oberer-Muschelkalk&#39;</span><span class="p">),</span>
+                          <span class="s2">&quot;Detachement&quot;</span><span class="p">:</span> <span class="s1">&#39;Mittlerer-Muschelkalk&#39;</span><span class="p">,</span>
+                         <span class="s2">&quot;Graben_series&quot;</span><span class="p">:</span> <span class="s1">&#39;graben-fill&#39;</span><span class="p">},</span>
+                         <span class="n">remove_unused_series</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">geo_model</span><span class="o">.</span><span class="n">surfaces</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<style  type="text/css" >
+    #T_313bf00d_3735_11ec_a766_00e04c6800carow0_col3 {
+            background-color:  #408f09;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow1_col3 {
+            background-color:  #5DA629;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow2_col3 {
+            background-color:  #851515;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow3_col3 {
+            background-color:  #4585a8;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow4_col3 {
+            background-color:  #b54343;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow5_col3 {
+            background-color:  #015482;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow6_col3 {
+            background-color:  #b0ac67;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow7_col3 {
+            background-color:  #47c4e2;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow8_col3 {
+            background-color:  #ffe19f;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow9_col3 {
+            background-color:  #92d2ec;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow10_col3 {
+            background-color:  #ffcf59;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow11_col3 {
+            background-color:  #fbf379;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow12_col3 {
+            background-color:  #7f76b4;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow13_col3 {
+            background-color:  #fbf379;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow14_col3 {
+            background-color:  #f9ee3a;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow15_col3 {
+            background-color:  #97ca68;
+        }    #T_313bf00d_3735_11ec_a766_00e04c6800carow16_col3 {
+            background-color:  #efad83;
+        }</style><table id="T_313bf00d_3735_11ec_a766_00e04c6800ca" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >surface</th>        <th class="col_heading level0 col1" >series</th>        <th class="col_heading level0 col2" >order_surfaces</th>        <th class="col_heading level0 col3" >color</th>        <th class="col_heading level0 col4" >id</th>    </tr></thead><tbody>
+                <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row0" class="row_heading level0 row0" >8</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow0_col0" class="data row0 col0" >Mandach</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow0_col1" class="data row0 col1" >Thrust_Mandach</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow0_col2" class="data row0 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow0_col3" class="data row0 col3" >#408f09</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow0_col4" class="data row0 col4" >1</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row1" class="row_heading level0 row1" >5</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow1_col0" class="data row1 col0" >Jurathrust5</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow1_col1" class="data row1 col1" >Thrust_Jura</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow1_col2" class="data row1 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow1_col3" class="data row1 col3" >#5DA629</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow1_col4" class="data row1 col4" >2</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row2" class="row_heading level0 row2" >3</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow2_col0" class="data row2 col0" >Fault_Basement_A</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow2_col1" class="data row2 col1" >Fault_north_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow2_col2" class="data row2 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow2_col3" class="data row2 col3" >#851515</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow2_col4" class="data row2 col4" >3</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row3" class="row_heading level0 row3" >4</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow3_col0" class="data row3 col0" >Fault-south</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow3_col1" class="data row3 col1" >Fault_south_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow3_col2" class="data row3 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow3_col3" class="data row3 col3" >#4585a8</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow3_col4" class="data row3 col4" >4</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row4" class="row_heading level0 row4" >14</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow4_col0" class="data row4 col0" >Vorwald_Basement</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow4_col1" class="data row4 col1" >Vorwald_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow4_col2" class="data row4 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow4_col3" class="data row4 col3" >#b54343</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow4_col4" class="data row4 col4" >5</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row5" class="row_heading level0 row5" >0</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow5_col0" class="data row5 col0" >BIH-Basement-N</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow5_col1" class="data row5 col1" >BIH_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow5_col2" class="data row5 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow5_col3" class="data row5 col3" >#015482</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow5_col4" class="data row5 col4" >6</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row6" class="row_heading level0 row6" >1</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow6_col0" class="data row6 col0" >Dogger</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow6_col1" class="data row6 col1" >Post_graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow6_col2" class="data row6 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow6_col3" class="data row6 col3" >#b0ac67</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow6_col4" class="data row6 col4" >7</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row7" class="row_heading level0 row7" >2</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow7_col0" class="data row7 col0" >Effinger-Schichten</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow7_col1" class="data row7 col1" >Post_graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow7_col2" class="data row7 col2" >2</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow7_col3" class="data row7 col3" >#47c4e2</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow7_col4" class="data row7 col4" >8</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row8" class="row_heading level0 row8" >6</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow8_col0" class="data row8 col0" >Keuper</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow8_col1" class="data row8 col1" >Post_graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow8_col2" class="data row8 col2" >3</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow8_col3" class="data row8 col3" >#ffe19f</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow8_col4" class="data row8 col4" >9</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row9" class="row_heading level0 row9" >7</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow9_col0" class="data row9 col0" >Malm</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow9_col1" class="data row9 col1" >Post_graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow9_col2" class="data row9 col2" >4</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow9_col3" class="data row9 col3" >#92d2ec</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow9_col4" class="data row9 col4" >10</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row10" class="row_heading level0 row10" >10</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow10_col0" class="data row10 col0" >Oberer-Muschelkalk</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow10_col1" class="data row10 col1" >Post_graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow10_col2" class="data row10 col2" >5</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow10_col3" class="data row10 col3" >#ffcf59</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow10_col4" class="data row10 col4" >11</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row11" class="row_heading level0 row11" >11</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow11_col0" class="data row11 col0" >OMM</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow11_col1" class="data row11 col1" >Post_graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow11_col2" class="data row11 col2" >6</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow11_col3" class="data row11 col3" >#fbf379</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow11_col4" class="data row11 col4" >12</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row12" class="row_heading level0 row12" >12</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow12_col0" class="data row12 col0" >Opalinuston</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow12_col1" class="data row12 col1" >Post_graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow12_col2" class="data row12 col2" >7</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow12_col3" class="data row12 col3" >#7f76b4</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow12_col4" class="data row12 col4" >13</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row13" class="row_heading level0 row13" >13</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow13_col0" class="data row13 col0" >USM</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow13_col1" class="data row13 col1" >Post_graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow13_col2" class="data row13 col2" >8</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow13_col3" class="data row13 col3" >#fbf379</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow13_col4" class="data row13 col4" >14</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row14" class="row_heading level0 row14" >9</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow14_col0" class="data row14 col0" >Mittlerer-Muschelkalk</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow14_col1" class="data row14 col1" >Detachement</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow14_col2" class="data row14 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow14_col3" class="data row14 col3" >#f9ee3a</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow14_col4" class="data row14 col4" >15</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row15" class="row_heading level0 row15" >15</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow15_col0" class="data row15 col0" >graben-fill</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow15_col1" class="data row15 col1" >Graben_series</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow15_col2" class="data row15 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow15_col3" class="data row15 col3" >#97ca68</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow15_col4" class="data row15 col4" >16</td>
+            </tr>
+            <tr>
+                        <th id="T_313bf00d_3735_11ec_a766_00e04c6800calevel0_row16" class="row_heading level0 row16" >16</th>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow16_col0" class="data row16 col0" >basement</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow16_col1" class="data row16 col1" >Basement</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow16_col2" class="data row16 col2" >1</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow16_col3" class="data row16 col3" >#efad83</td>
+                        <td id="T_313bf00d_3735_11ec_a766_00e04c6800carow16_col4" class="data row16 col4" >17</td>
+            </tr>
+    </tbody></table>
+</div>
+<br />
+<br /></section>
+<section id="define-faults">
+<h2>Define Faults<a class="headerlink" href="#define-faults" title="Permalink to this headline">¶</a></h2>
+<p>To distinguish between lithological units and faults, we have to assign which series are faults. Faults can be infinite, i.e. have the same displacement throughout the model space, or they can be
+finite, meaning displacement will be less towards the fault edges (which are defined by the extent of interface points used as input).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geo_model</span><span class="o">.</span><span class="n">set_is_fault</span><span class="p">([</span><span class="s1">&#39;Thrust_Mandach&#39;</span><span class="p">,</span> <span class="s1">&#39;Thrust_Jura&#39;</span><span class="p">,</span> <span class="s1">&#39;Fault_north_series&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Fault_south_series&#39;</span><span class="p">,</span> <span class="s1">&#39;Vorwald_series&#39;</span><span class="p">,</span> <span class="s1">&#39;BIH_series&#39;</span><span class="p">],</span>
+                      <span class="n">change_color</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">geo_model</span><span class="o">.</span><span class="n">set_is_finite_fault</span><span class="p">(</span><span class="n">series_fault</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;BIH_series&#39;</span><span class="p">,</span> <span class="s1">&#39;Vorwald_series&#39;</span><span class="p">],</span>
+                              <span class="n">toggle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_series</th>
+      <th>BottomRelation</th>
+      <th>isActive</th>
+      <th>isFault</th>
+      <th>isFinite</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Thrust_Mandach</th>
+      <td>1</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Thrust_Jura</th>
+      <td>2</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Fault_north_series</th>
+      <td>3</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Fault_south_series</th>
+      <td>4</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Vorwald_series</th>
+      <td>5</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>BIH_series</th>
+      <td>6</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Post_graben_series</th>
+      <td>7</td>
+      <td>Erosion</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Detachement</th>
+      <td>8</td>
+      <td>Erosion</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Graben_series</th>
+      <td>9</td>
+      <td>Erosion</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Basement</th>
+      <td>10</td>
+      <td>Erosion</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<br /></section>
+<section id="bottom-relation">
+<h2>Bottom relation<a class="headerlink" href="#bottom-relation" title="Permalink to this headline">¶</a></h2>
+<p>To set whether a surface is eroding or not, we can set a series’ <cite>bottom_relation</cite>. Per default, it is set to <cite>Erosion</cite>, meaning the base of a younger surface (higher up in the stratigraphic pile)
+will cut through older surfaces. Setting the <cite>bottom_relation</cite> to <cite>Onlap</cite> will cause the opposite, i.e. younger surfaces stop on older ones.
+We set the _Graben_series_ to onlap, as most of it is only present in the graben, i.e. hanging wall of the normal faults, but not in the foot wall.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geo_model</span><span class="o">.</span><span class="n">set_bottom_relation</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Graben_series&#39;</span><span class="p">],</span> <span class="n">bottom_relation</span><span class="o">=</span><span class="s1">&#39;Onlap&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_series</th>
+      <th>BottomRelation</th>
+      <th>isActive</th>
+      <th>isFault</th>
+      <th>isFinite</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Thrust_Mandach</th>
+      <td>1</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Thrust_Jura</th>
+      <td>2</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Fault_north_series</th>
+      <td>3</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Fault_south_series</th>
+      <td>4</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Vorwald_series</th>
+      <td>5</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>BIH_series</th>
+      <td>6</td>
+      <td>Fault</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Post_graben_series</th>
+      <td>7</td>
+      <td>Erosion</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Detachement</th>
+      <td>8</td>
+      <td>Erosion</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Graben_series</th>
+      <td>9</td>
+      <td>Onlap</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Basement</th>
+      <td>10</td>
+      <td>Erosion</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<br /></section>
+<section id="define-fault-relations">
+<h2>Define Fault relations<a class="headerlink" href="#define-fault-relations" title="Permalink to this headline">¶</a></h2>
+<p>With cross-cutting faults, we need to define fault relations, i.e. which fault stops at which. This is important, as some normal faults stop at others, e.g. <code class="code docutils literal notranslate"><span class="pre">BIH_Series</span></code> stops at
+<code class="code docutils literal notranslate"><span class="pre">Fault_south_series</span></code>. Fault relations are set in a matrix, where <code class="code docutils literal notranslate"><span class="pre">True</span></code> sets that one fault stops at the other. If set to <code class="code docutils literal notranslate"><span class="pre">False</span></code> (the default), faults cross-cut each other
+without any effects.</p>
+<p>Further, fault relations are used to define whether a fault displaces lithological series, or not. Per default, all faults displace the lithological series, but not other faults.
+This can be seen, if we plot the <code class="code docutils literal notranslate"><span class="pre">fault_relations</span></code> matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geo_model</span><span class="o">.</span><span class="n">faults</span><span class="o">.</span><span class="n">faults_relations_df</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Thrust_Mandach</th>
+      <th>Thrust_Jura</th>
+      <th>Fault_north_series</th>
+      <th>Fault_south_series</th>
+      <th>Vorwald_series</th>
+      <th>BIH_series</th>
+      <th>Post_graben_series</th>
+      <th>Detachement</th>
+      <th>Graben_series</th>
+      <th>Basement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Thrust_Mandach</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Thrust_Jura</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Fault_north_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Fault_south_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Vorwald_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>BIH_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Post_graben_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Detachement</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Graben_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Basement</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>We know that faults do not affect all lithological series equally. For instance, thrusts will not affect the paleozoic sediments filling the graben.
+Just as the mesozoic units are not affected by the normal faults. Thus we set up a fault relation matrix, considering:</p>
+<ul class="simple">
+<li><p>thrusts only affect Mesozoic units</p></li>
+<li><p>normal faults only affect Basement, Graben_series</p></li>
+<li><p>normal faults stop at thrusts</p></li>
+</ul>
+<p>We can update the fault relations by creating a boolean matrix of shape similar to <code class="code docutils literal notranslate"><span class="pre">faults_relations_df</span></code>, to assign which fault displaces which unit, etc. Then we use this
+boolean matrix to set fault relations using the <code class="code docutils literal notranslate"><span class="pre">set_fault_relation()</span></code> method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fr</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">False</span><span class="p">,</span>  <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+               <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">]])</span>
+<span class="n">geo_model</span><span class="o">.</span><span class="n">set_fault_relation</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fr</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Thrust_Mandach</th>
+      <th>Thrust_Jura</th>
+      <th>Fault_north_series</th>
+      <th>Fault_south_series</th>
+      <th>Vorwald_series</th>
+      <th>BIH_series</th>
+      <th>Post_graben_series</th>
+      <th>Detachement</th>
+      <th>Graben_series</th>
+      <th>Basement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Thrust_Mandach</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Thrust_Jura</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Fault_north_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Fault_south_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Vorwald_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>BIH_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Post_graben_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Detachement</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Graben_series</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Basement</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Remember when we had a look at the input data and briefly mentioned the interpolator? We now set the interpolator function for the underlying co-kriging interpolation using theano:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gp</span><span class="o">.</span><span class="n">set_interpolator</span><span class="p">(</span><span class="n">geo_model</span><span class="p">,</span>
+                         <span class="n">compile_theano</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">theano_optimizer</span><span class="o">=</span><span class="s1">&#39;fast_compile&#39;</span><span class="p">,</span>
+                         <span class="n">verbose</span><span class="o">=</span><span class="p">[])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Setting kriging parameters to their default values.
+Compiling theano function...
+Level of Optimization:  fast_compile
+Device:  cpu
+Precision:  float64
+Number of faults:  6
+Compilation Done!
+Kriging values:
+                                          values
+range                                   57436.9
+$C_o$                               7.85476e+07
+drift equations  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+&lt;gempy.core.interpolator.InterpolatorModel object at 0x000002184E41ABE0&gt;
+</pre></div>
+</div>
+</section>
+<section id="creating-the-model">
+<h2>Creating the model<a class="headerlink" href="#creating-the-model" title="Permalink to this headline">¶</a></h2>
+<p>Now that we set the parameters and fault relations, it is time to start the modeling process. In Gempy, this is done using a single function <code class="code docutils literal notranslate"><span class="pre">gempy.comput_model</span></code> giving the prepared _geo_model_
+as input.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">compute_model</span><span class="p">(</span><span class="n">geo_model</span><span class="p">,</span> <span class="n">compute_mesh</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\gempy\core\solution.py:174: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  self.geological_map = np.array(
+C:\Users\brigg\miniconda3\envs\env_gempy38\lib\site-packages\gempy\core\solution.py:179: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  self.sections = np.array(
+</pre></div>
+</div>
+<p>For comparing model results with geological interpretations of the aforementioned seismic sections, we plot the model units on top of the seismic profiles.
+Profiles 4.3 and 4.4 (nomenclature is taken from [1]) strike across the graben axis, while profile 4.8 goes roughly along the graben.</p>
+<p>In the following plot, we model all profiles with the resulting geological grid, in the order from left to right: Profile 4.3, Profile 4.4, Profile 4.8.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gp</span><span class="o">.</span><span class="n">plot_2d</span><span class="p">(</span><span class="n">geo_model</span><span class="p">,</span> <span class="n">section_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">section_dict</span></a><span class="p">),</span> <span class="n">show_block</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+          <span class="n">show_topography</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="section4_3, section4_4, section4_8" class="sphx-glr-single-img" src="../_images/sphx_glr_Model_PCT_GemPy_002.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;gempy.plot.visualization_2d.Plot2D object at 0x00000218508B32B0&gt;
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">[1]: Naef, H., and Madritsch, H.: Tektonische Karte des Nordschweizer Permokarbontrogs: Aktualisierung basierend auf 2D-Seismik und Schweredaten. Nagra Arbeitsbericht NAB 14-017, (2014).</div>
+<div class="line">[2]: Gmünder, C., Malaguerra, F., Nusch, S., &amp; Traber, D.: Regional Hydrogeo-logical Model of Northern Switzerland. Nagra Arbeitsbericht NAB, 13-23, (2014).</div>
+<div class="line">[3]: Luo, J., Monninkhoff, B., Becker J.K.: Hydrogeological model Jura Ost. Nagra Arbeitsbericht NAB, 13-26, (2014).</div>
+<div class="line">[4]: de la Varga, M., Schaaf, A., and Wellmann, F.: GemPy 1.0: Open-source stochastic geological modeling and inversion. Geoscientific Model Development, 12(1), (2019), 1. doi:http://dx.doi.org/10.5194/gmd-12-1-2019.</div>
+<div class="line">[5]: Gautschi, A., &amp; Zuidema, P. (ed): Nagra technical report 14-02, geological basics-Dossier I-Introduction and summary; SGT Etappe 2: Vorschlag weiter zu untersuchender geologischer Standortgebiete mit zugehörigen Standortarealen für die Oberflächenanlage–Geologische Grundlagen–Dossier I–Einleitung und Zusammenfassung, (2014).</div>
+<div class="line">[6]: GeoMol Team (2015): GeoMol – Assessing subsurface potentials of the Alpine Foreland Basins for sustainable planning and use of natural resources – Project Report, 188 pp. (Augsburg, LfU).</div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  2.378 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-model-pct-gempy-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/ef56488488549f3033473dafaad12849/Model_PCT_GemPy.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Model_PCT_GemPy.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/c5a09e5c99cba88b0ab1f7d8193baa96/Model_PCT_GemPy.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Model_PCT_GemPy.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/ps_aargau_logo_200px.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">Pilot Study Geothermie Aargau</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Japhiolite&repo=PSGeothermieAargau&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../the_project.html">The project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">OpenWF</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Galleries:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../WP1-data_analysis/index.html">Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../WP2-geo_modeling/index.html">Geological Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../WP3-heat_transport/index.html">Heat Transport Model</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019 - 2021, Jan Niederau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Examples/Model_PCT_GemPy.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
