@@ -9,10 +9,10 @@ Examples using ``matplotlib.pyplot.contourf``
 
 .. only:: html
 
- .. figure:: /Tutorials/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
+ .. figure:: /Tutorials/images/thumb/sphx_glr_04_POC-HFD_calculation_thumb.png
      :alt: 04 - Analysis of SHEMAT-Suite models
 
-     :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`
+     :ref:`sphx_glr_Tutorials_04_POC-HFD_calculation.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``matplotlib.pyplot.contourf``
 
 .. only:: not html
 
- * :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`
+ * :ref:`sphx_glr_Tutorials_04_POC-HFD_calculation.py`
