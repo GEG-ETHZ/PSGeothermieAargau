@@ -39,8 +39,12 @@
             
   <section id="open-workflow-tutorial">
 <span id="sphx-glr-tutorials"></span><h1>Open WorkFlow Tutorial<a class="headerlink" href="#open-workflow-tutorial" title="Permalink to this headline">¶</a></h1>
-<p>Below are examples on the postprocessing of heat transport simulations carried out with <a class="reference external" href="https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home">SHEMAT-Suite</a> on geological
-models which were generated with GemPy. The examples use the POC model built in the gallery of work package 2 <span class="xref std std-ref">POC Model generation</span>.</p>
+<p>Below are examples on the workflow developed in the project PS Aargau. The examples are divided in 4 successive steps. First, a geological model is created and its gravity signal is calculated
+at defined locations of hypothetical measuring stations. Then, we vary the depth of the graben units and compute a small ensemble of 10 geological models, each with simulated gravity
+at the specified locations. Then we transfer these ensemble to SHEMAT-Suite models for simulating the heat transport in each of the ensemble members. Then, we present some
+postprocessing of heat transport simulations carried out with <a class="reference external" href="https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home">SHEMAT-Suite</a> on the geological
+models which were generated with GemPy.
+Finally, in an example we show an approach of conditioning the ensemble using simulated gravity and temeprature and their comparison to the “measured” quantities.</p>
 <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem..."><figure class="align-default" id="id1">
 <img alt="01 - Geological model creation and gravity simulation" src="../_images/sphx_glr_01_POC_generate-model_thumb.png" />
 <figcaption>
@@ -65,18 +69,18 @@ models which were generated with GemPy. The examples use the POC model built in 
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS..."><figure class="align-default" id="id4">
-<img alt="Export a GemPy Model to MOOSE" src="../_images/sphx_glr_Export_MOOSE_thumb.png" />
+<div class="sphx-glr-thumbcontainer" tooltip="04 - Analysis of SHEMAT-Suite models"><figure class="align-default" id="id4">
+<img alt="04 - Analysis of SHEMAT-Suite models" src="../_images/sphx_glr_04_POC-HFD_calculation_thumb.png" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="Export_MOOSE.html#sphx-glr-tutorials-export-moose-py"><span class="std std-ref">Export a GemPy Model to MOOSE</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="04_POC-HFD_calculation.html#sphx-glr-tutorials-04-poc-hfd-calculation-py"><span class="std std-ref">04 - Analysis of SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="04 - Analysis of SHEMAT-Suite models"><figure class="align-default" id="id5">
-<img alt="04 - Analysis of SHEMAT-Suite models" src="../_images/sphx_glr_POC-HFD_calculation_thumb.png" />
+<div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS..."><figure class="align-default" id="id5">
+<img alt="Export a GemPy Model to MOOSE" src="../_images/sphx_glr_Export_MOOSE_thumb.png" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="POC-HFD_calculation.html#sphx-glr-tutorials-poc-hfd-calculation-py"><span class="std std-ref">04 - Analysis of SHEMAT-Suite models</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="Export_MOOSE.html#sphx-glr-tutorials-export-moose-py"><span class="std std-ref">Export a GemPy Model to MOOSE</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
@@ -125,8 +129,8 @@ models which were generated with GemPy. The examples use the POC model built in 
 <li class="toctree-l2"><a class="reference internal" href="01_POC_generate-model.html#simulate-gravity">Simulate Gravity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_POC_create-MC-ensemble.html">02 - Monte Carlo simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_POC_export-SHEMAT.html">03 - Create SHEMAT-Suite models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_POC-HFD_calculation.html">04 - Analysis of SHEMAT-Suite models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Export_MOOSE.html">Export a GemPy Model to MOOSE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="POC-HFD_calculation.html">04 - Analysis of SHEMAT-Suite models</a></li>
 </ul>
 </li>
 </ul>
