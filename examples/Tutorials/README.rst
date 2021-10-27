@@ -1,4 +1,4 @@
-Heat Transport Model
+Open WorkFlow Tutorial
 ================
 
 Below are examples on the postprocessing of heat transport simulations carried out with `SHEMAT-Suite <https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home>`_ on geological
