@@ -36,9 +36,8 @@ More info can be found at the `GEG-project website <https://geg.ethz.ch/project-
    :maxdepth: 2
    :caption: Galleries:
    
-   WP1-data_analysis/index
-   WP2-geo_modeling/index
-   WP3-heat_transport/index
+   Examples/index
+   Tutorials/index
 
 
 Indices and tables
