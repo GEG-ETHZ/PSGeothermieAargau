@@ -9,10 +9,10 @@ Examples using ``matplotlib.pyplot.title``
 
 .. only:: html
 
- .. figure:: /WP3-heat_transport/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
+ .. figure:: /Tutorials/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
      :alt: Analysis of SHEMAT-Suite models
 
-     :ref:`sphx_glr_WP3-heat_transport_POC-HFD_calculation.py`
+     :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``matplotlib.pyplot.title``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP3-heat_transport_POC-HFD_calculation.py`
+ * :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`

@@ -9,10 +9,10 @@ Examples using ``matplotlib.pyplot.show``
 
 .. only:: html
 
- .. figure:: /WP1-data_analysis/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
+ .. figure:: /Examples/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
      :alt: Temperature database usage
 
-     :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py`
+     :ref:`sphx_glr_Examples_WP01_borehole_database.py`
 
 .. raw:: html
 
@@ -20,7 +20,7 @@ Examples using ``matplotlib.pyplot.show``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py`
+ * :ref:`sphx_glr_Examples_WP01_borehole_database.py`
 
 .. raw:: html
 
@@ -28,10 +28,10 @@ Examples using ``matplotlib.pyplot.show``
 
 .. only:: html
 
- .. figure:: /WP3-heat_transport/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
+ .. figure:: /Tutorials/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
      :alt: Analysis of SHEMAT-Suite models
 
-     :ref:`sphx_glr_WP3-heat_transport_POC-HFD_calculation.py`
+     :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`
 
 .. raw:: html
 
@@ -39,4 +39,4 @@ Examples using ``matplotlib.pyplot.show``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP3-heat_transport_POC-HFD_calculation.py`
+ * :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`

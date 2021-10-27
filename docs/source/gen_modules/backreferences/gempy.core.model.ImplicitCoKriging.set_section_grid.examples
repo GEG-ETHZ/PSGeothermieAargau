@@ -9,10 +9,10 @@ Examples using ``gempy.core.model.ImplicitCoKriging.set_section_grid``
 
 .. only:: html
 
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_Model_PCT_GemPy_thumb.png
+ .. figure:: /Examples/images/thumb/sphx_glr_Model_PCT_GemPy_thumb.png
      :alt: Create a 3D model of a Permo-Carboniferous Trough (PCT)
 
-     :ref:`sphx_glr_WP2-geo_modeling_Model_PCT_GemPy.py`
+     :ref:`sphx_glr_Examples_Model_PCT_GemPy.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``gempy.core.model.ImplicitCoKriging.set_section_grid``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2-geo_modeling_Model_PCT_GemPy.py`
+ * :ref:`sphx_glr_Examples_Model_PCT_GemPy.py`

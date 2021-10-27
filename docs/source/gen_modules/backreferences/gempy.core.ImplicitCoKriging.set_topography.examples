@@ -5,14 +5,14 @@ Examples using ``gempy.core.ImplicitCoKriging.set_topography``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem...">
+    <div class="sphx-glr-thumbcontainer" tooltip="Based on four seismic sections from the NAGRA report  `NAGRA NTB 14-02 &lt;https://www.nagra.ch/da...">
 
 .. only:: html
 
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
+ .. figure:: /Examples/images/thumb/sphx_glr_Model_PCT_GemPy_thumb.png
+     :alt: Create a 3D model of a Permo-Carboniferous Trough (PCT)
 
-     :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
+     :ref:`sphx_glr_Examples_Model_PCT_GemPy.py`
 
 .. raw:: html
 
@@ -20,4 +20,23 @@ Examples using ``gempy.core.ImplicitCoKriging.set_topography``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
+ * :ref:`sphx_glr_Examples_Model_PCT_GemPy.py`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem...">
+
+.. only:: html
+
+ .. figure:: /Tutorials/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
+     :alt: Geological model creation and gravity simulation
+
+     :ref:`sphx_glr_Tutorials_01_POC_generate-model.py`
+
+.. raw:: html
+
+    </div>
+
+.. only:: not html
+
+ * :ref:`sphx_glr_Tutorials_01_POC_generate-model.py`

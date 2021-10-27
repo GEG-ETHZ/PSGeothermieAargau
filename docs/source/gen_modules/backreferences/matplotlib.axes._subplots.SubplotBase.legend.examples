@@ -9,10 +9,10 @@ Examples using ``matplotlib.axes._subplots.SubplotBase.legend``
 
 .. only:: html
 
- .. figure:: /WP1-data_analysis/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
+ .. figure:: /Examples/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
      :alt: Temperature database usage
 
-     :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py`
+     :ref:`sphx_glr_Examples_WP01_borehole_database.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``matplotlib.axes._subplots.SubplotBase.legend``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP1-data_analysis_WP01_borehole_database.py`
+ * :ref:`sphx_glr_Examples_WP01_borehole_database.py`
