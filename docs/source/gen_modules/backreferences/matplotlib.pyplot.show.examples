@@ -5,31 +5,12 @@ Examples using ``matplotlib.pyplot.show``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="In the following, I present ways to interact with a database of borehole temperatures in the st...">
-
-.. only:: html
-
- .. figure:: /Examples/images/thumb/sphx_glr_WP01_borehole_database_thumb.png
-     :alt: Temperature database usage
-
-     :ref:`sphx_glr_Examples_WP01_borehole_database.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_Examples_WP01_borehole_database.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="04 - Analysis of SHEMAT-Suite models">
 
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
-     :alt: Analysis of SHEMAT-Suite models
+     :alt: 04 - Analysis of SHEMAT-Suite models
 
      :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`
 

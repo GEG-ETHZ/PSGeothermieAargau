@@ -10,7 +10,7 @@ Examples using ``matplotlib.Artist.tight_layout``
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: Monte Carlo simulation
+     :alt: 02 - Monte Carlo simulation
 
      :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
 
@@ -24,12 +24,12 @@ Examples using ``matplotlib.Artist.tight_layout``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="03 - Create SHEMAT-Suite models">
 
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
-     :alt: Create SHEMAT-Suite models
+     :alt: 03 - Create SHEMAT-Suite models
 
      :ref:`sphx_glr_Tutorials_03_POC_export-SHEMAT.py`
 

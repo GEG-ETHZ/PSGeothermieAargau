@@ -18,7 +18,7 @@
 .. _sphx_glr_Tutorials_03_POC_export-SHEMAT.py:
 
 
-Create SHEMAT-Suite models
+03 - Create SHEMAT-Suite models
 ==========================
  
  With the MC ensemble of generated geological models stored in the respective lith-blocks, we can use them to create SHEMAT-Suite models for then doing 
@@ -730,7 +730,7 @@ OpenWF.shemat_preprocessing.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.855 seconds)
+   **Total running time of the script:** ( 0 minutes  2.745 seconds)
 
 
 .. _sphx_glr_download_Tutorials_03_POC_export-SHEMAT.py:

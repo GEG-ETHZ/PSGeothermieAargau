@@ -1,5 +1,5 @@
 """
-Create SHEMAT-Suite models
+03 - Create SHEMAT-Suite models
 ==========================
  
  With the MC ensemble of generated geological models stored in the respective lith-blocks, we can use them to create SHEMAT-Suite models for then doing 

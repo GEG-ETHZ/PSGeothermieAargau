@@ -1,5 +1,7 @@
-Open WorkFlow Tutorial
-================
+Examples specific to Canton Aargau
+==================================
 
-Below are examples on the postprocessing of heat transport simulations carried out with `SHEMAT-Suite <https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home>`_ on geological
-models which were generated with GemPy. The examples use the POC model built in the gallery of work package 2 :ref:`POC Model generation <sphx_glr_examples_geo_modeling_01_POC_generate-model.py>`.
+In this gallery, we compile examples specific to the study area of the project, namely the Canton Aargau. It will cover exemplary results of the workflow which is showed in the other gallery 
+"Tutorials", but here specific to the Canton Aargau. 
+Specifically, the gallery will show: Usage of the compiled SQLite Database for borehole temperatures in the study area, construction of the geological model, analysis 
+of a heat transport simulation of the built base model and display of the modeled heat flow.

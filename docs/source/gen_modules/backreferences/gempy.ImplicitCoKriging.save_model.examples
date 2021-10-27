@@ -10,7 +10,7 @@ Examples using ``gempy.ImplicitCoKriging.save_model``
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
+     :alt: 01 - Geological model creation and gravity simulation
 
      :ref:`sphx_glr_Tutorials_01_POC_generate-model.py`
 

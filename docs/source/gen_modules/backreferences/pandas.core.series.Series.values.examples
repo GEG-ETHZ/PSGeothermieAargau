@@ -10,7 +10,7 @@ Examples using ``pandas.core.series.Series.values``
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: Monte Carlo simulation
+     :alt: 02 - Monte Carlo simulation
 
      :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
 

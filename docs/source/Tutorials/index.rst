@@ -19,7 +19,7 @@ models which were generated with GemPy. The examples use the POC model built in 
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
+     :alt: 01 - Geological model creation and gravity simulation
 
      :ref:`sphx_glr_Tutorials_01_POC_generate-model.py`
 
@@ -40,7 +40,7 @@ models which were generated with GemPy. The examples use the POC model built in 
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: Monte Carlo simulation
+     :alt: 02 - Monte Carlo simulation
 
      :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
 
@@ -56,12 +56,12 @@ models which were generated with GemPy. The examples use the POC model built in 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="03 - Create SHEMAT-Suite models">
 
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
-     :alt: Create SHEMAT-Suite models
+     :alt: 03 - Create SHEMAT-Suite models
 
      :ref:`sphx_glr_Tutorials_03_POC_export-SHEMAT.py`
 
@@ -98,12 +98,12 @@ models which were generated with GemPy. The examples use the POC model built in 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="04 - Analysis of SHEMAT-Suite models">
 
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
-     :alt: Analysis of SHEMAT-Suite models
+     :alt: 04 - Analysis of SHEMAT-Suite models
 
      :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`
 

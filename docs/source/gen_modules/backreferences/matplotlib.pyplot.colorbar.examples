@@ -10,7 +10,7 @@ Examples using ``matplotlib.pyplot.colorbar``
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
+     :alt: 01 - Geological model creation and gravity simulation
 
      :ref:`sphx_glr_Tutorials_01_POC_generate-model.py`
 
@@ -29,7 +29,7 @@ Examples using ``matplotlib.pyplot.colorbar``
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: Monte Carlo simulation
+     :alt: 02 - Monte Carlo simulation
 
      :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
 
@@ -43,12 +43,12 @@ Examples using ``matplotlib.pyplot.colorbar``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="04 - Analysis of SHEMAT-Suite models">
 
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
-     :alt: Analysis of SHEMAT-Suite models
+     :alt: 04 - Analysis of SHEMAT-Suite models
 
      :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`
 

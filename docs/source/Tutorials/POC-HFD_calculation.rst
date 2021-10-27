@@ -18,7 +18,7 @@
 .. _sphx_glr_Tutorials_POC-HFD_calculation.py:
 
 
-Analysis of SHEMAT-Suite models
+04 - Analysis of SHEMAT-Suite models
 ==========================
  
 The created geological models with gempy were exported as SHEMAT-Suite input files. `SHEMAT-Suite <https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open>`_ [1] is a code for 
@@ -393,7 +393,7 @@ References
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.621 seconds)
+   **Total running time of the script:** ( 0 minutes  11.059 seconds)
 
 
 .. _sphx_glr_download_Tutorials_POC-HFD_calculation.py:

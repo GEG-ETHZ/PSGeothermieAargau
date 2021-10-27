@@ -5,12 +5,12 @@ Examples using ``OpenWF.postprocessing.available_parameters``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="04 - Analysis of SHEMAT-Suite models">
 
 .. only:: html
 
  .. figure:: /Tutorials/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
-     :alt: Analysis of SHEMAT-Suite models
+     :alt: 04 - Analysis of SHEMAT-Suite models
 
      :ref:`sphx_glr_Tutorials_POC-HFD_calculation.py`
 
