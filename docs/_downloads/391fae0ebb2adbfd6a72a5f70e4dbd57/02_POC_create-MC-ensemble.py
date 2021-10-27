@@ -1,5 +1,5 @@
 """
-Monte Carlo simulation  
+02 - Monte Carlo simulation  
 ======================
 
 The following tutorial will lead you through an example workflow on how to create a Monte Carlo simulation of 

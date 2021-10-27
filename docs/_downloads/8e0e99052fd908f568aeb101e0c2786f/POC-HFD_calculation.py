@@ -1,5 +1,5 @@
 """
-Analysis of SHEMAT-Suite models
+04 - Analysis of SHEMAT-Suite models
 ==========================
  
 The created geological models with gempy were exported as SHEMAT-Suite input files. `SHEMAT-Suite <https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open>`_ [1] is a code for 

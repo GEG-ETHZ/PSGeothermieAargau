@@ -1,5 +1,5 @@
 """
-Geological model creation and gravity simulation
+01 - Geological model creation and gravity simulation
 ================================================
 
 The following tutorial will step-by-step lead you through an example workflow on creating a GemPy model from interface and orientation data, assigning densities to geological units,
