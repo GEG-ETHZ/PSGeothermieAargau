@@ -206,7 +206,7 @@ for c in range(len(lith_blocks_topo)):
     model_name = f"POC_MC_{c}"
     shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=model, units=units,  
                                    data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/POC_head_bcd.txt',
-                                   top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt',
+                                   top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt', lateral_boundaries='closed',
                                    path='../../models/SHEMAT-Suite_input/',
                                   filename=model_name)
     shemade += model_name + " \n"
@@ -216,6 +216,6 @@ with open("../../models/SHEMAT-Suite_input/shemade.job", 'w') as jobfile:
 
 shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=lith_grid_topo, units=units,  
                                    data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/POC_head_bcd.txt',
-                                   top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt',
+                                   top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt', lateral_boundaries='closed',
                                    path='../../models/SHEMAT-Suite_input/',
                                   filename='POC_base_model')

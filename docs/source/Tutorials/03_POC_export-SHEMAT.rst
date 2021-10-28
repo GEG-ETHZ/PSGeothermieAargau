@@ -693,7 +693,7 @@ OpenWF.shemat_preprocessing.
         model_name = f"POC_MC_{c}"
         shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=model, units=units,  
                                        data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/POC_head_bcd.txt',
-                                       top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt',
+                                       top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt', lateral_boundaries='closed',
                                        path='../../models/SHEMAT-Suite_input/',
                                       filename=model_name)
         shemade += model_name + " \n"
@@ -703,7 +703,7 @@ OpenWF.shemat_preprocessing.
 
     shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=lith_grid_topo, units=units,  
                                        data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/POC_head_bcd.txt',
-                                       top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt',
+                                       top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt', lateral_boundaries='closed',
                                        path='../../models/SHEMAT-Suite_input/',
                                       filename='POC_base_model')
 
@@ -733,7 +733,7 @@ OpenWF.shemat_preprocessing.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.063 seconds)
+   **Total running time of the script:** ( 0 minutes  7.155 seconds)
 
 
 .. _sphx_glr_download_Tutorials_03_POC_export-SHEMAT.py:

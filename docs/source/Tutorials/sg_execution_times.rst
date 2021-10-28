@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:07.063** total execution time for **Tutorials** files:
+**00:07.155** total execution time for **Tutorials** files:
 
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_Tutorials_03_POC_export-SHEMAT.py` (``03_POC_export-SHEMAT.py``)           | 00:07.063 | 0.0 MB |
+| :ref:`sphx_glr_Tutorials_03_POC_export-SHEMAT.py` (``03_POC_export-SHEMAT.py``)           | 00:07.155 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_Tutorials_01_POC_generate-model.py` (``01_POC_generate-model.py``)         | 00:00.000 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
