@@ -131,7 +131,7 @@ Hence, knowing topography is important, when we want to have a realistic top bou
 meteorologic services. If, however, that is not the case, surface temperature as a function of altitude can be estimated from an average lapse rate $L$ (0.0065 K/m) and knowledge of temperature at 
 sea level. 
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-80
+.. GENERATED FROM PYTHON SOURCE LINES 55-79
 
 .. code-block:: default
 
@@ -157,7 +157,6 @@ sea level.
     axs[0].set_xlabel('X [m]')
     axs[1].set_xlabel('X [m]')
 
-
     fig.tight_layout()
 
 
@@ -171,7 +170,7 @@ sea level.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-86
+.. GENERATED FROM PYTHON SOURCE LINES 80-85
 
 Create Top Boundary Conditions for head and temperature
 -------------------------------------------------------
@@ -179,7 +178,7 @@ Create Top Boundary Conditions for head and temperature
 First we load the lithology grid of the base model and make sure, the lithology IDs are all integers. 
 To know where we would have air cells, we mask the lithology grid with the model topology. Now, the air has its own unit, which is per default the maximum lithology ID + 1.
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-93
+.. GENERATED FROM PYTHON SOURCE LINES 85-92
 
 .. code-block:: default
 
@@ -197,11 +196,11 @@ To know where we would have air cells, we mask the lithology grid with the model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 94-95
+.. GENERATED FROM PYTHON SOURCE LINES 93-94
 
 Then, we reshape the lithologies in the model resolution to get a 3D array, representing the model grid.
 
-.. GENERATED FROM PYTHON SOURCE LINES 95-99
+.. GENERATED FROM PYTHON SOURCE LINES 94-98
 
 .. code-block:: default
 
@@ -216,12 +215,12 @@ Then, we reshape the lithologies in the model resolution to get a 3D array, repr
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 100-102
+.. GENERATED FROM PYTHON SOURCE LINES 99-101
 
 Now, we know that the maximum lithology is 12 (or if now, we can call it with ``geo_model.surfaces``), so we can check where in the 3D array the lithology ID is 13 and save 
 these indices
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-105
+.. GENERATED FROM PYTHON SOURCE LINES 101-104
 
 .. code-block:: default
 
@@ -235,11 +234,11 @@ these indices
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 106-107
+.. GENERATED FROM PYTHON SOURCE LINES 105-106
 
 Let's now reshape the array for SHEMAT-Suite, which needs X, Y, Z
 
-.. GENERATED FROM PYTHON SOURCE LINES 107-109
+.. GENERATED FROM PYTHON SOURCE LINES 106-108
 
 .. code-block:: default
 
@@ -252,7 +251,7 @@ Let's now reshape the array for SHEMAT-Suite, which needs X, Y, Z
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 110-119
+.. GENERATED FROM PYTHON SOURCE LINES 109-118
 
 .. code-block:: default
 
@@ -272,12 +271,12 @@ Let's now reshape the array for SHEMAT-Suite, which needs X, Y, Z
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 120-122
+.. GENERATED FROM PYTHON SOURCE LINES 119-121
 
 Next, we reshape the temperature and head boundary conditions back to a 1D vector and append them
 to the ijk vector for SHEMAT-Suite
 
-.. GENERATED FROM PYTHON SOURCE LINES 122-129
+.. GENERATED FROM PYTHON SOURCE LINES 121-128
 
 .. code-block:: default
 
@@ -295,13 +294,13 @@ to the ijk vector for SHEMAT-Suite
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 130-133
+.. GENERATED FROM PYTHON SOURCE LINES 129-132
 
 It is important to remember, that indices between Python and Fortran (language of SHEMAt-Suite) are different.
 Whil Python starts with 0, Fortran starts with 1. Hence, we have to add 1 to the first three columns of the ijk arrays
 To make them Fortran compatible
 
-.. GENERATED FROM PYTHON SOURCE LINES 133-146
+.. GENERATED FROM PYTHON SOURCE LINES 132-145
 
 .. code-block:: default
 
@@ -325,11 +324,11 @@ To make them Fortran compatible
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 147-148
+.. GENERATED FROM PYTHON SOURCE LINES 146-147
 
 Now, that we have the two arrays with conditions assigned to single cells, we can save them as txt files for later usage
 
-.. GENERATED FROM PYTHON SOURCE LINES 148-152
+.. GENERATED FROM PYTHON SOURCE LINES 147-151
 
 .. code-block:: default
 
@@ -344,12 +343,12 @@ Now, that we have the two arrays with conditions assigned to single cells, we ca
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-155
+.. GENERATED FROM PYTHON SOURCE LINES 152-154
 
 Now we prepared the lithologies, which are necessary for the `# uindex` field in a SHEMA-Suite input file, we can prepare the other parameters. Of which some are necessary, like the model
 dimensions, and some are optional, like an array for the hydraulic head boundary condition, or observed data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 155-160
+.. GENERATED FROM PYTHON SOURCE LINES 154-159
 
 .. code-block:: default
 
@@ -365,14 +364,14 @@ dimensions, and some are optional, like an array for the hydraulic head boundary
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 161-165
+.. GENERATED FROM PYTHON SOURCE LINES 160-164
 
 Set up the units for the SHEMAT-Suite model
 -------------------------------------------
 One core element of a SHEMAT-Suite Input file is the `# units` table. This table comprises the petrophysical parameters of the lithological units whose geometry is stored in the `# uindex` field.
 The following code shows an example of how set up the `# units` table as a dataframe to be then stored in a SHEMAT-Suite input file. 
 
-.. GENERATED FROM PYTHON SOURCE LINES 165-170
+.. GENERATED FROM PYTHON SOURCE LINES 164-169
 
 .. code-block:: default
 
@@ -479,12 +478,12 @@ The following code shows an example of how set up the `# units` table as a dataf
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 171-173
+.. GENERATED FROM PYTHON SOURCE LINES 170-172
 
 Now we create a dictionary with values for important parameters of each of the 12 units:
 And join it with the existing units dataframe.
 
-.. GENERATED FROM PYTHON SOURCE LINES 173-180
+.. GENERATED FROM PYTHON SOURCE LINES 172-179
 
 .. code-block:: default
 
@@ -502,11 +501,11 @@ And join it with the existing units dataframe.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 181-182
+.. GENERATED FROM PYTHON SOURCE LINES 180-181
 
 So now, the `units` table looks like this:
 
-.. GENERATED FROM PYTHON SOURCE LINES 182-184
+.. GENERATED FROM PYTHON SOURCE LINES 181-183
 
 .. code-block:: default
 
@@ -649,13 +648,13 @@ So now, the `units` table looks like this:
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 185-188
+.. GENERATED FROM PYTHON SOURCE LINES 184-187
 
 It is still missing the air component though. We have to add this, because the cells above the topography are
 assigned to a unit representing the air. For mimicking the long-wavelength radiation outward from the ground, we assign
 a high thermal conductivity to the air. If we were to assign a realistic low thermal conductivity, it would work as an insulator.
 
-.. GENERATED FROM PYTHON SOURCE LINES 188-195
+.. GENERATED FROM PYTHON SOURCE LINES 187-194
 
 .. code-block:: default
 
@@ -673,7 +672,7 @@ a high thermal conductivity to the air. If we were to assign a realistic low the
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 196-201
+.. GENERATED FROM PYTHON SOURCE LINES 195-200
 
 Export to SHEMAT-Suite
 ----------------------
@@ -681,7 +680,7 @@ We are now all set for combining the lithology arrays, the `# units` table, temp
 into a SHEMAT-Suite input file. For this, we use the method `export_shemat_suite_input_file` in 
 OpenWF.shemat_preprocessing.
 
-.. GENERATED FROM PYTHON SOURCE LINES 201-220
+.. GENERATED FROM PYTHON SOURCE LINES 200-219
 
 .. code-block:: default
 
@@ -732,7 +731,7 @@ OpenWF.shemat_preprocessing.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.744 seconds)
+   **Total running time of the script:** ( 0 minutes  6.783 seconds)
 
 
 .. _sphx_glr_download_Tutorials_03_POC_export-SHEMAT.py:

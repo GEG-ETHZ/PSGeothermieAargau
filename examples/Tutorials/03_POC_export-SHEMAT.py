@@ -74,7 +74,6 @@ axs[0].set_ylabel('Y [m]')
 axs[0].set_xlabel('X [m]')
 axs[1].set_xlabel('X [m]')
 
-
 fig.tight_layout()
 
 #%%
