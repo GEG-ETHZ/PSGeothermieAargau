@@ -5,25 +5,6 @@ Examples using ``matplotlib.artist.Artist.tight_layout``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will lead you through an example workflow on how to create a Monte Carlo...">
-
-.. only:: html
-
- .. figure:: /Tutorials/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: 02 - Monte Carlo simulation
-
-     :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
-
-.. raw:: html
-
-    </div>
-
-.. only:: not html
-
- * :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="03 - Create SHEMAT-Suite models">
 
 .. only:: html
