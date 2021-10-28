@@ -57,7 +57,7 @@ lith_blocks_topo = lith_blocks_topo.reshape(len(lith_blocks), -1)
 # calculate surface temperatures
 sea_temp = 288 # in Kelvin
 L = 0.0065 # in Kelvin per metre
-surf_temp = (sea_temp - L * dtm[:,:,2]) - 273.15
+surf_temp = (sea_temp - L * dtm[:,:,2]) - 273.15 # in Celsius
 
 # create figure
 fig, axs = plt.subplots(1,2, figsize=[15,4], sharey=True)
@@ -142,13 +142,13 @@ ijkh[:,3] = ijkh[:,3] + 6500
 direction = np.zeros_like(head_reshaped)
 
 ijkh_d = np.append(ijkh, direction, axis=1)
-ijkt_d = np.append(ijkh, direction, axis=1)
+ijkt_d = np.append(ijkt, direction, axis=1)
 
 #%%
 # Now, that we have the two arrays with conditions assigned to single cells, we can save them as txt files for later usage
 
 np.savetxt('../../data/SHEMAT-Suite/POC_head_bcd.txt', ijkh_d, fmt='%d, %d, %d, %.3f, %d')
-np.savetxt('../../data/SHEMAT-Suite/POCtemp_bcd.txt', ijkt_d, fmt='%d, %d, %d, %.3f, %d')
+np.savetxt('../../data/SHEMAT-Suite/POC_temp_bcd.txt', ijkt_d, fmt='%d, %d, %d, %.3f, %d')
 
 #%%
 # Now we prepared the lithologies, which are necessary for the `# uindex` field in a SHEMA-Suite input file, we can prepare the other parameters. Of which some are necessary, like the model
@@ -205,8 +205,8 @@ for c in range(len(lith_blocks_topo)):
     model = lith_blocks_topo[c,:]
     model_name = f"POC_MC_{c}"
     shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=model, units=units,  
-                                   data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/head_bcd.txt',
-                                   top_temp_bcs_file='../../data/SHEMAT-Suite/temp_bcd.txt',
+                                   data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/POC_head_bcd.txt',
+                                   top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt',
                                    path='../../models/SHEMAT-Suite_input/',
                                   filename=model_name)
     shemade += model_name + " \n"
@@ -215,7 +215,7 @@ with open("../../models/SHEMAT-Suite_input/shemade.job", 'w') as jobfile:
     jobfile.write(shemade)
 
 shemsuite.export_shemat_suite_input_file(geo_model, lithology_block=lith_grid_topo, units=units,  
-                                   data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/head_bcd.txt',
-                                   top_temp_bcs_file='../../data/SHEMAT-Suite/temp_bcd.txt',
+                                   data_file=temp_data, head_bcs_file='../../data/SHEMAT-Suite/POC_head_bcd.txt',
+                                   top_temp_bcs_file='../../data/SHEMAT-Suite/POC_temp_bcd.txt',
                                    path='../../models/SHEMAT-Suite_input/',
                                   filename='POC_base_model')
