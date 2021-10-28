@@ -305,6 +305,8 @@ def heatcapacity(data: h5py.File):
     return cpf
 
 def calc_adv_hf(data: h5py.File, direction: str='full'):
+    """Calculate advective heat flow"""
+    print("Coming soon(tm)")
     pass
 
 

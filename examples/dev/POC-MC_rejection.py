@@ -21,10 +21,7 @@ import glob
 from scipy import stats
 import random
 import gempy as gp
-from gempy.bayesian.fields import probability, information_entropy, fuzziness, total_model_entropy
-
-import matplotlib.pyplot as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
+from gempy.bayesian.fields import probability, information_entropy
 
 plt.style.use(['seaborn-talk'])
 
@@ -84,27 +81,31 @@ def extTui(datafile, dimension=3, direction='x'):
             uindex = f['uindex'][z//2,:,:]
     return temp,uindex
 
-
-# # Rejection algorithm based on random walk
-# We created a tiny ensemble of 100 different SHEMAT-Suite and will use a rejection algorithm based on the Metropolis acceptance probability to get a posterior ensemble of models.  
-# The Metropolis acceptance probability is defined as:  
+#%%
+# Rejection algorithm based on random walk
+# ----------------------------------------
+# We created a tiny ensemble of 10 different SHEMAT-Suite models in the previous step and will use a rejection algorithm to get a posterior ensemble of models.  
+# For this, we "borrow" the Metropolis acceptance probability which is defined as:  
 # 
-# $$ \alpha(x_{t-1},z) = \begin{cases} min\big(\frac{p(z)}{p(x_{t-1})},1\big), & \text{if } p(x_{t-1}) > 0\\
-# 1, & \text{if } p(x_{t-1}) = 0 \end{cases} $$  
+# .. math::
+#   \alpha(x_{t-1},z) = \begin{cases} min\big(\frac{p(z)}{p(x_{t-1})},1\big), & \text{if } p(x_{t-1}) > 0\\
+#   1, & \text{if } p(x_{t-1}) = 0 \end{cases} 
 # 
 # A different approach would be to assess the missfit (as RMS error) of each realisation.  
+# .. math::
+#   \alpha(x_{t-1},z) = \begin{cases} exp\big(-\frac{S(z) - S(x_{t-1}) }{u_T}\big), & \text{if } S(z) > S(x_{t-1})\\
+#   1, & \text{otherwise }  \end{cases} 
 # 
-# $$ \alpha(x_{t-1},z) = \begin{cases} exp\big(-\frac{S(z) - S(x_{t-1}) }{u_T}\big), & \text{if } S(z) > S(x_{t-1})\\
-# 1, & \text{otherwise }  \end{cases} $$  
-# 
-# We will use the second approach for now...also because we wrote it in the abstract.  
-# As discretization error, we take a value from Elison(2015), $u_{T-discr} = 0.7$ K  
+# We will use the second approach for now. As discretization error, we take a value from Elison(2015), $u_{T-discr} = 0.7$ K, an estimate of error. This error should 
+# be estimated to best knowledge.  
 # 
 # Using Gauss error propagation, we assess a potential error for the realisations.  
-# 
-# $$ u_T = \sqrt{\big(\frac{\partial T}{\partial x_1}u_1 \big)^2 + ... + \big(\frac{\partial T}{\partial x_n}u_n \big)^2} $$
+# .. math::
+# u_T = \sqrt{\big(\frac{\partial T}{\partial x_1}u_1 \big)^2 + ... + \big(\frac{\partial T}{\partial x_n}u_n \big)^2} 
 
+#%%
 # Literature sources for log-errors:
+# ----------------------------------
 # _The lower part of the disturbed log profile (below the cross-over point) was rotated to match these corrected tempera-tures. In the upper part of the profile, the same correction as for method A was applied. The quality of this correction method strongly depends on the correct calculation of the lowermost profile temperatures. According to Förster (2001), most of the corrected tem-peratures have errors of ± 3 to 5 K._ https://doi.org/10.1186/s40517-020-00181-w  
 # 
 # 
@@ -114,11 +115,9 @@ def extTui(datafile, dimension=3, direction='x'):
 #  
 #  For errors as a function of e.g. logging speed, measurement response time etc, look https://doi.org/10.1016/j.petrol.2020.107727
 
-# In[3]:
-
 
 # import DTM
-dtm = np.load('../models/20210319_MC_no_middle_filling/Graben_base_model/Graben_base_model_topography.npy')
+dtm = np.load('../../models/20210319_MC_no_middle_filling/Graben_base_model/Graben_base_model_topography.npy')
 
 
 # In[4]:
@@ -209,7 +208,7 @@ p2dp = gp.plot_2d(geo_model,
                                        'norm': None,
                                       'colorbar': True}
                   )
-plt.savefig('../imgs/POC_prior_IE.png', dpi=300, bbox_inches='tight')
+
 
 
 # The Information entropy plot shows where the maximal Uncertainty is in our model, i.e. where the contacts are between the graben units and the basement. A lot of uncertainty is visible in the right part of the model (between around 16000 and 20000), where the main graben unit may or may not be present.
