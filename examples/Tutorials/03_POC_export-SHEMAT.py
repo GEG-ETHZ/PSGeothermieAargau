@@ -27,7 +27,6 @@ print(f"Run with GemPy version {gp.__version__}")
 # in :ref:`sphx_glr_examples_geo_modeling_01_POC_generate-model.py`. As we want to have the topography also in the SHEMAT-Suite model later on, we will create a mask of the model topography, called
 # `topo_mask`
 
-
 model_path = '../../models/2021-06-04_POC_base_model'
 geo_model = gp.load_model('POC_PCT_model',
                          path=model_path, recompile=False)
