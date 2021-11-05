@@ -38,14 +38,16 @@ print(f"Run mit GemPy version {gp.__version__}")
 #   1, & \text{if } p(x_{t-1}) = 0 \end{cases} 
 # 
 # A different approach would be to assess the missfit (as RMS error) of each realisation.  
+#
 # .. math::
 #   \alpha(x_{t-1},z) = \begin{cases} exp\big(-\frac{S(z) - S(x_{t-1}) }{u_T}\big), & \text{if } S(z) > S(x_{t-1})\\
 #   1, & \text{otherwise }  \end{cases} 
 # 
-# We will use the second approach for now. As discretization error, we take a value from Elison(2015), $u_{T-discr} = 0.7$ K, an estimate of error. This error should 
+# We will use the second approach for now. As discretization error, we take a value from Elison(2015), :math:`u_{T-discr} = 0.7` K, an estimate of error. This error should 
 # be estimated to best knowledge.  
 # 
 # Using Gauss error propagation, we assess a potential error for the realisations.  
+#
 # .. math::
 # u_T = \sqrt{\big(\frac{\partial T}{\partial x_1}u_1 \big)^2 + ... + \big(\frac{\partial T}{\partial x_n}u_n \big)^2} 
 

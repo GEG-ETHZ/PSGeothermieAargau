@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:04.477** total execution time for **Tutorials** files:
+**00:04.513** total execution time for **Tutorials** files:
 
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py` (``05_POC-MC_rejection.py``)             | 00:04.477 | 0.0 MB |
+| :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py` (``05_POC-MC_rejection.py``)             | 00:04.513 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_Tutorials_01_POC_generate-model.py` (``01_POC_generate-model.py``)         | 00:00.000 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+

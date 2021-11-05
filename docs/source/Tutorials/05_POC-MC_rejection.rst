@@ -65,7 +65,7 @@ in OpenWF for loading the result file, displaying the parameters it contains and
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 31-51
+.. GENERATED FROM PYTHON SOURCE LINES 31-53
 
 Rejection algorithm based on random walk
 ----------------------------------------
@@ -77,18 +77,20 @@ For this, we "borrow" the Metropolis acceptance probability which is defined as:
   1, & \text{if } p(x_{t-1}) = 0 \end{cases} 
 
 A different approach would be to assess the missfit (as RMS error) of each realisation.  
+
 .. math::
   \alpha(x_{t-1},z) = \begin{cases} exp\big(-\frac{S(z) - S(x_{t-1}) }{u_T}\big), & \text{if } S(z) > S(x_{t-1})\\
   1, & \text{otherwise }  \end{cases} 
 
-We will use the second approach for now. As discretization error, we take a value from Elison(2015), $u_{T-discr} = 0.7$ K, an estimate of error. This error should 
+We will use the second approach for now. As discretization error, we take a value from Elison(2015), :math:`u_{T-discr} = 0.7` K, an estimate of error. This error should 
 be estimated to best knowledge.  
 
 Using Gauss error propagation, we assess a potential error for the realisations.  
+
 .. math::
 u_T = \sqrt{\big(\frac{\partial T}{\partial x_1}u_1 \big)^2 + ... + \big(\frac{\partial T}{\partial x_n}u_n \big)^2} 
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-64
+.. GENERATED FROM PYTHON SOURCE LINES 55-66
 
 Literature sources for log-errors:
 ----------------------------------
@@ -102,13 +104,13 @@ temperatures. According to Förster (2001), most of the corrected tem-peratures 
 
  For errors as a function of e.g. logging speed, measurement response time etc, look https://doi.org/10.1016/j.petrol.2020.107727
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-69
+.. GENERATED FROM PYTHON SOURCE LINES 68-71
 
 Model preparation
 -----------------
 To see, where our data points are situated, we load the model topography and plot the position of gravity stations and temperature boreholes:
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-106
+.. GENERATED FROM PYTHON SOURCE LINES 71-108
 
 .. code-block:: default
 
@@ -171,13 +173,13 @@ To see, where our data points are situated, we load the model topography and plo
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 107-110
+.. GENERATED FROM PYTHON SOURCE LINES 109-112
 
 Load the Lithology Blocks
 --------------------------
 First let's load the lithology block of all 10 models, looking at the probabilities of the graben unit and at the model entropy.
 
-.. GENERATED FROM PYTHON SOURCE LINES 110-138
+.. GENERATED FROM PYTHON SOURCE LINES 112-140
 
 .. code-block:: default
 
@@ -240,7 +242,7 @@ First let's load the lithology block of all 10 models, looking at the probabilit
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 139-147
+.. GENERATED FROM PYTHON SOURCE LINES 141-149
 
 The Information entropy plot shows where the maximal Uncertainty is in our model, i.e. where the contacts are between the graben units and the basement. 
 A lot of uncertainty is visible in the right part of the model (between around 16000 and 20000), where the main graben unit may or may not be present.
@@ -251,7 +253,7 @@ In a first stage, we take a look at the gravity signal of each realization. The 
 Comparing the recorded gravity signals of each realization with the ones of the base model (which we regard as the "true" observations), we can differentiate between fitting and non-fitting ensemble 
 members.
 
-.. GENERATED FROM PYTHON SOURCE LINES 147-151
+.. GENERATED FROM PYTHON SOURCE LINES 149-153
 
 .. code-block:: default
 
@@ -370,12 +372,12 @@ members.
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 152-154
+.. GENERATED FROM PYTHON SOURCE LINES 154-156
 
 Remember the :math:`u_T` from previously? Here, we estimate it from an artificially superimposed noise on the data. As our "observed data" is actually just the simulated gravity from the base model, 
 it does not have noise. That's why we artificially add it. This would not be needed with real data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 154-179
+.. GENERATED FROM PYTHON SOURCE LINES 156-181
 
 .. code-block:: default
 
@@ -421,18 +423,18 @@ it does not have noise. That's why we artificially add it. This would not be nee
 
     0.32409402260706643
 
-    <matplotlib.colorbar.Colorbar object at 0x0000023608AEE070>
+    <matplotlib.colorbar.Colorbar object at 0x000001E0DA0EB040>
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 180-184
+.. GENERATED FROM PYTHON SOURCE LINES 182-186
 
 In the plot above, we see the distribution of the standard deviation of our gravity stations, so already where the most "sensitive" stations are. For a better performing rejection, it may be suitable
 to remove redundant stations, i.e. once with a very low standard deviation.
 Now, for the MonteCarlo rejection step, we use an implemented method `rejection`, which goes through the RMSE vector of our realizations and compares the RMSE of each realization. The ones with relatively
 lower RMSE will get chosen:
 
-.. GENERATED FROM PYTHON SOURCE LINES 184-189
+.. GENERATED FROM PYTHON SOURCE LINES 186-191
 
 .. code-block:: default
 
@@ -457,11 +459,11 @@ lower RMSE will get chosen:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 190-191
+.. GENERATED FROM PYTHON SOURCE LINES 192-193
 
 The RMSE of our realizations is:
 
-.. GENERATED FROM PYTHON SOURCE LINES 191-193
+.. GENERATED FROM PYTHON SOURCE LINES 193-195
 
 .. code-block:: default
 
@@ -492,12 +494,12 @@ The RMSE of our realizations is:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 194-196
+.. GENERATED FROM PYTHON SOURCE LINES 196-198
 
 Having accepted some of the initial 10 realizations, we can again calculate the probability field for different units 
 and the model entropy:
 
-.. GENERATED FROM PYTHON SOURCE LINES 196-209
+.. GENERATED FROM PYTHON SOURCE LINES 198-211
 
 .. code-block:: default
 
@@ -526,13 +528,13 @@ and the model entropy:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 210-213
+.. GENERATED FROM PYTHON SOURCE LINES 212-215
 
 Comparing this to the Entropy plot from above, we see that the overall entropy is reduced in many parts of the model. Also the "thickness" of the areas with increased entropy is reduced, hinting at a
 sucessful reduction of depth uncertainty for, e.g. the graben units. We now go ahead and save the lithology blocks of the accepted realizations, as these could now be used for subsequent
 heat tranpsort simulations.
 
-.. GENERATED FROM PYTHON SOURCE LINES 213-217
+.. GENERATED FROM PYTHON SOURCE LINES 215-219
 
 .. code-block:: default
 
@@ -547,13 +549,13 @@ heat tranpsort simulations.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 218-221
+.. GENERATED FROM PYTHON SOURCE LINES 220-223
 
 Remember how in a previous tutorial step ("Create SHEMAT-Suite models"), we created SHEMAT-Suite models for the whole 10 realizations, i.e. for the whole _apriori_ ensemble? 
 Following the workflow with sequentially constraining the model space, we wouldn't actually need to create a SHEMAT-Suite model for every ensemble member, but just for the accepted realizations. 
 Which means, in this case:
 
-.. GENERATED FROM PYTHON SOURCE LINES 221-224
+.. GENERATED FROM PYTHON SOURCE LINES 223-226
 
 .. code-block:: default
 
@@ -575,7 +577,7 @@ Which means, in this case:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 225-233
+.. GENERATED FROM PYTHON SOURCE LINES 227-235
 
 This means, we'd only need to run heat-transport simulations for the realizations accepted by the gravity rejection step.
 
@@ -586,7 +588,7 @@ realizations, which now fit both the gravity and the temperature signal.
 
 Similarly to the previous tutorial, where we saved the base model as a SHEMAT-Input file, we now do the same with the accepted realizations:
 
-.. GENERATED FROM PYTHON SOURCE LINES 233-238
+.. GENERATED FROM PYTHON SOURCE LINES 235-240
 
 .. code-block:: default
 
@@ -602,12 +604,12 @@ Similarly to the previous tutorial, where we saved the base model as a SHEMAT-In
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 239-241
+.. GENERATED FROM PYTHON SOURCE LINES 241-243
 
 The openWF package hase one plotting function for displaying arbitary slices through the SHEMAT model, as presented in a previous tutorial step. Here, we have a look at the temperature field
 of the base model:
 
-.. GENERATED FROM PYTHON SOURCE LINES 241-246
+.. GENERATED FROM PYTHON SOURCE LINES 243-248
 
 .. code-block:: default
 
@@ -628,12 +630,12 @@ of the base model:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 247-249
+.. GENERATED FROM PYTHON SOURCE LINES 249-251
 
 Similar to the previous step, where we estimated :math:`u_g`, we now have to estimate :math:`u_T` for temperature. There we use some literature estimations for errors introduced in measurements of
 borehole temperatures:
 
-.. GENERATED FROM PYTHON SOURCE LINES 249-259
+.. GENERATED FROM PYTHON SOURCE LINES 251-261
 
 .. code-block:: default
 
@@ -662,12 +664,12 @@ borehole temperatures:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-262
+.. GENERATED FROM PYTHON SOURCE LINES 262-264
 
 SHEMAT-Suite, in a specific operation mode, writes ASCII files, ending on `.dat`. In these files, SHEMAT-Suite provides information about simulated variables (in our case temperature) 
 compared to observed ones. OpenWF has a routine to read in these `.dat` files and display them as a pandas dataframe:
 
-.. GENERATED FROM PYTHON SOURCE LINES 262-265
+.. GENERATED FROM PYTHON SOURCE LINES 264-267
 
 .. code-block:: default
 
@@ -888,12 +890,12 @@ compared to observed ones. OpenWF has a routine to read in these `.dat` files an
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 266-268
+.. GENERATED FROM PYTHON SOURCE LINES 268-270
 
 Now let's load all these simulation files from our ensemble. As we already simulated all 10 realizations of the apriori ensemble, we load all 10 dat-files. However, in a sequential 
 conditioning workflow, we'd just have the simulations from realizations accepted by the gravity conditioning step.
 
-.. GENERATED FROM PYTHON SOURCE LINES 268-276
+.. GENERATED FROM PYTHON SOURCE LINES 270-278
 
 .. code-block:: default
 
@@ -912,7 +914,7 @@ conditioning workflow, we'd just have the simulations from realizations accepted
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 277-282
+.. GENERATED FROM PYTHON SOURCE LINES 279-284
 
 The diffs array we now created consists of the stacked 9th columns of each `.dat` file in the accepted realizations. Which means, as we have in total 5 accepted realizations, that array has 5 rows and 
 128 columns (i.e. the number of measuring points).
@@ -920,7 +922,7 @@ The diffs array we now created consists of the stacked 9th columns of each `.dat
 As we already have the differences between observed and simulated values here (so difference between the columns `calc` and `obs` in the dataframe above), we do not need to use the 
 `calc_rmse` method from above. Instead, we calculate it directly drom the diffs array, by first calculating the Sum of Squared Residuals (SSR) and then the RMSE:
 
-.. GENERATED FROM PYTHON SOURCE LINES 282-291
+.. GENERATED FROM PYTHON SOURCE LINES 284-293
 
 .. code-block:: default
 
@@ -940,7 +942,7 @@ As we already have the differences between observed and simulated values here (s
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 292-297
+.. GENERATED FROM PYTHON SOURCE LINES 294-299
 
 We can now continue to work with the `rmse` array, but for having a complete information array, we stack it to the `diffs` array. This can be neat, e.g. for storing the diffs and RMSE in one file. 
 When we stack the calculated parameters, we'll end up with an array with 130 columns. The first 128 columns are the differences between observed and calculated values, the 129th the SSR, and the 
@@ -948,7 +950,7 @@ When we stack the calculated parameters, we'll end up with an array with 130 col
 
 To have information, which realizations (after constraining from gravity) these differences belong to, we finally add a 131st column, containing the realization number:
 
-.. GENERATED FROM PYTHON SOURCE LINES 297-304
+.. GENERATED FROM PYTHON SOURCE LINES 299-306
 
 .. code-block:: default
 
@@ -974,11 +976,11 @@ To have information, which realizations (after constraining from gravity) these 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 305-306
+.. GENERATED FROM PYTHON SOURCE LINES 307-308
 
 Optionally, we can then save it in an ASCII file:
 
-.. GENERATED FROM PYTHON SOURCE LINES 306-309
+.. GENERATED FROM PYTHON SOURCE LINES 308-311
 
 .. code-block:: default
 
@@ -992,7 +994,7 @@ Optionally, we can then save it in an ASCII file:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 310-317
+.. GENERATED FROM PYTHON SOURCE LINES 312-319
 
 Rejection sampling Temperature
 ------------------------
@@ -1002,7 +1004,7 @@ conductivtiy. As thermal conductivity does not vary as much as, let's say permea
 
 Considering the estimated error above, the error might as well be in the same region as the differences of the simulations, yielding an unsatisfactory rejection:
 
-.. GENERATED FROM PYTHON SOURCE LINES 317-322
+.. GENERATED FROM PYTHON SOURCE LINES 319-324
 
 .. code-block:: default
 
@@ -1027,12 +1029,12 @@ Considering the estimated error above, the error might as well be in the same re
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 323-325
+.. GENERATED FROM PYTHON SOURCE LINES 325-327
 
 To show, what the simple implemented rejection method does, we write it out in the following code segment. We chronologically go through the rmse array, as this is the result of a simple MC simulation.
 This means, this start from 1 to N can be used here, if samples generated are already in a random order and not correlated. That is usually the case with GemPy exports to SHEMAT-Suite.
 
-.. GENERATED FROM PYTHON SOURCE LINES 325-354
+.. GENERATED FROM PYTHON SOURCE LINES 327-356
 
 .. code-block:: default
 
@@ -1080,11 +1082,11 @@ This means, this start from 1 to N can be used here, if samples generated are al
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 355-356
+.. GENERATED FROM PYTHON SOURCE LINES 357-358
 
 With the model space now reduced to three models, we can calculate for a final time the probability of the model units and entropy of the model:
 
-.. GENERATED FROM PYTHON SOURCE LINES 356-368
+.. GENERATED FROM PYTHON SOURCE LINES 358-370
 
 .. code-block:: default
 
@@ -1112,13 +1114,13 @@ With the model space now reduced to three models, we can calculate for a final t
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 369-372
+.. GENERATED FROM PYTHON SOURCE LINES 371-374
 
 The plot above shows a strong "binary" entropy field. Entropy is maximum (bright color) especially with respect to the depth of the post-graben unit interface. 
 The area of interest, however, the depth of the graben is now significantly reduced. We see, that the two resulting models do not differ that much with respect to graben depth, but only depth of the 
 post-graben unit.
 
-.. GENERATED FROM PYTHON SOURCE LINES 372-375
+.. GENERATED FROM PYTHON SOURCE LINES 374-377
 
 .. code-block:: default
 
@@ -1143,7 +1145,7 @@ post-graben unit.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.477 seconds)
+   **Total running time of the script:** ( 0 minutes  4.513 seconds)
 
 
 .. _sphx_glr_download_Tutorials_05_POC-MC_rejection.py:
