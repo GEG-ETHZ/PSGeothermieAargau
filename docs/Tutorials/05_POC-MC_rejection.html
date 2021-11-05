@@ -78,17 +78,16 @@ For this, we “borrow” the Metropolis acceptance probability which is defined
 <div class="math notranslate nohighlight">
 \[\begin{split}\alpha(x_{t-1},z) = \begin{cases} min\big(\frac{p(z)}{p(x_{t-1})},1\big), &amp; \text{if } p(x_{t-1}) &gt; 0\\
 1, &amp; \text{if } p(x_{t-1}) = 0 \end{cases}\end{split}\]</div>
-<p>A different approach would be to assess the missfit (as RMS error) of each realisation.
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">alpha</span><span class="p">(</span><span class="n">x_</span><span class="p">{</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">z</span></a><span class="p">)</span> <span class="o">=</span> \<span class="n">begin</span><span class="p">{</span><span class="n">cases</span><span class="p">}</span> <span class="n">exp</span>\<span class="n">big</span><span class="p">(</span><span class="o">-</span>\<span class="n">frac</span><span class="p">{</span><span class="n">S</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">z</span></a><span class="p">)</span> <span class="o">-</span> <span class="n">S</span><span class="p">(</span><span class="n">x_</span><span class="p">{</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span> <span class="p">}{</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">u_T</span></a><span class="p">}</span>\<span class="n">big</span><span class="p">),</span> <span class="o">&amp;</span> \<span class="n">text</span><span class="p">{</span><span class="k">if</span> <span class="p">}</span> <span class="n">S</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">z</span></a><span class="p">)</span> <span class="o">&gt;</span> <span class="n">S</span><span class="p">(</span><span class="n">x_</span><span class="p">{</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>\\
-<span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span> \<span class="n">text</span><span class="p">{</span><span class="n">otherwise</span> <span class="p">}</span>  \<span class="n">end</span><span class="p">{</span><span class="n">cases</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>We will use the second approach for now. As discretization error, we take a value from Elison(2015), $u_{T-discr} = 0.7$ K, an estimate of error. This error should
+<p>A different approach would be to assess the missfit (as RMS error) of each realisation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\alpha(x_{t-1},z) = \begin{cases} exp\big(-\frac{S(z) - S(x_{t-1}) }{u_T}\big), &amp; \text{if } S(z) &gt; S(x_{t-1})\\
+1, &amp; \text{otherwise }  \end{cases}\end{split}\]</div>
+<p>We will use the second approach for now. As discretization error, we take a value from Elison(2015), <span class="math notranslate nohighlight">\(u_{T-discr} = 0.7\)</span> K, an estimate of error. This error should
 be estimated to best knowledge.</p>
-<p>Using Gauss error propagation, we assess a potential error for the realisations.
-.. math::
-u_T = sqrt{big(frac{partial T}{partial x_1}u_1 big)^2 + … + big(frac{partial T}{partial x_n}u_n big)^2}</p>
+<p>Using Gauss error propagation, we assess a potential error for the realisations.</p>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<p>u_T = sqrt{big(frac{partial T}{partial x_1}u_1 big)^2 + … + big(frac{partial T}{partial x_n}u_n big)^2}</p>
 </div>
 <div class="section" id="literature-sources-for-log-errors">
 <h2>Literature sources for log-errors:<a class="headerlink" href="#literature-sources-for-log-errors" title="Permalink to this headline">¶</a></h2>
@@ -328,7 +327,7 @@ it does not have noise. That’s why we artificially add it. This would not be n
 <img src="../_images/sphx_glr_05_POC-MC_rejection_005.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_005.png" alt="05 POC MC rejection" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0.32409402260706643
 
-&lt;matplotlib.colorbar.Colorbar object at 0x0000023608AEE070&gt;
+&lt;matplotlib.colorbar.Colorbar object at 0x000001E0DA0EB040&gt;
 </pre></div>
 </div>
 <p>In the plot above, we see the distribution of the standard deviation of our gravity stations, so already where the most “sensitive” stations are. For a better performing rejection, it may be suitable
@@ -758,7 +757,7 @@ post-graben unit.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>So, the final realizations which remain from the original [5, 9]!
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.477 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.513 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-tutorials-05-poc-mc-rejection-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4c37cce8d7fedeec8975ca6cff17fc3e/05_POC-MC_rejection.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">05_POC-MC_rejection.py</span></code></a></p>
