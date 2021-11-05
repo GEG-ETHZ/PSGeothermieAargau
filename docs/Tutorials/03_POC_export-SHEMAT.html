@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>03 - Create SHEMAT-Suite models &#8212; Pilot Study Geothermie Aargau ALPHA documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -42,7 +41,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-tutorials-03-poc-export-shemat-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="create-shemat-suite-models">
+<div class="sphx-glr-example-title section" id="create-shemat-suite-models">
 <span id="sphx-glr-tutorials-03-poc-export-shemat-py"></span><h1>03 - Create SHEMAT-Suite models<a class="headerlink" href="#create-shemat-suite-models" title="Permalink to this headline">¶</a></h1>
 <blockquote>
 <div><p>With the MC ensemble of generated geological models stored in the respective lith-blocks, we can use them to create SHEMAT-Suite models for then doing
@@ -69,7 +68,7 @@ forward simulations of Heat- and Mass-transfer.</p>
 Run with GemPy version 2.2.9
 </pre></div>
 </div>
-<section id="load-the-base-model">
+<div class="section" id="load-the-base-model">
 <h2>load the base model<a class="headerlink" href="#load-the-base-model" title="Permalink to this headline">¶</a></h2>
 <p>For creating SHEMAT-Suite input files from the Monte Carlo Ensemble we created in <span class="xref std std-ref">sphx_glr_examples_geo_modeling_02_POC_create-MC-ensemble.py</span> we load the base POC model, which was created
 in <span class="xref std std-ref">sphx_glr_examples_geo_modeling_01_POC_generate-model.py</span>. As we want to have the topography also in the SHEMAT-Suite model later on, we will create a mask of the model topography, called
@@ -87,8 +86,8 @@ in <span class="xref std std-ref">sphx_glr_examples_geo_modeling_01_POC_generate
 Active grids: [&#39;regular&#39; &#39;topography&#39;]
 </pre></div>
 </div>
-</section>
-<section id="load-the-mc-lithologies">
+</div>
+<div class="section" id="load-the-mc-lithologies">
 <h2>Load the MC-lithologies<a class="headerlink" href="#load-the-mc-lithologies" title="Permalink to this headline">¶</a></h2>
 <p>Next, we load the lithology blocks created by the MC example and mask them by the topography</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">lith_blocks</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.load.html#numpy.load" title="numpy.load" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="s1">&#39;../../data/outputs/MCexample_10realizations.npy&#39;</span><span class="p">)</span>
@@ -129,8 +128,8 @@ sea level.</p>
 </pre></div>
 </div>
 <img alt="Topography, Surface temperature" class="sphx-glr-single-img" src="../_images/sphx_glr_03_POC_export-SHEMAT_001.png" />
-</section>
-<section id="create-top-boundary-conditions-for-head-and-temperature">
+</div>
+<div class="section" id="create-top-boundary-conditions-for-head-and-temperature">
 <h2>Create Top Boundary Conditions for head and temperature<a class="headerlink" href="#create-top-boundary-conditions-for-head-and-temperature" title="Permalink to this headline">¶</a></h2>
 <p>First we load the lithology grid of the base model and make sure, the lithology IDs are all integers.
 To know where we would have air cells, we mask the lithology grid with the model topology. Now, the air has its own unit, which is per default the maximum lithology ID + 1.</p>
@@ -200,8 +199,8 @@ dimensions, and some are optional, like an array for the hydraulic head boundary
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">temp_data</span></a> <span class="o">=</span> <span class="s1">&#39;../../data/SHEMAT-Suite/all_boreholes_as_shemat_data.csv&#39;</span>
 </pre></div>
 </div>
-</section>
-<section id="set-up-the-units-for-the-shemat-suite-model">
+</div>
+<div class="section" id="set-up-the-units-for-the-shemat-suite-model">
 <h2>Set up the units for the SHEMAT-Suite model<a class="headerlink" href="#set-up-the-units-for-the-shemat-suite-model" title="Permalink to this headline">¶</a></h2>
 <p>One core element of a SHEMAT-Suite Input file is the <cite># units</cite> table. This table comprises the petrophysical parameters of the lithological units whose geometry is stored in the <cite># uindex</cite> field.
 The following code shows an example of how set up the <cite># units</cite> table as a dataframe to be then stored in a SHEMAT-Suite input file.</p>
@@ -451,8 +450,8 @@ a high thermal conductivity to the air. If we were to assign a realistic low the
 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.core.frame.DataFrame" class="sphx-glr-backref-module-pandas-core-frame sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">units</span></a> <span class="o">=</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.append.html#pandas.DataFrame.append" title="pandas.DataFrame.append" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-method"><span class="n">units</span><span class="o">.</span><span class="n">append</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">air</span></a><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="export-to-shemat-suite">
+</div>
+<div class="section" id="export-to-shemat-suite">
 <h2>Export to SHEMAT-Suite<a class="headerlink" href="#export-to-shemat-suite" title="Permalink to this headline">¶</a></h2>
 <p>We are now all set for combining the lithology arrays, the <cite># units</cite> table, temperature data from boreholes
 into a SHEMAT-Suite input file. For this, we use the method <cite>export_shemat_suite_input_file</cite> in
@@ -502,8 +501,8 @@ Successfully exported geological model POC_base_model as SHEMAT-Suite input to .
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</section>
-</section>
+</div>
+</div>
 
 
           </div>
@@ -547,6 +546,7 @@ Successfully exported geological model POC_base_model as SHEMAT-Suite input to .
 <li class="toctree-l2"><a class="reference internal" href="02_POC_create-MC-ensemble.html">02 - Monte Carlo simulation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">03 - Create SHEMAT-Suite models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_POC-HFD_calculation.html">04 - Analysis of SHEMAT-Suite models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_POC-MC_rejection.html">05 - Monte Carlo rejection and ensemble conditioning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Export_MOOSE.html">Export a GemPy Model to MOOSE</a></li>
 </ul>
 </li>
@@ -589,7 +589,7 @@ Successfully exported geological model POC_base_model as SHEMAT-Suite input to .
       &copy;2019 - 2021, Jan Niederau.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
