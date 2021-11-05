@@ -565,13 +565,18 @@ def c_rmse(predicted, target):
     rm_sq_diff = np.sqrt((predicted.sub(target, axis=0)**2).mean())
     return rm_sq_diff
 
-def rejection(rmse, rnseed=random.seed(0), u_g: float=0.01, verbose=True):
+def rejection(rmse, rnseed=random.seed(0), u_g: float=0.01, verbose=True, median=True):
     rnseed
-    Ref = rmse[0]
+    if median==True:
+        Ref = np.median(rmse)
+        loopcount = range(len(rmse))
+    else: 
+        Ref = rmse[0]
+        loopcount = range(1,len(rmse))
     accept = []
     P = []
     k = 0
-    for i in range(1,len(rmse)):
+    for i in loopcount:
         if rmse[i] < Ref:
             Ref = rmse[i]
             accept.append(i)
