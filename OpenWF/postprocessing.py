@@ -8,6 +8,7 @@ Methods comprise plotting and calculation of parameters, such as the heatflow.
 
 # import some libraries
 from scipy.stats import hmean
+import random
 import pandas as pd
 import numpy as np
 import h5py
@@ -564,7 +565,7 @@ def c_rmse(predicted, target):
     rm_sq_diff = np.sqrt((predicted.sub(target, axis=0)**2).mean())
     return rm_sq_diff
 
-def rejection(rmse, rnseed=np.random.seed(0), verbose=True):
+def rejection(rmse, rnseed=random.seed(0), u_g: float=0.01, verbose=True):
     rnseed
     Ref = rmse[0]
     accept = []
