@@ -5,14 +5,14 @@ Examples using ``numpy.load``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="03 - Create SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="05 - Monte Carlo rejection and ensemble conditioning">
 
 .. only:: html
 
- .. figure:: /Tutorials/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
-     :alt: 03 - Create SHEMAT-Suite models
+ .. figure:: /Tutorials/images/thumb/sphx_glr_05_POC-MC_rejection_thumb.png
+     :alt: 05 - Monte Carlo rejection and ensemble conditioning
 
-     :ref:`sphx_glr_Tutorials_03_POC_export-SHEMAT.py`
+     :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``numpy.load``
 
 .. only:: not html
 
- * :ref:`sphx_glr_Tutorials_03_POC_export-SHEMAT.py`
+ * :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`

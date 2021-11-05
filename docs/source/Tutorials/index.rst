@@ -103,6 +103,27 @@ Finally, in an example we show an approach of conditioning the ensemble using si
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="05 - Monte Carlo rejection and ensemble conditioning">
+
+.. only:: html
+
+ .. figure:: /Tutorials/images/thumb/sphx_glr_05_POC-MC_rejection_thumb.png
+     :alt: 05 - Monte Carlo rejection and ensemble conditioning
+
+     :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /Tutorials/05_POC-MC_rejection
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This section briefly describes how to export a GemPy model to get a working input file for MOOS...">
 
 .. only:: html

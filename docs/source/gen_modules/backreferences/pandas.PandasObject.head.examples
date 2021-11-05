@@ -5,14 +5,14 @@ Examples using ``pandas.PandasObject.head``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will lead you through an example workflow on how to create a Monte Carlo...">
+    <div class="sphx-glr-thumbcontainer" tooltip="05 - Monte Carlo rejection and ensemble conditioning">
 
 .. only:: html
 
- .. figure:: /Tutorials/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: 02 - Monte Carlo simulation
+ .. figure:: /Tutorials/images/thumb/sphx_glr_05_POC-MC_rejection_thumb.png
+     :alt: 05 - Monte Carlo rejection and ensemble conditioning
 
-     :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
+     :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``pandas.PandasObject.head``
 
 .. only:: not html
 
- * :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
+ * :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`
