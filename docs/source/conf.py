@@ -19,7 +19,7 @@ import numpy as np
 
 pyvista.set_error_output_file('errors.txt')
 # Ensure that offscreen rendering is used for docs generation
-pyvista.OFF_SCREEN = True  
+pyvista.OFF_SCREEN = True
 # Preferred plotting style for documentation
 pyvista.set_plot_theme('document')
 pyvista.rcParams['window_size'] = np.array([1024, 768]) * 2
@@ -100,14 +100,12 @@ html_static_path = ['_static']
 sphinx_gallery_conf = {
     # path to your example scripts
     'examples_dirs': [
-        '../../examples/WP1-data_analysis',
-        '../../examples/WP2-geo_modeling',
-        '../../examples/WP3-heat_transport'],
+        '../../examples/Examples',
+        '../../examples/Tutorials'],
     # path to where to save gallery generated output
     'gallery_dirs': [
-        'WP1-data_analysis',
-        'WP2-geo_modeling',
-        'WP3-heat_transport'],
+        'Examples',
+        'Tutorials'],
     #'subsection_order': ExplicitOrder(['../../examples/WP1-data_analysis',
     #                                    '../../examples/WP2-geo_modeling',
     #                                    '../../examples/WP3-heat_transport']),

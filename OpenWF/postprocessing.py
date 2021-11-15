@@ -8,6 +8,7 @@ Methods comprise plotting and calculation of parameters, such as the heatflow.
 
 # import some libraries
 from scipy.stats import hmean
+import random
 import pandas as pd
 import numpy as np
 import h5py
@@ -305,6 +306,8 @@ def heatcapacity(data: h5py.File):
     return cpf
 
 def calc_adv_hf(data: h5py.File, direction: str='full'):
+    """Calculate advective heat flow"""
+    print("Coming soon(tm)")
     pass
 
 
@@ -562,13 +565,18 @@ def c_rmse(predicted, target):
     rm_sq_diff = np.sqrt((predicted.sub(target, axis=0)**2).mean())
     return rm_sq_diff
 
-def rejection(rmse, rnseed=np.random.seed(0), verbose=True):
+def rejection(rmse, rnseed=random.seed(0), u_g: float=0.01, verbose=True, median=True):
     rnseed
-    Ref = rmse[0]
+    if median==True:
+        Ref = np.median(rmse)
+        loopcount = range(len(rmse))
+    else: 
+        Ref = rmse[0]
+        loopcount = range(1,len(rmse))
     accept = []
     P = []
     k = 0
-    for i in range(1,len(rmse)):
+    for i in loopcount:
         if rmse[i] < Ref:
             Ref = rmse[i]
             accept.append(i)

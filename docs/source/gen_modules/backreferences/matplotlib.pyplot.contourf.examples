@@ -5,14 +5,14 @@ Examples using ``matplotlib.pyplot.contourf``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Analysis of SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="05 - Monte Carlo rejection and ensemble conditioning">
 
 .. only:: html
 
- .. figure:: /WP3-heat_transport/images/thumb/sphx_glr_POC-HFD_calculation_thumb.png
-     :alt: Analysis of SHEMAT-Suite models
+ .. figure:: /Tutorials/images/thumb/sphx_glr_05_POC-MC_rejection_thumb.png
+     :alt: 05 - Monte Carlo rejection and ensemble conditioning
 
-     :ref:`sphx_glr_WP3-heat_transport_POC-HFD_calculation.py`
+     :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``matplotlib.pyplot.contourf``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP3-heat_transport_POC-HFD_calculation.py`
+ * :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`

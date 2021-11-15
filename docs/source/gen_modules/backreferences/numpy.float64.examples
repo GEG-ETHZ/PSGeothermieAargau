@@ -5,14 +5,14 @@ Examples using ``numpy.float64``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="05 - Monte Carlo rejection and ensemble conditioning">
 
 .. only:: html
 
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
-     :alt: Create SHEMAT-Suite models
+ .. figure:: /Tutorials/images/thumb/sphx_glr_05_POC-MC_rejection_thumb.png
+     :alt: 05 - Monte Carlo rejection and ensemble conditioning
 
-     :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
+     :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``numpy.float64``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
+ * :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`

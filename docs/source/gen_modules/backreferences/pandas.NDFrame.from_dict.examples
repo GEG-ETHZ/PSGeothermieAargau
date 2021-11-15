@@ -9,10 +9,10 @@ Examples using ``pandas.NDFrame.from_dict``
 
 .. only:: html
 
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
-     :alt: Monte Carlo simulation
+ .. figure:: /Tutorials/images/thumb/sphx_glr_02_POC_create-MC-ensemble_thumb.png
+     :alt: 02 - Monte Carlo simulation
 
-     :ref:`sphx_glr_WP2-geo_modeling_02_POC_create-MC-ensemble.py`
+     :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``pandas.NDFrame.from_dict``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2-geo_modeling_02_POC_create-MC-ensemble.py`
+ * :ref:`sphx_glr_Tutorials_02_POC_create-MC-ensemble.py`

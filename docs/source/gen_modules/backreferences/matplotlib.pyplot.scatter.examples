@@ -5,14 +5,14 @@ Examples using ``matplotlib.pyplot.scatter``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The following tutorial will step-by-step lead you through an example workflow on creating a Gem...">
+    <div class="sphx-glr-thumbcontainer" tooltip="05 - Monte Carlo rejection and ensemble conditioning">
 
 .. only:: html
 
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
+ .. figure:: /Tutorials/images/thumb/sphx_glr_05_POC-MC_rejection_thumb.png
+     :alt: 05 - Monte Carlo rejection and ensemble conditioning
 
-     :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
+     :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``matplotlib.pyplot.scatter``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
+ * :ref:`sphx_glr_Tutorials_05_POC-MC_rejection.py`

@@ -9,10 +9,10 @@ Examples using ``gempy.core.ImplicitCoKriging.set_is_fault``
 
 .. only:: html
 
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
-     :alt: Geological model creation and gravity simulation
+ .. figure:: /Tutorials/images/thumb/sphx_glr_01_POC_generate-model_thumb.png
+     :alt: 01 - Geological model creation and gravity simulation
 
-     :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
+     :ref:`sphx_glr_Tutorials_01_POC_generate-model.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``gempy.core.ImplicitCoKriging.set_is_fault``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2-geo_modeling_01_POC_generate-model.py`
+ * :ref:`sphx_glr_Tutorials_01_POC_generate-model.py`

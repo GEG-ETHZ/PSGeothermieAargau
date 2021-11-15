@@ -5,14 +5,14 @@ Examples using ``pandas.core.PandasObject.shape``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Create SHEMAT-Suite models">
+    <div class="sphx-glr-thumbcontainer" tooltip="03 - Create SHEMAT-Suite models">
 
 .. only:: html
 
- .. figure:: /WP2-geo_modeling/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
-     :alt: Create SHEMAT-Suite models
+ .. figure:: /Tutorials/images/thumb/sphx_glr_03_POC_export-SHEMAT_thumb.png
+     :alt: 03 - Create SHEMAT-Suite models
 
-     :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
+     :ref:`sphx_glr_Tutorials_03_POC_export-SHEMAT.py`
 
 .. raw:: html
 
@@ -20,4 +20,4 @@ Examples using ``pandas.core.PandasObject.shape``
 
 .. only:: not html
 
- * :ref:`sphx_glr_WP2-geo_modeling_03_POC_export-SHEMAT.py`
+ * :ref:`sphx_glr_Tutorials_03_POC_export-SHEMAT.py`
