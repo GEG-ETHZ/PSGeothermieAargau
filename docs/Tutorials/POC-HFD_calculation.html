@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>04 - Analysis of SHEMAT-Suite models &#8212; Pilot Study Geothermie Aargau ALPHA documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -40,7 +41,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-tutorials-poc-hfd-calculation-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="analysis-of-shemat-suite-models">
+<section class="sphx-glr-example-title" id="analysis-of-shemat-suite-models">
 <span id="sphx-glr-tutorials-poc-hfd-calculation-py"></span><h1>04 - Analysis of SHEMAT-Suite models<a class="headerlink" href="#analysis-of-shemat-suite-models" title="Permalink to this headline">¶</a></h1>
 <p>The created geological models with gempy were exported as SHEMAT-Suite input files. <a class="reference external" href="https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open">SHEMAT-Suite</a> [1] is a code for
 solving coupled heat transport in porous media. It is written in fortran and uses a finite differences scheme in a hexahedral grid.
@@ -59,7 +60,7 @@ optional outputs, such as ASCII-Files with comparison of simulated values to mea
 A full coverage of possible output files is provided in the <a class="reference external" href="https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open/-/wikis/home">SHEMAT-Suite wiki</a>.
 In this tutorial, we will work with HDF5 files and VTK files. The majority of methods in OpenWF are tailored towards HDF5 files, which are smaller than their VTK relatives.</p>
 <p>However, there exists a powerful visualization code for python which builds upon vtk, called pyvista. We will briefly showcase its capabilities at the end of this tutorial.</p>
-<div class="section" id="load-hdf5-file">
+<section id="load-hdf5-file">
 <h2>Load HDF5 file<a class="headerlink" href="#load-hdf5-file" title="Permalink to this headline">¶</a></h2>
 <p>From the base POC model, we created a SHEMAT-Suite input file. This was then executed with the compiled SHEMAT-Suite code. As basic information: we look at conductive heat transport,
 i.e. no fluid flow, and heat transport is described by Fourier’s law of heat conduction <span class="math notranslate nohighlight">\(q = - \lambda \nabla T\)</span>. At the base of the model, the heat flow boundary condition is
@@ -108,8 +109,8 @@ contour field.</p>
 </pre></div>
 </div>
 <img alt="rhof,y-direction, cell 25" class="sphx-glr-single-img" src="../_images/sphx_glr_POC-HFD_calculation_002.png" />
-</div>
-<div class="section" id="heat-flow-estimation">
+</section>
+<section id="heat-flow-estimation">
 <h2>Heat flow estimation<a class="headerlink" href="#heat-flow-estimation" title="Permalink to this headline">¶</a></h2>
 <p>SHEMAT-Suite does not provide the heat flow for HDF5 files. It does, however, store it in the vtk output. To also have the heat flow for HDF5 files, we provide a method for calculating
 it. In the future, it may be directly written in HDF5 files by SHEMAT-Suite. The method calculates the conductive heat flow in all model dimensions per default.
@@ -162,8 +163,8 @@ so providing the average heat flow over this depth interval.</p>
 </pre></div>
 </div>
 <img alt="Heat flow, at -3500.0 m a.s.l. depth, over a 1000 m depth interval" class="sphx-glr-single-img" src="../_images/sphx_glr_POC-HFD_calculation_004.png" />
-</div>
-<div class="section" id="vtk-and-pyvista">
+</section>
+<section id="vtk-and-pyvista">
 <h2>VTK and pyvista<a class="headerlink" href="#vtk-and-pyvista" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://docs.pyvista.org/">Pyvista</a> [2] is a python library for working with 3D meshes and providing an interface for VTK files.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
@@ -198,8 +199,8 @@ so providing the average heat flow over this depth interval.</p>
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">[1] Keller, J., Rath, V., Bruckmann, J., Mottaghy, D., Clauser, C., Wolf, A., Seidler, R., Bücker, H.M., Klitzsch, N. (2020). SHEMAT-Suite: An open-source code for simulating flow, heat and species transport in porous media. SoftwareX, 12, 100533.</div>
@@ -215,8 +216,8 @@ so providing the average heat flow over this depth interval.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -290,7 +291,7 @@ so providing the average heat flow over this depth interval.</p>
       &copy;2019 - 2021, Jan Niederau.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

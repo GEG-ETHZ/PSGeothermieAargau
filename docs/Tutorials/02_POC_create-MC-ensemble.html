@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>02 - Monte Carlo simulation &#8212; Pilot Study Geothermie Aargau ALPHA documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -41,12 +42,12 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-tutorials-02-poc-create-mc-ensemble-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="monte-carlo-simulation">
+<section class="sphx-glr-example-title" id="monte-carlo-simulation">
 <span id="sphx-glr-tutorials-02-poc-create-mc-ensemble-py"></span><h1>02 - Monte Carlo simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permalink to this headline">¶</a></h1>
 <p>The following tutorial will lead you through an example workflow on how to create a Monte Carlo simulation of
 geological models, meaning we will produce different geological geometries and also simulate their gravity
 response.</p>
-<div class="section" id="importing-libraries">
+<section id="importing-libraries">
 <h2>Importing libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this headline">¶</a></h2>
 <p>First things first: let’s import necessary libraries.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -76,8 +77,8 @@ response.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Code run with GemPy version: 2.2.9
 </pre></div>
 </div>
-</div>
-<div class="section" id="model-initialization">
+</section>
+<section id="model-initialization">
 <h2>Model Initialization<a class="headerlink" href="#model-initialization" title="Permalink to this headline">¶</a></h2>
 <p>First, we import the base Proof-of-Concept model (POC-model from here on), which was generated in the previous example. Using the loading method of GemPy <cite>gp.load_model()</cite> directly loads the model’s input, already set with fault relations, surfaces assigned to a stack (series), etc.
 Only thing left is to recompile and run the model.</p>
@@ -252,8 +253,8 @@ drift equations  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 </pre></div>
 </div>
 <p>The two distinct domains in this model are directly visible: (i) the old graben system (extensional regime), covered by the (ii) thrusted, younger units.</p>
-</div>
-<div class="section" id="add-gravity-grid">
+</section>
+<section id="add-gravity-grid">
 <h2>Add Gravity grid<a class="headerlink" href="#add-gravity-grid" title="Permalink to this headline">¶</a></h2>
 <p>In the previous example, next to creating the model, we chose quasi-random locations for 15 gravity stations. The gravity signal of the base POC-model is simulated at these 15 stations. In the following workflows, we assume that these 15 stations were measured. So they serve as observed data for conditioning the MonteCarlo Ensemble of different geological geometries.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># In[7]:</span>
@@ -453,8 +454,8 @@ array([[  140.        ,   140.        , -6437.5       ],
     </tbody></table>
 </div>
 <br />
-<br /></div>
-<div class="section" id="mc-variation">
+<br /></section>
+<section id="mc-variation">
 <h2>MC Variation<a class="headerlink" href="#mc-variation" title="Permalink to this headline">¶</a></h2>
 <p>For varying the depth of units, we extract the indices of the units whose input points we want to modify. To guarantee that we always vary the original depth in each realization (and not the depth used in the previous realization), we first generate an initial-depth array, containing the original depth information of all input points:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="pandas.core.series.Series" class="sphx-glr-backref-module-pandas-core-series sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Z_init</span></a> <span class="o">=</span> <span class="n">geo_model</span><span class="o">.</span><span class="n">surface_points</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -524,8 +525,8 @@ compute a model.</p>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">lith_blocks</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">lith_blocks</span></a><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">n_iterations</span></a><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="export-models-and-gravity">
+</section>
+<section id="export-models-and-gravity">
 <h2>Export models and gravity<a class="headerlink" href="#export-models-and-gravity" title="Permalink to this headline">¶</a></h2>
 <p>For post-processing of use in different software (e.g. numerical simulators for heat- and mass-transport), knowing ways of exporting the MC-results, in this case the simulated gravity and the lithology-blocks, comes in handy. There are many different ways of saving stuff (e.g. pickle the simulation results), but here we present simple exports as <cite>.csv</cite> and <cite>.npy</cite> files.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.core.frame.DataFrame" class="sphx-glr-backref-module-pandas-core-frame sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">gravdf</span></a> <span class="o">=</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.from_dict.html#pandas.DataFrame.from_dict" title="pandas.DataFrame.from_dict" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-method"><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">grav</span></a><span class="p">)</span>
@@ -662,8 +663,8 @@ compute a model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.save.html#numpy.save" title="numpy.save" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">save</span></a><span class="p">(</span><span class="s1">&#39;../../data/outputs/MCexample_10realizations.npy&#39;</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">lith_blocks</span></a><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="quick-model-analysis">
+</section>
+<section id="quick-model-analysis">
 <h2>Quick model analysis<a class="headerlink" href="#quick-model-analysis" title="Permalink to this headline">¶</a></h2>
 <p>Let’s have a quick first look at the resulting gravity and lithological block models. From the gravity dictionary, we can quickly generate a dataframe, convenient for further model analysis.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">prob_block</span></a> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">bayesian</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">probability</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">lith_blocks</span></a><span class="p">)</span>
@@ -739,8 +740,8 @@ compute a model.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -827,7 +828,7 @@ compute a model.</p>
       &copy;2019 - 2021, Jan Niederau.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

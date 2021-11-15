@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>05 - Monte Carlo rejection and ensemble conditioning &#8212; Pilot Study Geothermie Aargau ALPHA documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -42,7 +43,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-tutorials-05-poc-mc-rejection-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="monte-carlo-rejection-and-ensemble-conditioning">
+<section class="sphx-glr-example-title" id="monte-carlo-rejection-and-ensemble-conditioning">
 <span id="sphx-glr-tutorials-05-poc-mc-rejection-py"></span><h1>05 - Monte Carlo rejection and ensemble conditioning<a class="headerlink" href="#monte-carlo-rejection-and-ensemble-conditioning" title="Permalink to this headline">¶</a></h1>
 <p>The created geological models with gempy were exported as SHEMAT-Suite input files. <a class="reference external" href="https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open">SHEMAT-Suite</a> [1] is a code for
 solving coupled heat transport in porous media. It is written in fortran and uses a finite differences scheme in a hexahedral grid.
@@ -71,7 +72,7 @@ in OpenWF for loading the result file, displaying the parameters it contains and
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Run mit GemPy version 2.2.9
 </pre></div>
 </div>
-<div class="section" id="rejection-algorithm-based-on-random-walk">
+<section id="rejection-algorithm-based-on-random-walk">
 <h2>Rejection algorithm based on random walk<a class="headerlink" href="#rejection-algorithm-based-on-random-walk" title="Permalink to this headline">¶</a></h2>
 <p>We created a tiny ensemble of 10 different SHEMAT-Suite models in the previous step and will use a rejection algorithm to get a posterior ensemble of models.
 For this, we “borrow” the Metropolis acceptance probability which is defined as:</p>
@@ -88,8 +89,8 @@ be estimated to best knowledge.</p>
 <div class="math notranslate nohighlight">
 \[\]</div>
 <p>u_T = sqrt{big(frac{partial T}{partial x_1}u_1 big)^2 + … + big(frac{partial T}{partial x_n}u_n big)^2}</p>
-</div>
-<div class="section" id="literature-sources-for-log-errors">
+</section>
+<section id="literature-sources-for-log-errors">
 <h2>Literature sources for log-errors:<a class="headerlink" href="#literature-sources-for-log-errors" title="Permalink to this headline">¶</a></h2>
 <p>_The lower part of the disturbed log profile (below the cross-over point) was rotated to match these corrected temperatures.
 In the upper part of the profile, the same correction as for method A was applied. The quality of this correction method strongly depends on the correct calculation of the lowermost profile
@@ -99,8 +100,8 @@ temperatures. According to Förster (2001), most of the corrected tem-peratures 
 <p>_More normal accuracies are +- 0.25 °C over 0-200 °C_ Keith Geothermal Energy lecture</p>
 <p>For errors as a function of e.g. logging speed, measurement response time etc, look <a class="reference external" href="https://doi.org/10.1016/j.petrol.2020.107727">https://doi.org/10.1016/j.petrol.2020.107727</a></p>
 </div></blockquote>
-</div>
-<div class="section" id="model-preparation">
+</section>
+<section id="model-preparation">
 <h2>Model preparation<a class="headerlink" href="#model-preparation" title="Permalink to this headline">¶</a></h2>
 <p>To see, where our data points are situated, we load the model topography and plot the position of gravity stations and temperature boreholes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import DTM</span>
@@ -139,15 +140,15 @@ temperatures. According to Förster (2001), most of the corrected tem-peratures 
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.ylabel.html#matplotlib.pyplot.ylabel" title="matplotlib.pyplot.ylabel" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span></a><span class="p">(</span><span class="s1">&#39;Y [m]&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_05_POC-MC_rejection_001.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_001.png" alt="05 POC MC rejection" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Active grids: [&#39;regular&#39;]
 Active grids: [&#39;regular&#39; &#39;topography&#39;]
 
 Text(119.30555555555556, 0.5, &#39;Y [m]&#39;)
 </pre></div>
 </div>
-</div>
-<div class="section" id="load-the-lithology-blocks">
+</section>
+<section id="load-the-lithology-blocks">
 <h2>Load the Lithology Blocks<a class="headerlink" href="#load-the-lithology-blocks" title="Permalink to this headline">¶</a></h2>
 <p>First let’s load the lithology block of all 10 models, looking at the probabilities of the graben unit and at the model entropy.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and calculate Probability and Entropy using GemPy bayesian field functions</span>
@@ -178,15 +179,15 @@ Text(119.30555555555556, 0.5, &#39;Y [m]&#39;)
                   <span class="p">)</span>
 </pre></div>
 </div>
-<ul class="sphx-glr-horizontal">
-<li><img src="../_images/sphx_glr_05_POC-MC_rejection_002.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_002.png" alt="Cell Number: mid Direction: y" class = "sphx-glr-multi-img"/></li>
-<li><img src="../_images/sphx_glr_05_POC-MC_rejection_003.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_003.png" alt="Cell Number: mid Direction: y" class = "sphx-glr-multi-img"/></li>
-<li><img src="../_images/sphx_glr_05_POC-MC_rejection_004.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_004.png" alt="Cell Number: mid Direction: y" class = "sphx-glr-multi-img"/></li>
+<ul class="sphx-glr-horizontal simple">
+<li></li>
+<li></li>
+<li></li>
 </ul>
 <p>The Information entropy plot shows where the maximal Uncertainty is in our model, i.e. where the contacts are between the graben units and the basement.
 A lot of uncertainty is visible in the right part of the model (between around 16000 and 20000), where the main graben unit may or may not be present.</p>
-</div>
-<div class="section" id="gravity-rejection">
+</section>
+<section id="gravity-rejection">
 <h2>Gravity rejection<a class="headerlink" href="#gravity-rejection" title="Permalink to this headline">¶</a></h2>
 <p>In a first stage, we take a look at the gravity signal of each realization. The gravity signal is “recorded” at each of the squares you see in the plot above.
 Comparing the recorded gravity signals of each realization with the ones of the base model (which we regard as the “true” observations), we can differentiate between fitting and non-fitting ensemble
@@ -324,7 +325,7 @@ it does not have noise. That’s why we artificially add it. This would not be n
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.colorbar.html#matplotlib.pyplot.colorbar" title="matplotlib.pyplot.colorbar" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span></a><span class="p">(</span><a href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PathCollection" title="matplotlib.collections.PathCollection" class="sphx-glr-backref-module-matplotlib-collections sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cs</span></a><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;standard deviation&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_05_POC-MC_rejection_005.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_005.png" alt="05 POC MC rejection" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0.32409402260706643
 
 &lt;matplotlib.colorbar.Colorbar object at 0x000001E0DA0EB040&gt;
@@ -377,7 +378,7 @@ and the model entropy:</p>
                   <span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_05_POC-MC_rejection_006.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_006.png" alt="Cell Number: mid Direction: y" class = "sphx-glr-single-img"/><p>Comparing this to the Entropy plot from above, we see that the overall entropy is reduced in many parts of the model. Also the “thickness” of the areas with increased entropy is reduced, hinting at a
+<p>Comparing this to the Entropy plot from above, we see that the overall entropy is reduced in many parts of the model. Also the “thickness” of the areas with increased entropy is reduced, hinting at a
 sucessful reduction of depth uncertainty for, e.g. the graben units. We now go ahead and save the lithology blocks of the accepted realizations, as these could now be used for subsequent
 heat tranpsort simulations.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.save.html#numpy.save" title="numpy.save" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">save</span></a><span class="p">(</span><span class="s1">&#39;../../data/outputs/lith_blocks_accepted.npy&#39;</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">accepted_reals</span></a><span class="p">)</span>
@@ -395,8 +396,8 @@ Which means, in this case:</p>
 </pre></div>
 </div>
 <p>This means, we’d only need to run heat-transport simulations for the realizations accepted by the gravity rejection step.</p>
-</div>
-<div class="section" id="temperature-rejection">
+</section>
+<section id="temperature-rejection">
 <h2>Temperature rejection<a class="headerlink" href="#temperature-rejection" title="Permalink to this headline">¶</a></h2>
 <p>The black triangles in the Map plot are the locations from 4 different boreholes in the model. Temperature data from these boreholes is now used in a similar fashion to further reduce the model to
 realizations, which now fit both the gravity and the temperature signal.</p>
@@ -413,7 +414,7 @@ of the base model:</p>
               <span class="n">parameter</span><span class="o">=</span><span class="s1">&#39;temp&#39;</span><span class="p">,</span> <span class="n">cell_number</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">model_depth</span><span class="o">=</span><span class="mi">6500</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_05_POC-MC_rejection_007.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_007.png" alt="temp,y-direction, cell 25" class = "sphx-glr-single-img"/><p>Similar to the previous step, where we estimated <span class="math notranslate nohighlight">\(u_g\)</span>, we now have to estimate <span class="math notranslate nohighlight">\(u_T\)</span> for temperature. There we use some literature estimations for errors introduced in measurements of
+<p>Similar to the previous step, where we estimated <span class="math notranslate nohighlight">\(u_g\)</span>, we now have to estimate <span class="math notranslate nohighlight">\(u_T\)</span> for temperature. There we use some literature estimations for errors introduced in measurements of
 borehole temperatures:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># define uT</span>
 <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">T_error</span></a> <span class="o">=</span> <span class="mf">0.25</span> <span class="c1"># temperature error tool accuracy</span>
@@ -681,8 +682,8 @@ When we stack the calculated parameters, we’ll end up with an array with 130 c
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html#numpy.savetxt" title="numpy.savetxt" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">savetxt</span></a><span class="p">(</span><span class="s1">&#39;../../models/SHEMAT-Suite_output/differences_RMSE.txt&#39;</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">total_diffs</span></a><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.4f</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="rejection-sampling-temperature">
+</section>
+<section id="rejection-sampling-temperature">
 <h2>Rejection sampling Temperature<a class="headerlink" href="#rejection-sampling-temperature" title="Permalink to this headline">¶</a></h2>
 <p>Similar to the gravity rejection step before, we now work with the temperature RMSE to reject samples. However, this step might be somewhat ambigous:
 Because we’re only looking at conductive heat transport in this tutorial example, the sole difference between realizations will be based on the thickness of the geological unit with its thermal
@@ -747,7 +748,7 @@ This means, this start from 1 to N can be used here, if samples generated are al
                   <span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_05_POC-MC_rejection_008.png" srcset="../_images/sphx_glr_05_POC-MC_rejection_008.png" alt="Cell Number: mid Direction: y" class = "sphx-glr-single-img"/><p>The plot above shows a strong “binary” entropy field. Entropy is maximum (bright color) especially with respect to the depth of the post-graben unit interface.
+<p>The plot above shows a strong “binary” entropy field. Entropy is maximum (bright color) especially with respect to the depth of the post-graben unit interface.
 The area of interest, however, the depth of the graben is now significantly reduced. We see, that the two resulting models do not differ that much with respect to graben depth, but only depth of the
 post-graben unit.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;So, the final realizations which remain from the original </span><span class="si">{</span><span class="p">[</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">accept_g</span></a><span class="p">[</span><span class="n">real</span><span class="p">]</span> <span class="k">for</span> <span class="n">real</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">accept</span></a><span class="p">]</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
@@ -767,8 +768,8 @@ post-graben unit.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -855,7 +856,7 @@ post-graben unit.</p>
       &copy;2019 - 2021, Jan Niederau.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
