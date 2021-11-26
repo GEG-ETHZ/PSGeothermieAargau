@@ -49,7 +49,7 @@ print(f"Run mit GemPy version {gp.__version__}")
 # Using Gauss error propagation, we assess a potential error for the realisations.  
 #
 # .. math::
-# u_T = \sqrt{\big(\frac{\partial T}{\partial x_1}u_1 \big)^2 + ... + \big(\frac{\partial T}{\partial x_n}u_n \big)^2} 
+#   u_T = \sqrt{\big(\frac{\partial T}{\partial x_1}u_1 \big)^2 + ... + \big(\frac{\partial T}{\partial x_n}u_n \big)^2} 
 
 #%%
 # Literature sources for log-errors:
