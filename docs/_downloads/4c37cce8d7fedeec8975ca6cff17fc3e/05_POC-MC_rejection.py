@@ -49,20 +49,15 @@ print(f"Run mit GemPy version {gp.__version__}")
 # Using Gauss error propagation, we assess a potential error for the realisations.  
 #
 # .. math::
-# u_T = \sqrt{\big(\frac{\partial T}{\partial x_1}u_1 \big)^2 + ... + \big(\frac{\partial T}{\partial x_n}u_n \big)^2} 
+#   u_T = \sqrt{\big(\frac{\partial T}{\partial x_1}u_1 \big)^2 + ... + \big(\frac{\partial T}{\partial x_n}u_n \big)^2} 
 
 #%%
 # Literature sources for log-errors:
 # ----------------------------------
-# _The lower part of the disturbed log profile (below the cross-over point) was rotated to match these corrected temperatures. 
-# In the upper part of the profile, the same correction as for method A was applied. The quality of this correction method strongly depends on the correct calculation of the lowermost profile 
-# temperatures. According to Förster (2001), most of the corrected tem-peratures have errors of ± 3 to 5 K._ https://doi.org/10.1186/s40517-020-00181-w  
-# 
-#  _The effective accuracy of commercial temperature logs is ±0.5ºC (Blackwell and Spafford, 1987)._  http://www.sprensky.com/publishd/temper2.html  
-#  
-#  _More normal accuracies are +- 0.25 °C over 0-200 °C_ Keith Geothermal Energy lecture  
-#  
-#  For errors as a function of e.g. logging speed, measurement response time etc, look https://doi.org/10.1016/j.petrol.2020.107727
+# Multiple additional error-sources exist for borehole temperatures. Bottom hole temperatures, a standard measurement when it comes to 
+# temperature estimates from boreholes, of ± 3 to 5 K, even when measured after a long enough time [1]. 
+# For logging devices, temperature logs can have effective accuracies between ± 0.25 and 0.5 °C [2]. In addition to the device specific 
+# accuracies, errors can be introduced by the measurement procedure itself, e.g. by the logging speed [3].
 
 #%%
 # Model preparation
@@ -374,3 +369,10 @@ p2dp = gp.plot_2d(geo_model,
 
 print(f"So, the final realizations which remain from the original {[accept_g[real] for real in accept]}!")
 
+
+#%%
+# References
+# ----------
+# | [1] Schumacher, S., & Moeck, I. (2020). A new method for correcting temperature log profiles in low-enthalpy plays. Geothermal Energy, 8(1), 1-23.  
+# | [2] Blackwell, D.D., and Spafford, R.E., 1987, Experimental methods in continental heat flow, chapter 14, in Sammis, C.G., and Henyey, T.L, eds., Geophysics, part B, field measurements: Academic Press, Inc., Orlando, Methods of Experimental Physics, v. 24, p. 189-226.  
+# | [3] Sharma, J., Adnyana, G., Barnes, D., Mims, D., & Behrens, R. (2021). Temperature logging guidelines and factors that affect measurement accuracy in steamfloods. Journal of Petroleum Science and Engineering, 196, 107727.  
