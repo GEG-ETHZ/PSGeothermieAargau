@@ -20,7 +20,11 @@ The gallery is meant to lead through the open workflow from data compilation to 
 
 ## ℹ️ Overview
 
-This repository 
+This repository comprises methods created for the Project _[Pilot Study Geothermie Aargau](https://geg.ethz.ch/project-geothermal_aargau/)_. Aim of this project is to assess the deep heat flow in an area of 
+northern Switzerland, where existing heat flow maps show a strong heat flow anomaly with values above 130 mW/m². For modeling the heat transport in the subsurface, we use exclusively open-source packages. 
+Geological models used for creating the geological structure are created with [GemPy](https://www.gempy.org/). Geophysical data, such as gravity, can be used of utilizing the bayesian inference capabilities of 
+GemPy, which build upon [PyMC3](https://docs.pymc.io/en/v3/).
+Heat transport in this project is simulated with [SHEMAT-Suite-open](https://git.rwth-aachen.de/SHEMAT-Suite/SHEMAT-Suite-open), an open-source code for modeling heat- and mass-transport in porous medium. SHEMAT-Suite is written in Fortran and the only non-python component of this project.
 
 
 ### ✍️ Authors
